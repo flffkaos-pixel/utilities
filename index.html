@@ -108,8 +108,8 @@
             });
             localStorage.setItem('util-lang', lang);
         }
-        const saved = localStorage.getItem('util-lang');
-        if (saved) setLang(saved);
+        // Always start with Korean (ignore saved preference)
+        setLang('ko');
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 </body>
