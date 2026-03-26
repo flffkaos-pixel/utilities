@@ -24,9 +24,12 @@
         .card h2 { font-size: 1.2rem; margin-bottom: 10px; }
         .card p { color: var(--text-muted); font-size: 0.9rem; }
         .ads { max-width: 1000px; margin: 30px auto; text-align: center; }
-        /* Language toggle - show only selected language */
-        .lang-ko .en { display: none; }
-        .lang-en .ko { display: none; }
+        /* Language toggle - show both languages together */
+        .lang-ko .en { display: inline; }
+        .lang-en .ko { display: inline; }
+        /* Always show both languages */
+        .ko { display: inline; }
+        .en { display: inline; }
     </style>
 </head>
 <body class="lang-ko">
