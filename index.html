@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Free Utilities - All-in-One Tools</title>
+    <meta name="description" content="Free online utilities: text tools, color converter, unit converter, time zone converter, encoder/decoder and more.">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        
+        .header { background: white; padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .header h1 { color: #667eea; margin-bottom: 5px; }
+        .header p { color: #666; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; max-width: 1200px; margin: 0 auto; }
+        
+        .card { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
+        .card h2 { color: #667eea; font-size: 1.2rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .card label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 0.9rem; }
+        .card input, .card textarea, .card select { width: 100%; padding: 10px; border: 2px solid #eee; border-radius: 8px; font-size: 0.95rem; margin-bottom: 10px; }
+        .card textarea { min-height: 80px; resize: vertical; }
+        .card .btn { padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 8px; font-size: 0.9rem; cursor: pointer; margin: 3px; }
+        .card .btn:hover { background: #5568d3; }
+        
+        .result { padding: 10px; background: #f5f5f5; border-radius: 8px; margin-top: 10px; word-break: break-all; font-size: 0.9rem; }
+        
+        .ads { max-width: 1200px; margin: 20px auto; text-align: center; }
+        
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>All Free Utilities</h1>
+        <p>Free all-in-one online tools</p>
+    </div>
+    
+    <div class="grid">
+        <!-- Text Tools -->
+        <div class="card">
+            <h2>📝 Text Tools</h2>
+            <label>Input Text</label>
+            <textarea id="text-input" placeholder="Enter text..."></textarea>
+            <button class="btn" onclick="upperCase()">UPPERCASE</button>
+            <button class="btn" onclick="lowerCase()">lowercase</button>
+            <button class="btn" onclick="capitalize()">Capitalize</button>
+            <button class="btn" onclick="removeSpaces()">Trim</button>
+            <button class="btn" onclick="copyResult('text-result')">Copy</button>
+            <div class="result" id="text-result"></div>
+        </div>
+        
+        <!-- Word Counter -->
+        <div class="card">
+            <h2>📊 Word Counter</h2>
+            <label>Text</label>
+            <textarea id="counter-input" oninput="countWords()"></textarea>
+            <p>Words: <strong id="word-count">0</strong></p>
+            <p>Characters: <strong id="char-count">0</strong></p>
+        </div>
+        
+        <!-- Color Converter -->
+        <div class="card">
+            <h2>🎨 Color Converter</h2>
+            <label>HEX Color</label>
+            <input type="text" id="hex-input" placeholder="#667eea" oninput="convertColor()">
+            <p>RGB: <strong id="rgb-result">rgb(102, 126, 234)</strong></p>
+        </div>
+        
+        <!-- Time Converter -->
+        <div class="card">
+            <h2>🕐 Time Converter</h2>
+            <label>Unix Timestamp</label>
+            <input type="number" id="timestamp-input" oninput="convertTime()">
+            <p>Result: <strong id="time-result">-</strong></p>
+        </div>
+        
+        <!-- Base64 -->
+        <div class="card">
+            <h2>🔐 Base64</h2>
+            <label>Text</label>
+            <textarea id="base64-input" placeholder="Enter text..."></textarea>
+            <button class="btn" onclick="encodeBase64()">Encode</button>
+            <button class="btn" onclick="decodeBase64()">Decode</button>
+            <div class="result" id="base64-result"></div>
+        </div>
+        
+        <!-- URL Encoder -->
+        <div class="card">
+            <h2>🔗 URL Encoder</h2>
+            <label>URL</label>
+            <textarea id="url-input" placeholder="Enter URL..."></textarea>
+            <button class="btn" onclick="encodeURL()">Encode</button>
+            <button class="btn" onclick="decodeURL()">Decode</button>
+            <div class="result" id="url-result"></div>
+        </div>
+        
+        <!-- Unit Converter -->
+        <div class="card">
+            <h2>📏 Unit Converter</h2>
+            <label>Value</label>
+            <input type="number" id="unit-value" oninput="convertUnit()">
+            <select id="unit-type" onchange="convertUnit()">
+                <option value="km-mile">km ↔ mile</option>
+                <option value="kg-pound">kg ↔ pound</option>
+                <option value="celsius-fahrenheit">°C ↔ °F</option>
+                <option value="cm-inch">cm ↔ inch</option>
+            </select>
+            <div class="result" id="unit-result">-</div>
+        </div>
+        
+        <!-- BMI Calculator -->
+        <div class="card">
+            <h2>⚖️ BMI Calculator</h2>
+            <label>Height (cm)</label>
+            <input type="number" id="bmi-height" oninput="calcBMI()">
+            <label>Weight (kg)</label>
+            <input type="number" id="bmi-weight" oninput="calcBMI()">
+            <p>BMI: <strong id="bmi-result">-</strong></p>
+        </div>
+        
+        <!-- Image to Base64 -->
+        <div class="card">
+            <h2>🖼️ Image to Base64</h2>
+            <label>Image URL</label>
+            <input type="text" id="img-url" placeholder="https://...">
+            <button class="btn" onclick="imgToBase64()">Convert</button>
+            <div class="result" id="img-result" style="max-height:100px;overflow:auto;"></div>
+        </div>
+    </div>
+    
+    <div class="ads">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1955893232253258"
+             data-ad-slot="1234567890"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+    </div>
+
+    <script>
+        // Text Tools
+        function getText(id) { return document.getElementById(id).value; }
+        function setResult(id, text) { document.getElementById(id).textContent = text; }
+        
+        function upperCase() { setResult('text-result', getText('text-input').toUpperCase()); }
+        function lowerCase() { setResult('text-result', getText('text-input').toLowerCase()); }
+        function capitalize() {
+            const text = getText('text-input');
+            setResult('text-result', text.replace(/\b\w/g, l => l.toUpperCase()));
+        }
+        function removeSpaces() { setResult('text-result', getText('text-input').trim()); }
+        
+        function copyResult(id) {
+            const text = document.getElementById(id).textContent;
+            if (text) navigator.clipboard.writeText(text);
+        }
+        
+        // Word Counter
+        function countWords() {
+            const text = getText('counter-input');
+            document.getElementById('word-count').textContent = text.trim() ? text.trim().split(/\s+/).length : 0;
+            document.getElementById('char-count').textContent = text.length;
+        }
+        
+        // Color Converter
+        function convertColor() {
+            const hex = document.getElementById('hex-input').value;
+            if (hex.startsWith('#') && (hex.length === 4 || hex.length === 7)) {
+                let r, g, b;
+                if (hex.length === 4) {
+                    r = parseInt(hex[1]+hex[1], 16);
+                    g = parseInt(hex[2]+hex[2], 16);
+                    b = parseInt(hex[3]+hex[3], 16);
+                } else {
+                    r = parseInt(hex.substr(1,2), 16);
+                    g = parseInt(hex.substr(3,2), 16);
+                    b = parseInt(hex.substr(5,2), 16);
+                }
+                document.getElementById('rgb-result').textContent = `rgb(${r}, ${g}, ${b})`;
+            }
+        }
+        
+        // Time Converter
+        function convertTime() {
+            const ts = parseInt(document.getElementById('timestamp-input').value);
+            if (ts) {
+                const date = new Date(ts * 1000);
+                document.getElementById('time-result').textContent = date.toLocaleString();
+            }
+        }
+        
+        // Base64
+        function encodeBase64() {
+            try {
+                setResult('base64-result', btoa(getText('base64-input')));
+            } catch(e) { setResult('base64-result', 'Error'); }
+        }
+        function decodeBase64() {
+            try {
+                setResult('base64-result', atob(getText('base64-input')));
+            } catch(e) { setResult('base64-result', 'Error'); }
+        }
+        
+        // URL
+        function encodeURL() { setResult('url-result', encodeURIComponent(getText('url-input'))); }
+        function decodeURL() { setResult('url-result', decodeURIComponent(getText('url-input'))); }
+        
+        // Unit Converter
+        function convertUnit() {
+            const val = parseFloat(document.getElementById('unit-value').value);
+            const type = document.getElementById('unit-type').value;
+            let result = '-';
+            
+            if (!isNaN(val)) {
+                switch(type) {
+                    case 'km-mile': result = `${val} km = ${(val * 0.621371).toFixed(2)} miles`; break;
+                    case 'kg-pound': result = `${val} kg = ${(val * 2.20462).toFixed(2)} lbs`; break;
+                    case 'celsius-fahrenheit': result = `${val}°C = ${(val * 9/5 + 32).toFixed(2)}°F`; break;
+                    case 'cm-inch': result = `${val} cm = ${(val * 0.393701).toFixed(2)} inches`; break;
+                }
+            }
+            document.getElementById('unit-result').textContent = result;
+        }
+        
+        // BMI
+        function calcBMI() {
+            const h = parseFloat(document.getElementById('bmi-height').value) / 100;
+            const w = parseFloat(document.getElementById('bmi-weight').value);
+            if (h && w) {
+                const bmi = (w / (h * h)).toFixed(1);
+                let status = bmi < 18.5 ? 'Underweight' : bmi < 25 ? 'Normal' : bmi < 30 ? 'Overweight' : 'Obese';
+                document.getElementById('bmi-result').textContent = `${bmi} (${status})`;
+            }
+        }
+        
+        // Image to Base64
+        function imgToBase64() {
+            const url = document.getElementById('img-url').value;
+            if (url) {
+                setResult('img-result', 'To use: copy this code to your HTML - <img src="' + url + '">');
+            }
+        }
+        
+        // Load AdSense
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>
