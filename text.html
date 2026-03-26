@@ -34,22 +34,18 @@
         
         .btn-group { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
         .btn { padding: 12px 20px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.9rem; }
-        .btn:hover { background: var(--accent-hover); }
+        .btn:hover { background: #5568d3; }
         
         .result { padding: 15px; background: var(--input-bg); border-radius: 10px; min-height: 80px; word-break: break-all; }
         
-        
-        /* Language toggle - show only selected language */
-        body.lang-ko .en { display: none; }
-        body.lang-en .ko { display: none; }
-
         .ads { margin-top: 30px; text-align: center; }
         
-        .en .ko { display: none; }
-        .ko .en { display: none; }
+        /* Language toggle - show only selected language */
+        body.lang-ko .en { display: none !important; }
+        body.lang-en .ko { display: none !important; }
     </style>
 </head>
-<body>
+<body class="lang-ko">
     <div class="container">
         <div class="header">
             <a href="index.html" class="back">← Back</a>
@@ -59,8 +55,10 @@
             </div>
         </div>
         
-        <h1 class="ko">📝 텍스트 도구</h1>
-        <h1 class="en">📝 Text Tools</h1>
+        <h1>
+            <span class="ko">📝 텍스트 도구</span>
+            <span class="en">📝 Text Tools</span>
+        </h1>
         
         <textarea id="input" placeholder="Enter text... / 텍스트를 입력하세요..."></textarea>
         
@@ -86,7 +84,7 @@
 
     <script>
         function setLang(lang) {
-            document.body.className = lang;
+            document.body.className = 'lang-' + lang;
             document.querySelectorAll('.lang-btn').forEach((btn, i) => {
                 btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
             });
