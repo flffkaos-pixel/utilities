@@ -30,7 +30,7 @@
     h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
 </head>
-<body class="bg-surface text-on-surface pb-24">
+<body class="bg-surface text-on-surface ">
 <header class="bg-[#f7f9ff] dark:bg-[#121417] flex justify-between items-center px-4 h-16 w-full docked top-0 sticky z-50">
     <div class="flex items-center gap-3">
         <button onclick="location.href='index.html'" class="text-[#005bbf] hover:bg-[#dfe3e8] p-2 rounded-full">
@@ -131,23 +131,6 @@
 </div>
 </main>
 
-<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-2 pb-safe bg-white/80 backdrop-blur-xl z-50 border-t border-[#c1c6d6]/20">
-    <a class="flex flex-col items-center justify-center text-[#44474e] px-5 py-1" href="index.html">
-        <span class="material-symbols-outlined" data-icon="home">home</span>
-        <span class="text-[11px] font-semibold mt-1">홈</span>
-    </a>
-    <a class="flex flex-col items-center justify-center text-[#005bbf] px-5 py-1" href="category.html">
-        <span class="material-symbols-outlined" data-icon="category">category</span>
-        <span class="text-[11px] font-semibold mt-1">카테고리</span>
-    </a>
-    <a class="flex flex-col items-center justify-center text-[#44474e] px-5 py-1" href="history.html">
-        <span class="material-symbols-outlined" data-icon="history">history</span>
-        <span class="text-[11px] font-semibold mt-1">기록</span>
-    </a>
-    <a class="flex flex-col items-center justify-center text-[#44474e] px-5 py-1" href="profile.html">
-        <span class="material-symbols-outlined" data-icon="person">person</span>
-        <span class="text-[11px] font-semibold mt-1">프로필</span>
-    </a>
-</nav>
+<nav class="flex items-center gap-6 px-6 py-4 bg-white border-b"><a href="index.html" class="text-[#005bbf] font-bold">홈</a><a href="category.html" class="text-gray-600 hover:text-[#005bbf]">카테고리</a><a href="history.html" class="text-gray-600 hover:text-[#005bbf]">기록</a><a href="profile.html" class="text-gray-600 hover:text-[#005bbf]">프로필</a></nav>
 </body>
 </html>
