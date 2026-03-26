@@ -1,96 +1,53 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html class="light" lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>시간 변환 - Time Converter</title>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>시간 변환 - UtilityHub</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {"primary":"#005bbf","surface":"#f7f9ff","on-surface":"#181c20","surface-container-low":"#f1f4fa","surface-container-lowest":"#ffffff","on-surface-variant":"#414754","outline":"#727785"}, fontFamily: {"headline":["Plus Jakarta Sans"],"body":["Inter"]}}}};</script>
     <style>
-        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
-        .container { max-width: 600px; margin: 0 auto; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .header h1 { font-size: 1.5rem; color: var(--accent); }
-        .back { color: var(--text); text-decoration: none; }
-        .lang-toggle { display: flex; gap: 10px; }
-        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; }
-        .lang-btn.active { background: var(--accent); }
-        .card { background: var(--card-bg); padding: 20px; border-radius: 15px; margin-bottom: 15px; }
-        .card h2 { font-size: 1rem; margin-bottom: 10px; color: var(--text-muted); }
-        input, select { width: 100%; padding: 12px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; font-size: 1rem; margin-bottom: 10px; }
-        .result { padding: 15px; background: var(--input-bg); border-radius: 10px; font-family: monospace; }
-        .ads { margin-top: 30px; text-align: center; }
-        .en .ko { display: none; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <a href="index.html" class="back">← Back</a>
-            <div class="lang-toggle">
-                <button class="lang-btn" onclick="setLang('ko')">한국어</button>
-                <button class="lang-btn" onclick="setLang('en')">English</button>
-            </div>
-        </div>
-        
-        <h1 class="ko">🕐 시간 변환</h1>
-        <h1 class="en">🕐 Time Converter</h1>
-        
-        <div class="card">
-            <h2 class="ko">Unix 타임스탬프 → 날짜</h2>
-            <h2 class="en">Unix Timestamp → Date</h2>
-            <input type="number" id="ts" placeholder="1700000000" oninput="tsToDate()">
-            <div class="result" id="tsResult">-</div>
-        </div>
-        
-        <div class="card">
-            <h2 class="ko">날짜 → Unix 타임스탬프</h2>
-            <h2 class="en">Date → Unix Timestamp</h2>
-            <input type="datetime-local" id="date" oninput="dateToTs()">
-            <div class="result" id="dateResult">-</div>
-        </div>
-        
-        <div class="card">
-            <h2 class="ko">현재 시간</h2>
-            <h2 class="en">Current Time</h2>
-            <div class="result" id="nowResult">-</div>
-        </div>
-        
-        <div class="ads">
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        </div>
+<body class="bg-surface text-on-surface pb-24">
+<header class="bg-[#f7f9ff] flex justify-between items-center px-4 h-16 w-full docked top-0 sticky z-50">
+    <div class="flex items-center gap-3">
+        <button onclick="location.href='index.html'" class="text-[#005bbf] hover:bg-[#dfe3e8] p-2 rounded-full">
+            <span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+        </button>
+        <h1 class="text-xl font-bold tracking-tight text-[#005bbf]">시간 변환</h1>
     </div>
+</header>
 
-    <script>
-        function setLang(lang) { document.body.className = lang; localStorage.setItem('util-lang', lang); }
-        const saved = localStorage.getItem('util-lang');
-        if (saved) setLang(saved);
-        
-        function tsToDate() {
-            const ts = parseInt(document.getElementById('ts').value);
-            if (ts) {
-                const date = new Date(ts * 1000);
-                document.getElementById('tsResult').textContent = date.toLocaleString();
-            }
-        }
-        
-        function dateToTs() {
-            const dateStr = document.getElementById('date').value;
-            if (dateStr) {
-                const ts = Math.floor(new Date(dateStr).getTime() / 1000);
-                document.getElementById('dateResult').textContent = ts;
-            }
-        }
-        
-        function updateNow() {
-            const now = new Date();
-            document.getElementById('nowResult').textContent = 'Now: ' + now.toLocaleString() + '\nTimestamp: ' + Math.floor(now.getTime() / 1000);
-        }
-        updateNow();
-        setInterval(updateNow, 1000);
-        
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+<main class="max-w-md mx-auto px-4 py-6 space-y-6">
+    <div class="p-4 bg-surface-container-low rounded-2xl">
+        <h3 class="font-bold mb-3">Unix → 날짜</h3>
+        <input type="number" id="ts" oninput="tsToDate()" class="w-full p-3 bg-surface-container-lowest rounded-xl border-none" placeholder="1700000000">
+        <div id="tsResult" class="mt-3 p-3 bg-surface-container-lowest rounded-xl text-center"></div>
+    </div>
+    <div class="p-4 bg-surface-container-low rounded-2xl">
+        <h3 class="font-bold mb-3">현재 시간</h3>
+        <div id="now" class="p-3 bg-surface-container-lowest rounded-xl text-center font-mono"></div>
+    </div>
+</main>
+
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-2 pb-safe bg-white/80 backdrop-blur-xl z-50 border-t border-[#c1c6d6]/20">
+    <a class="flex flex-col items-center justify-center text-[#005bbf] px-5 py-1" href="index.html"><span class="material-symbols-outlined" data-icon="home">home</span><span class="text-[11px] font-semibold mt-1">홈</span></a>
+    <a class="flex flex-col items-center justify-center text-[#44474e] px-5 py-1" href="category.html"><span class="material-symbols-outlined" data-icon="category">category</span><span class="text-[11px] font-semibold mt-1">카테고리</span></a>
+    <a class="flex flex-col items-center justify-center text-[#44474e] px-5 py-1" href="history.html"><span class="material-symbols-outlined" data-icon="history">history</span><span class="text-[11px] font-semibold mt-1">기록</span></a>
+    <a class="flex flex-col items-center justify-center text-[#44474e] px-5 py-1" href="profile.html"><span class="material-symbols-outlined" data-icon="person">person</span><span class="text-[11px] font-semibold mt-1">프로필</span></a>
+</nav>
+
+<script>
+function tsToDate() {
+    let ts = parseInt(document.getElementById('ts').value);
+    if(ts) document.getElementById('tsResult').textContent = new Date(ts*1000).toLocaleString();
+}
+function updateNow() { document.getElementById('now').textContent = new Date().toLocaleString(); }
+updateNow(); setInterval(updateNow, 1000);
+</script>
 </body>
 </html>
