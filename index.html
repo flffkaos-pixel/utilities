@@ -4,57 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>무료 유틸리티 모음 - All Free Utilities</title>
-    <meta name="description" content="무료 온라인 유틸리티 도구 모음 - 텍스트, 색상, 단위, 시간 변환기">
-    
+    <meta name="description" content="무료 온라인 유틸리티 도구 모음">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
-    
     <style>
-        :root {
-            --bg: #1a1a2e;
-            --card-bg: #16213e;
-            --text: #eee;
-            --text-muted: #aaa;
-            --accent: #667eea;
-            --accent-hover: #5568d3;
-        }
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
-        
         .header { text-align: center; padding: 30px 20px; }
         .header h1 { font-size: 2rem; margin-bottom: 10px; color: var(--accent); }
         .header p { color: var(--text-muted); }
-        
         .lang-toggle { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
         .lang-btn { padding: 8px 20px; background: var(--card-bg); color: var(--text); border: 2px solid var(--accent); border-radius: 20px; cursor: pointer; }
         .lang-btn.active { background: var(--accent); }
-        
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; max-width: 1000px; margin: 0 auto; }
-        
         .card { background: var(--card-bg); border-radius: 15px; padding: 25px; text-align: center; transition: transform 0.2s; cursor: pointer; text-decoration: none; color: var(--text); display: block; }
         .card:hover { transform: translateY(-5px); background: #1e2a4a; }
         .card-icon { font-size: 3rem; margin-bottom: 15px; }
         .card h2 { font-size: 1.2rem; margin-bottom: 10px; }
         .card p { color: var(--text-muted); font-size: 0.9rem; }
-        
         .ads { max-width: 1000px; margin: 30px auto; text-align: center; }
-        
-        /* Korean text by default, English when .en active */
-        .en .ko { display: none; }
-        .ko .en { display: none; }
+        /* Language toggle - show only selected language */
+        .lang-ko .en { display: none; }
+        .lang-en .ko { display: none; }
     </style>
 </head>
-<body>
+<body class="lang-ko">
     <div class="header">
         <h1>🔧 무료 유틸리티 모음</h1>
         <p class="ko">모든 무료 온라인 도구</p>
         <p class="en">All free online tools</p>
-        
         <div class="lang-toggle">
             <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
             <button class="lang-btn" onclick="setLang('en')">English</button>
         </div>
     </div>
-    
     <div class="grid">
         <a href="text.html" class="card">
             <div class="card-icon">📝</div>
@@ -63,7 +46,6 @@
             <p class="ko">대소문자, 공백 제거</p>
             <p class="en">Upper/lower case, trim</p>
         </a>
-        
         <a href="counter.html" class="card">
             <div class="card-icon">📊</div>
             <h2 class="ko">글자 수 세기</h2>
@@ -71,7 +53,6 @@
             <p class="ko">단어, 글자 수</p>
             <p class="en">Words & characters</p>
         </a>
-        
         <a href="color.html" class="card">
             <div class="card-icon">🎨</div>
             <h2 class="ko">색상 변환</h2>
@@ -79,7 +60,6 @@
             <p class="ko">HEX, RGB 변환</p>
             <p class="en">HEX to RGB</p>
         </a>
-        
         <a href="time.html" class="card">
             <div class="card-icon">🕐</div>
             <h2 class="ko">시간 변환</h2>
@@ -87,7 +67,6 @@
             <p class="ko">타임스탬프 변환</p>
             <p class="en">Unix timestamp</p>
         </a>
-        
         <a href="base64.html" class="card">
             <div class="card-icon">🔐</div>
             <h2 class="ko">Base64</h2>
@@ -95,7 +74,6 @@
             <p class="ko">인코딩/디코딩</p>
             <p class="en">Encode/Decode</p>
         </a>
-        
         <a href="url.html" class="card">
             <div class="card-icon">🔗</div>
             <h2 class="ko">URL 인코더</h2>
@@ -103,7 +81,6 @@
             <p class="ko">URL 인코딩/디코딩</p>
             <p class="en">URL encode/decode</p>
         </a>
-        
         <a href="unit.html" class="card">
             <div class="card-icon">📏</div>
             <h2 class="ko">단위 변환</h2>
@@ -111,7 +88,6 @@
             <p class="ko">km, kg, °C 등</p>
             <p class="en">km, kg, °C, etc</p>
         </a>
-        
         <a href="bmi.html" class="card">
             <div class="card-icon">⚖️</div>
             <h2 class="ko">BMI 계산기</h2>
@@ -120,32 +96,19 @@
             <p class="en">Body mass index</p>
         </a>
     </div>
-    
     <div class="ads">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-1955893232253258"
-             data-ad-slot="1234567890"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
     </div>
-
     <script>
-        let currentLang = 'ko';
-        
         function setLang(lang) {
-            currentLang = lang;
-            document.body.className = lang;
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.textContent.toLowerCase().includes(lang === 'ko' ? '한국' : 'english'));
+            document.body.className = 'lang-' + lang;
+            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
             });
             localStorage.setItem('util-lang', lang);
         }
-        
-        // Load saved language
         const saved = localStorage.getItem('util-lang');
         if (saved) setLang(saved);
-        
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 </body>
