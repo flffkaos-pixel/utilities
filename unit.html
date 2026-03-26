@@ -1,128 +1,94 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html class="light" lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>단위 변환 - Unit Converter</title>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>단위 변환 - UtilityHub</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {"primary":"#005bbf","surface":"#f7f9ff","on-surface":"#181c20","surface-container-low":"#f1f4fa","surface-container":"#ebeef4","surface-container-highest":"#dfe3e8","on-surface-variant":"#414754","secondary":"#006e2c","secondary-fixed":"#89fa9b","outline":"#727785"}, fontFamily: {"headline":["Plus Jakarta Sans"],"body":["Inter"]}}}};</script>
     <style>
-        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
-        .container { max-width: 600px; margin: 0 auto; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .header h1 { font-size: 1.5rem; color: var(--accent); }
-        .back { color: var(--text); text-decoration: none; }
-        .lang-toggle { display: flex; gap: 10px; }
-        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid varaccent; border-radius: 15px; cursor: pointer; }
-        .lang-btn.active { background: var(--accent); }
-        .card { background: var(--card-bg); padding: 20px; border-radius: 15px; margin-bottom: 15px; }
-        .card h2 { font-size: 1rem; margin-bottom: 10px; color: var(--text-muted); }
-        input, select { width: 100%; padding: 12px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; font-size: 1rem; margin-bottom: 10px; }
-        .result { padding: 15px; background: var(--input-bg); border-radius: 10px; font-size: 1.1rem; text-align: center; }
-        .ads { margin-top: 30px; text-align: center; }
-        .en .ko { display: none; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <a href="index.html" class="back">← Back</a>
-            <div class="lang-toggle">
-                <button class="lang-btn" onclick="setLang('ko')">한국어</button>
-                <button class="lang-btn" onclick="setLang('en')">English</button>
-            </div>
-        </div>
-        
-        <h1 class="ko">📏 단위 변환</h1>
-        <h1 class="en">📏 Unit Converter</h1>
-        
-        <div class="card">
-            <h2 class="ko">길이 (Length)</h2>
-            <h2 class="en">Length</h2>
-            <input type="number" id="lenVal" oninput="convertLength()" placeholder="값 입력">
-            <select id="lenType" onchange="convertLength()">
-                <option value="km-mile">km ↔ mile</option>
-                <option value="m-foot">m ↔ foot</option>
-                <option value="cm-inch">cm ↔ inch</option>
-                <option value="km-ft">km ↔ ft</option>
-            </select>
-            <div class="result" id="lenResult">-</div>
-        </div>
-        
-        <div class="card">
-            <h2 class="ko">무게 (Weight)</h2>
-            <h2 class="en">Weight</h2>
-            <input type="number" id="wgtVal" oninput="convertWeight()" placeholder="값 입력">
-            <select id="wgtType" onchange="convertWeight()">
-                <option value="kg-pound">kg ↔ pound</option>
-                <option value="g-oz">g ↔ oz</option>
-                <option value="kg-lb">kg ↔ lb</option>
-            </select>
-            <div class="result" id="wgtResult">-</div>
-        </div>
-        
-        <div class="card">
-            <h2 class="ko">온도 (Temperature)</h2>
-            <h2 class="en">Temperature</h2>
-            <input type="number" id="tempVal" oninput="convertTemp()" placeholder="값 입력">
-            <select id="tempType" onchange="convertTemp()">
-                <option value="c-f">°C ↔ °F</option>
-                <option value="c-k">°C ↔ K</option>
-            </select>
-            <div class="result" id="tempResult">-</div>
-        </div>
-        
-        <div class="ads">
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        </div>
+<body class="bg-surface text-on-surface pb-24">
+<header class="bg-[#f7f9ff] flex justify-between items-center px-4 h-16 w-full docked top-0 sticky z-50">
+    <div class="flex items-center gap-3">
+        <button onclick="location.href='index.html'" class="text-[#005bbf] hover:bg-[#dfe3e8] p-2 rounded-full">
+            <span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+        </button>
+        <h1 class="text-xl font-bold tracking-tight text-[#005bbf]">단위 변환</h1>
     </div>
+</header>
 
-    <script>
-        function setLang(lang) { document.body.className = lang; localStorage.setItem('util-lang', lang); }
-        const saved = localStorage.getItem('util-lang');
-        if (saved) setLang(saved);
-        
-        function convertLength() {
-            const val = parseFloat(document.getElementById('lenVal').value);
-            const type = document.getElementById('lenType').value;
-            if (isNaN(val)) { document.getElementById('lenResult').textContent = '-'; return; }
-            let res = '';
-            switch(type) {
-                case 'km-mile': res = `${val} km = ${(val * 0.621371).toFixed(3)} mi`; break;
-                case 'm-foot': res = `${val} m = ${(val * 3.28084).toFixed(3)} ft`; break;
-                case 'cm-inch': res = `${val} cm = ${(val * 0.393701).toFixed(3)} in`; break;
-                case 'km-ft': res = `${val} km = ${(val * 3280.84).toFixed(3)} ft`; break;
-            }
-            document.getElementById('lenResult').textContent = res;
-        }
-        
-        function convertWeight() {
-            const val = parseFloat(document.getElementById('wgtVal').value);
-            const type = document.getElementById('wgtType').value;
-            if (isNaN(val)) { document.getElementById('wgtResult').textContent = '-'; return; }
-            let res = '';
-            switch(type) {
-                case 'kg-pound': res = `${val} kg = ${(val * 2.20462).toFixed(3)} lb`; break;
-                case 'g-oz': res = `${val} g = ${(val * 0.035274).toFixed(3)} oz`; break;
-                case 'kg-lb': res = `${val} kg = ${(val * 2.20462).toFixed(3)} lbs`; break;
-            }
-            document.getElementById('wgtResult').textContent = res;
-        }
-        
-        function convertTemp() {
-            const val = parseFloat(document.getElementById('tempVal').value);
-            const type = document.getElementById('tempType').value;
-            if (isNaN(val)) { document.getElementById('tempResult').textContent = '-'; return; }
-            let res = '';
-            switch(type) {
-                case 'c-f': res = `${val}°C = ${(val * 9/5 + 32).toFixed(2)}°F`; break;
-                case 'c-k': res = `${val}°C = ${(val + 273.15).toFixed(2)}K`; break;
-            }
-            document.getElementById('tempResult').textContent = res;
-        }
-        
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+<main class="max-w-md mx-auto px-4 py-6 space-y-6">
+    <!-- 길이 -->
+    <div class="p-4 bg-surface-container-low rounded-2xl">
+        <h3 class="font-bold mb-3">길이</h3>
+        <input type="number" id="len" oninput="convertLen()" class="w-full p-3 bg-surface-container-lowest rounded-xl border-none mb-2" placeholder="값 입력">
+        <select id="lenType" onchange="convertLen()" class="w-full p-3 bg-surface-container-lowest rounded-xl border-none">
+            <option value="km-mile">km ↔ mile</option>
+            <option value="m-foot">m ↔ foot</option>
+            <option value="cm-inch">cm ↔ inch</option>
+        </select>
+        <div id="lenResult" class="mt-3 p-3 bg-surface-container-lowest rounded-xl text-center font-bold"></div>
+    </div>
+    
+    <!-- 무게 -->
+    <div class="p-4 bg-surface-container-low rounded-2xl">
+        <h3 class="font-bold mb-3">무게</h3>
+        <input type="number" id="wgt" oninput="convertWgt()" class="w-full p-3 bg-surface-container-lowest rounded-xl border-none mb-2" placeholder="값 입력">
+        <select id="wgtType" onchange="convertWgt()" class="w-full p-3 bg-surface-container-lowest rounded-xl border-none">
+            <option value="kg-pound">kg ↔ pound</option>
+            <option value="g-oz">g ↔ oz</option>
+        </select>
+        <div id="wgtResult" class="mt-3 p-3 bg-surface-container-lowest rounded-xl text-center font-bold"></div>
+    </div>
+    
+    <!-- 온도 -->
+    <div class="p-4 bg-surface-container-low rounded-2xl">
+        <h3 class="font-bold mb-3">온도</h3>
+        <input type="number" id="temp" oninput="convertTemp()" class="w-full p-3 bg-surface-container-lowest rounded-xl border-none mb-2" placeholder="값 입력">
+        <select id="tempType" onchange="convertTemp()" class="w-full p-3 bg-surface-container-lowest rounded-xl border-none">
+            <option value="c-f">°C ↔ °F</option>
+        </select>
+        <div id="tempResult" class="mt-3 p-3 bg-surface-container-lowest rounded-xl text-center font-bold"></div>
+    </div>
+</main>
+
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-2 pb-safe bg-white/80 backdrop-blur-xl z-50 border-t border-[#c1c6d6]/20">
+    <a class="flex flex-col items-center justify-center text-[#005bbf] px-5 py-1" href="index.html"><span class="material-symbols-outlined" data-icon="home">home</span><span class="text-[11px] font-semibold mt-1">홈</span></a>
+    <a class="flex flex-col items-center justify-center text-[#44474e] px-5 py-1" href="category.html"><span class="material-symbols-outlined" data-icon="category">category</span><span class="text-[11px] font-semibold mt-1">카테고리</span></a>
+    <a class="flex flex-col items-center justify-center text-[#44474e] px-5 py-1" href="history.html"><span class="material-symbols-outlined" data-icon="history">history</span><span class="text-[11px] font-semibold mt-1">기록</span></a>
+    <a class="flex flex-col items-center justify-center text-[#44474e] px-5 py-1" href="profile.html"><span class="material-symbols-outlined" data-icon="person">person</span><span class="text-[11px] font-semibold mt-1">프로필</span></a>
+</nav>
+
+<script>
+function convertLen() {
+    let v = parseFloat(document.getElementById('len').value);
+    let t = document.getElementById('lenType').value;
+    if(isNaN(v)) { document.getElementById('lenResult').textContent = '-'; return; }
+    let r = '';
+    if(t=='km-mile') r = v + ' km = ' + (v*0.621371).toFixed(3) + ' mi';
+    else if(t=='m-foot') r = v + ' m = ' + (v*3.28084).toFixed(3) + ' ft';
+    else if(t=='cm-inch') r = v + ' cm = ' + (v*0.393701).toFixed(3) + ' in';
+    document.getElementById('lenResult').textContent = r;
+}
+function convertWgt() {
+    let v = parseFloat(document.getElementById('wgt').value);
+    let t = document.getElementById('wgtType').value;
+    if(isNaN(v)) { document.getElementById('wgtResult').textContent = '-'; return; }
+    let r = '';
+    if(t=='kg-pound') r = v + ' kg = ' + (v*2.20462).toFixed(3) + ' lb';
+    else if(t=='g-oz') r = v + ' g = ' + (v*0.035274).toFixed(3) + ' oz';
+    document.getElementById('wgtResult').textContent = r;
+}
+function convertTemp() {
+    let v = parseFloat(document.getElementById('temp').value);
+    if(isNaN(v)) { document.getElementById('tempResult').textContent = '-'; return; }
+    document.getElementById('tempResult').textContent = v + '°C = ' + (v*9/5+32).toFixed(2) + '°F';
+}
+</script>
 </body>
 </html>
