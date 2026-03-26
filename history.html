@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>기록 - UtilityHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface pb-24">
+<header class="bg-[#f7f9ff] flex justify-between items-center px-4 h-16 w-full docked top-0 sticky z-50">
+    <div class="flex items-center gap-3">
+        <button onclick="location.href='index.html'" class="text-[#005bbf] hover:bg-[#dfe3e8] p-2 rounded-full">
+            <span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+        </button>
+        <h1 class="text-xl font-bold tracking-tight text-[#005bbf]">기록</h1>
+    </div>
+</header>
+
+<main class="max-w-md mx-auto px-4 py-6 space-y-4">
+    <div class="p-4 bg-surface-container-low rounded-2xl flex items-center gap-4">
+        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+            <span class="material-symbols-outlined text-primary" data-icon="text_fields">text_fields</span>
+        </div>
+        <div class="flex-1">
+            <p class="font-bold">텍스트 도구</p>
+            <p class="text-sm text-gray-500">오늘</p>
+        </div>
+    </div>
+    <div class="p-4 bg-surface-container-low rounded-2xl flex items-center gap-4">
+        <div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center">
+            <span class="material-symbols-outlined text-secondary" data-icon="straighten">straighten</span>
+        </div>
+        <div class="flex-1">
+            <p class="font-bold">단위 변환</p>
+            <p class="text-sm text-gray-500">어제</p>
+        </div>
+    </div>
+</main>
+
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-2 pb-safe bg-white/80 backdrop-blur-xl z-50 border-t">
+    <a class="flex flex-col items-center text-[#44474e] px-5 py-1" href="index.html"><span class="material-symbols-outlined" data-icon="home">home</span><span class="text-[11px] font-semibold mt-1">홈</span></a>
+    <a class="flex flex-col items-center text-[#44474e] px-5 py-1" href="category.html"><span class="material-symbols-outlined" data-icon="category">category</span><span class="text-[11px] font-semibold mt-1">카테고리</span></a>
+    <a class="flex flex-col items-center text-[#005bbf] px-5 py-1" href="history.html"><span class="material-symbols-outlined" data-icon="history">history</span><span class="text-[11px] font-semibold mt-1">기록</span></a>
+    <a class="flex flex-col items-center text-[#44474e] px-5 py-1" href="profile.html"><span class="material-symbols-outlined" data-icon="person">person</span><span class="text-[11px] font-semibold mt-1">프로필</span></a>
+</nav>
+</body>
+</html>
