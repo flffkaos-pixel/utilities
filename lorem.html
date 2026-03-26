@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorem Ipsum 생성기 - Lorem Ipsum Generator</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; }
+        .lang-btn.active { background: var(--accent); }
+        input { padding: 10px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; margin-right: 10px; width: 80px; }
+        .btn { padding: 12px 20px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; }
+        .result { padding: 15px; background: var(--input-bg); border-radius: 10px; margin-top: 15px; white-space: pre-wrap; }
+        .ads { margin-top: 30px; text-align: center; }
+        body.lang-ko .en { display: none !important; }
+        body.lang-en .ko { display: none !important; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        <h1><span class="ko">📝 Lorem Ipsum 생성기</span><span class="en">📝 Lorem Ipsum Generator</span></h1>
+        <div class="description">
+            <span class="ko">Lorem Ipsum 생성기는 테스트용 더미 텍스트를 생성합니다. 디자인, 레이아웃 테스트에 유용합니다.</span>
+            <span class="en">Lorem Ipsum Generator creates dummy text for testing. Useful for design and layout testing.</span>
+        </div>
+        <input type="number" id="count" value="5" min="1" max="100">
+        <button class="btn" onclick="generate()"><span class="ko">생성</span><span class="en">Generate</span></button>
+        <div id="result" class="result"></div>
+        <div class="ads"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins></div>
+    </div>
+    <script>
+        function setLang(lang) { document.body.className = 'lang-' + lang; document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',lang==='ko'?i===0:i===1)); }
+        setLang('ko');
+        const lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+        function generate() { const n = parseInt(document.getElementById('count').value) || 5; let text = ''; for(let i=0;i<n;i++) text += lorem + ' '; document.getElementById('result').textContent = text; }
+        generate();
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>
