@@ -1,93 +1,57 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html class="light" lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BMI 계산기 - BMI Calculator</title>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>BMI 계산기 - UtilityHub</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {"primary":"#005bbf","surface":"#f7f9ff","on-surface":"#181c20","surface-container-low":"#f1f4fa","surface-container-lowest":"#ffffff","secondary":"#006e2c","tertiary":"#795900"}, fontFamily: {"body":["Inter"]}}}};</script>
     <style>
-        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
-        .container { max-width: 600px; margin: 0 auto; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .header h1 { font-size: 1.5rem; color: var(--accent); }
-        .back { color: var(--text); text-decoration: none; }
-        .lang-toggle { display: flex; gap: 10px; }
-        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; }
-        .lang-btn.active { background: var(--accent); }
-        .card { background: var(--card-bg); padding: 25px; border-radius: 15px; text-align: center; }
-        .card h2 { margin-bottom: 20px; color: var(--text-muted); }
-        input { width: 100%; padding: 15px; background: var(--input-bg); color: var(--text); border: none; border-radius: 10px; font-size: 1.2rem; margin-bottom: 15px; text-align: center; }
-        .result { padding: 25px; background: var(--input-bg); border-radius: 15px; margin-top: 20px; }
-        .bmi-num { font-size: 3rem; color: var(--accent); font-weight: bold; }
-        .bmi-status { font-size: 1.2rem; margin-top: 10px; padding: 10px; border-radius: 10px; }
-        .status-under { background: #3498db; }
-        .status-normal { background: #27ae60; }
-        .status-over { background: #f39c12; }
-        .status-obese { background: #e74c3c; }
-        .ads { margin-top: 30px; text-align: center; }
-        .en .ko { display: none; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <a href="index.html" class="back">← Back</a>
-            <div class="lang-toggle">
-                <button class="lang-btn" onclick="setLang('ko')">한국어</button>
-                <button class="lang-btn" onclick="setLang('en')">English</button>
-            </div>
-        </div>
-        
-        <h1 class="ko">⚖️ BMI 계산기</h1>
-        <h1 class="en">⚖️ BMI Calculator</h1>
-        
-        <div class="card">
-            <h2 class="ko">신장 (cm) / 체중 (kg)</h2>
-            <h2 class="en">Height (cm) / Weight (kg)</h2>
-            <input type="number" id="height" oninput="calcBMI()" placeholder="신장 (cm)">
-            <input type="number" id="weight" oninput="calcBMI()" placeholder="체중 (kg)">
-            
-            <div class="result">
-                <div class="bmi-num" id="bmi">-</div>
-                <div class="bmi-status" id="status">-</div>
-            </div>
-        </div>
-        
-        <div class="ads">
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<body class="bg-surface text-on-surface pb-24">
+<header class="bg-[#f7f9ff] flex justify-between items-center px-4 h-16 w-full docked top-0 sticky z-50">
+    <div class="flex items-center gap-3">
+        <button onclick="location.href='index.html'" class="text-[#005bbf] hover:bg-[#dfe3e8] p-2 rounded-full">
+            <span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+        </button>
+        <h1 class="text-xl font-bold tracking-tight text-[#005bbf]">BMI 계산기</h1>
+    </div>
+</header>
+
+<main class="max-w-md mx-auto px-4 py-6 space-y-6">
+    <div class="p-6 bg-surface-container-low rounded-3xl text-center">
+        <input type="number" id="height" oninput="calc()" class="w-full p-4 bg-surface-container-lowest rounded-2xl border-none text-center text-xl mb-4" placeholder="신장 (cm)">
+        <input type="number" id="weight" oninput="calc()" class="w-full p-4 bg-surface-container-lowest rounded-2xl border-none text-center text-xl mb-4" placeholder="체중 (kg)">
+        <div class="mt-6 p-6 bg-surface-container-lowest rounded-2xl">
+            <div id="bmi" class="text-4xl font-bold text-primary mb-2">-</div>
+            <div id="status" class="text-lg font-semibold"></div>
         </div>
     </div>
+</main>
 
-    <script>
-        function setLang(lang) { document.body.className = lang; localStorage.setItem('util-lang', lang); }
-        const saved = localStorage.getItem('util-lang');
-        if (saved) setLang(saved);
-        
-        function calcBMI() {
-            const h = parseFloat(document.getElementById('height').value) / 100;
-            const w = parseFloat(document.getElementById('weight').value);
-            const bmiEl = document.getElementById('bmi');
-            const statusEl = document.getElementById('status');
-            
-            if (!h || !w) { bmiEl.textContent = '-'; statusEl.textContent = '-'; statusEl.className = 'bmi-status'; return; }
-            
-            const bmi = (w / (h * h)).toFixed(1);
-            bmiEl.textContent = bmi;
-            
-            let status = '';
-            let cls = '';
-            if (bmi < 18.5) { status = document.body.classList.contains('en') ? 'Underweight' : '저체중'; cls = 'status-under'; }
-            else if (bmi < 25) { status = document.body.classList.contains('en') ? 'Normal' : '정상'; cls = 'status-normal'; }
-            else if (bmi < 30) { status = document.body.classList.contains('en') ? 'Overweight' : '과체중'; cls = 'status-over'; }
-            else { status = document.body.classList.contains('en') ? 'Obese' : '비만'; cls = 'status-obese'; }
-            
-            statusEl.textContent = status;
-            statusEl.className = 'bmi-status ' + cls;
-        }
-        
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-2 pb-safe bg-white/80 backdrop-blur-xl z-50 border-t">
+    <a class="flex flex-col items-center text-[#005bbf] px-5 py-1" href="index.html"><span class="material-symbols-outlined" data-icon="home">home</span><span class="text-[11px] font-semibold mt-1">홈</span></a>
+    <a class="flex flex-col items-center text-[#44474e] px-5 py-1" href="category.html"><span class="material-symbols-outlined" data-icon="category">category</span><span class="text-[11px] font-semibold mt-1">카테고리</span></a>
+    <a class="flex flex-col items-center text-[#44474e] px-5 py-1" href="history.html"><span class="material-symbols-outlined" data-icon="history">history</span><span class="text-[11px] font-semibold mt-1">기록</span></a>
+    <a class="flex flex-col items-center text-[#44474e] px-5 py-1" href="profile.html"><span class="material-symbols-outlined" data-icon="person">person</span><span class="text-[11px] font-semibold mt-1">프로필</span></a>
+</nav>
+
+<script>
+function calc() {
+    let h = parseFloat(document.getElementById('height').value) / 100;
+    let w = parseFloat(document.getElementById('weight').value);
+    if(!h || !w) { document.getElementById('bmi').textContent = '-'; document.getElementById('status').textContent = ''; return; }
+    let bmi = (w / (h * h)).toFixed(1);
+    document.getElementById('bmi').textContent = bmi;
+    let s = bmi < 18.5 ? '저체중' : bmi < 25 ? '정상' : bmi < 30 ? '과체중' : '비만';
+    let c = bmi < 18.5 ? 'text-blue-500' : bmi < 25 ? 'text-green-500' : bmi < 30 ? 'text-yellow-500' : 'text-red-500';
+    document.getElementById('status').textContent = s;
+    document.getElementById('status').className = 'text-lg font-semibold ' + c;
+}
+</script>
 </body>
 </html>
