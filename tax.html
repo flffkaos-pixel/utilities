@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연봉 세금 계산기 - Salary Tax Calculator</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💵</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; }
+        .lang-btn.active { background: var(--accent); }
+        input { width: 100%; padding: 12px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; margin-bottom: 15px; }
+        .btn { padding: 12px 20px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; }
+        .result { padding: 20px; background: var(--input-bg); border-radius: 10px; margin-top: 20px; }
+        .result-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #333; }
+        .result-row:last-child { border-bottom: none; }
+        .result-label { color: #aaa; }
+        .result-value { color: var(--accent); font-weight: bold; }
+        .ads { margin-top: 30px; text-align: center; }
+        body.lang-ko .en { display: none !important; }
+        body.lang-en .ko { display: none !important; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        <h1><span class="ko">💵 연봉 세금 계산기</span><span class="en">💵 Salary Tax Calculator</span></h1>
+        <div class="description">
+            <span class="ko">연봉 세금 계산기는 연봉을 입력하면 근로소득세를 계산합니다. Moonlighting,的本직 연봉 실수입을 파악할 때 유용합니다.</span>
+            <span class="en">Salary Tax Calculator calculates income tax from annual salary. Useful for finding actual take-home pay.</span>
+        </div>
+        <input type="number" id="salary" placeholder="연봉 (원)">
+        <button class="btn" onclick="calculate()"><span class="ko">계산하기</span><span class="en">Calculate</span></button>
+        <div class="result" id="result">
+            <div class="result-row"><span class="result-label ko">연봉</span><span class="result-label en">Annual Salary</span><span class="result-value" id="annual">-</span></div>
+            <div class="result-row"><span class="result-label ko">근로소득세 (연간)</span><span class="result-label en">Income Tax (Yearly)</span><span class="result-value" id="tax">-</span></div>
+            <div class="result-row"><span class="result-label ko">월 실수입</span><span class="result-label en">Monthly Take-home</span><span class="result-value" id="monthly">-</span></div>
+        </div>
+        <div class="ads"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins></div>
+    </div>
+    <script>
+        function setLang(lang) { document.body.className = 'lang-' + lang; document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',lang==='ko'?i===0:i===1)); }
+        setLang('ko');
+        function calculate() {
+            const salary = parseFloat(document.getElementById('salary').value);
+            if (!salary) return;
+            // Simplified Korean tax brackets 2024
+            let tax = 0;
+            if (salary > 100000000) tax = (salary - 100000000) * 0.45 + 20570000;
+            else if (salary > 80000000) tax = (salary - 80000000) * 0.40 + 15220000;
+            else if (salary > 50000000) tax = (salary - 50000000) * 0.38 + 6820000;
+            else if (salary > 30000000) tax = (salary - 30000000) * 0.35 + 2300000;
+            else if (salary > 14000000) tax = (salary - 14000000) * 0.32 + 490000;
+            else if (salary > 8700000) tax = (salary - 8700000) * 0.17 + 190000;
+            else tax = salary * 0.06;
+            const monthly = (salary - tax) / 12;
+            document.getElementById('annual').textContent = salary.toLocaleString() + ' 원';
+            document.getElementById('tax').textContent = Math.round(tax).toLocaleString() + ' 원';
+            document.getElementById('monthly').textContent = Math.round(monthly).toLocaleString() + ' 원';
+        }
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>
