@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시간급 계산기 - Hourly Wage Calculator</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⏰</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #0f0f23; --card-bg: #1a1a3e; --text: #eee; --accent: #00d4ff; --accent2: #ff6b9d; --input-bg: #252550; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; background-image: radial-gradient(ellipse at top, #1a1a3e 0%, #0f0f23 100%); }
+        .container { max-width: 500px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding: 20px; background: linear-gradient(135deg, var(--card-bg), #2a2a5e); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,212,255,0.1); }
+        .header h1 { font-size: 1.4rem; background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; opacity: 0.8; }
+        .calculator { background: linear-gradient(145deg, var(--card-bg), #151530); border-radius: 25px; padding: 30px; box-shadow: 0 20px 60px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05); }
+        .input-group { margin-bottom: 25px; }
+        .input-group label { display: block; margin-bottom: 10px; font-size: 0.9rem; color: #aaa; }
+        .input-group input { width: 100%; padding: 18px; background: var(--input-bg); color: var(--text); border: 2px solid transparent; border-radius: 15px; font-size: 1.1rem; transition: all 0.3s; }
+        .input-group input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 20px rgba(0,212,255,0.2); }
+        .btn { width: 100%; padding: 18px; background: linear-gradient(135deg, var(--accent), #0099cc); color: white; border: none; border-radius: 15px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: all 0.3s; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0,212,255,0.4); }
+        .result { margin-top: 30px; padding: 25px; background: linear-gradient(135deg, #1e1e4a, #2a2a6e); border-radius: 20px; text-align: center; }
+        .result-value { font-size: 2.5rem; font-weight: bold; background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .result-label { font-size: 0.9rem; color: #888; margin-top: 10px; }
+        .tips { margin-top: 20px; padding: 15px; background: rgba(0,212,255,0.1); border-radius: 12px; font-size: 0.85rem; color: #aaa; }
+        .ads { margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <h1>⏰ 시간급 계산기</h1>
+        </div>
+        
+        <div class="calculator">
+            <div class="input-group">
+                <label>월 급여 (원)</label>
+                <input type="number" id="monthly" placeholder="예: 2000000">
+            </div>
+            <div class="input-group">
+                <label>주당工作时间 (시간)</label>
+                <input type="number" id="hours" placeholder="예: 40">
+            </div>
+            <button class="btn" onclick="calculate()">계산하기</button>
+            
+            <div class="result" id="result" style="display:none;">
+                <div class="result-value" id="hourly">0원</div>
+                <div class="result-label">시간당 급여</div>
+            </div>
+            
+            <div class="tips">
+                💡 월 급여 ÷ (주당 시간 × 4주) = 시간급
+            </div>
+        </div>
+        
+        <div class="ads"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins></div>
+    </div>
+    <script>
+        function calculate() {
+            const monthly = parseFloat(document.getElementById('monthly').value);
+            const hours = parseFloat(document.getElementById('hours').value);
+            if (!monthly || !hours) return;
+            const hourly = Math.round(monthly / (hours * 4));
+            document.getElementById('hourly').textContent = hourly.toLocaleString() + '원';
+            document.getElementById('result').style.display = 'block';
+        }
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>
