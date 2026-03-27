@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대출 계산기 - Loan Calculator</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; }
+        .lang-btn.active { background: var(--accent); }
+        input { width: 100%; padding: 12px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; margin-bottom: 15px; }
+        .btn { padding: 12px 20px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; }
+        .result { padding: 20px; background: var(--input-bg); border-radius: 10px; margin-top: 20px; }
+        .result-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #333; }
+        .result-row:last-child { border-bottom: none; }
+        .result-label { color: #aaa; }
+        .result-value { color: var(--accent); font-weight: bold; }
+        .ads { margin-top: 30px; text-align: center; }
+        body.lang-ko .en { display: none !important; }
+        body.lang-en .ko { display: none !important; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        <h1><span class="ko">💰 대출 계산기</span><span class="en">💰 Loan Calculator</span></h1>
+        <div class="description">
+            <span class="ko">대출 계산기는 대출 금액, 금리, 기간을 입력하면 월 상환금과 총 이자를 계산합니다. Mortgage, 신용대출 계산에 유용합니다.</span>
+            <span class="en">Loan Calculator calculates monthly payment and total interest. Useful for mortgage and personal loans.</span>
+        </div>
+        <input type="number" id="amount" placeholder="대출 금액 (원)">
+        <input type="number" id="rate" placeholder="연 금리 (%)" step="0.1">
+        <input type="number" id="years" placeholder="상환 기간 (년)">
+        <button class="btn" onclick="calculate()"><span class="ko">계산하기</span><span class="en">Calculate</span></button>
+        <div class="result" id="result">
+            <div class="result-row"><span class="result-label ko">월 상환금</span><span class="result-label en">Monthly Payment</span><span class="result-value" id="monthly">-</span></div>
+            <div class="result-row"><span class="result-label ko">총 상환금</span><span class="result-label en">Total Payment</span><span class="result-value" id="total">-</span></div>
+            <div class="result-row"><span class="result-label ko">총 이자</span><span class="result-label en">Total Interest</span><span class="result-value" id="interest">-</span></div>
+        </div>
+        <div class="ads"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins></div>
+    </div>
+    <script>
+        function setLang(lang) { document.body.className = 'lang-' + lang; document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',lang==='ko'?i===0:i===1)); }
+        setLang('ko');
+        function calculate() {
+            const amount = parseFloat(document.getElementById('amount').value);
+            const rate = parseFloat(document.getElementById('rate').value) / 100 / 12;
+            const years = parseFloat(document.getElementById('years').value);
+            const months = years * 12;
+            if (!amount || !rate || !years) return;
+            const monthly = amount * rate * Math.pow(1 + rate, months) / (Math.pow(1 + rate, months) - 1);
+            const total = monthly * months;
+            const interest = total - amount;
+            document.getElementById('monthly').textContent = Math.round(monthly).toLocaleString() + ' 원';
+            document.getElementById('total').textContent = Math.round(total).toLocaleString() + ' 원';
+            document.getElementById('interest').textContent = Math.round(interest).toLocaleString() + ' 원';
+        }
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>
