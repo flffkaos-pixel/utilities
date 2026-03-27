@@ -10,84 +10,84 @@
     <style>
         :root { --bg: #0f0f23; --card-bg: #1a1a3e; --text: #eee; --accent: #00d4ff; --accent2: #ff6b9d; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; background-image: radial-gradient(ellipse at top, #1a1a3e 0%, #0f0f23 100%); }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; background-image: radial-gradient(ellipse at top, #1a1a3e 0%, #0f0f23 100%); }
         .container { max-width: 800px; margin: 0 auto; }
         .header { margin-bottom: 30px; padding: 20px; background: linear-gradient(135deg, var(--card-bg), #2a2a5e); border-radius: 20px; text-align: center; }
-        h1 { color: var(--accent); font-size: 1.8rem; }
-        .back { color: var(--text); text-decoration: none; display: inline-block; margin-bottom: 20px; }
+        h1 { color: var(--accent); font-size: 2rem; margin-bottom: 15px; }
+        .lang-toggle { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+        .lang-btn { padding: 8px 20px; background: var(--card-bg); color: var(--text); border: 2px solid var(--accent); border-radius: 20px; cursor: pointer; font-size: 0.85rem; }
+        .lang-btn.active { background: var(--accent); }
+        .back { color: var(--text); text-decoration: none; display: inline-block; margin-bottom: 20px; font-size: 0.9rem; }
         .post { background: linear-gradient(145deg, var(--card-bg), #151530); padding: 20px; border-radius: 15px; margin-bottom: 20px; }
         .post h2 { color: var(--accent); margin-bottom: 10px; font-size: 1.2rem; }
         .post p { line-height: 1.8; color: #ccc; }
-        .post a { color: var(--accent); }
         .tags { display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
         .tag { background: #252550; padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; }
         .ads { margin-top: 30px; text-align: center; }
+        body.lang-ko .en { display: none; }
+        body.lang-en .ko { display: none; }
     </style>
 </head>
-<body>
+<body class="lang-ko">
     <div class="container">
         <a href="index.html" class="back">← Back to Utilities</a>
         
         <div class="header">
-            <h1>유틸리티 사용법 & 팁</h1>
+            <h1>사용법 & 팁</h1>
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
         </div>
         
         <div class="post">
             <h2>QR 코드로 개인정보 안전하게 공유하기</h2>
-            <p>QR 코드 생성기를 사용하면 계좌번호나 결재 정보를 이미지 형태로 바꿀 수 있습니다. 스크린샷을 찍어서 공유하면 직접 입력보다 안전하죠. 결재할 때 QR을 보여주면 됩니다.</p>
-            <div class="tags">
-                <span class="tag">QR 코드</span>
-                <span class="tag">보안</span>
-            </div>
+            <p class="ko">QR 코드 생성기를 사용하면 계좌번호나 결제 정보를 이미지 형태로 바꿀 수 있습니다. 스크린샷을 찍어서 공유하면 직접 입력보다 안전하죠. 결제할 때 QR을 보여주면 됩니다.</p>
+            <p class="en">Use the QR code generator to convert account numbers or payment info into images. Sharing a screenshot is safer than typing directly. Show the QR when making payments.</p>
+            <div class="tags"><span class="tag">QR 코드</span><span class="tag">보안</span></div>
         </div>
         
         <div class="post">
             <h2>비밀번호는 어떻게 관리할까?</h2>
-            <p>비밀번호 생성기를 사용하면 매번 다른 강력한 비밀번호를 만들 수 있어요. 중요한 계정은 12자 이상, 특수문자 포함으로 만들고, 메모장에 저장하지 말고 Password Manager를 사용하세요.</p>
-            <div class="tags">
-                <span class="tag">비밀번호</span>
-                <span class="tag">보안</span>
-            </div>
+            <p class="ko">비밀번호 생성기를 사용하면 매번 다른 강력한 비밀번호를 만들 수 있어요. 중요한 계정은 12자 이상, 특수문자 포함으로 만들고, 메모장에 저장하지 말고 Password Manager를 사용하세요.</p>
+            <p class="en">Use the password generator to create a different strong password each time. For important accounts, use 12+ characters with special characters. Don't save in notepad - use a Password Manager.</p>
+            <div class="tags"><span class="tag">비밀번호</span><span class="tag">보안</span></div>
         </div>
         
         <div class="post">
             <h2>이미지 파일 크기 줄이는 방법</h2>
-            <p>웹사이트에 이미지를 올릴 때 파일 크기가 크면 느려집니다. 이미지 압축기에서 품질을 70-80%로 설정하면 크기를 50% 이상 줄이면서도 화질은 유지할 수 있어요.</p>
-            <div class="tags">
-                <span class="tag">이미지</span>
-                <span class="tag">웹사이트</span>
-            </div>
+            <p class="ko">웹사이트에 이미지를 올릴 때 파일 크기가 크면 느려집니다. 이미지 압축기에서 품질을 70-80%로 설정하면 크기를 50% 이상 줄이면서도 화질은 유지할 수 있어요.</p>
+            <p class="en">Large image files slow down websites. Use the image compressor with quality set to 70-80% to reduce size by 50% while maintaining good quality.</p>
+            <div class="tags"><span class="tag">이미지</span><span class="tag">웹사이트</span></div>
         </div>
         
         <div class="post">
             <h2>JSON이 깨졌을 때 복구하는 방법</h2>
-            <p>API 응답이 잘못되거나 복사하다가 깨진 JSON은 매우困 Mand합니다. JSON 정렬기에 넣으면 잘못된 부분을 찾아주고, 올바른 형태로 예쁘게 정렬해줍니다. 개발할 때 매우 유용하죠.</p>
-            <div class="tags">
-                <span class="tag">JSON</span>
-                <span class="tag">개발</span>
-            </div>
+            <p class="ko">API 응답이 잘못되거나 복사하다가 깨진 JSON은 정말困 Mandal합니다. JSON 정렬기에 넣으면 잘못된 부분을 찾아주고, 올바른 형태로 예쁘게 정렬해줍니다. 개발할 때 매우 유용하죠.</p>
+            <p class="en">Broken JSON from API responses or copying can be fixed with the JSON formatter. It finds errors and formats correctly - very useful for developers.</p>
+            <div class="tags"><span class="tag">JSON</span><span class="tag">개발</span></div>
         </div>
         
         <div class="post">
             <h2>시간대 변환으로 국제 회의 준비</h2>
-            <p>해외 파트너와 회의 잡을 때 시간대 변환기를 사용하면 두地方的 시간을 동시에 볼 수 있어요. 서울 아침 9시면 미국 로스는 전날 저녁 4시입니다. 시차를 계산하지 않고 바로 확인하세요.</p>
-            <div class="tags">
-                <span class="tag">시간</span>
-                <span class="tag">국제</span>
-            </div>
+            <p class="ko">해외 파트너와 회의 잡을 때 시간대 변환기를 사용하면 두地方的 시간을 동시에 볼 수 있어요. 서울 아침 9시면 미국 로스는 전날 저녁 4시입니다. 시차를 계산하지 않고 바로 확인하세요.</p>
+            <p class="en">Use the timezone converter to see both times when scheduling with overseas partners. 9 AM Seoul is 4 PM Los Angeles the previous day. No more time zone math!</p>
+            <div class="tags"><span class="tag">시간</span><span class="tag">국제</span></div>
         </div>
         
         <div class="post">
             <h2>색상 코드는 무엇에 쓰일까?</h2>
-            <p>웹디자인이나 배너 만들 때 HEX 코드를 쓰는데, RGB나 HSL로 변환하고 싶을 때가 있어요. 색상 변환기를 사용하면 원하는 포맷으로 바로 변환 가능합니다.</p>
-            <div class="tags">
-                <span class="tag">색상</span>
-                <span class="tag">디자인</span>
-            </div>
+            <p class="ko">웹디자인이나 배너 만들 때 HEX 코드를 쓰는데, RGB나 HSL로 변환하고 싶을 때가 있어요. 색상 변환기를 사용하면 원하는 포맷으로 바로 변환 가능합니다.</p>
+            <p class="en">HEX codes are used in web design and banners, but sometimes you need RGB or HSL format. Use the color converter to switch between formats instantly.</p>
+            <div class="tags"><span class="tag">색상</span><span class="tag">디자인</span></div>
         </div>
         
         <div class="ads"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins></div>
     </div>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    <script>
+        function setLang(lang) { document.body.className = 'lang-' + lang; document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',lang==='ko'?i===0:i===1)); }
+        setLang('ko');
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 </body>
 </html>
