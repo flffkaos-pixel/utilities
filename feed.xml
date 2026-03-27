@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>무료 유틸리티 모음</title>
+<link>https://freeutilities.pages.dev/</link>
+<description>모든 무료 온라인 도구 - 개발자, 학생, 직장인에게 유용</description>
+<language>ko</language>
+<atom:link href="https://freeutilities.pages.dev/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>사용법 &amp; 팁</title>
+<link>https://freeutilities.pages.dev/blog.html</link>
+<description>유틸리티를 더 잘 활용하는 방법을 알아보세요</description>
+<pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
+</item>
+<item>
+<title>텍스트 도구</title>
+<link>https://freeutilities.pages.dev/text.html</link>
+<description>대소문자 변환, 공백 제거</description>
+<pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
+</item>
+<item>
+<title>글자 수 세기</title>
+<link>https://freeutilities.pages.dev/counter.html</link>
+<description>단어, 글자, 줄수 계산</description>
+<pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
+</item>
+<item>
+<title>QR 코드 생성기</title>
+<link>https://freeutilities.pages.dev/qrcode.html</link>
+<description>QR 코드 만들기</description>
+<pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
+</item>
+<item>
+<title>비밀번호 생성기</title>
+<link>https://freeutilities.pages.dev/password.html</link>
+<description>안전한 비밀번호 생성</description>
+<pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
+</item>
+<item>
+<title>이미지 압축기</title>
+<link>https://freeutilities.pages.dev/compress.html</link>
+<description>JPG, PNG 압축</description>
+<pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
+</item>
+<item>
+<title>대출 계산기</title>
+<link>https://freeutilities.pages.dev/loan.html</link>
+<description>대출 상환금 계산</description>
+<pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
+</item>
+<item>
+<title>세금 계산기</title>
+<link>https://freeutilities.pages.dev/tax.html</link>
+<description>연봉 세금 계산</description>
+<pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
+</item>
+<item>
+<title>카운트다운 타이머</title>
+<link>https://freeutilities.pages.dev/countdown.html</link>
+<description>타이머 설정</description>
+<pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
+</item>
+<item>
+<title>할인 계산기</title>
+<link>https://freeutilities.pages.dev/discount.html</link>
+<description>할인 금액 계산</description>
+<pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
+</item>
+</channel>
+</rss>
