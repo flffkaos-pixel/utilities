@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNG to JPG 변환기 - PNG to JPG Converter</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖼️</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; }
+        .lang-btn.active { background: var(--accent); }
+        .upload-area { border: 2px dashed var(--accent); padding: 30px; text-align: center; border-radius: 10px; margin-bottom: 15px; cursor: pointer; }
+        .upload-area:hover { background: var(--input-bg); }
+        #fileInput { display: none; }
+        .btn { padding: 12px 20px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; margin-right: 10px; }
+        .result { padding: 15px; background: var(--input-bg); border-radius: 10px; text-align: center; }
+        .result img { max-width: 100%; margin-top: 15px; border-radius: 8px; }
+        .download-link { display: inline-block; margin-top: 15px; padding: 10px 20px; background: var(--accent); color: white; text-decoration: none; border-radius: 8px; }
+        .ads { margin-top: 30px; text-align: center; }
+        body.lang-ko .en { display: none !important; }
+        body.lang-en .ko { display: none !important; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        <h1><span class="ko">🖼️ PNG to JPG 변환기</span><span class="en">🖼️ PNG to JPG Converter</span></h1>
+        <div class="description">
+            <span class="ko">PNG 이미지를 JPG로 변환합니다. 투명 배경은 흰색으로 변환됩니다.</span>
+            <span class="en">Convert PNG images to JPG. Transparent background becomes white.</span>
+        </div>
+        <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+            <span class="ko">클릭하여 PNG 파일 선택</span>
+            <span class="en">Click to select PNG file</span>
+        </div>
+        <input type="file" id="fileInput" accept="image/png" onchange="handleFile()">
+        <button class="btn" onclick="convert()"><span class="ko">변환하기</span><span class="en">Convert</span></button>
+        <div class="result" id="result">
+            <div class="info"><span class="ko">변환된 이미지가 여기에 표시됩니다</span><span class="en">Converted image will appear here</span></div>
+        </div>
+        <div class="ads"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins></div>
+    </div>
+    <script>
+        let originalFile = null;
+        function setLang(lang) { document.body.className = 'lang-' + lang; document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',lang==='ko'?i===0:i===1)); }
+        setLang('ko');
+        function handleFile() {
+            const file = document.getElementById('fileInput').files[0];
+            if (file) { originalFile = file; document.querySelector('.upload-area').innerHTML = file.name; }
+        }
+        function convert() {
+            if (!originalFile) { alert('파일을 선택하세요!'); return; }
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(img, 0, 0);
+                    const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
+                    document.getElementById('result').innerHTML = 
+                        '<img src="' + dataUrl + '"><br>' +
+                        '<a href="' + dataUrl + '" download="converted.jpg" class="download-link">Download JPG</a>';
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(originalFile);
+        }
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>
