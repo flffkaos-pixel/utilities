@@ -25,6 +25,14 @@
         .lang-toggle { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
         .lang-btn { padding: 10px 25px; background: var(--card-bg); color: var(--text); border: 2px solid var(--accent); border-radius: 25px; cursor: pointer; font-size: 0.9rem; transition: all 0.3s; }
         .lang-btn.active { background: var(--accent); }
+        
+        /* Blog Section - Below Title */
+        .blog-promo { background: linear-gradient(135deg, var(--accent), #0099cc); border-radius: 20px; padding: 30px; margin: 20px auto; max-width: 800px; text-align: center; }
+        .blog-promo h2 { font-size: 1.8rem; margin-bottom: 10px; color: white; }
+        .blog-promo p { color: rgba(255,255,255,0.9); margin-bottom: 15px; font-size: 1rem; }
+        .blog-promo a { display: inline-block; background: white; color: var(--accent); padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: transform 0.3s; }
+        .blog-promo a:hover { transform: scale(1.05); }
+        
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
         .card { background: linear-gradient(145deg, var(--card-bg), #151530); border-radius: 20px; padding: 25px; text-align: center; transition: all 0.3s; cursor: pointer; text-decoration: none; color: var(--text); display: block; border: 1px solid transparent; }
         .card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,212,255,0.15); }
@@ -40,7 +48,7 @@
 </head>
 <body class="lang-ko">
     <div class="header">
-        <h1>🔧 무료 유틸리티 모음</h1>
+        <h1>무료 유틸리티 모음</h1>
         <p class="ko">모든 무료 온라인 도구 - 개발자, 학생, 직장인에게 유용</p>
         <p class="en">All free online tools - for developers, students, workers</p>
         <div class="lang-toggle">
@@ -48,8 +56,18 @@
             <button class="lang-btn" onclick="setLang('en')">English</button>
         </div>
     </div>
+    
+    <!-- Blog Promo Section -->
+    <div class="blog-promo">
+        <h2 class="ko">사용법 & 팁</h2>
+        <h2 class="en">Tips & Guide</h2>
+        <p class="ko">유틸리티를 더 잘 활용하는 방법을 알아보세요!</p>
+        <p class="en">Learn how to use our utilities better!</p>
+        <a href="blog.html" class="ko">바로가기</a>
+        <a href="blog.html" class="en">Read More</a>
+    </div>
+    
     <div class="grid">
-        <a href="blog.html" class="card"><div class="card-icon">📖</div><h2 class="ko">사용법 & 팁</h2><h2 class="en">Tips</h2><p class="ko">유틸 사용법</p><p class="en">How to use</p></a>
         <a href="text.html" class="card"><div class="card-icon">📝</div><h2 class="ko">텍스트 도구</h2><h2 class="en">Text Tools</h2><p class="ko">대소문자, 공백 제거</p><p class="en">Case, trim</p></a>
         <a href="counter.html" class="card"><div class="card-icon">📊</div><h2 class="ko">글자 수 세기</h2><h2 class="en">Word Counter</h2><p class="ko">단어, 글자 수</p><p class="en">Count text</p></a>
         <a href="color.html" class="card"><div class="card-icon">🎨</div><h2 class="ko">색상 변환</h2><h2 class="en">Color</h2><p class="ko">HEX, RGB 변환</p><p class="en">HEX, RGB</p></a>
