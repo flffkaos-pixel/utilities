@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>무료 유틸리티 모음 - 텍스트, 색상, QR, 비밀번호, JSON 도구 | Free Utilities Korea</title>
-    <meta name="description" content="무료 온라인 유틸리티 도구 모음 - 텍스트 변환, 글자 수 세기, 색상 변환, QR 코드 생성, 비밀번호 생성, JSON 정렬기, 단위 변환, BMI 계산기 등 무료로 제공">
+    <meta name="description" content="무료 온라인 유틸리티 도구 모음 - 텍스트 변환, 글자 수 세기, 색상 변환, QR 코드 생성, 비밀번호 생성, JSON 정렬기, 단위 변환, BMI 계산기, 대출 계산기, 할인 계산기 등 무료로 제공">
     <meta name="google-site-verification" content="90ObN9YY1jH6ZHRfL3tGx5HvKoHC8boT6jdFhbSe80s" />
-    <meta name="keywords" content="무료 유틸리티, 온라인 도구, 텍스트 변환, QR 코드 생성기, 비밀번호 생성기, JSON 정렬기, 색상 변환, 단위 변환, BMI 계산기, 무료 도구, 웹 도구">
+    <meta name="keywords" content="무료 유틸리티, 온라인 도구, 텍스트 변환, QR 코드 생성기, 비밀번호 생성기, JSON 정렬기, 색상 변환, 단위 변환, BMI 계산기, 대출 계산기, 할인 계산기, 무료 도구, 웹 도구">
     <meta name="author" content="Free Utilities">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="무료 유틸리티 모음 - All Free Utilities">
@@ -16,23 +16,24 @@
     <link rel="canonical" href="https://flffkaos-pixel.github.io/utilities/">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
     <style>
-        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; }
+        :root { --bg: #0f0f23; --card-bg: #1a1a3e; --text: #eee; --text-muted: #aaa; --accent: #00d4ff; --accent2: #ff6b9d; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
-        .header { text-align: center; padding: 30px 20px; }
-        .header h1 { font-size: 2rem; margin-bottom: 10px; color: var(--accent); }
-        .header p { color: var(--text-muted); }
-        .lang-toggle { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
-        .lang-btn { padding: 8px 20px; background: var(--card-bg); color: var(--text); border: 2px solid var(--accent); border-radius: 20px; cursor: pointer; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; background-image: radial-gradient(ellipse at top, #1a1a3e 0%, #0f0f23 100%); }
+        .header { text-align: center; padding: 40px 20px; }
+        .header h1 { font-size: 2.5rem; margin-bottom: 15px; background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header p { color: var(--text-muted); font-size: 1.1rem; }
+        .lang-toggle { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
+        .lang-btn { padding: 10px 25px; background: var(--card-bg); color: var(--text); border: 2px solid var(--accent); border-radius: 25px; cursor: pointer; font-size: 0.9rem; transition: all 0.3s; }
         .lang-btn.active { background: var(--accent); }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; max-width: 1000px; margin: 0 auto; }
-        .card { background: var(--card-bg); border-radius: 15px; padding: 25px; text-align: center; transition: transform 0.2s; cursor: pointer; text-decoration: none; color: var(--text); display: block; }
-        .card:hover { transform: translateY(-5px); background: #1e2a4a; }
-        .card-icon { font-size: 3rem; margin-bottom: 15px; }
-        .card h2 { font-size: 1.2rem; margin-bottom: 10px; }
-        .card p { color: var(--text-muted); font-size: 0.9rem; }
-        .ads { max-width: 1000px; margin: 30px auto; text-align: center; }
-        /* Language toggle - show only selected language */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
+        .card { background: linear-gradient(145deg, var(--card-bg), #151530); border-radius: 20px; padding: 25px; text-align: center; transition: all 0.3s; cursor: pointer; text-decoration: none; color: var(--text); display: block; border: 1px solid transparent; }
+        .card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,212,255,0.15); }
+        .card-icon { font-size: 2.5rem; margin-bottom: 15px; }
+        .card h2 { font-size: 1.1rem; margin-bottom: 8px; }
+        .card p { color: var(--text-muted); font-size: 0.85rem; }
+        .ads { max-width: 1100px; margin: 40px auto; text-align: center; }
+        .footer { text-align:center; margin-top:50px; padding:30px; color:#666; }
+        .footer a { color: var(--accent); text-decoration: none; margin: 0 15px; }
         body.lang-ko .en { display: none; }
         body.lang-en .ko { display: none; }
     </style>
@@ -40,199 +41,51 @@
 <body class="lang-ko">
     <div class="header">
         <h1>🔧 무료 유틸리티 모음</h1>
-        <p class="ko">모든 무료 온라인 도구</p>
-        <p class="en">All free online tools</p>
+        <p class="ko">모든 무료 온라인 도구 - 개발자, 학생, 직장인에게 유용</p>
+        <p class="en">All free online tools - for developers, students, workers</p>
         <div class="lang-toggle">
             <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
             <button class="lang-btn" onclick="setLang('en')">English</button>
         </div>
     </div>
     <div class="grid">
-        <a href="text.html" class="card">
-            <div class="card-icon">📝</div>
-            <h2 class="ko">텍스트 도구</h2>
-            <h2 class="en">Text Tools</h2>
-            <p class="ko">대소문자, 공백 제거</p>
-            <p class="en">Upper/lower case, trim</p>
-        </a>
-        <a href="counter.html" class="card">
-            <div class="card-icon">📊</div>
-            <h2 class="ko">글자 수 세기</h2>
-            <h2 class="en">Word Counter</h2>
-            <p class="ko">단어, 글자 수</p>
-            <p class="en">Words & characters</p>
-        </a>
-        <a href="color.html" class="card">
-            <div class="card-icon">🎨</div>
-            <h2 class="ko">색상 변환</h2>
-            <h2 class="en">Color Converter</h2>
-            <p class="ko">HEX, RGB 변환</p>
-            <p class="en">HEX to RGB</p>
-        </a>
-        <a href="time.html" class="card">
-            <div class="card-icon">🕐</div>
-            <h2 class="ko">시간 변환</h2>
-            <h2 class="en">Time Converter</h2>
-            <p class="ko">타임스탬프 변환</p>
-            <p class="en">Unix timestamp</p>
-        </a>
-        <a href="base64.html" class="card">
-            <div class="card-icon">🔐</div>
-            <h2 class="ko">Base64</h2>
-            <h2 class="en">Base64</h2>
-            <p class="ko">인코딩/디코딩</p>
-            <p class="en">Encode/Decode</p>
-        </a>
-        <a href="url.html" class="card">
-            <div class="card-icon">🔗</div>
-            <h2 class="ko">URL 인코더</h2>
-            <h2 class="en">URL Encoder</h2>
-            <p class="ko">URL 인코딩/디코딩</p>
-            <p class="en">URL encode/decode</p>
-        </a>
-        <a href="unit.html" class="card">
-            <div class="card-icon">📏</div>
-            <h2 class="ko">단위 변환</h2>
-            <h2 class="en">Unit Converter</h2>
-            <p class="ko">km, kg, °C 등</p>
-            <p class="en">km, kg, °C, etc</p>
-        </a>
-        <a href="bmi.html" class="card">
-            <div class="card-icon">⚖️</div>
-            <h2 class="ko">BMI 계산기</h2>
-            <h2 class="en">BMI Calculator</h2>
-            <p class="ko">체질량지수 계산</p>
-            <p class="en">Body mass index</p>
-        </a>
-        <a href="qrcode.html" class="card">
-            <div class="card-icon">📱</div>
-            <h2 class="ko">QR 코드 생성기</h2>
-            <h2 class="en">QR Generator</h2>
-            <p class="ko">URL → QR코드</p>
-            <p class="en">URL to QR code</p>
-        </a>
-        <a href="password.html" class="card">
-            <div class="card-icon">🔐</div>
-            <h2 class="ko">비밀번호 생성기</h2>
-            <h2 class="en">Password Generator</h2>
-            <p class="ko">안전한 비밀번호</p>
-            <p class="en">Secure password</p>
-        </a>
-        <a href="json.html" class="card">
-            <div class="card-icon">📋</div>
-            <h2 class="ko">JSON 정렬기</h2>
-            <h2 class="en">JSON Formatter</h2>
-            <p class="ko">정렬 및 검증</p>
-            <p class="en">Format & validate</p>
-        </a>
-        <a href="uuid.html" class="card">
-            <div class="card-icon">🎲</div>
-            <h2 class="ko">UUID 생성기</h2>
-            <h2 class="en">UUID Generator</h2>
-            <p class="ko">고유 ID 생성</p>
-            <p class="en">Unique ID</p>
-        </a>
-        <a href="lorem.html" class="card">
-            <div class="card-icon">📝</div>
-            <h2 class="ko">Lorem Ipsum</h2>
-            <h2 class="en">Lorem Ipsum</h2>
-            <p class="ko">테스트용 텍스트</p>
-            <p class="en">Dummy text</p>
-        </a>
-        <a href="reverse.html" class="card">
-            <div class="card-icon">🔄</div>
-            <h2 class="ko">텍스트 역순</h2>
-            <h2 class="en">Reverse Text</h2>
-            <p class="ko">문자열 뒤집기</p>
-            <p class="en">String reverse</p>
-        </a>
-        <a href="markdown.html" class="card">
-            <div class="card-icon">📝</div>
-            <h2 class="ko">마크다운 에디터</h2>
-            <h2 class="en">Markdown Editor</h2>
-            <p class="ko">마크다운 → HTML</p>
-            <p class="en">Markdown to HTML</p>
-        </a>
-        <a href="timezone.html" class="card">
-            <div class="card-icon">🌍</div>
-            <h2 class="ko">시간대 변환기</h2>
-            <h2 class="en">Timezone</h2>
-            <p class="ko">세계 시간 변환</p>
-            <p class="en">World time</p>
-        </a>
-        <a href="hash.html" class="card">
-            <div class="card-icon">🔐</div>
-            <h2 class="ko">해시 생성기</h2>
-            <h2 class="en">Hash Generator</h2>
-            <p class="ko">SHA-256 생성</p>
-            <p class="en">SHA-256 hash</p>
-        </a>
-        <a href="random.html" class="card">
-            <div class="card-icon">🎲</div>
-            <h2 class="ko">랜덤 번호</h2>
-            <h2 class="en">Random Number</h2>
-            <p class="ko">랜덤 숫자 생성</p>
-            <p class="en">Random numbers</p>
-        </a>
-        <a href="compress.html" class="card">
-            <div class="card-icon">🖼️</div>
-            <h2 class="ko">이미지 압축기</h2>
-            <h2 class="en">Image Compressor</h2>
-            <p class="ko">JPG/PNG 압축</p>
-            <p class="en">Compress images</p>
-        </a>
-        <a href="pngtojpg.html" class="card">
-            <div class="card-icon">📷</div>
-            <h2 class="ko">PNG to JPG</h2>
-            <h2 class="en">PNG to JPG</h2>
-            <p class="ko">이미지 변환</p>
-            <p class="en">Convert format</p>
-        </a>
+        <a href="text.html" class="card"><div class="card-icon">📝</div><h2 class="ko">텍스트 도구</h2><h2 class="en">Text Tools</h2><p class="ko">대소문자, 공백 제거</p><p class="en">Case, trim</p></a>
+        <a href="counter.html" class="card"><div class="card-icon">📊</div><h2 class="ko">글자 수 세기</h2><h2 class="en">Word Counter</h2><p class="ko">단어, 글자 수</p><p class="en">Count text</p></a>
+        <a href="color.html" class="card"><div class="card-icon">🎨</div><h2 class="ko">색상 변환</h2><h2 class="en">Color</h2><p class="ko">HEX, RGB 변환</p><p class="en">HEX, RGB</p></a>
+        <a href="time.html" class="card"><div class="card-icon">🕐</div><h2 class="ko">시간 변환</h2><h2 class="en">Time</h2><p class="ko">타임스탬프</p><p class="en">Timestamp</p></a>
+        <a href="base64.html" class="card"><div class="card-icon">🔐</div><h2 class="ko">Base64</h2><h2 class="en">Base64</h2><p class="ko">인코딩/디코딩</p><p class="en">Encode/Decode</p></a>
+        <a href="url.html" class="card"><div class="card-icon">🔗</div><h2 class="ko">URL 인코더</h2><h2 class="en">URL</h2><p class="ko">URL 변환</p><p class="en">URL encode</p></a>
+        <a href="unit.html" class="card"><div class="card-icon">📏</div><h2 class="ko">단위 변환</h2><h2 class="en">Unit</h2><p class="ko">km, kg, °C</p><p class="en">Convert</p></a>
+        <a href="bmi.html" class="card"><div class="card-icon">⚖️</div><h2 class="ko">BMI 계산기</h2><h2 class="en">BMI</h2><p class="ko">체질량지수</p><p class="en">Body mass</p></a>
+        <a href="qrcode.html" class="card"><div class="card-icon">📱</div><h2 class="ko">QR 코드</h2><h2 class="en">QR</h2><p class="ko">QR 생성</p><p class="en">Create QR</p></a>
+        <a href="password.html" class="card"><div class="card-icon">🔑</div><h2 class="ko">비밀번호</h2><h2 class="en">Password</h2><p class="ko">안전한 비밀번호</p><p class="en">Secure pass</p></a>
+        <a href="json.html" class="card"><div class="card-icon">📋</div><h2 class="ko">JSON 정렬기</h2><h2 class="en">JSON</h2><p class="ko">정렬 및 검증</p><p class="en">Format JSON</p></a>
+        <a href="uuid.html" class="card"><div class="card-icon">🎲</div><h2 class="ko">UUID</h2><h2 class="en">UUID</h2><p class="ko">고유 ID 생성</p><p class="en">Generate ID</p></a>
+        <a href="lorem.html" class="card"><div class="card-icon">📄</div><h2 class="ko">Lorem Ipsum</h2><h2 class="en">Lorem</h2><p class="ko">테스트 텍스트</p><p class="en">Dummy text</p></a>
+        <a href="reverse.html" class="card"><div class="card-icon">🔄</div><h2 class="ko">텍스트 역순</h2><h2 class="en">Reverse</h2><p class="ko">문자열 뒤집기</p><p class="en">Reverse text</p></a>
+        <a href="markdown.html" class="card"><div class="card-icon">📑</div><h2 class="ko">마크다운</h2><h2 class="en">Markdown</h2><p class="ko">MD → HTML</p><p class="en">To HTML</p></a>
+        <a href="timezone.html" class="card"><div class="card-icon">🌍</div><h2 class="ko">시간대</h2><h2 class="en">Timezone</h2><p class="ko">세계 시간</p><p class="en">World time</p></a>
+        <a href="hash.html" class="card"><div class="card-icon">🔒</div><h2 class="ko">해시</h2><h2 class="en">Hash</h2><p class="ko">SHA-256</p><p class="en">Generate hash</p></a>
+        <a href="random.html" class="card"><div class="card-icon">🎰</div><h2 class="ko">랜덤 번호</h2><h2 class="en">Random</h2><p class="ko">숫자 생성</p><p class="en">Generate</p></a>
+        <a href="compress.html" class="card"><div class="card-icon">🖼️</div><h2 class="ko">이미지 압축</h2><h2 class="en">Compress</h2><p class="ko">JPG/PNG 압축</p><p class="en">Shrink image</p></a>
+        <a href="pngtojpg.html" class="card"><div class="card-icon">📷</div><h2 class="ko">PNG to JPG</h2><h2 class="en">PNG/JPG</h2><p class="ko">이미지 변환</p><p class="en">Convert</p></a>
+        <a href="loan.html" class="card"><div class="card-icon">💰</div><h2 class="ko">대출 계산기</h2><h2 class="en">Loan</h2><p class="ko">대출 상환</p><p class="en">Calculate</p></a>
+        <a href="tax.html" class="card"><div class="card-icon">💵</div><h2 class="ko">세금 계산기</h2><h2 class="en">Tax</h2><p class="ko">연봉 세금</p><p class="en">Calculate tax</p></a>
+        <a href="hourly.html" class="card"><div class="card-icon">⏰</div><h2 class="ko">시간급</h2><h2 class="en">Hourly</h2><p class="ko">시간당 급여</p><p class="en">Wage calc</p></a>
+        <a href="discount.html" class="card"><div class="card-icon">🏷️</div><h2 class="ko">할인 계산</h2><h2 class="en">Discount</h2><p class="ko">할인 금액</p><p class="en">Calc price</p></a>
+        <a href="countdown.html" class="card"><div class="card-icon">⏳</div><h2 class="ko">카운트다운</h2><h2 class="en">Timer</h2><p class="ko">타이머</p><p class="en">Countdown</p></a>
+        <a href="blog.html" class="card"><div class="card-icon">📖</div><h2 class="ko">사용법 & 팁</h2><h2 class="en">Tips</h2><p class="ko">유틸 사용법</p><p class="en">How to use</p></a>
     </div>
-    <div class="ads">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <div class="ads"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+    <div class="footer">
+        <a href="terms.html">이용약관</a>
+        <a href="privacy.html">개인정보처리방침</a>
+        <p style="margin-top:20px; color:#555;">© 2026 Free Utilities</p>
     </div>
-    
-    <footer style="text-align:center; margin-top:40px; padding:20px; color:#888;">
-        <p>
-            <a href="terms.html" style="color:#667eea">이용약관</a> | 
-            <a href="privacy.html" style="color:#667eea">개인정보처리방침</a> |
-            <a href="contact.html" style="color:#667eea">연락하기</a>
-        </p>
-        <p>© 2026 Free Utilities. All rights reserved.</p>
-    </footer>
     <script>
-        function setLang(lang) {
-            document.body.className = 'lang-' + lang;
-            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
-                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
-            });
-            localStorage.setItem('util-lang', lang);
-        }
-        // Always start with Korean (ignore saved preference)
+        function setLang(lang) { document.body.className = 'lang-' + lang; document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',lang==='ko'?i===0:i===1)); }
         setLang('ko');
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 </body>
 </html>
-        <a href="blog.html" class="card">
-            <div class="card-icon">📝</div>
-            <h2 class="ko">사용법 & 팁</h2>
-            <h2 class="en">Tips & Guide</h2>
-            <p class="ko">유틸 사용 팁</p>
-            <p class="en">Utility tips</p>
-        </a>
-        <a href="loan.html" class="card">
-            <div class="card-icon">💰</div>
-            <h2 class="ko">대출 계산기</h2>
-            <h2 class="en">Loan Calculator</h2>
-            <p class="ko">대출 상환 계산</p>
-            <p class="en">Loan payment</p>
-        </a>
-        <a href="tax.html" class="card">
-            <div class="card-icon">💵</div>
-            <h2 class="ko">연봉 세금 계산기</h2>
-            <h2 class="en">Tax Calculator</h2>
-            <p class="ko">세금 계산</p>
-            <p class="en">Calculate tax</p>
-        </a>
