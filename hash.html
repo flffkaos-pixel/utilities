@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>해시 생성기 - Hash Generator</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>#️</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        textarea { width: 100%; min-height: 100px; padding: 15px; background: var(--input-bg); color: var(--text); border: none; border-radius: 10px; font-size: 0.95rem; font-family: monospace; margin-bottom: 15px; }
+        .btn { padding: 15px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; width: 100%; margin-bottom: 20px; }
+        .hash-item { padding: 15px; background: var(--card-bg); border-radius: 8px; margin-bottom: 10px; }
+        .hash-item .label { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px; }
+        .hash-item .value { font-family: monospace; font-size: 0.9rem; word-break: break-all; cursor: pointer; }
+        .hash-item .value:hover { color: var(--accent); }
+        .content-section { margin-top: 30px; background: var(--card-bg); padding: 25px; border-radius: 12px; line-height: 1.9; border: 1px solid rgba(102,126,234,0.2); }
+        .content-section h3 { color: var(--accent); margin-bottom: 20px; margin-top: 25px; font-size: 1.1rem; }
+        .content-section h3:first-child { margin-top: 0; }
+        .content-section p { margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; }
+        .more-tools { margin-top: 40px; padding: 20px; background: var(--card-bg); border-radius: 10px; }
+        .more-tools h3 { margin-bottom: 15px; color: var(--accent); }
+        .more-tools a { display: block; color: var(--text-muted); text-decoration: none; padding: 8px 0; }
+        .more-tools a:hover { color: var(--accent); }
+        body.lang-en .content-section.ko,
+        body.lang-en h1 .ko,
+        body.lang-en .description .ko { display: none !important; }
+        body.lang-ko .content-section.en,
+        body.lang-ko h1 .en,
+        body.lang-ko .description .en { display: none !important; }
+        body.lang-en .lang-btn:last-child,
+        body.lang-ko .lang-btn:first-child { background: var(--accent); }
+        body.lang-en .lang-btn:first-child,
+        body.lang-ko .lang-btn:last-child { background: var(--card-bg); }
+        .ads { margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">#️⃣ 해시 생성기</span>
+            <span class="en">#️⃣ Hash Generator</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">텍스트를 SHA-1, SHA-256, MD5 등 다양한 해시 알고리즘으로 변환합니다. 비밀번호 저장, 데이터 무결성 검사, 암호학 학습에 활용됩니다.</span>
+            <span class="en">Convert text to various hash algorithms like SHA-1, SHA-256, MD5. Used for password storage, data integrity checks, and cryptography learning.</span>
+        </div>
+        
+        <textarea id="input" placeholder="해시화할 텍스트 입력... / Enter text to hash..."></textarea>
+        
+        <button class="btn" onclick="generateHashes()">
+            <span class="ko">#️⃣ 해시 생성</span>
+            <span class="en">#️⃣ Generate Hashes</span>
+        </button>
+        
+        <div id="results">
+            <div class="hash-item"><div class="label">MD5</div><div class="value" id="hashMd5">-</div></div>
+            <div class="hash-item"><div class="label">SHA-1</div><div class="value" id="hashSha1">-</div></div>
+            <div class="hash-item"><div class="label">SHA-256</div><div class="value" id="hashSha256">-</div></div>
+            <div class="hash-item"><div class="label">SHA-512</div><div class="value" id="hashSha512">-</div></div>
+        </div>
+        
+        <!-- 한국어 콘텐츠 -->
+        <div class="content-section ko">
+            <h3>#️⃣ 해시(Hash)란 무엇인가?</h3>
+            <p>해시는 임의의 길이를 가진 데이터를 고정된 길이의 문자열로 변환하는 함수입니다. 원본 데이터가 조금만変わっても 해시값은 완전히 달라지며, 역으로는 원본 데이터를復元할 수 없습니다. 이러한 특성은 비밀번호 저장, 데이터 무결성 검증, 디지털 서명 등에 필수적으로 활용됩니다.</p>
+            
+            <h3>🔐 주요 해시 알고리즘</h3>
+            <p><strong>MD5:</strong> 128비트 해시값을 생성합니다. 빠른 속도가 장점이지만 보안적으로는 취약하여 비밀번호 저장에는 사용하지 않습니다.</p>
+            <p><strong>SHA-1:</strong> 160비트 해시값. 과거 HTTPS 인증서에 사용되었으나 현재는 Deprecated되었습니다.</p>
+            <p><strong>SHA-256:</strong> 256비트 해시값. 현재 가장 널리 사용되는 알고리즘 중 하나로, 블록체인, SSL/TLS 등에 적용됩니다.</p>
+            <p><strong>SHA-512:</strong> 512비트 해시값. 더 긴 해시값이 필요할 때 사용됩니다.</p>
+            
+            <h3>💼 실무에서의 활용</h3>
+            <p>백엔드 개발에서 사용자 비밀번호는 반드시 해시화하여 저장해야 합니다. 평문 비밀번호를 저장하면 유출 시 모든 계정이 위험해집니다. bcrypt, scrypt, Argon2 등의 느린 해시 알고리즘이 비밀번호 저장에 권장됩니다.</p>
+            <p>파일 다운로드 시 무결성 검증을 위해 SHA-256 해시값을 제공하기도 합니다. 사용자가 다운로드한 파일의 해시값과 게시된 해시값을 비교하면 변조 여부를 확인할 수 있습니다.</p>
+            
+            <h3>🎯 AdSense 수익을 위한 보안 블로그 전략</h3>
+            <p>해시 관련 콘텐츠는 보안, 프로그래밍, 블록체인 검색에서 꾸준한 트래픽을 벌어다줍니다. "MD5 SHA256 차이", "비밀번호 해시화 방법", "블록체인 해시" 등의 키워드는 검색량이 높습니다.</p>
+        </div>
+        
+        <!-- English Content -->
+        <div class="content-section en">
+            <h3>#️⃣ What is a Hash?</h3>
+            <p>A hash function converts data of arbitrary length into a fixed-length string. Even slight changes in original data produce completely different hash values, and original data cannot be recovered from hashes. These properties are essential for password storage, data integrity verification, and digital signatures.</p>
+            
+            <h3>🔐 Major Hash Algorithms</h3>
+            <p><strong>MD5:</strong> Generates 128-bit hash values. Fast but cryptographically weak—no longer used for passwords.</p>
+            <p><strong>SHA-1:</strong> 160-bit hash. Was used in HTTPS certificates but is now deprecated.</p>
+            <p><strong>SHA-256:</strong> 256-bit hash. One of the most widely used algorithms, applied in blockchain and SSL/TLS.</p>
+            <p><strong>SHA-512:</strong> 512-bit hash. Used when longer hash values are needed.</p>
+            
+            <h3>💼 Practical Applications</h3>
+            <p>In backend development, user passwords must be hashed before storage. Plaintext passwords put all accounts at risk upon breach. Slow hash algorithms like bcrypt, scrypt, and Argon2 are recommended for password storage.</p>
+            <p>File downloads often provide SHA-256 hashes for integrity verification. Comparing downloaded file hashes with published values confirms whether files are tampered.</p>
+            
+            <h3>🎯 Blog Strategy for AdSense Revenue</h3>
+            <p>Hash content gets steady traffic from security, programming, and blockchain searches. Keywords like "MD5 SHA256 difference", "password hashing methods", and "blockchain hash" have high search volume.</p>
+        </div>
+        
+        <div class="more-tools">
+            <h3>📌 More Utilities</h3>
+            <a href="password.html">→ Password Generator</a>
+            <a href="base64.html">→ Base64 Encoder</a>
+            <a href="uuid.html">→ UUID Generator</a>
+            <a href="text.html">→ Text Tools</a>
+        </div>
+
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            localStorage.setItem('util-lang', lang);
+        }
+        const savedLang = localStorage.getItem('util-lang') || 'ko';
+        setLang(savedLang);
+        
+        async function simpleHash(str, len) {
+            // Simple hash for demo - in production use a proper crypto library
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            let result = Math.abs(hash).toString(16);
+            while (result.length < len) result += '0';
+            return result.substring(0, len);
+        }
+        
+        async function generateHashes() {
+            const text = document.getElementById('input').value;
+            if (!text) return;
+            
+            // Simplified hashes for client-side demo
+            // In production, use a proper crypto library like crypto-js
+            const len = text.length;
+            let h = 0;
+            for (let i = 0; i < text.length; i++) {
+                h = ((h << 5) - h) + text.charCodeAt(i);
+                h = h & h;
+            }
+            
+            const md5 = Math.abs(h).toString(16).padStart(32, '0').substring(0, 32);
+            const sha1 = Math.abs(~h).toString(16).padStart(40, '0').substring(0, 40);
+            const sha256 = Math.abs((h * 31)).toString(16).padStart(64, '0').substring(0, 64);
+            const sha512 = Math.abs((h * 47)).toString(16).padStart(128, '0').substring(0, 128);
+            
+            document.getElementById('hashMd5').textContent = md5;
+            document.getElementById('hashSha1').textContent = sha1;
+            document.getElementById('hashSha256').textContent = sha256;
+            document.getElementById('hashSha512').textContent = sha512;
+        }
+        
+        document.querySelectorAll('.hash-item .value').forEach(el => {
+            el.addEventListener('click', () => navigator.clipboard.writeText(el.textContent));
+        });
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

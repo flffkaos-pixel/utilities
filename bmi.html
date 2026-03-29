@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI 계산기 - BMI Calculator</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; --success: #4CAF50; --warning: #FF9800; --danger: #f44336; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        .input-group { display: flex; gap: 15px; margin-bottom: 15px; }
+        .input-group div { flex: 1; }
+        input { width: 100%; padding: 12px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; font-size: 1rem; }
+        label { display: block; margin-bottom: 5px; font-size: 0.85rem; color: var(--text-muted); }
+        .btn { width: 100%; padding: 15px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; margin-bottom: 20px; }
+        .result-box { padding: 25px; background: var(--card-bg); border-radius: 12px; text-align: center; margin-bottom: 30px; }
+        .bmi-value { font-size: 3rem; font-weight: bold; color: var(--accent); margin-bottom: 10px; }
+        .bmi-status { font-size: 1.3rem; padding: 8px 20px; border-radius: 20px; display: inline-block; }
+        .status-underweight { background: #2196F3; color: white; }
+        .status-normal { background: var(--success); color: white; }
+        .status-overweight { background: var(--warning); color: white; }
+        .status-obese { background: var(--danger); color: white; }
+        .bmi-chart { margin-top: 15px; font-size: 0.85rem; color: var(--text-muted); }
+        .content-section { margin-top: 30px; background: var(--card-bg); padding: 25px; border-radius: 12px; line-height: 1.9; border: 1px solid rgba(102,126,234,0.2); }
+        .content-section h3 { color: var(--accent); margin-bottom: 20px; margin-top: 25px; font-size: 1.1rem; }
+        .content-section h3:first-child { margin-top: 0; }
+        .content-section h4 { color: #8892f0; margin-top: 20px; margin-bottom: 10px; font-size: 1rem; }
+        .content-section p { margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; }
+        .content-section ul { margin: 15px 0; padding-left: 20px; }
+        .content-section li { margin-bottom: 10px; color: var(--text-muted); }
+        .more-tools { margin-top: 40px; padding: 20px; background: var(--card-bg); border-radius: 10px; }
+        .more-tools h3 { margin-bottom: 15px; color: var(--accent); }
+        .more-tools a { display: block; color: var(--text-muted); text-decoration: none; padding: 8px 0; }
+        .more-tools a:hover { color: var(--accent); }
+        body.lang-en .content-section.ko,
+        body.lang-en h1 .ko,
+        body.lang-en .description .ko { display: none !important; }
+        body.lang-ko .content-section.en,
+        body.lang-ko h1 .en,
+        body.lang-ko .description .en { display: none !important; }
+        body.lang-en .lang-btn:last-child,
+        body.lang-ko .lang-btn:first-child { background: var(--accent); }
+        body.lang-en .lang-btn:first-child,
+        body.lang-ko .lang-btn:last-child { background: var(--card-bg); }
+        .ads { margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">⚖️ BMI 계산기</span>
+            <span class="en">⚖️ BMI Calculator</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">체질량지수(BMI)를 계산하여 건강 체중 범위를 확인합니다.身長と体重を入力するだけでBMI値がわかります。</span>
+            <span class="en">Calculate your Body Mass Index (BMI) and check your healthy weight range. Enter height and weight to get your BMI instantly.</span>
+        </div>
+        
+        <div class="input-group">
+            <div>
+                <label class="ko">키 (cm)</label>
+                <label class="en">Height (cm)</label>
+                <input type="number" id="height" placeholder="170">
+            </div>
+            <div>
+                <label class="ko">체중 (kg)</label>
+                <label class="en">Weight (kg)</label>
+                <input type="number" id="weight" placeholder="65">
+            </div>
+        </div>
+        
+        <button class="btn" onclick="calculateBMI()">
+            <span class="ko">BMI 계산하기</span>
+            <span class="en">Calculate BMI</span>
+        </button>
+        
+        <div class="result-box" id="resultBox" style="display:none;">
+            <div class="bmi-value" id="bmiValue">0.0</div>
+            <div class="bmi-status" id="bmiStatus">-</div>
+            <div class="bmi-chart ko">
+                <p>BMI 범위: 저체중 &lt;18.5 | 정상 18.5~23 | 과체중 23~25 | 비만 &gt;25</p>
+            </div>
+            <div class="bmi-chart en">
+                <p>BMI Range: Under &lt;18.5 | Normal 18.5~23 | Over 23~25 | Obese &gt;25</p>
+            </div>
+        </div>
+        
+        <!-- 한국어 콘텐츠 -->
+        <div class="content-section ko">
+            <h3>⚖️ BMI(체질량지수)란 무엇인가?</h3>
+            <p>BMI(Body Mass Index, 체질량지수)는体重と身長に基づいて算出される指標으로, 体重が適切かどうかを判断하는 데 사용됩니다。WHO(世界保健機関)の標準に基づいており、18.5~25 사이가 정상 범위로 널리 인식되어 있습니다。ただし BMI는 근육량,骨밀도 등을 구분하지 않으므로 운동하는 분이나 노인은 дополни적인评估가 필요합니다.</p>
+            
+            <h3>📊 BMI 계산 공식과 해석</h3>
+            <p>BMI는 간단한 공식으로 계산됩니다: 체중(kg)을 키(m)의 제곱으로 나눈 값입니다. 예를 들어, 키 170cm(1.7m),体重 65kg인 경우, 65 ÷ (1.7 × 1.7) = 22.5가 됩니다. 이 값이 18.5 미만이면 저체중, 18.5~23이면 정상, 23~25면 과체중, 25 이상이면 비만으로 분류됩니다.</p>
+            <p>한국인에게 맞는 BMI 기준도 있습니다. 대한비만학회는 한국인의 경우 23 이상이면 과체중, 25 이상이면 비만으로 정의하고 있습니다. 이는 서양인보다 체격이较小的 한국인에게 맞는 기준입니다. 자신의 BMI가 어느 범위에 속하는지 확인하고, 필요하면 목표 체중을 설정하세요.</p>
+            
+            <h3>🏃 BMI를 건강 관리에 활용하는 방법</h3>
+            <p>BMI는、あくまで参考指標であり、それ自体が健康を保证するわけではありません。しかし 정기적으로 BMI를チェック하면体重 변화를把握할 수 있어,慢性疾患 예방에 도움을 줍니다. 특히 비만은 당뇨병, 심혈관 질환, 고혈압 등의 위험因素과 밀접하게 관련되어 있으므로, BMI가 높은 분은 생활습관 개선이 필요합니다.</p>
+            <p>단순히体重을 줄이는 것뿐 아니라, 근력 운동을 통해 근육량을 늘리고基础 metabolism率를 높이는 것도 중요합니다. 또한 체중보다 체지방률과 근육량을 고려한総合적인 건강 관리가理想적입니다. BMI 23 이상이면 운동과 식단 조정을 병행하는 것을 추천합니다.</p>
+            
+            <h3>💡 BMI의 한계와 보완 방법</h3>
+            <p>BMI는方便的な指標이지만 한계가 있습니다. 가장 큰 문제점은 근육량과 체지방을 구분하지 않는다는 것입니다. 운동선수나 보디빌더는BMI가 높아도体脂肪率が 낮을 수 있고, 반대로 근육량이 적지만 체지방이 많은 경우BMI는 정상일 수 있습니다. 따라서 BMI之外에도 허리둘레, 체지방률, 근력 등을 함께 고려하는 것이 좋습니다.</p>
+            <p>한국인의 경우 특히腹脂肪(내장지방)이 문제되는 경우가 많습니다. BMI가 정상이라도男性의 경우 허리둘레가 90cm 이상, 여성의 경우 85cm 이상이면代谢症候群 위험이 높습니다.因此定期적으로腹部脂肪 уровень을チェック하는 것을 권장합니다.</p>
+            
+            <h3>🎯 AdSense 수익을 위한 건강 블로그 전략</h3>
+            <p>BMI 계산기 도구를 활용한 콘텐츠는 건강, 다이어트, 운동 관련 검색에서 꾸준한トラフィック을 벌어다줍니다. "BMI 계산", "정상 체중", "다이어트 방법", "건강 체중 계산" 등의 키워드는検索량이 높고 경쟁이 심하지 않은 편입니다.</p>
+            <p>도구 사용法만 설명하는 것보다, BMI 계산 결과에 따른체중 관리 방법, 식단 추천, 운동 루틴 등을 연결하면페이지 체류 시간이 길어지고, 이는 검색 엔진 ranking에 긍정적 영향을 미칩니다. 또한 "한국인 BMI 정상 범위", "체중 감량 목표 설정법" 등 구체적인 정보를 함께 제공하면 المزيد의 가치를 줄 수 있습니다.</p>
+        </div>
+        
+        <!-- English Content -->
+        <div class="content-section en">
+            <h3>⚖️ What is BMI (Body Mass Index)?</h3>
+            <p>BMI (Body Mass Index) is an indicator calculated based on weight and height to determine if weight is appropriate. Based on WHO standards, 18.5~25 is widely recognized as normal. However, BMI doesn't distinguish muscle mass or bone density, so athletes and elderly individuals may need additional assessment.</p>
+            
+            <h3>📊 BMI Formula and Interpretation</h3>
+            <p>BMI is calculated with a simple formula: weight (kg) divided by height (m) squared. For example, height 170cm (1.7m), weight 65kg: 65 ÷ (1.7 × 1.7) = 22.5. Values below 18.5 = underweight, 18.5~23 = normal, 23~25 = overweight, 25+ = obese.</p>
+            <p>For Koreans, the Korean Society for the Study of Obesity defines 23+ as overweight and 25+ as obese. Check your BMI range and set target weight if needed.</p>
+            
+            <h3>🏃 How to Use BMI for Health Management</h3>
+            <p>BMI is merely a reference indicator and doesn't guarantee health by itself. However, regularly checking BMI helps track weight changes and prevents chronic diseases. Obesity is closely related to diabetes, cardiovascular disease, and hypertension risks.</p>
+            <p>Beyond just losing weight, increasing muscle through strength training and boosting basal metabolism is important. Comprehensive health management considering body fat percentage and muscle mass is ideal. If BMI is 23+, exercise and diet adjustment are recommended.</p>
+            
+            <h3>💡 BMI Limitations and Complementary Methods</h3>
+            <p>BMI's biggest weakness is not distinguishing muscle from fat. Athletes may have high BMI but low body fat, while someone with normal BMI could have high body fat with low muscle. Consider waist circumference, body fat percentage, and strength alongside BMI.</p>
+            <p>For Koreans, abdominal fat (visceral fat) is often problematic. Even with normal BMI, men with waist circumference 90cm+ or women 85cm+ face higher metabolic syndrome risk. Regular abdominal fat level checks are recommended.</p>
+            
+            <h3>🎯 Blog Strategy for AdSense Revenue</h3>
+            <p>Content using BMI calculator tools gets steady traffic from health, diet, and exercise searches. Keywords like "BMI calculator", "normal weight", "diet methods", "healthy weight calculation" have high search volume with relatively low competition.</p>
+            <p>Linking tool usage with weight management methods, diet recommendations, and exercise routines based on BMI results extends page dwell time, positively affecting search engine ranking. Providing specific information like "Korean BMI normal range" or "weight loss goal setting" adds more value.</p>
+        </div>
+        
+        <div class="more-tools">
+            <h3>📌 More Utilities</h3>
+            <a href="text.html">→ Text Tools</a>
+            <a href="unit.html">→ Unit Converter</a>
+            <a href="base64.html">→ Base64 Encoder</a>
+            <a href="password.html">→ Password Generator</a>
+            <a href="json.html">→ JSON Formatter</a>
+            <a href="qrcode.html">→ QR Code Generator</a>
+        </div>
+
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            localStorage.setItem('util-lang', lang);
+        }
+        const savedLang = localStorage.getItem('util-lang') || 'ko';
+        setLang(savedLang);
+        
+        function calculateBMI() {
+            const h = parseFloat(document.getElementById('height').value) / 100;
+            const w = parseFloat(document.getElementById('weight').value);
+            if (!h || !w) return;
+            const bmi = w / (h * h);
+            document.getElementById('bmiValue').textContent = bmi.toFixed(1);
+            const statusEl = document.getElementById('bmiStatus');
+            const statusText = { ko: { under: '저체중', normal: '정상', over: '과체중', obese: '비만' }, en: { under: 'Underweight', normal: 'Normal', over: 'Overweight', obese: 'Obese' } };
+            const lang = localStorage.getItem('util-lang') || 'ko';
+            let status, cls;
+            if (bmi < 18.5) { status = statusText[lang].under; cls = 'status-underweight'; }
+            else if (bmi < 23) { status = statusText[lang].normal; cls = 'status-normal'; }
+            else if (bmi < 25) { status = statusText[lang].over; cls = 'status-overweight'; }
+            else { status = statusText[lang].obese; cls = 'status-obese'; }
+            statusEl.textContent = status;
+            statusEl.className = 'bmi-status ' + cls;
+            document.getElementById('resultBox').style.display = 'block';
+        }
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

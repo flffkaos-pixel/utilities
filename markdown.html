@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마크다운 에디터 - Markdown Editor</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        .editor-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        .editor-panel { background: var(--card-bg); border-radius: 10px; padding: 15px; }
+        .editor-panel h3 { margin-bottom: 10px; font-size: 0.9rem; color: var(--text-muted); }
+        textarea { width: 100%; min-height: 300px; padding: 15px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; font-size: 0.95rem; font-family: monospace; }
+        #preview { min-height: 300px; padding: 15px; background: var(--input-bg); border-radius: 8px; overflow-y: auto; line-height: 1.6; }
+        #preview h1, #preview h2, #preview h3 { color: var(--accent); margin: 15px 0 10px; }
+        #preview p { margin-bottom: 10px; }
+        #preview code { background: var(--card-bg); padding: 2px 6px; border-radius: 4px; }
+        #preview pre { background: var(--card-bg); padding: 15px; border-radius: 8px; overflow-x: auto; margin-bottom: 15px; }
+        #preview pre code { background: none; padding: 0; }
+        .btn { padding: 12px 20px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.9rem; margin-right: 10px; margin-bottom: 10px; }
+        .content-section { margin-top: 30px; background: var(--card-bg); padding: 25px; border-radius: 12px; line-height: 1.9; border: 1px solid rgba(102,126,234,0.2); }
+        .content-section h3 { color: var(--accent); margin-bottom: 20px; margin-top: 25px; font-size: 1.1rem; }
+        .content-section h3:first-child { margin-top: 0; }
+        .content-section p { margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; }
+        .more-tools { margin-top: 40px; padding: 20px; background: var(--card-bg); border-radius: 10px; }
+        .more-tools h3 { margin-bottom: 15px; color: var(--accent); }
+        .more-tools a { display: block; color: var(--text-muted); text-decoration: none; padding: 8px 0; }
+        .more-tools a:hover { color: var(--accent); }
+        body.lang-en .content-section.ko,
+        body.lang-en h1 .ko,
+        body.lang-en .description .ko { display: none !important; }
+        body.lang-ko .content-section.en,
+        body.lang-ko h1 .en,
+        body.lang-ko .description .en { display: none !important; }
+        body.lang-en .lang-btn:last-child,
+        body.lang-ko .lang-btn:first-child { background: var(--accent); }
+        body.lang-en .lang-btn:first-child,
+        body.lang-ko .lang-btn:last-child { background: var(--card-bg); }
+        .ads { margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">📝 마크다운 에디터</span>
+            <span class="en">📝 Markdown Editor</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">마크다운 문법을 실시간으로プレビュー하면서 문서를 작성합니다. 블로그, GitHub, 기술 문서에 필수입니다.</span>
+            <span class="en">Write documents with live markdown preview. Essential for blogs, GitHub, and technical documentation.</span>
+        </div>
+        
+        <div class="btn-group" style="margin-bottom:20px;">
+            <button class="btn" onclick="insertBold()">
+                <span class="ko"> Bold</span>
+                <span class="en"> Bold</span>
+            </button>
+            <button class="btn" onclick="insertItalic()">
+                <span class="ko"> Italic</span>
+                <span class="en"> Italic</span>
+            </button>
+            <button class="btn" onclick="insertLink()">
+                <span class="ko"> Link</span>
+                <span class="en"> Link</span>
+            </button>
+            <button class="btn" onclick="insertCode()">
+                <span class="ko"> Code</span>
+                <span class="en"> Code</span>
+            </button>
+        </div>
+        
+        <div class="editor-container">
+            <div class="editor-panel">
+                <h3>
+                    <span class="ko">📤 마크다운 입력</span>
+                    <span class="en">📤 Markdown Input</span>
+                </h3>
+                <textarea id="mdInput" placeholder="# 제목&#10;&#10;내용을 입력하세요..."># 제목&#10;&#10;**마크다운**을 입력하세요.&#10;&#10;```&#10;코드 블록도 가능&#10;```</textarea>
+            </div>
+            <div class="editor-panel">
+                <h3>
+                    <span class="ko">👁️ 실시간 미리보기</span>
+                    <span class="en">👁️ Live Preview</span>
+                </h3>
+                <div id="preview"></div>
+            </div>
+        </div>
+        
+        <button class="btn" onclick="updatePreview()" style="width:100%;">
+            <span class="ko">🔄 미리보기 업데이트</span>
+            <span class="en">🔄 Update Preview</span>
+        </button>
+        
+        <!-- 한국어 콘텐츠 -->
+        <div class="content-section ko">
+            <h3>📝 마크다운이란 무엇인가?</h3>
+            <p>마크다운(Markdown)은 2004년 John Gruber에 의해作成된 경량 마크업 언어입니다. 간단한 문법으로 문서를 구조화할 수 있어, 웹 콘텐츠 작성, 기술 문서, 노트 테이킹 등广泛的 분야에使用됩니다. 특히 GitHub, Stack Overflow, Reddit 등 플랫폼에서 널리 지원하여 개발자 커뮤니티에서 표준처럼 사용되고 있습니다.</p>
+            <p>마크다운의 가장 큰 장점은 학습 곡선이 낮으면서도 강력한 표현력을 가진다는 것입니다. 별표(*)나 해시(#) 등의 간단한 기호로 제목, 목록, 링크, 이미지 등을 표현할 수 있어, HTML을 몰라도 웹 스타일의 문서를 쉽게 작성할 수 있습니다.</p>
+            
+            <h3>📖 기본 마크다운 문법</h3>
+            <p><strong>제목:</strong> #을 사용하여 H1~H6까지 표현 (# ~ ######)</p>
+            <p><strong>강조:</strong> **텍스트** 또는 __텍스트__로 굵게, *텍스트* 또는 _텍스트_로 기울임</p>
+            <p><strong>목록:</strong> - 또는 *로 unordered, 숫자. 로 ordered list</p>
+            <p><strong>링크:</strong> [텍스트](URL) 형식</p>
+            <p><strong>이미지:</strong> ![대체 텍스트](이미지URL) 형식</p>
+            <p><strong>코드:</strong> `인라인 코드` 또는 ```블록 코드```</p>
+            
+            <h3>💼 실무에서의 활용</h3>
+            <p>마크다운은 개발자들에게 필수적인 도구입니다. GitHub의 README.md, 프로젝트 문서, 커밋 메시지, 이슈 관리等都에서 사용됩니다. 또한 기술 블로그(velog, tistory 등)에서 마크다운 에디터를 지원하여 콘텐츠 작성의 효율성을 높입니다.</p>
+            <p>Notion, Obsidian, Typora 등의 노트 앱도 마크다운을 지원하여, 하나의 문법으로 여러 플랫폼에서 일관되게 문서를 작성할 수 있습니다.</p>
+            
+            <h3>🎯 AdSense 수익을 위한 기술 블로그 전략</h3>
+            <p>마크다운 관련 콘텐츠는 개발자, 기술 writer, 학생 검색에서 꾸준한 트래픽을 벌어다줍니다. "마크다운 사용법", "마크다운 문법", "Markdown cheat sheet" 등의 키워드는 검색량이 높고 경쟁이 심하지 않은 편입니다.</p>
+            <p>도구 사용법과 함께 "기술 블로그 시작 가이드", "GitHub README 작성법", "개발자 문서 작성 팁" 등의 콘텐츠를 함께 제공하면 개발자 독자에게 더 많은 가치를 줄 수 있습니다.</p>
+        </div>
+        
+        <!-- English Content -->
+        <div class="content-section en">
+            <h3>📝 What is Markdown?</h3>
+            <p>Markdown is a lightweight markup language created by John Gruber in 2004. With simple syntax for structuring documents, it's used broadly in web content writing, technical documentation, and note-taking. Supported on GitHub, Stack Overflow, Reddit, and others—it's the standard in developer communities.</p>
+            <p>Markdown's biggest advantage is low learning curve with strong expressiveness. Simple symbols like asterisks (*) or hashes (#) express titles, lists, links, and images, allowing easy web-style documents without knowing HTML.</p>
+            
+            <h3>📖 Basic Markdown Syntax</h3>
+            <p><strong>Headings:</strong> Use # for H1~H6 (######)</p>
+            <p><strong>Emphasis:</strong> **text** or __text__ for bold, *text* or _text_ for italic</p>
+            <p><strong>Lists:</strong> - or * for unordered, numbers. for ordered</p>
+            <p><strong>Links:</strong> [text](URL)</p>
+            <p><strong>Images:</strong> ![alt text](imageURL)</p>
+            <p><strong>Code:</strong> `inline code` or ```code block```</p>
+            
+            <h3>💼 Practical Applications</h3>
+            <p>Markdown is essential for developers. Used in GitHub README.md, project docs, commit messages, and issue management. Technical blogs (velog, tistory, etc.) support Markdown editors, improving content writing efficiency.</p>
+            <p>Note apps like Notion, Obsidian, and Typora also support Markdown—write consistently across platforms with one syntax.</p>
+            
+            <h3>🎯 Blog Strategy for AdSense Revenue</h3>
+            <p>Markdown content gets steady traffic from developer, technical writer, and student searches. Keywords like "markdown usage", "markdown syntax", and "markdown cheat sheet" have high search volume with manageable competition.</p>
+            <p>Providing "tech blog start guide", "GitHub README writing", and "developer documentation tips" alongside tool usage gives developer readers more value.</p>
+        </div>
+        
+        <div class="more-tools">
+            <h3>📌 More Utilities</h3>
+            <a href="text.html">→ Text Tools</a>
+            <a href="lorem.html">→ Lorem Ipsum</a>
+            <a href="hash.html">→ Hash Generator</a>
+            <a href="uuid.html">→ UUID Generator</a>
+        </div>
+
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            localStorage.setItem('util-lang', lang);
+        }
+        const savedLang = localStorage.getItem('util-lang') || 'ko';
+        setLang(savedLang);
+        
+        function updatePreview() {
+            const md = document.getElementById('mdInput').value;
+            let html = md.replace(/^###### (.+)$/gm, '<h6>$1</h6>')
+                .replace(/^##### (.+)$/gm, '<h5>$1</h5>')
+                .replace(/^#### (.+)$/gm, '<h4>$1</h4>')
+                .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+                .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+                .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.+?)\*/g, '<em>$1</em>')
+                .replace(/`(.+?)`/g, '<code>$1</code>')
+                .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank">$1</a>')
+                .replace(/!\[(.+?)\]\((.+?)\)/g, '<img src="$2" alt="$1" style="max-width:100%">')
+                .replace(/^```[\s\S]*?```$/gm, (m) => '<pre><code>' + m.slice(3,-3).trim() + '</code></pre>')
+                .replace(/^\* (.+)$/gm, '<li>$1</li>')
+                .replace(/^(\d+)\. (.+)$/gm, '<li>$2</li>')
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/\n/g, '<br>');
+            document.getElementById('preview').innerHTML = '<p>' + html + '</p>';
+        }
+        function insertBold() {
+            const ta = document.getElementById('mdInput');
+            const s = ta.selectionStart, e = ta.selectionEnd;
+            ta.value = ta.value.slice(0, s) + '**' + ta.value.slice(s, e) + '**' + ta.value.slice(e);
+            updatePreview();
+        }
+        function insertItalic() {
+            const ta = document.getElementById('mdInput');
+            const s = ta.selectionStart, e = ta.selectionEnd;
+            ta.value = ta.value.slice(0, s) + '*' + ta.value.slice(s, e) + '*' + ta.value.slice(e);
+            updatePreview();
+        }
+        function insertLink() {
+            const ta = document.getElementById('mdInput');
+            const s = ta.selectionStart, e = ta.selectionEnd;
+            const sel = ta.value.slice(s, e) || '링크';
+            ta.value = ta.value.slice(0, s) + '[' + sel + '](url)' + ta.value.slice(e);
+            updatePreview();
+        }
+        function insertCode() {
+            const ta = document.getElementById('mdInput');
+            const s = ta.selectionStart;
+            ta.value = ta.value.slice(0, s) + '``' + ta.value.slice(s);
+            updatePreview();
+        }
+        document.getElementById('mdInput').addEventListener('input', updatePreview);
+        updatePreview();
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시간대 변환기 - Timezone Converter</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        select, input { width: 100%; padding: 12px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; font-size: 1rem; margin-bottom: 15px; }
+        .btn { padding: 15px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; width: 100%; margin-bottom: 20px; }
+        .result-box { padding: 25px; background: var(--card-bg); border-radius: 10px; text-align: center; margin-bottom: 30px; }
+        .result-value { font-size: 1.8rem; color: var(--accent); font-weight: bold; }
+        .result-label { font-size: 0.9rem; color: var(--text-muted); margin-top: 5px; }
+        .time-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        .time-item { background: var(--card-bg); padding: 15px; border-radius: 8px; text-align: center; }
+        .time-item .city { font-size: 0.85rem; color: var(--text-muted); }
+        .time-item .time { font-size: 1.2rem; color: var(--accent); font-weight: bold; }
+        .content-section { margin-top: 30px; background: var(--card-bg); padding: 25px; border-radius: 12px; line-height: 1.9; border: 1px solid rgba(102,126,234,0.2); }
+        .content-section h3 { color: var(--accent); margin-bottom: 20px; margin-top: 25px; font-size: 1.1rem; }
+        .content-section h3:first-child { margin-top: 0; }
+        .content-section p { margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; }
+        .more-tools { margin-top: 40px; padding: 20px; background: var(--card-bg); border-radius: 10px; }
+        .more-tools h3 { margin-bottom: 15px; color: var(--accent); }
+        .more-tools a { display: block; color: var(--text-muted); text-decoration: none; padding: 8px 0; }
+        .more-tools a:hover { color: var(--accent); }
+        body.lang-en .content-section.ko,
+        body.lang-en h1 .ko,
+        body.lang-en .description .ko { display: none !important; }
+        body.lang-ko .content-section.en,
+        body.lang-ko h1 .en,
+        body.lang-ko .description .en { display: none !important; }
+        body.lang-en .lang-btn:last-child,
+        body.lang-ko .lang-btn:first-child { background: var(--accent); }
+        body.lang-en .lang-btn:first-child,
+        body.lang-ko .lang-btn:last-child { background: var(--card-bg); }
+        .ads { margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">🌍 시간대 변환기</span>
+            <span class="en">🌍 Timezone Converter</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">세계 주요 도시의 현재 시각을 확인하고, 시간대를 변환합니다. 해외 여행, 비즈니스 미팅, 국제 통신에 필수입니다.</span>
+            <span class="en">Check current time in major world cities and convert timezones. Essential for international travel, business meetings, and global communication.</span>
+        </div>
+        
+        <div class="time-grid">
+            <div class="time-item"><div class="city">🏠 서울</div><div class="time" id="timeSeoul">-</div></div>
+            <div class="time-item"><div class="city">🇺🇸 NYC</div><div class="time" id="timeNYC">-</div></div>
+            <div class="time-item"><div class="city">🇬🇧伦敦</div><div class="time" id="timeLondon">-</div></div>
+            <div class="time-item"><div class="city">🇸🇬싱가포르</div><div class="time" id="timeSingapore">-</div></div>
+        </div>
+        
+        <select id="fromTz">
+            <option value="Asia/Seoul">서울 (KST +9)</option>
+            <option value="America/New_York">뉴욕 (EST -5)</option>
+            <option value="Europe/London">런던 (GMT 0)</option>
+            <option value="Asia/Singapore">싱가포르 (SGT +8)</option>
+            <option value="America/Los_Angeles">LA (PST -8)</option>
+            <option value="Asia/Tokyo">도쿄 (JST +9)</option>
+            <option value="Europe/Paris">파리 (CET +1)</option>
+        </select>
+        
+        <input type="time" id="timeInput" value="12:00">
+        
+        <select id="toTz">
+            <option value="Asia/Seoul">서울 (KST +9)</option>
+            <option value="America/New_York">뉴욕 (EST -5)</option>
+            <option value="Europe/London">런던 (GMT 0)</option>
+            <option value="Asia/Singapore">싱가포르 (SGT +8)</option>
+            <option value="America/Los_Angeles">LA (PST -8)</option>
+            <option value="Asia/Tokyo">도쿄 (JST +9)</option>
+            <option value="Europe/Paris">파리 (CET +1)</option>
+        </select>
+        
+        <button class="btn" onclick="convertTime()">
+            <span class="ko">🌍 변환하기</span>
+            <span class="en">🌍 Convert</span>
+        </button>
+        
+        <div class="result-box">
+            <div class="result-value" id="resultTime">-</div>
+            <div class="result-label" id="resultLabel">-</div>
+        </div>
+        
+        <!-- 한국어 콘텐츠 -->
+        <div class="content-section ko">
+            <h3>🌍 시간대(Time Zone)란 무엇인가?</h3>
+            <p>시간대는 지구상 같은 경도를 공유하는 지역들이同一의標準時를 사용하는システム입니다. 본초 자오선(0도 경도)을 기준으로 +/- 12시간 범위로 나누어지며, 총 24개의 표준 시간대가 있습니다. 이는 1884년 국제 황도 회의에서标准化되었으며, 이전에는 각 도시나 국가가 자체적인地方時를 사용했습니다.</p>
+            <p>시간대의 도입으로 인해 국제적인 교류와 거래가 훨씬 효율적으로 이루어질 수 있게 되었습니다. 만약 시간대가 없다면, 매번現地時間を 계산해야 했을 것입니다. 오늘날 인터넷과 항공기가 발달한 시대에 시간대는 필수적인Infrastructure입니다.</p>
+            
+            <h3>✈️ 해외 여행에서의 시간대 활용</h3>
+            <p>해외 여행 시 시차(jet lag)는 가장 큰 부담 중 하나입니다. 도착 후 시간대에 맞추어 생활하는 것이 중요하며, 이를 위해서는 출발 전부터 도착지의 시간대를 파악하고 준비하는 것이 좋습니다. 특히长途航班 후에는 충분한休식을 취하면서，当地 시간에 순응하도록 노력해야 합니다.</p>
+            <p>이 도구를 활용하면 출발 전航班 시간과 도착 후 현지 시간을 쉽게 확인하여 여행 일정을 효율적으로 계획할 수 있습니다. 또한 가족이나 친구에게 전화할 때 적절한 시간을 찾는 데도 유용합니다.</p>
+            
+            <h3>💼 국제 비즈니스에서의 시간대 관리</h3>
+            <p>글로벌 비즈니스에서는 다양한 시간대에 있는 동료, 고객, 파트너와 미팅을 잡는 것이 일상입니다. 화상 회의, 컨퍼런스 콜, 데드라인 관리 등에서 정확한 시간대 변환은 필수적입니다. 잘못된 시간대 계산은 회의 불참이나期限延误로 이어질 수 있습니다.</p>
+            <p>Google Calendar, Outlook 등의 캘린더 앱은 시간대 변환 기능을 내장하고 있으므로 적극 활용하는 것이 좋습니다. 또한 "World Time Buddy", "Every Time Zone" 등의 전문 시간대 변환 도구도 함께 사용하면 더욱 효율적입니다.</p>
+            
+            <h3>🎯 AdSense 수익을 위한 여행 블로그 전략</h3>
+            <p>시간대 관련 콘텐츠는 해외 여행, 비즈니스, 디지털 노마드 검색에서 꾸준한 트래픽을 벌어다줍니다. "시차 계산", "세계 시간대 변환", "국제 전화 시간" 등의 키워드는 검색량이 높고 경쟁이 심하지 않은 편입니다.</p>
+            <p>도구 사용법과 함께 "시차 적응 방법", "국제 비행 시간표 읽기", "디지털 노마드를 위한 시간 관리" 등의 콘텐츠를 함께 제공하면 여행자와 비즈니스人群中 더 많은 가치를 줄 수 있습니다.</p>
+        </div>
+        
+        <!-- English Content -->
+        <div class="content-section en">
+            <h3>🌍 What is a Time Zone?</h3>
+            <p>Time zones are systems where regions sharing the same longitude use a common standard time. Based on the prime meridian (0° longitude), they're divided into +/- 12 hours, totaling 24 standard time zones. Standardized at the 1884 International Meridian Conference, before which cities and countries used their own local times.</p>
+            <p>Time zones enable much more efficient international exchange and trade. Without them, you'd have to calculate local time for every interaction. In today's internet and aviation era, time zones are essential infrastructure.</p>
+            
+            <h3>✈️ Using Time Zones for International Travel</h3>
+            <p>Jet lag is one of the biggest burdens when traveling abroad. Adjusting to the destination's time zone is crucial—preparation should start before departure. After long flights, rest sufficiently while working to adapt to local time.</p>
+            <p>This tool helps check flight times and local arrival times before trips for efficient planning. It's also useful for finding appropriate times to call family or friends.</p>
+            
+            <h3>💼 Time Zone Management in International Business</h3>
+            <p>In global business, scheduling meetings with colleagues, clients, and partners across different time zones is daily routine. Accurate timezone conversion is essential for video conferences, conference calls, and deadline management. Wrong calculations can lead to missed meetings or missed deadlines.</p>
+            <p>Calendar apps like Google Calendar and Outlook have built-in timezone features—use them actively. Specialized tools like "World Time Buddy" and "Every Time Zone" complement them well.</p>
+            
+            <h3>🎯 Blog Strategy for AdSense Revenue</h3>
+            <p>Timezone content gets steady traffic from international travel, business, and digital nomad searches. Keywords like "jet lag calculation", "world timezone converter", and "international call times" have high search volume with manageable competition.</p>
+            <p>Providing "jet lag adaptation methods", "reading international flight schedules", and "time management for digital nomads" alongside tool usage gives travelers and business people more value.</p>
+        </div>
+        
+        <div class="more-tools">
+            <h3>📌 More Utilities</h3>
+            <a href="time.html">→ Time Calculator</a>
+            <a href="unit.html">→ Unit Converter</a>
+            <a href="bmi.html">→ BMI Calculator</a>
+            <a href="countdown.html">→ Countdown Timer</a>
+        </div>
+
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            localStorage.setItem('util-lang', lang);
+        }
+        const savedLang = localStorage.getItem('util-lang') || 'ko';
+        setLang(savedLang);
+        
+        const offsets = { 'Asia/Seoul': 9, 'America/New_York': -5, 'Europe/London': 0, 'Asia/Singapore': 8, 'America/Los_Angeles': -8, 'Asia/Tokyo': 9, 'Europe/Paris': 1 };
+        
+        function updateTimes() {
+            const now = new Date();
+            const seoul = new Date(now.getTime() + (9 - now.getTimezoneOffset()/60) * 3600000);
+            const nyc = new Date(now.getTime() + (-5 + 5 - now.getTimezoneOffset()/60) * 3600000);
+            const london = new Date(now.getTime() + (0 + 0 - now.getTimezoneOffset()/60) * 3600000);
+            const sg = new Date(now.getTime() + (8 + 0 - now.getTimezoneOffset()/60) * 3600000);
+            document.getElementById('timeSeoul').textContent = seoul.toISOString().substr(11, 5);
+            document.getElementById('timeNYC').textContent = nyc.toISOString().substr(11, 5);
+            document.getElementById('timeLondon').textContent = london.toISOString().substr(11, 5);
+            document.getElementById('timeSingapore').textContent = sg.toISOString().substr(11, 5);
+        }
+        function convertTime() {
+            const from = document.getElementById('fromTz').value;
+            const to = document.getElementById('toTz').value;
+            const time = document.getElementById('timeInput').value;
+            const [h, m] = time.split(':').map(Number);
+            const diff = offsets[to] - offsets[from];
+            let newH = h + diff;
+            if (newH >= 24) newH -= 24;
+            if (newH < 0) newH += 24;
+            const label = document.getElementById('resultLabel').textContent;
+            document.getElementById('resultTime').textContent = String(newH).padStart(2,'0') + ':' + String(m).padStart(2,'0');
+            const toName = to.split('/')[1].replace('_', ' ');
+            document.getElementById('resultLabel').textContent = '→ ' + toName;
+        }
+        updateTimes();
+        setInterval(updateTimes, 60000);
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNG to JPG 변환기</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖼️</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .drop-zone { border: 2px dashed var(--accent); border-radius: 10px; padding: 40px; text-align: center; margin-bottom: 20px; cursor: pointer; }
+        input[type="file"] { display: none; }
+        .btn { padding: 15px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; width: 100%; margin-bottom: 10px; }
+        .preview-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        .preview-item { background: var(--card-bg); padding: 15px; border-radius: 10px; text-align: center; }
+        .preview-item img { max-width: 100%; max-height: 200px; border-radius: 8px; }
+        .content-section { margin-top: 30px; background: var(--card-bg); padding: 25px; border-radius: 12px; line-height: 1.9; }
+        .content-section h3 { color: var(--accent); margin-bottom: 15px; margin-top: 20px; }
+        .content-section p { margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; }
+        .more-tools { margin-top: 40px; padding: 20px; background: var(--card-bg); border-radius: 10px; }
+        .more-tools h3 { margin-bottom: 15px; color: var(--accent); }
+        .more-tools a { display: block; color: var(--text-muted); text-decoration: none; padding: 8px 0; }
+        .ads { margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+        </div>
+        
+        <h1>🖼️ PNG to JPG 변환기</h1>
+        
+        <div class="description">
+            PNG 이미지를 JPG로 변환합니다. 파일 크기를 줄이고 호환성을 높이세요.
+        </div>
+        
+        <div class="drop-zone" id="dropZone">
+            <input type="file" id="fileInput" accept="image/png">
+            <p>📁 PNG 이미지를 드래그하거나 클릭하여 업로드</p>
+        </div>
+        
+        <button class="btn" onclick="convert()">🔄 JPG로 변환</button>
+        
+        <div class="preview-container" id="preview" style="display:none;">
+            <div class="preview-item">
+                <img id="previewImg" src="" alt="Preview">
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h3>PNG와 JPG의 차이</h3>
+            <p><strong>PNG (Portable Network Graphics)</strong>는 투명 배경을 지원하는 무손실 이미지 형식입니다. 아이콘, 로고, 그래픽에 적합합니다.</p>
+            <p><strong>JPG (JPEG)</strong>는 손실 압축을 사용하는 사진용 이미지 형식입니다. 파일 크기가 작아 웹페이지 속도를 개선합니다.</p>
+            <h3>사용 시기</h3>
+            <p>• 사진: JPG 사용 (작은 크기)<br>• 그래픽/로고: PNG 유지 (투명도)<br>• 웹 최적화: JPG 권장 (속도 향상)</p>
+            <h3>AdSense를 위한 팁</h3>
+            <p>웹페이지에서 JPG 이미지를 사용하면 로드 속도가 빨라지고, 이는 Core Web Vitals 개선에 도움이 됩니다. 빠른 웹사이트는 SEO 순위 향상과 사용자 경험 개선에 기여합니다.</p>
+        </div>
+        
+        <div class="more-tools">
+            <h3>📌 더 많은 유틸리티</h3>
+            <a href="compress.html">→ 이미지 압축기</a>
+            <a href="color.html">→ 색상 변환기</a>
+            <a href="qrcode.html">→ QR 코드 생성기</a>
+        </div>
+
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <script>
+        let selectedFile = null;
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        
+        dropZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => { if (e.target.files[0]) { selectedFile = e.target.files[0]; document.getElementById('previewImg').src = URL.createObjectURL(selectedFile); document.getElementById('preview').style.display = 'grid'; }});
+        
+        function convert() {
+            if (!selectedFile) { alert('이미지를 선택하세요!'); return; }
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.fillStyle = '#FFFFFF';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(img, 0, 0);
+                    const link = document.createElement('a');
+                    link.download = selectedFile.name.replace('.png', '.jpg');
+                    link.href = canvas.toDataURL('image/jpeg', 0.9);
+                    link.click();
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(selectedFile);
+        }
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

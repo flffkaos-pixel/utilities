@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>색상 변환기 - Color Converter</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        input { width: 100%; padding: 12px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; font-size: 1rem; margin-bottom: 10px; }
+        input[type="color"] { height: 60px; cursor: pointer; }
+        .color-preview { width: 100%; height: 100px; border-radius: 10px; margin-bottom: 15px; border: 2px solid var(--accent); }
+        .result-box { padding: 20px; background: var(--card-bg); border-radius: 10px; margin-bottom: 30px; }
+        .result-box p { margin: 8px 0; font-family: monospace; font-size: 1rem; }
+        .result-box span { color: var(--accent); }
+        .content-section { margin-top: 30px; background: var(--card-bg); padding: 25px; border-radius: 12px; line-height: 1.9; border: 1px solid rgba(102,126,234,0.2); }
+        .content-section h3 { color: var(--accent); margin-bottom: 20px; margin-top: 25px; font-size: 1.1rem; }
+        .content-section h3:first-child { margin-top: 0; }
+        .content-section h4 { color: #8892f0; margin-top: 20px; margin-bottom: 10px; font-size: 1rem; }
+        .content-section p { margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; }
+        .content-section ul { margin: 15px 0; padding-left: 20px; }
+        .content-section li { margin-bottom: 10px; color: var(--text-muted); }
+        .more-tools { margin-top: 40px; padding: 20px; background: var(--card-bg); border-radius: 10px; }
+        .more-tools h3 { margin-bottom: 15px; color: var(--accent); }
+        .more-tools a { display: block; color: var(--text-muted); text-decoration: none; padding: 8px 0; }
+        .more-tools a:hover { color: var(--accent); }
+        body.lang-en .content-section.ko,
+        body.lang-en h1 .ko,
+        body.lang-en .description .ko { display: none !important; }
+        body.lang-ko .content-section.en,
+        body.lang-ko h1 .en,
+        body.lang-ko .description .en { display: none !important; }
+        body.lang-en .lang-btn:last-child,
+        body.lang-ko .lang-btn:first-child { background: var(--accent); }
+        body.lang-en .lang-btn:first-child,
+        body.lang-ko .lang-btn:last-child { background: var(--card-bg); }
+        .ads { margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">🎨 색상 변환기</span>
+            <span class="en">🎨 Color Converter</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">HEX, RGB, HSL 색상 코드를 상호 변환합니다. 웹 디자인, 그래픽 작업에 필수 도구입니다.</span>
+            <span class="en">Convert between HEX, RGB, and HSL color codes. Essential for web design and graphic work.</span>
+        </div>
+        
+        <div class="color-preview" id="preview"></div>
+        <input type="color" id="colorPicker" value="#667eea" onchange="convertColor()">
+        <input type="text" id="hexInput" placeholder="HEX: #667eea" oninput="convertFromHex()">
+        <input type="text" id="rgbInput" placeholder="RGB: rgb(102, 126, 234)" oninput="convertFromRgb()">
+        
+        <div class="result-box">
+            <p><span class="ko">HEX:</span><span class="en">HEX:</span> <span id="resHex">#667eea</span></p>
+            <p><span class="ko">RGB:</span><span class="en">RGB:</span> <span id="resRgb">rgb(102, 126, 234)</span></p>
+            <p><span class="ko">HSL:</span><span class="en">HSL:</span> <span id="resHsl">hsl(228, 76%, 66%)</span></p>
+        </div>
+        
+        <!-- 한국어 콘텐츠 -->
+        <div class="content-section ko">
+            <h3>🎨 색상 변환이란 무엇인가?</h3>
+            <p>색상 변환기는 디지털 디자인과 웹 개발에서 필수적인 도구입니다. 색상을 표현하는 방법은 다양하며, 상황마다 다른 형식을 요구합니다. HEX 코드는 웹에서 가장 많이 사용되고, RGB는 모니터 출력과 프로그래밍에 주로 사용되며, HSL은 색상 채도와 명도를 조절하기에 직관적인 형식입니다. 이 세 가지 형식을 자유롭게 변환할 수 있다면, 어떤 환경에서도 올바른 색상을 사용할 수 있습니다.</p>
+            
+            <h3>🔣 HEX, RGB, HSL 차이점 이해하기</h3>
+            <p><strong>HEX (Hexadecimal)</strong>는 웹 디자인에서 가장 널리 사용되는 색상 표기법입니다. #FF5733처럼 #과 6자리 16진수로 구성되며, HTML, CSS에서直接사용할 수 있습니다. 빠른 표기법으로 소규모이지만, 색상의 의미를직관적으로 파악하기 어렵습니다.</p>
+            <p><strong>RGB (Red, Green, Blue)</strong>는 빛의 삼원색을 기반으로 색상을 표현합니다. 각 채널의 값은 0~255로 표현되며, 모니터, TV, 스마트폰 등 모든 디지털 화면은 RGB 방식으로 색상을 표시합니다. 프로그래밍에서 색상을 다룰 때 가장 일반적으로 사용됩니다.</p>
+            <p><strong>HSL (Hue, Saturation, Lightness)</strong>는 인간이 색상을 인식하는 방식에 가장 가까운 표기법입니다. Hue는 색상환(0~360도), Saturation은 채도(0~100%), Lightness는 명도(0~100%)로 구성됩니다. 특정 색상을 조금 더 밝거나 어둡게 만들 때 매우 편리합니다.</p>
+            
+            <h3>💡 웹 디자인에서의 색상 변환 활용</h3>
+            <p>웹 페이지를 디자인할 때 색상 일관성을 유지하는 것이 중요합니다. 대표 색상 하나를 정하고, 그 색상의 밝기 변형을 자동으로 생성하면 통일감 있는 디자인을 만들 수 있습니다. 예를 들어, 주요 색상이 #667eea라면, 밝은 변형은 HSL의 Lightness 값을 높이고, 어두운 변형은 낮추면 됩니다.</p>
+            <p>또한 다크 모드(ark theme)를 구현할 때 배경색의 명도를 반전시키거나, 특정 비율로 조절해야 합니다. 이러한 상황에서 RGB에서 HSL로 변환 후 조작하면 원하는 결과를 쉽게 얻을 수 있습니다. CSS 변수와 함께 사용하면 테마 변경도 간편해집니다.</p>
+            
+            <h3>🖼️ 그래픽 디자인에서의 활용</h3>
+            <p>어도비 포토샵, 일러스트레이터, FIGMA 등 그래픽 툴에서 색상을 복사할 때 서로 다른 형식을 사용할 수 있습니다. 예를 들어, CSS에서 사용할 HEX 코드를 포토샵의 RGB 값으로 변환하거나, HSL을 기반으로 색상 팔레트를 만들어야 하는 경우가 많습니다. 이 도구를 사용하면 별도의 계산 없이 즉시 변환할 수 있어 작업 효율을 높일 수 있습니다.</p>
+            <p>특히 브랜드 가이드라인을 만들 때 Primary, Secondary, Accent 색상을 정의하고 각각의 HEX, RGB, HSL 값을 문서화해야 합니다. 이 도구를 활용하면 한 번의 입력으로 세 가지 형식을 모두 얻을 수 있어 시간과 노력을 절약할 수 있습니다.</p>
+            
+            <h3>🎯 AdSense 수익을 위한 디자인 블로그 전략</h3>
+            <p>색상 변환 관련 콘텐츠는 웹 디자인, 그래픽, 프론트엔드 개발 검색에서 꾸준한 트래픽을 얻습니다. "HEX to RGB 변환", "색상 코드 표", "웹 디자인 색상 조합" 등의 키워드는 검색량이 높고 전문성이 있어 경쟁이 심하지 않습니다.</p>
+            <p>도구와 함께 "2026 트렌드 컬러", "웹사이트配色原则", "UI 색상 팔레트 만드는 방법" 등의 콘텐츠를 함께 제공하면 독자에게 더 많은 가치를 줄 수 있습니다. 시각적 예시와 함께하면 이해도가 높아지고, SNS에서 공유될 확률도 높아져 자연스러운 백링크 확보에 도움이 됩니다.</p>
+        </div>
+        
+        <!-- English Content -->
+        <div class="content-section en">
+            <h3>🎨 What is Color Conversion?</h3>
+            <p>Color converters are essential tools in digital design and web development. Colors can be expressed in various formats—HEX for web, RGB for monitors, and HSL for intuitive adjustment. Being able to convert between them means you can use the right color in any context.</p>
+            
+            <h3>🔣 Understanding HEX, RGB, and HSL</h3>
+            <p><strong>HEX (Hexadecimal)</strong> is the most common web color notation—#FF5733 with a # and 6-digit hexadecimal. Quick and compact, but less intuitive for understanding color meaning.</p>
+            <p><strong>RGB (Red, Green, Blue)</strong> uses light's primary colors. Each channel ranges 0~255, and all digital screens display colors in RGB. Most common in programming.</p>
+            <p><strong>HSL (Hue, Saturation, Lightness)</strong> matches how humans perceive color. Hue (0~360°), Saturation (0~100%), Lightness (0~100%). Extremely convenient for adjusting brightness and saturation.</p>
+            
+            <h3>💡 Using Color Conversion in Web Design</h3>
+            <p>Maintaining color consistency is crucial in web design. Define one primary color and auto-generate brightness variants for unified design. If the primary is #667eea, increase Lightness for lighter variants, decrease for darker ones.</p>
+            <p>Implementing dark mode requires inverting or adjusting background brightness. Converting RGB to HSL and manipulating values easily achieves desired results. Combined with CSS variables, theme switching becomes simple.</p>
+            
+            <h3>🖼️ Applications in Graphic Design</h3>
+            <p>Graphic tools like Photoshop, Illustrator, and Figma use different color formats. You may need to convert CSS HEX to Photoshop RGB values, or create color palettes based on HSL. This tool provides instant conversion without separate calculations, improving workflow efficiency.</p>
+            <p>When creating brand guidelines, define Primary, Secondary, and Accent colors, documenting each in HEX, RGB, and HSL. One input gives all three formats, saving time and effort.</p>
+            
+            <h3>🎯 Blog Strategy for AdSense Revenue</h3>
+            <p>Color conversion content gets steady traffic from web design, graphics, and frontend development searches. Keywords like "HEX to RGB converter", "color code chart", and "web design color combinations" have high search volume with manageable competition.</p>
+            <p>Providing "2026 trend colors", "website color principles", and "UI color palette methods" alongside the tool gives readers more value. Visual examples increase understanding and social sharing, naturally building backlinks.</p>
+        </div>
+        
+        <div class="more-tools">
+            <h3>📌 More Utilities</h3>
+            <a href="text.html">→ Text Tools</a>
+            <a href="unit.html">→ Unit Converter</a>
+            <a href="bmi.html">→ BMI Calculator</a>
+            <a href="base64.html">→ Base64 Encoder</a>
+            <a href="url.html">→ URL Encoder</a>
+            <a href="time.html">→ Time Calculator</a>
+            <a href="qrcode.html">→ QR Code Generator</a>
+            <a href="password.html">→ Password Generator</a>
+        </div>
+
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            localStorage.setItem('util-lang', lang);
+        }
+        const savedLang = localStorage.getItem('util-lang') || 'ko';
+        setLang(savedLang);
+        
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
+        function rgbToHsl(r, g, b) {
+            r /= 255; g /= 255; b /= 255;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+            if (max === min) h = s = 0;
+            else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+                    case g: h = ((b - r) / d + 2) / 6; break;
+                    case b: h = ((r - g) / d + 4) / 6; break;
+                }
+            }
+            return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+        }
+        function convertColor() {
+            const hex = document.getElementById('colorPicker').value;
+            updateAll(hex);
+        }
+        function convertFromHex() {
+            const hex = document.getElementById('hexInput').value;
+            if (hex.match(/^#?[0-9A-Fa-f]{6}$/)) updateAll(hex);
+        }
+        function convertFromRgb() {
+            const match = document.getElementById('rgbInput').value.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+            if (match) {
+                const r = parseInt(match[1]), g = parseInt(match[2]), b = parseInt(match[3]);
+                const hex = '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
+                updateAll(hex);
+            }
+        }
+        function updateAll(hex) {
+            if (!hex.startsWith('#')) hex = '#' + hex;
+            document.getElementById('preview').style.background = hex;
+            document.getElementById('hexInput').value = hex;
+            document.getElementById('colorPicker').value = hex;
+            const rgb = hexToRgb(hex);
+            if (rgb) {
+                document.getElementById('resHex').textContent = hex.toUpperCase();
+                document.getElementById('resRgb').textContent = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+                document.getElementById('rgbInput').value = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+                const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+                document.getElementById('resHsl').textContent = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+            }
+        }
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

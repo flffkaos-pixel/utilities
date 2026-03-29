@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR 코드 생성기 - QR Code Generator</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        input, select, textarea { width: 100%; padding: 12px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; font-size: 1rem; margin-bottom: 15px; }
+        .btn { width: 100%; padding: 15px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; margin-bottom: 20px; }
+        #qrcode { background: white; padding: 20px; border-radius: 10px; text-align: center; margin-bottom: 30px; }
+        #qrcode canvas { max-width: 100%; }
+        .content-section { margin-top: 30px; background: var(--card-bg); padding: 25px; border-radius: 12px; line-height: 1.9; border: 1px solid rgba(102,126,234,0.2); }
+        .content-section h3 { color: var(--accent); margin-bottom: 20px; margin-top: 25px; font-size: 1.1rem; }
+        .content-section h3:first-child { margin-top: 0; }
+        .content-section h4 { color: #8892f0; margin-top: 20px; margin-bottom: 10px; font-size: 1rem; }
+        .content-section p { margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; }
+        .more-tools { margin-top: 40px; padding: 20px; background: var(--card-bg); border-radius: 10px; }
+        .more-tools h3 { margin-bottom: 15px; color: var(--accent); }
+        .more-tools a { display: block; color: var(--text-muted); text-decoration: none; padding: 8px 0; }
+        .more-tools a:hover { color: var(--accent); }
+        body.lang-en .content-section.ko,
+        body.lang-en h1 .ko,
+        body.lang-en .description .ko { display: none !important; }
+        body.lang-ko .content-section.en,
+        body.lang-ko h1 .en,
+        body.lang-ko .description .en { display: none !important; }
+        body.lang-en .lang-btn:last-child,
+        body.lang-ko .lang-btn:first-child { background: var(--accent); }
+        body.lang-en .lang-btn:first-child,
+        body.lang-ko .lang-btn:last-child { background: var(--card-bg); }
+        .ads { margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">📱 QR 코드 생성기</span>
+            <span class="en">📱 QR Code Generator</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">텍스트, URL, 연락처 등으로 QR 코드를 생성합니다. 스마트폰으로 스캔하여 빠르고 안전한 정보 공유가 가능합니다.</span>
+            <span class="en">Generate QR codes from text, URLs, contacts, and more. Scan with your smartphone for quick, secure information sharing.</span>
+        </div>
+        
+        <input type="text" id="qrData" placeholder="QR 코드에 포함할 텍스트 입력... / Enter text for QR code...">
+        <select id="qrSize">
+            <option value="150">작은 (150px)</option>
+            <option value="200" selected>중간 (200px)</option>
+            <option value="300">큰 (300px)</option>
+            <option value="400">매우 큰 (400px)</option>
+        </select>
+        <button class="btn" onclick="generateQR()">
+            <span class="ko">QR 코드 생성</span>
+            <span class="en">Generate QR Code</span>
+        </button>
+        
+        <div id="qrcode"></div>
+        
+        <!-- 한국어 콘텐츠 -->
+        <div class="content-section ko">
+            <h3>📱 QR 코드란 무엇인가?</h3>
+            <p>QR 코드(Quick Response Code)는 2차원 바코드的一种로, 일반 바코드보다 훨씬 많은 정보를 저장할 수 있습니다. 1994년 일본 도요 발명사에서 개발되었으며,当初에는 자동차 부품 추적용으로 사용되었습니다. 그러나 오늘날에는 결제, 인증, 정보 공유, 마케팅 등 다양한领域에서 널리 활용되고 있습니다.</p>
+            <p>QR 코드의 가장 큰 장점은 저장 용량입니다. 일반 바코드가 숫자와 문자 약 20개만 저장할 수 있는 반면, QR 코드는 숫자 약 7,000자, 알파벳 약 4,000자, 한자 약 1,800자까지 저장할 수 있습니다. 또한 오류 정정 기능이 있어 일부가 손상되어도内容を解读할 수 있습니다.</p>
+            
+            <h3>⚡ QR 코드가 널리 사용되는 이유</h3>
+            <p>QR 코드가これほど普及한 이유는 스마트폰의 등장과密切相关합니다. 스마트폰 카메라로 QR 코드를 쉽게 스캔할 수 있게 되면서, 별도의 전용 스캐너 없이도 정보를 즉시 접근할 수 있게 되었습니다. 이를 통해印刷물, 제품 포장, 명함, 포스터 등 물리적 매체와 디지털 콘텐츠를 seamlessly 연결할 수 있게 되었습니다.</p>
+            <p>특히 코로나19 이후 비 접촉(Untact) 시대에 QR 코드의 활용도가 급증했습니다. 식당 메뉴, 출입 명부, 결제, 입장권 등 다양한場面에서 QR 코드가 사용되며, 이는 소비자와 기업 모두에게 효율적인 수단이 되었습니다. 앞으로도 QR 코드는物理적과 디지털世界的 경계를 허물는 중요한 도구로 자리잡을 것입니다.</p>
+            
+            <h3>💼 비즈니스에서의 QR 코드 활용</h3>
+            <p>비즈니스 분야에서 QR 코드는 마케팅과 고객 Engagement에 중요한 역할을 합니다. 제품 포장에 QR 코드를印制하면 소비자가 스마트폰으로 스캔하여 제품 상세 정보, 리뷰, 프로모션, 유튜브 영상 등으로 바로 이동할 수 있습니다. 이는 소비자의 구매 결정을 도울 뿐 아니라 브랜드 Engagement를 높이는 효과적인 수단이 됩니다.</p>
+            <p>또한 결제 시스템에서 QR 코드는 표준이 되었습니다.支付宝(Alipay), WeChat Pay, 카카오페이, 네이버페이 등 주요 결제 플랫폼 모두 QR 코드 기반 결제를 지원합니다. 상인 입장에서는 별도의 단말기 없이도 결제 시스템을 도입할 수 있어 비용을 크게 절감할 수 있습니다.</p>
+            
+            <h3>🔒 QR 코드의 보안 considerations</h3>
+            <p>QR 코드는 편리하지만 보안 측면에서도 주의가 필요합니다. 악의적인 QR 코드가贴纸上 붙어 기존 합법적인 QR 코드를 덮어버리는 “QR 갈라자기(QR code swapping)” 공격이 보고되었습니다. 따라서 중요한 정보나 결제 관련 QR 코드는 항상 출처를 확인하고, 의심스러운 QR 코드는 스캔하지 않는 것이 좋습니다.</p>
+            <p>또한 QR 코드에 포함된 URL이 자동으로 열리지 않도록 설정하는 것을 권장합니다. 스캔 전에 미리보기를 통해 이동할 페이지를 확인하고, 개인 정보 입력이나 결제를 요구하는 페이지에서는 주의深く 확인해야 합니다.</p>
+            
+            <h3>🎯 AdSense 수익을 위한 마케팅 블로그 전략</h3>
+            <p>QR 코드 관련 콘텐츠는 마케팅, 비즈니스, 디지털 전환 관련 검색에서 꾸준한 트래픽을 벌어다줍니다. "QR 코드 만들기", "QR 코드 생성 방법", "비즈니스 QR 코드 활용" 등의 키워드는 검색량이 높고 경쟁이 심하지 않은 편입니다.</p>
+            <p>도구 사용법과 함께 "QR 코드 마케팅 전략", "모바일 결제QR 시스템", "비 접촉 마케팅 방법" 등의 콘텐츠를 함께 제공하면 마케팅 담당자에게 유용한 정보를 줄 수 있습니다. 실제 사례와 함께하면コンテンツ的质量이 높아지고, 이는 검색 엔진 ranking에도 긍정적인 영향을 미칩니다.</p>
+        </div>
+        
+        <!-- English Content -->
+        <div class="content-section en">
+            <h3>📱 What is a QR Code?</h3>
+            <p>QR Code (Quick Response Code) is a 2D barcode that can store much more information than traditional barcodes. Developed by Denso Wave in Japan in 1994, it was initially used for tracking automotive parts. Today it's widely used in payments, authentication, information sharing, and marketing.</p>
+            <p>QR codes' biggest advantage is storage capacity. While traditional barcodes store about 20 alphanumeric characters, QR codes store ~7,000 digits, ~4,000 alphanumeric characters, or ~1,800 Chinese characters. Error correction also allows reading even with partial damage.</p>
+            
+            <h3>⚡ Why QR Codes Are Widely Used</h3>
+            <p>QR codes spread due to smartphones. Easy scanning with phone cameras made instant information access possible without special scanners. This connected physical media (print, packaging, business cards, posters) seamlessly with digital content.</p>
+            <p>Post-COVID, QR code usage surged in the contactless era. Restaurant menus, attendance logs, payments, and tickets all use QR codes—efficient for both consumers and businesses. QR codes will continue bridging physical and digital worlds.</p>
+            
+            <h3>💼 QR Code Applications in Business</h3>
+            <p>In business, QR codes play key roles in marketing and customer engagement. Printing QR codes on product packaging lets consumers scan to access details, reviews, promotions, and videos—driving purchases and boosting brand engagement.</p>
+            <p>QR codes are standard in payment systems. Alipay, WeChat Pay, KakaoPay, and NaverPay all support QR-based payments. Merchants can implement payment systems without expensive terminals, significantly reducing costs.</p>
+            
+            <h3>🔒 QR Code Security Considerations</h3>
+            <p>QR codes are convenient but require security awareness. "QR code swapping" attacks where malicious QR codes cover legitimate ones have been reported. Always verify sources, and avoid scanning suspicious QR codes, especially for payments or sensitive information.</p>
+            <p>Disable automatic URL opening when scanning. Preview the destination page before proceeding, and carefully verify any page requesting personal information or payments.</p>
+            
+            <h3>🎯 Blog Strategy for AdSense Revenue</h3>
+            <p>QR code content gets steady traffic from marketing, business, and digital transformation searches. Keywords like "QR code maker", "QR code generation", and "business QR code usage" have high search volume with manageable competition.</p>
+            <p>Providing "QR code marketing strategy", "mobile payment QR systems", and "contactless marketing methods" alongside tool usage gives marketers valuable information. Real-world examples increase content quality, positively affecting search engine rankings.</p>
+        </div>
+        
+        <div class="more-tools">
+            <h3>📌 More Utilities</h3>
+            <a href="text.html">→ Text Tools</a>
+            <a href="url.html">→ URL Encoder</a>
+            <a href="base64.html">→ Base64 Encoder</a>
+            <a href="password.html">→ Password Generator</a>
+            <a href="uuid.html">→ UUID Generator</a>
+            <a href="json.html">→ JSON Formatter</a>
+        </div>
+
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            localStorage.setItem('util-lang', lang);
+        }
+        const savedLang = localStorage.getItem('util-lang') || 'ko';
+        setLang(savedLang);
+        
+        function generateQR() {
+            const data = document.getElementById('qrData').value;
+            const size = parseInt(document.getElementById('qrSize').value);
+            const container = document.getElementById('qrcode');
+            container.innerHTML = '';
+            if (!data) { alert('텍스트를 입력하세요!'); return; }
+            QRCode.toCanvas(data, { width: size, margin: 2 }, (err, canvas) => {
+                if (err) { container.innerHTML = '<p style="color:red">오류가 발생했습니다.</p>'; return; }
+                canvas.style.maxWidth = '100%';
+                container.appendChild(canvas);
+            });
+        }
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

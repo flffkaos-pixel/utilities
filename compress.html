@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 압축기 - Image Compressor</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗜️</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        .drop-zone { border: 2px dashed var(--accent); border-radius: 10px; padding: 40px; text-align: center; margin-bottom: 20px; cursor: pointer; transition: background 0.3s; }
+        .drop-zone:hover { background: rgba(102,126,234,0.1); }
+        .drop-zone.dragover { background: rgba(102,126,234,0.2); }
+        input[type="file"] { display: none; }
+        .quality-slider { margin-bottom: 15px; }
+        .quality-slider label { display: block; margin-bottom: 10px; }
+        input[type="range"] { width: 100%; }
+        .btn { padding: 15px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; width: 100%; margin-bottom: 10px; }
+        .preview-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        .preview-item { background: var(--card-bg); padding: 15px; border-radius: 10px; text-align: center; }
+        .preview-item img { max-width: 100%; max-height: 200px; border-radius: 8px; }
+        .preview-item .size { font-size: 0.85rem; color: var(--text-muted); margin-top: 10px; }
+        .content-section { margin-top: 30px; background: var(--card-bg); padding: 25px; border-radius: 12px; line-height: 1.9; border: 1px solid rgba(102,126,234,0.2); }
+        .content-section h3 { color: var(--accent); margin-bottom: 20px; margin-top: 25px; font-size: 1.1rem; }
+        .content-section h3:first-child { margin-top: 0; }
+        .content-section p { margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; }
+        .more-tools { margin-top: 40px; padding: 20px; background: var(--card-bg); border-radius: 10px; }
+        .more-tools h3 { margin-bottom: 15px; color: var(--accent); }
+        .more-tools a { display: block; color: var(--text-muted); text-decoration: none; padding: 8px 0; }
+        .more-tools a:hover { color: var(--accent); }
+        body.lang-en .content-section.ko,
+        body.lang-en h1 .ko,
+        body.lang-en .description .ko { display: none !important; }
+        body.lang-ko .content-section.en,
+        body.lang-ko h1 .en,
+        body.lang-ko .description .en { display: none !important; }
+        body.lang-en .lang-btn:last-child,
+        body.lang-ko .lang-btn:first-child { background: var(--accent); }
+        body.lang-en .lang-btn:first-child,
+        body.lang-ko .lang-btn:last-child { background: var(--card-bg); }
+        .ads { margin-top: 30px; text-align: center; }
+        .stats { display: flex; justify-content: space-between; margin-top: 15px; font-size: 0.9rem; }
+        .stats .original { color: var(--text-muted); }
+        .stats .compressed { color: var(--accent); }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">🗜️ 이미지 압축기</span>
+            <span class="en">🗜️ Image Compressor</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">이미지 파일 크기를 줄입니다. 웹사이트 속도 향상, 저장 공간 절약, 공유 편의성増幅에 활용됩니다.</span>
+            <span class="en">Reduce image file sizes. Used for website speed improvement, storage savings, and easier sharing.</span>
+        </div>
+        
+        <div class="drop-zone" id="dropZone">
+            <input type="file" id="fileInput" accept="image/*">
+            <p>
+                <span class="ko">📁 이미지를 드래그하거나 클릭하여 업로드</span>
+                <span class="en">📁 Drag & drop or click to upload image</span>
+            </p>
+        </div>
+        
+        <div class="quality-slider">
+            <label>
+                <span class="ko">품질: </span>
+                <span class="en">Quality: </span>
+                <span id="qualityValue">80</span>%
+            </label>
+            <input type="range" id="quality" min="10" max="100" value="80" oninput="document.getElementById('qualityValue').textContent=this.value">
+        </div>
+        
+        <button class="btn" id="compressBtn" onclick="compressImage()">
+            <span class="ko">🗜️ 압축하기</span>
+            <span class="en">🗜️ Compress</span>
+        </button>
+        
+        <div class="preview-container" id="previewContainer" style="display:none;">
+            <div class="preview-item">
+                <div class="label ko">원본</div>
+                <div class="label en">Original</div>
+                <img id="originalPreview" src="" alt="Original">
+                <div class="size" id="originalSize"></div>
+            </div>
+            <div class="preview-item">
+                <div class="label ko">압축 후</div>
+                <div class="label en">Compressed</div>
+                <img id="compressedPreview" src="" alt="Compressed">
+                <div class="size" id="compressedSize"></div>
+            </div>
+        </div>
+        
+        <!-- 한국어 콘텐츠 -->
+        <div class="content-section ko">
+            <h3>🗜️ 이미지 압축이란 무엇인가?</h3>
+            <p>이미지 압축은图像 파일의 크기를 줄이는 기술입니다. 이는 웹페이지 로드 속도를 개선하고, 저장 공간을 절약하며, 이미지 공유를更容易하게 합니다. 특히 웹사이트를 운영한다면 이미지 최적화는 매우 중요합니다. 페이지 속도는 사용자 경험과 검색 엔진 ranking 모두에 영향을 미치기 때문입니다.</p>
+            <p>이미지 압축은 크게 두 가지 방식으로 나뉩니다. <strong>손실 압축(Lossy)</strong>은图像의 일부 정보를 버려 크기를 크게 줄이지만 화질 저하가 발생합니다. <strong>무손실 압축(Lossless)</strong>은 정보를 유지하면서 압축하므로 화질은 보존되지만 크기 감소幅이 제한적입니다.</p>
+            
+            <h3>⚡ 웹사이트 속도와 이미지 최적화</h3>
+            <p>웹페이지의 로드 시간에서 이미지가 차지하는 비중은 전체의 50~80%에 달합니다. 따라서 이미지를 최적화하면 전체 페이지 속도를 크게改善할 수 있습니다. Google은 Core Web Vitals라는 지표로 페이지 속도를 평가하며, 이를 충족하지 못하면 검색 순위에负面影响을 받을 수 있습니다.</p>
+            <p>적절한 이미지 포맷 선택도 중요합니다. JPG는 사진에 적합하고, PNG는 그래픽과 아이콘에 적합하며, WebP는 더 나은 압축률과 화질을 제공합니다. 최근에는 AVIF 포맷도 등장하여 더 높은 압축률을 实现하고 있습니다.</p>
+            
+            <h3>💡 실전 최적화 팁</h3>
+            <p><strong>1. 적절한 크기:</strong> 실제로 표시되는 크기보다 훨씬 큰 이미지를 업로드하지 마세요. 필요한 크기에 맞춰 리사이즈한 후 업로드하세요.</p>
+            <p><strong>2.lazy loading:</strong> 화면에 보이지 않는 이미지들은 나중에 로드하도록 설정하여 초기 로드 속도를 개선하세요.</p>
+            <p><strong>3. CDN 활용:</strong> Content Delivery Network를 사용하면 이미지 로드 속도를改善하고 서버 부하를 줄일 수 있습니다.</p>
+            <p><strong>4. 포맷 선택:</strong> 사진은 JPG, 그래픽은 PNG 또는 SVG, 웹용은 WebP를 사용하세요.</p>
+            
+            <h3>🎯 AdSense 수익을 위한 웹 관리 블로그 전략</h3>
+            <p>이미지 최적화 관련 콘텐츠는 웹 개발, 블로그 관리, SEO 검색에서 꾸준한 트래픽을 벌어다줍니다. "이미지 압축 방법", "웹사이트 속도 최적화", "SEO 이미지 최적화" 등의 키워드는 웹 관리자에게 매우 유용합니다.</p>
+            <p>도구 사용법과 함께 "Core Web Vitals 개선 방법", "CDN 사용법", "반응형 이미지 구현" 등의 콘텐츠를 함께 제공하면 웹 관리자와 개발자에게 더 많은 가치를 줄 수 있습니다.</p>
+        </div>
+        
+        <!-- English Content -->
+        <div class="content-section en">
+            <h3>🗜️ What is Image Compression?</h3>
+            <p>Image compression reduces image file sizes. This improves webpage load speeds, saves storage space, and makes image sharing easier. For website operators, image optimization is crucial—page speed affects both user experience and search engine rankings.</p>
+            <p>Image compression falls into two types. <strong>Lossy</strong> discards some image information for significant size reduction but causes quality loss. <strong>Lossless</strong> preserves information while compressing—maintaining quality but with limited size reduction.</p>
+            
+            <h3>⚡ Website Speed and Image Optimization</h3>
+            <p>Images account for 50~80% of webpage load time. Optimizing images can significantly improve overall page speed. Google evaluates page speed via Core Web Vitals—failing these negatively impacts search rankings.</p>
+            <p>Choosing the right format is important. JPG suits photos, PNG suits graphics and icons, and WebP offers better compression and quality. AVIF format has also emerged recently for even better compression.</p>
+            
+            <h3>💡 Practical Optimization Tips</h3>
+            <p><strong>1. Right Size:</strong> Don't upload images much larger than displayed size. Resize to needed dimensions before uploading.</p>
+            <p><strong>2. Lazy Loading:</strong> Set off-screen images to load later, improving initial load speed.</p>
+            <p><strong>3. CDN:</strong> Content Delivery Networks improve image load speed and reduce server load.</p>
+            <p><strong>4. Format Choice:</strong> Use JPG for photos, PNG or SVG for graphics, WebP for web.</p>
+            
+            <h3>🎯 Blog Strategy for AdSense Revenue</h3>
+            <p>Image optimization content gets steady traffic from web development, blog management, and SEO searches. Keywords like "image compression method", "website speed optimization", and "SEO image optimization" are extremely useful for web managers.</p>
+            <p>Providing "Core Web Vitals improvement methods", "CDN usage", and "responsive image implementation" alongside tool usage gives web managers and developers more value.</p>
+        </div>
+        
+        <div class="more-tools">
+            <h3>📌 More Utilities</h3>
+            <a href="pngtojpg.html">→ PNG to JPG</a>
+            <a href="color.html">→ Color Converter</a>
+            <a href="qrcode.html">→ QR Code Generator</a>
+            <a href="text.html">→ Text Tools</a>
+        </div>
+
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            localStorage.setItem('util-lang', lang);
+        }
+        const savedLang = localStorage.getItem('util-lang') || 'ko';
+        setLang(savedLang);
+        
+        let selectedFile = null;
+        
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        
+        dropZone.addEventListener('click', () => fileInput.click());
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            if (e.dataTransfer.files[0]) selectFile(e.dataTransfer.files[0]);
+        });
+        fileInput.addEventListener('change', (e) => { if (e.target.files[0]) selectFile(e.target.files[0]); });
+        
+        function selectFile(file) {
+            selectedFile = file;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                document.getElementById('originalPreview').src = e.target.result;
+                document.getElementById('originalSize').textContent = (file.size / 1024).toFixed(1) + ' KB';
+                document.getElementById('previewContainer').style.display = 'grid';
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        function compressImage() {
+            if (!selectedFile) {
+                alert('이미지를 선택하세요!');
+                return;
+            }
+            const quality = parseInt(document.getElementById('quality').value) / 100;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+                    const compressed = canvas.toDataURL('image/jpeg', quality);
+                    document.getElementById('compressedPreview').src = compressed;
+                    const size = (compressed.length * 0.75) / 1024;
+                    document.getElementById('compressedSize').textContent = size.toFixed(1) + ' KB';
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(selectedFile);
+        }
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>
