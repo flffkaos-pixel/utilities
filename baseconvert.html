@@ -18,23 +18,17 @@
         .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
         .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
         .lang-btn.active { background: var(--accent); }
-        .input-section { margin-bottom: 20px; }
-        .input-section h3 { font-size: 0.9rem; color: var(--accent); margin-bottom: 12px; }
         .input-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-        .input-row label { min-width: 80px; font-size: 0.85rem; color: var(--text-muted); }
+        .input-row label { min-width: 70px; font-size: 0.85rem; color: var(--text-muted); }
         .input-row input { flex: 1; padding: 12px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; font-size: 1rem; font-family: monospace; }
         .input-row input:focus { outline: 2px solid var(--accent); }
-        .input-row .clear-btn { padding: 8px 12px; background: var(--card-bg); color: var(--text-muted); border: none; border-radius: 6px; cursor: pointer; font-size: 0.8rem; }
-        .input-row .clear-btn:hover { color: var(--accent); }
-        .results { background: var(--card-bg); padding: 15px; border-radius: 10px; }
+        .results { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-top: 20px; }
         .results h3 { font-size: 0.9rem; color: var(--accent); margin-bottom: 15px; }
-        .result-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #333; }
+        .result-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #333; cursor: pointer; }
         .result-row:last-child { border-bottom: none; }
+        .result-row:hover span { color: var(--accent); }
         .result-row label { font-size: 0.85rem; color: var(--text-muted); }
-        .result-row span { font-family: monospace; font-size: 0.95rem; color: var(--text); cursor: pointer; }
-        .result-row span:hover { color: var(--accent); }
-        .copy-hint { font-size: 0.75rem; color: var(--text-muted); opacity: 0; transition: opacity 0.2s; margin-left: 8px; }
-        .result-row:hover .copy-hint { opacity: 1; }
+        .result-row span { font-family: monospace; font-size: 0.95rem; color: var(--text); }
         .ads { margin-top: 30px; text-align: center; }
         body.lang-ko .en { display: none !important; }
         body.lang-en .ko { display: none !important; }
@@ -61,41 +55,30 @@
         </div>
         
         <div class="input-section">
-            <h3><span class="ko">입력</span><span class="en">Input</span></h3>
             <div class="input-row">
                 <label>2진수</label>
-                <input type="text" id="binary" placeholder="11111111" oninput="fromBase(2, 'binary')">
-                <button class="clear-btn" onclick="clearInput('binary')">✕</button>
+                <input type="text" id="binary" placeholder="11111111" oninput="convert(2)">
             </div>
             <div class="input-row">
                 <label>8진수</label>
-                <input type="text" id="octal" placeholder="377" oninput="fromBase(8, 'octal')">
-                <button class="clear-btn" onclick="clearInput('octal')">✕</button>
+                <input type="text" id="octal" placeholder="377" oninput="convert(8)">
             </div>
             <div class="input-row">
                 <label>10진수</label>
-                <input type="text" id="decimal" placeholder="255" oninput="fromBase(10, 'decimal')">
-                <button class="clear-btn" onclick="clearInput('decimal')">✕</button>
+                <input type="text" id="decimal" placeholder="255" oninput="convert(10)">
             </div>
             <div class="input-row">
                 <label>16진수</label>
-                <input type="text" id="hex" placeholder="FF" oninput="fromBase(16, 'hex')">
-                <button class="clear-btn" onclick="clearInput('hex')">✕</button>
-            </div>
-            <div class="input-row">
-                <label>32진수</label>
-                <input type="text" id="base32" placeholder="7V" oninput="fromBase(32, 'base32')">
-                <button class="clear-btn" onclick="clearInput('base32')">✕</button>
+                <input type="text" id="hex" placeholder="FF" oninput="convert(16)">
             </div>
         </div>
         
         <div class="results">
-            <h3><span class="ko">변환 결과</span><span class="en">Converted</span></h3>
-            <div class="result-row"><label>2진수</label><span onclick="copy(this)" class="copy-hint">클릭</span><span id="r-binary">-</span></div>
-            <div class="result-row"><label>8진수</label><span onclick="copy(this)" class="copy-hint">클릭</span><span id="r-octal">-</span></div>
-            <div class="result-row"><label>10진수</label><span onclick="copy(this)" class="copy-hint">클릭</span><span id="r-decimal">-</span></div>
-            <div class="result-row"><label>16진수</label><span onclick="copy(this)" class="copy-hint">클릭</span><span id="r-hex">-</span></div>
-            <div class="result-row"><label>32진수</label><span onclick="copy(this)" class="copy-hint">클릭</span><span id="r-base32">-</span></div>
+            <h3><span class="ko">변환 결과 (클릭하여 복사)</span><span class="en">Converted (Click to copy)</span></h3>
+            <div class="result-row" onclick="copy('binary')"><label>2진수</label><span id="r-binary">-</span></div>
+            <div class="result-row" onclick="copy('octal')"><label>8진수</label><span id="r-octal">-</span></div>
+            <div class="result-row" onclick="copy('decimal')"><label>10진수</label><span id="r-decimal">-</span></div>
+            <div class="result-row" onclick="copy('hex')"><label>16진수</label><span id="r-hex">-</span></div>
         </div>
         
         <div class="ads">
@@ -113,88 +96,46 @@
         }
         setLang('ko');
         
-        let isConverting = false;
+        let currentDecimal = null;
         
-        function fromBase(base, sourceId) {
-            if (isConverting) return;
-            const input = document.getElementById(sourceId).value.trim();
+        function convert(base) {
+            const ids = { 2: 'binary', 8: 'octal', 10: 'decimal', 16: 'hex' };
+            const inputId = ids[base];
+            const input = document.getElementById(inputId).value.trim();
+            
             if (!input) {
-                clearAll();
+                currentDecimal = null;
+                document.getElementById('r-binary').textContent = '-';
+                document.getElementById('r-octal').textContent = '-';
+                document.getElementById('r-decimal').textContent = '-';
+                document.getElementById('r-hex').textContent = '-';
                 return;
             }
+            
             try {
-                let dec;
-                if (base === 32) {
-                    dec = fromBase32(input);
-                } else {
-                    dec = BigInt(input, base);
-                }
-                if (isNaN(dec)) throw new Error('Invalid');
-                isConverting = true;
-                document.getElementById('r-binary').textContent = dec.toString(2);
-                document.getElementById('r-octal').textContent = dec.toString(8);
-                document.getElementById('r-decimal').textContent = dec.toString(10);
-                document.getElementById('r-hex').textContent = dec.toString(16).toUpperCase();
-                document.getElementById('r-base32').textContent = toBase32(dec);
-                
-                if (sourceId !== 'binary') document.getElementById('binary').value = dec.toString(2);
-                if (sourceId !== 'octal') document.getElementById('octal').value = dec.toString(8);
-                if (sourceId !== 'decimal') document.getElementById('decimal').value = dec.toString(10);
-                if (sourceId !== 'hex') document.getElementById('hex').value = dec.toString(16).toUpperCase();
-                if (sourceId !== 'base32') document.getElementById('base32').value = toBase32(dec);
-                isConverting = false;
+                currentDecimal = BigInt(input, base);
+                document.getElementById('r-binary').textContent = currentDecimal.toString(2);
+                document.getElementById('r-octal').textContent = currentDecimal.toString(8);
+                document.getElementById('r-decimal').textContent = currentDecimal.toString(10);
+                document.getElementById('r-hex').textContent = currentDecimal.toString(16).toUpperCase();
             } catch(e) {
-                clearAll();
+                currentDecimal = null;
+                document.getElementById('r-binary').textContent = 'Error';
+                document.getElementById('r-octal').textContent = 'Error';
+                document.getElementById('r-decimal').textContent = 'Error';
+                document.getElementById('r-hex').textContent = 'Error';
             }
         }
         
-        function toBase32(n) {
-            if (n === 0n) return '0';
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
-            let arr = [];
-            while (n > 0n) {
-                arr.push(chars[Number(n & 31n)]);
-                n = n >> 5n;
-            }
-            return arr.reverse().join('');
-        }
-        
-        function fromBase32(str) {
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
-            let result = 0n;
-            for (let i = 0; i < str.length; i++) {
-                const char = str[i].toUpperCase();
-                const idx = chars.indexOf(char);
-                if (idx === -1) throw new Error('Invalid');
-                result = result * 32n + BigInt(idx);
-            }
-            return result;
-        }
-        
-        function clearInput(id) {
-            document.getElementById(id).value = '';
-            if (id === 'binary' || id === 'octal' || id === 'decimal' || id === 'hex' || id === 'base32') {
-                clearAll();
-            }
-        }
-        
-        function clearAll() {
-            ['binary', 'octal', 'decimal', 'hex', 'base32'].forEach(id => {
-                document.getElementById(id).value = '';
-            });
-            ['r-binary', 'r-octal', 'r-decimal', 'r-hex', 'r-base32'].forEach(id => {
-                document.getElementById(id).textContent = '-';
-            });
-        }
-        
-        function copy(el) {
-            const text = el.previousElementSibling?.textContent || el.textContent;
-            if (text && text !== '-') {
+        function copy(id) {
+            const text = document.getElementById('r-' + id).textContent;
+            if (text && text !== '-' && text !== 'Error') {
                 navigator.clipboard.writeText(text);
-                const original = el.textContent;
                 const isKo = document.body.classList.contains('lang-ko');
-                el.textContent = isKo ? '복사!' : 'Copied!';
-                setTimeout(() => el.textContent = original, 1000);
+                const el = document.getElementById('r-' + id);
+                const original = el.textContent;
+                el.textContent = isKo ? '복사됨!' : 'Copied!';
+                setTimeout(() => el.textContent = original, 800);
             }
         }
         
