@@ -22,9 +22,6 @@
         .btn-group { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
         .btn { padding: 12px 24px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.9rem; }
         .btn-outline { background: transparent; border: 2px solid var(--accent); color: var(--accent); }
-        .input-group { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px; }
-        .input-group label { font-size: 0.9rem; color: var(--text-muted); }
-        input { width: 80px; padding: 10px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; font-size: 1rem; text-align: center; }
         .ads { margin-top: 30px; text-align: center; }
         body.lang-ko .en { display: none !important; }
         body.lang-en .ko { display: none !important; }
@@ -48,11 +45,6 @@
         <div class="description">
             <span class="ko">랜덤한 영어 단어를 생성합니다.</span>
             <span class="en">Generate random English words.</span>
-        </div>
-        
-        <div class="input-group">
-            <label><span class="ko">글자 수:</span><span class="en">Length:</span></label>
-            <input type="number" id="length" value="5" min="3" max="10">
         </div>
         
         <div class="word" id="word">READY</div>
@@ -80,13 +72,36 @@
         }
         setLang('ko');
         
-        const words = ['apple', 'beach', 'cloud', 'dance', 'eagle', 'flame', 'grape', 'house', 'image', 'juice', 'kite', 'lemon', 'music', 'night', 'ocean', 'piano', 'queen', 'river', 'sunny', 'tiger', 'unity', 'vivid', 'water', 'xenon', 'youth', 'zebra', 'bread', 'chair', 'dream', 'earth', 'fruit', 'green', 'heart', 'island', 'joyful', 'knife', 'money', 'noble', 'olive', 'peace', 'quiet', 'radio', 'space', 'table', 'uncle', 'voice', 'watch', 'extra', 'yummy', 'amber', 'brick', 'candy', 'dairy', 'feast', 'grain', 'honey'];
+        const words = [
+            'apple', 'beach', 'cloud', 'dance', 'eagle', 'flame', 'grape', 'house', 'image', 'juice',
+            'kite', 'lemon', 'music', 'night', 'ocean', 'piano', 'queen', 'river', 'sunny', 'tiger',
+            'unity', 'vivid', 'water', 'xenon', 'youth', 'zebra', 'bread', 'chair', 'dream', 'earth',
+            'fruit', 'green', 'heart', 'island', 'joyful', 'knife', 'money', 'noble', 'olive', 'peace',
+            'quiet', 'radio', 'space', 'table', 'uncle', 'voice', 'watch', 'extra', 'yummy', 'amber',
+            'brick', 'candy', 'dairy', 'feast', 'grain', 'honey', 'index', 'joker', 'knock', 'light',
+            'magic', 'north', 'orbit', 'party', 'quest', 'royal', 'stone', 'train', 'unity', 'valley',
+            'winter', 'yellow', 'zesty', 'anchor', 'bridge', 'castle', 'dragon', 'energy', 'forest',
+            'garden', 'harbor', 'island', 'jungle', 'kernel', 'legend', 'mirror', 'nuclear', 'oxygen',
+            'planet', 'quartz', 'rocket', 'silver', 'tunnel', 'vacuum', 'wizard', 'zenith', 'basket',
+            'camera', 'doctor', 'engine', 'frozen', 'global', 'heroic', 'impact', 'junior', 'kitten',
+            'laptop', 'marble', 'native', 'orange', 'pencil', 'quicksand', 'rabbit', 'signal', 'tiger',
+            'urgent', 'violet', 'wallet', 'yellow', 'zombie', 'adventure', 'butterfly', 'champion',
+            'dolphin', 'elephant', 'firework', 'gallaxy', 'harmony', 'iceberg', 'journey', 'kingdom',
+            'lantern', 'mountain', 'nectar', 'orchid', 'paradise', 'rainbow', 'sunrise', 'thunder',
+            'umbrella', 'voyage', 'whisper', 'xylophone', 'yesterday', 'zealand', 'absolute', 'balance',
+            'captain', 'decimal', 'exactly', 'federal', 'gravity', 'horizon', 'infinity', 'justice',
+            'kindness', 'liberty', 'magnify', 'notable', 'operator', 'parallel', 'qualified', 'respect',
+            'together', 'ultimate', 'variable', 'wireless', 'yourself', 'zodiacal', 'activate', 'blanket',
+            'channel', 'default', 'elevate', 'floating', 'glimmer', 'happiness', 'illness', 'junction',
+            'keyboard', 'language', 'machine', 'network', 'offense', 'platform', 'quarter', 'resident',
+            'seasonal', 'together', 'umbrella', 'various', 'welcome', 'younger', 'zealous', 'abstract',
+            'building', 'calendar', 'diameter', 'estimate', 'formula', 'graduate', 'hospital', 'ideally',
+            'junction', 'kitchen', 'learning', 'memorial', 'national', 'operator', 'practice', 'quarter',
+            'resident', 'strategy', 'triangle', 'universe', 'vehicle', 'weather', 'yesterday', 'zucchini'
+        ];
         
         function generateWord() {
-            const len = parseInt(document.getElementById('length').value) || 5;
-            const filtered = words.filter(w => w.length === len);
-            const list = filtered.length > 0 ? filtered : words;
-            const word = list[Math.floor(Math.random() * list.length)].toUpperCase();
+            const word = words[Math.floor(Math.random() * words.length)].toUpperCase();
             document.getElementById('word').textContent = word;
         }
         
