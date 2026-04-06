@@ -105,7 +105,7 @@
             document.getElementById('lines').textContent = lines;
             document.getElementById('spaces').textContent = spaces;
             
-            const score = calculateReadability(text, words, sentences);
+            const score = calculateReadability(text, words);
             const isKo = document.body.classList.contains('lang-ko');
             const labels = isKo 
                 ? ['매우 어려움', '어려움', '보통', '쉬움', '매우 쉬움']
@@ -121,7 +121,7 @@
             document.getElementById('readability').textContent = label;
         }
         
-        function calculateReadability(text, words, sentences) {
+        function calculateReadability(text, words) {
             if (!text.trim()) return 0;
             const sentences = text.split(/[.!?]+/).filter(s => s.trim()).length || 1;
             const avgWordsPerSentence = words / sentences;
