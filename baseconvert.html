@@ -18,8 +18,19 @@
         .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
         .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
         .lang-btn.active { background: var(--accent); }
-        input { width: 100%; padding: 15px; background: var(--input-bg); color: var(--text); border: none; border-radius: 10px; font-size: 1rem; font-family: monospace; margin-bottom: 15px; }
-        .result { padding: 15px; background: var(--input-bg); border-radius: 10px; font-family: monospace; font-size: 0.9rem; word-break: break-all; }
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; }
+        input { width: 100%; padding: 15px; background: var(--input-bg); color: var(--text); border: none; border-radius: 10px; font-size: 1.1rem; font-family: monospace; }
+        .input-group input:focus { outline: 2px solid var(--accent); }
+        .results { background: var(--card-bg); padding: 15px; border-radius: 10px; }
+        .results h3 { font-size: 0.9rem; color: var(--accent); margin-bottom: 15px; }
+        .result-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #333; }
+        .result-row:last-child { border-bottom: none; }
+        .result-row label { font-size: 0.85rem; color: var(--text-muted); }
+        .result-row span { font-family: monospace; font-size: 0.95rem; color: var(--text); cursor: pointer; }
+        .result-row span:hover { color: var(--accent); }
+        .copy-hint { font-size: 0.75rem; color: var(--text-muted); opacity: 0; transition: opacity 0.2s; }
+        .result-row:hover .copy-hint { opacity: 1; }
         .ads { margin-top: 30px; text-align: center; }
         body.lang-ko .en { display: none !important; }
         body.lang-en .ko { display: none !important; }
@@ -41,14 +52,23 @@
         </h1>
         
         <div class="description">
-            <span class="ko">2진수, 8진수, 10진수, 16진수 간 변환합니다.</span>
-            <span class="en">Convert between binary, octal, decimal, and hexadecimal.</span>
+            <span class="ko">10진수 입력하면 모든 진법으로 자동 변환됩니다. 결과를 클릭하면 복사됩니다.</span>
+            <span class="en">Enter decimal and convert to all bases. Click result to copy.</span>
         </div>
         
-        <input type="text" id="decimal" placeholder="10진수 (예: 255) / Decimal (e.g. 255)" oninput="fromDec('decimal')">
-        <input type="text" id="hex" placeholder="16진수 (예: FF) / Hex (e.g. FF)" oninput="fromDec('hex')">
-        <input type="text" id="binary" placeholder="2진수 (예: 11111111) / Binary (e.g. 11111111)" oninput="fromDec('binary')">
-        <input type="text" id="octal" placeholder="8진수 (예: 377) / Octal (e.g. 377)" oninput="fromDec('octal')">
+        <div class="input-group">
+            <label><span class="ko">10진수 입력</span><span class="en">Enter Decimal</span></label>
+            <input type="text" id="decimal" placeholder="255" oninput="convert()">
+        </div>
+        
+        <div class="results">
+            <h3><span class="ko">변환 결과</span><span class="en">Converted</span></h3>
+            <div class="result-row"><label>2진수 (Binary)</label><span onclick="copy(this)" class="copy-hint">클릭복사</span><span id="binary">-</span></div>
+            <div class="result-row"><label>8진수 (Octal)</label><span onclick="copy(this)" class="copy-hint">클릭복사</span><span id="octal">-</span></div>
+            <div class="result-row"><label>16진수 (Hex)</label><span onclick="copy(this)" class="copy-hint">클릭복사</span><span id="hex">-</span></div>
+            <div class="result-row"><label>32진수 (Base32)</label><span onclick="copy(this)" class="copy-hint">클릭복사</span><span id="base32">-</span></div>
+            <div class="result-row"><label>64진수 (Base64)</label><span onclick="copy(this)" class="copy-hint">클릭복사</span><span id="base64">-</span></div>
+        </div>
         
         <div class="ads">
             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins>
@@ -65,19 +85,55 @@
         }
         setLang('ko');
         
-        function fromDec(source) {
-            let dec = 0;
+        function convert() {
+            const input = document.getElementById('decimal').value.trim();
+            if (!input) {
+                ['binary', 'octal', 'hex', 'base32', 'base64'].forEach(id => document.getElementById(id).textContent = '-');
+                return;
+            }
             try {
-                if (source === 'decimal') dec = parseInt(document.getElementById('decimal').value, 10);
-                else if (source === 'hex') dec = parseInt(document.getElementById('hex').value, 16);
-                else if (source === 'binary') dec = parseInt(document.getElementById('binary').value, 2);
-                else if (source === 'octal') dec = parseInt(document.getElementById('octal').value, 8);
-            } catch(e) { return; }
-            if (isNaN(dec)) return;
-            if (source !== 'decimal') document.getElementById('decimal').value = dec;
-            if (source !== 'hex') document.getElementById('hex').value = dec.toString(16).toUpperCase();
-            if (source !== 'binary') document.getElementById('binary').value = dec.toString(2);
-            if (source !== 'octal') document.getElementById('octal').value = dec.toString(8);
+                const dec = BigInt(input);
+                document.getElementById('binary').textContent = dec.toString(2);
+                document.getElementById('octal').textContent = dec.toString(8);
+                document.getElementById('hex').textContent = dec.toString(16).toUpperCase();
+                document.getElementById('base32').textContent = toBase32(dec);
+                document.getElementById('base64').textContent = toBase64(dec);
+            } catch(e) {
+                ['binary', 'octal', 'hex', 'base32', 'base64'].forEach(id => document.getElementById(id).textContent = 'Error');
+            }
+        }
+        
+        function toBase32(n) {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+            if (n === 0n) return '0';
+            let arr = [];
+            while (n > 0n) {
+                arr.push(chars[Number(n & 31n)]);
+                n = n >> 5n;
+            }
+            return arr.reverse().join('');
+        }
+        
+        function toBase64(n) {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+            if (n === 0n) return '0';
+            let arr = [];
+            while (n > 0n) {
+                arr.push(chars[Number(n & 63n)]);
+                n = n >> 6n;
+            }
+            return arr.reverse().join('');
+        }
+        
+        function copy(el) {
+            const text = el.previousElementSibling?.textContent || el.textContent;
+            if (text && text !== '-') {
+                navigator.clipboard.writeText(text);
+                const original = el.textContent;
+                const isKo = document.body.classList.contains('lang-ko');
+                el.textContent = isKo ? '복사됨!' : 'Copied!';
+                setTimeout(() => el.textContent = original, 1000);
+            }
         }
         
         (adsbygoogle = window.adsbygoogle || []).push({});
