@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL 파서 - URL Parser</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        .lang-btn.active { background: var(--accent); }
+        input { width: 100%; padding: 12px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; font-size: 0.9rem; font-family: monospace; margin-bottom: 15px; }
+        .btn { padding: 12px 20px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.9rem; margin-right: 10px; }
+        .result { padding: 15px; background: var(--input-bg); border-radius: 8px; font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; word-break: break-all; }
+        .result-row { padding: 10px 0; border-bottom: 1px solid #333; }
+        .result-row:last-child { border-bottom: none; }
+        .result-row .label { color: var(--text-muted); font-size: 0.8rem; display: block; margin-bottom: 4px; }
+        .result-row .value { color: var(--text); }
+        .ads { margin-top: 30px; text-align: center; }
+        body.lang-ko .en { display: none !important; }
+        body.lang-en .ko { display: none !important; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">🔗 URL 파서</span>
+            <span class="en">🔗 URL Parser</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">URL을 분석하고 파라미터를 확인합니다.</span>
+            <span class="en">Parse URL and view parameters.</span>
+        </div>
+        
+        <input type="text" id="url" placeholder="https://example.com?key=value&name=test" oninput="parse()">
+        
+        <button class="btn" onclick="copyUrl()">Copy URL</button>
+        
+        <div class="result" id="result"></div>
+        
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
+            });
+            localStorage.setItem('util-lang', lang);
+        }
+        setLang('ko');
+        
+        function parse() {
+            const url = document.getElementById('url').value.trim();
+            const result = document.getElementById('result');
+            
+            if (!url) {
+                result.textContent = '';
+                return;
+            }
+            
+            try {
+                let urlObj;
+                if (!url.startsWith('http')) {
+                    urlObj = new URL('https://' + url);
+                } else {
+                    urlObj = new URL(url);
+                }
+                
+                let output = '';
+                output += `<div class="result-row"><span class="label">Protocol</span><span class="value">${urlObj.protocol}</span></div>`;
+                output += `<div class="result-row"><span class="label">Host</span><span class="value">${urlObj.host}</span></div>`;
+                output += `<div class="result-row"><span class="label">Path</span><span class="value">${urlObj.pathname}</span></div>`;
+                
+                if (urlObj.search) {
+                    output += `<div class="result-row"><span class="label">Parameters (${urlObj.searchParams.size})</span></div>`;
+                    urlObj.searchParams.forEach((val, key) => {
+                        output += `<div class="result-row"><span class="label">  ${key}</span><span class="value">${val}</span></div>`;
+                    });
+                }
+                
+                result.innerHTML = output;
+            } catch(e) {
+                result.textContent = 'Invalid URL';
+            }
+        }
+        
+        function copyUrl() {
+            navigator.clipboard.writeText(document.getElementById('url').value);
+        }
+        
+        parse();
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

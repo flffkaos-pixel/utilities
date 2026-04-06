@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시저 암호 - Caesar Cipher</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        .lang-btn.active { background: var(--accent); }
+        .input-row { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+        .input-row label { min-width: 60px; font-size: 0.85rem; color: var(--text-muted); }
+        input { flex: 1; padding: 12px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; font-size: 1rem; }
+        textarea { width: 100%; min-height: 100px; padding: 12px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; font-size: 1rem; margin-bottom: 15px; }
+        .btn-group { display: flex; gap: 10px; margin-bottom: 15px; }
+        .btn { padding: 12px 20px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.9rem; }
+        .result { padding: 15px; background: var(--input-bg); border-radius: 8px; font-size: 1rem; min-height: 60px; }
+        .ads { margin-top: 30px; text-align: center; }
+        body.lang-ko .en { display: none !important; }
+        body.lang-en .ko { display: none !important; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">🔐 시저 암호</span>
+            <span class="en">🔐 Caesar Cipher</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">알파벳을 지정한 만큼 밀어서 암호화합니다.</span>
+            <span class="en">Encrypt by shifting alphabet letters.</span>
+        </div>
+        
+        <div class="input-row">
+            <label><span class="ko"> shift</span><span class="en">Shift</span></label>
+            <input type="number" id="shift" value="3" min="1" max="25" oninput="encode()">
+        </div>
+        
+        <textarea id="input" placeholder="ABC" oninput="encode()"></textarea>
+        
+        <div class="btn-group">
+            <button class="btn" onclick="encode()">
+                <span class="ko">암호화</span>
+                <span class="en">Encrypt</span>
+            </button>
+            <button class="btn" onclick="decode()">
+                <span class="ko">복호화</span>
+                <span class="en">Decrypt</span>
+            </button>
+            <button class="btn" onclick="copyResult()">Copy</button>
+        </div>
+        
+        <div class="result" id="result"></div>
+        
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
+            });
+            localStorage.setItem('util-lang', lang);
+        }
+        setLang('ko');
+        
+        function encode() {
+            const text = document.getElementById('input').value;
+            const shift = parseInt(document.getElementById('shift').value) || 3;
+            let result = '';
+            for (let i = 0; i < text.length; i++) {
+                let char = text[i];
+                if (char.match(/[a-z]/i)) {
+                    const code = text.charCodeAt(i);
+                    if (code >= 65 && code <= 90) {
+                        char = String.fromCharCode(((code - 65 + shift) % 26) + 65);
+                    } else if (code >= 97 && code <= 122) {
+                        char = String.fromCharCode(((code - 97 + shift) % 26) + 97);
+                    }
+                }
+                result += char;
+            }
+            document.getElementById('result').textContent = result;
+        }
+        
+        function decode() {
+            const text = document.getElementById('input').value;
+            const shift = parseInt(document.getElementById('shift').value) || 3;
+            let result = '';
+            for (let i = 0; i < text.length; i++) {
+                let char = text[i];
+                if (char.match(/[a-z]/i)) {
+                    const code = text.charCodeAt(i);
+                    if (code >= 65 && code <= 90) {
+                        char = String.fromCharCode(((code - 65 - shift + 26) % 26) + 65);
+                    } else if (code >= 97 && code <= 122) {
+                        char = String.fromCharCode(((code - 97 - shift + 26) % 26) + 97);
+                    }
+                }
+                result += char;
+            }
+            document.getElementById('result').textContent = result;
+        }
+        
+        function copyResult() {
+            navigator.clipboard.writeText(document.getElementById('result').textContent);
+        }
+        
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>
