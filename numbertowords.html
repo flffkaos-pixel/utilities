@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숫자를 영어로 - Number to Words</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔢</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        .lang-btn.active { background: var(--accent); }
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; }
+        input { width: 100%; padding: 15px; background: var(--input-bg); color: var(--text); border: none; border-radius: 10px; font-size: 1.2rem; text-align: center; }
+        .result { padding: 20px; background: var(--input-bg); border-radius: 10px; text-align: center; font-size: 1.3rem; color: var(--accent); min-height: 60px; word-break: break-word; }
+        .btn { padding: 12px 20px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.9rem; margin-right: 10px; }
+        .ads { margin-top: 30px; text-align: center; }
+        body.lang-ko .en { display: none !important; }
+        body.lang-en .ko { display: none !important; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">🔢 숫자를 영어로</span>
+            <span class="en">🔢 Number to Words</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">숫자를 영어 단어로 변환합니다. (예: 1000 → one thousand)</span>
+            <span class="en">Convert numbers to English words (e.g., 1000 → one thousand).</span>
+        </div>
+        
+        <div class="input-group">
+            <input type="text" id="number" placeholder="1234567" oninput="convert()">
+        </div>
+        
+        <button class="btn" onclick="copyResult()">Copy</button>
+        
+        <div class="result" id="result">-</div>
+        
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
+            });
+            localStorage.setItem('util-lang', lang);
+        }
+        setLang('ko');
+        
+        function convert() {
+            const input = document.getElementById('number').value.replace(/,/g, '').trim();
+            if (!input || isNaN(input)) {
+                document.getElementById('result').textContent = '-';
+                return;
+            }
+            
+            const num = BigInt(input);
+            document.getElementById('result').textContent = numberToWords(num);
+        }
+        
+        function numberToWords(n) {
+            if (n === 0n) return 'zero';
+            if (n < 0n) return 'minus ' + numberToWords(-n);
+            
+            const ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+            const tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+            const scales = ['', 'thousand', 'million', 'billion', 'trillion', 'quadrillion', 'quintillion', 'sextillion', 'septillion', 'octillion', 'nonillion', 'decillion'];
+            
+            let words = '';
+            let scaleIndex = 0;
+            
+            while (n > 0n) {
+                let chunk = Number(n % 1000n);
+                if (chunk > 0) {
+                    let chunkWords = '';
+                    if (chunk >= 100) {
+                        chunkWords += ones[Math.floor(chunk / 100)] + ' hundred';
+                        chunk = chunk % 100;
+                        if (chunk > 0) chunkWords += ' ';
+                    }
+                    if (chunk >= 20) {
+                        chunkWords += tens[Math.floor(chunk / 10)];
+                        if (chunk % 10 > 0) chunkWords += '-' + ones[chunk % 10];
+                    } else if (chunk > 0) {
+                        chunkWords += ones[chunk];
+                    }
+                    if (scaleIndex > 0) chunkWords += ' ' + scales[scaleIndex];
+                    words = chunkWords + (words ? ' ' + words : '');
+                }
+                n = n / 1000n;
+                scaleIndex++;
+            }
+            
+            return words;
+        }
+        
+        function copyResult() {
+            const text = document.getElementById('result').textContent;
+            if (text && text !== '-') {
+                navigator.clipboard.writeText(text);
+            }
+        }
+        
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

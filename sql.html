@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL 포맷터 - SQL Formatter</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗄️</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        .lang-btn.active { background: var(--accent); }
+        textarea { width: 100%; min-height: 150px; padding: 12px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; font-size: 0.9rem; font-family: monospace; margin-bottom: 15px; }
+        .btn-group { display: flex; gap: 10px; margin-bottom: 15px; }
+        .btn { padding: 12px 20px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.9rem; }
+        .result { padding: 15px; background: var(--input-bg); border-radius: 8px; white-space: pre-wrap; font-family: monospace; font-size: 0.85rem; min-height: 100px; }
+        .ads { margin-top: 30px; text-align: center; }
+        body.lang-ko .en { display: none !important; }
+        body.lang-en .ko { display: none !important; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">🗄️ SQL 포맷터</span>
+            <span class="en">🗄️ SQL Formatter</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">SQL 쿼리를 읽기 쉽게 정렬합니다.</span>
+            <span class="en">Format SQL queries for better readability.</span>
+        </div>
+        
+        <textarea id="input" placeholder="SELECT id,name FROM users WHERE active=1 ORDER BY name"></textarea>
+        
+        <div class="btn-group">
+            <button class="btn" onclick="format()">
+                <span class="ko">정렬</span>
+                <span class="en">Format</span>
+            </button>
+            <button class="btn" onclick="minify()">
+                <span class="ko">최소화</span>
+                <span class="en">Minify</span>
+            </button>
+            <button class="btn" onclick="copyResult()">Copy</button>
+        </div>
+        
+        <div class="result" id="result"></div>
+        
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
+            });
+            localStorage.setItem('util-lang', lang);
+        }
+        setLang('ko');
+        
+        const keywords = ['SELECT', 'FROM', 'WHERE', 'AND', 'OR', 'ORDER BY', 'GROUP BY', 'HAVING', 'LIMIT', 'OFFSET', 'JOIN', 'LEFT JOIN', 'RIGHT JOIN', 'INNER JOIN', 'OUTER JOIN', 'ON', 'INSERT INTO', 'VALUES', 'UPDATE', 'SET', 'DELETE FROM', 'CREATE TABLE', 'ALTER TABLE', 'DROP TABLE', 'INDEX', 'PRIMARY KEY', 'FOREIGN KEY', 'REFERENCES', 'NOT NULL', 'UNIQUE', 'DEFAULT', 'AS', 'DISTINCT', 'COUNT', 'SUM', 'AVG', 'MAX', 'MIN', 'IN', 'NOT IN', 'LIKE', 'BETWEEN', 'IS NULL', 'IS NOT NULL', 'UNION', 'UNION ALL', 'EXCEPT', 'INTERSECT'];
+        
+        function format() {
+            let sql = document.getElementById('input').value;
+            keywords.forEach(kw => {
+                const regex = new RegExp('\\b' + kw.replace(' ', '\\s+') + '\\b', 'gi');
+                sql = sql.replace(regex, kw);
+            });
+            
+            sql = sql.replace(/\s+/g, ' ').trim();
+            sql = sql.replace(/,\s*/g, ',\n  ');
+            sql = sql.replace(/\s(SELECT|FROM|WHERE|AND|OR|ORDER BY|GROUP BY|HAVING|LIMIT)\s/gi, '\n$1 ');
+            sql = sql.replace(/\b(SELECT|FROM|WHERE|AND|OR|ORDER BY|GROUP BY|HAVING|LIMIT)\b/gi, '\n$1');
+            sql = sql.replace(/^\n/, '');
+            
+            document.getElementById('result').textContent = sql;
+        }
+        
+        function minify() {
+            let sql = document.getElementById('input').value;
+            sql = sql.replace(/\s+/g, ' ').trim();
+            document.getElementById('result').textContent = sql;
+        }
+        
+        function copyResult() {
+            navigator.clipboard.writeText(document.getElementById('result').textContent);
+        }
+        
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

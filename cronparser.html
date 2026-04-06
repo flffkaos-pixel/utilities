@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cron 파서 - Cron Parser</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⏰</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        .lang-btn.active { background: var(--accent); }
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; }
+        input { width: 100%; padding: 15px; background: var(--input-bg); color: var(--text); border: none; border-radius: 10px; font-size: 1.1rem; font-family: monospace; text-align: center; }
+        .btn { padding: 12px 20px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.9rem; margin-bottom: 15px; }
+        .result { padding: 15px; background: var(--input-bg); border-radius: 10px; }
+        .next-run { font-size: 1rem; color: var(--accent); margin-bottom: 15px; }
+        .next-list { font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; }
+        .ads { margin-top: 30px; text-align: center; }
+        body.lang-ko .en { display: none !important; }
+        body.lang-en .ko { display: none !important; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">⏰ Cron 파서</span>
+            <span class="en">⏰ Cron Parser</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">Cron 표현식의 다음 실행 시간을 계산합니다.</span>
+            <span class="en">Calculate next run times for cron expressions.</span>
+        </div>
+        
+        <div class="input-group">
+            <input type="text" id="cron" placeholder="* * * * *" value="0 9 * * 1-5" oninput="parse()">
+        </div>
+        
+        <button class="btn" onclick="parse()">
+            <span class="ko">계산</span>
+            <span class="en">Calculate</span>
+        </button>
+        
+        <div class="result">
+            <div class="next-run" id="next-run"></div>
+            <div class="next-list" id="next-list"></div>
+        </div>
+        
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
+            });
+            localStorage.setItem('util-lang', lang);
+        }
+        setLang('ko');
+        
+        function parse() {
+            const cron = document.getElementById('cron').value.trim();
+            if (!cron) return;
+            
+            const parts = cron.split(/\s+/);
+            if (parts.length !== 5) {
+                document.getElementById('next-run').textContent = document.body.classList.contains('lang-ko') ? '잘못된 Cron 형식' : 'Invalid cron format';
+                document.getElementById('next-list').textContent = '';
+                return;
+            }
+            
+            const now = new Date();
+            const nextRuns = [];
+            
+            for (let i = 0; i < 5; i++) {
+                const next = getNextRunTime(parts, new Date(now));
+                if (next) {
+                    nextRuns.push(formatDate(next));
+                    now.setTime(next.getTime() + 60000);
+                }
+            }
+            
+            const isKo = document.body.classList.contains('lang-ko');
+            document.getElementById('next-run').textContent = isKo ? '다음 실행 시간:' : 'Next run times:';
+            document.getElementById('next-list').textContent = nextRuns.join('\n');
+        }
+        
+        function getNextRunTime(parts, from) {
+            const [min, hour, day, month, dow] = parts;
+            const date = new Date(from);
+            date.setSeconds(0);
+            date.setMilliseconds(0);
+            
+            if (date.getMinutes() > 0) {
+                date.setMinutes(date.getMinutes() + 1);
+            }
+            
+            for (let i = 0; i < 1000; i++) {
+                if (!matchCron(date.getMinutes(), min) ||
+                    !matchCron(date.getHours(), hour) ||
+                    !matchCron(date.getDate(), day) ||
+                    !matchCron(date.getMonth() + 1, month) ||
+                    !matchCron(date.getDay(), dow)) {
+                    date.setMinutes(date.getMinutes() + 1);
+                    continue;
+                }
+                return date;
+            }
+            return null;
+        }
+        
+        function matchCron(val, pattern) {
+            if (pattern === '*') return true;
+            if (pattern.includes(',')) {
+                return pattern.split(',').some(p => matchCron(val, p.trim()));
+            }
+            if (pattern.includes('-')) {
+                const [start, end] = pattern.split('-').map(Number);
+                return val >= start && val <= end;
+            }
+            if (pattern.includes('/')) {
+                const [, step] = pattern.split('/');
+                return val % Number(step) === 0;
+            }
+            return val === Number(pattern);
+        }
+        
+        function formatDate(d) {
+            return d.toLocaleString('ko-KR', { 
+                year: 'numeric', month: 'short', day: 'numeric', 
+                hour: '2-digit', minute: '2-digit', weekday: 'short' 
+            });
+        }
+        
+        parse();
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

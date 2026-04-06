@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정규식 테스터 - Regex Tester</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        .lang-btn.active { background: var(--accent); }
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; }
+        input[type="text"] { width: 100%; padding: 12px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; font-size: 1rem; font-family: monospace; }
+        textarea { width: 100%; min-height: 120px; padding: 12px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; font-size: 1rem; margin-bottom: 15px; }
+        .options { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
+        .options label { font-size: 0.85rem; color: var(--text-muted); cursor: pointer; }
+        .result { padding: 15px; background: var(--input-bg); border-radius: 8px; min-height: 80px; white-space: pre-wrap; }
+        .match { color: #4ade80; }
+        .no-match { color: #f87171; }
+        .ads { margin-top: 30px; text-align: center; }
+        body.lang-ko .en { display: none !important; }
+        body.lang-en .ko { display: none !important; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">🔍 정규식 테스터</span>
+            <span class="en">🔍 Regex Tester</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">정규식 패턴을 테스트하고 매칭 결과를 확인합니다.</span>
+            <span class="en">Test regex patterns and see match results.</span>
+        </div>
+        
+        <div class="input-group">
+            <label>Pattern / 패턴</label>
+            <input type="text" id="pattern" placeholder="[a-z]+" oninput="test()">
+        </div>
+        
+        <div class="options">
+            <label><input type="checkbox" id="flag-g" onchange="test()" checked> g (global)</label>
+            <label><input type="checkbox" id="flag-i" onchange="test()"> i (ignore case)</label>
+            <label><input type="checkbox" id="flag-m" onchange="test()"> m (multiline)</label>
+        </div>
+        
+        <div class="input-group">
+            <label>Text / 텍스트</label>
+            <textarea id="text" placeholder="The quick brown fox" oninput="test()"></textarea>
+        </div>
+        
+        <div class="result" id="result"></div>
+        
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
+            });
+            localStorage.setItem('util-lang', lang);
+        }
+        setLang('ko');
+        
+        function test() {
+            const pattern = document.getElementById('pattern').value;
+            const text = document.getElementById('text').value;
+            const resultEl = document.getElementById('result');
+            
+            if (!pattern || !text) {
+                resultEl.textContent = '';
+                return;
+            }
+            
+            try {
+                let flags = '';
+                if (document.getElementById('flag-g').checked) flags += 'g';
+                if (document.getElementById('flag-i').checked) flags += 'i';
+                if (document.getElementById('flag-m').checked) flags += 'm';
+                
+                const regex = new RegExp(pattern, flags);
+                const matches = text.match(regex);
+                
+                if (matches) {
+                    resultEl.innerHTML = `<span class="match">${matches.length} match(es): ${matches.join(', ')}</span>`;
+                } else {
+                    resultEl.innerHTML = `<span class="no-match">${document.body.classList.contains('lang-ko') ? '매칭 결과 없음' : 'No matches'}</span>`;
+                }
+            } catch(e) {
+                resultEl.innerHTML = `<span class="no-match">Error: ${e.message}</span>`;
+            }
+        }
+        
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>
