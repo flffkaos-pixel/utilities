@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>진법 변환 - Base Converter</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='none' stroke='%230071e3' stroke-width='6'/><circle cx='50' cy='50' r='8' fill='%230071e3'/></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #000000; --surface: #1d1d1f; --surface-raised: #272729; --text-primary: #f5f5f7; --text-secondary: rgba(245,245,247,0.7); --accent: #0071e3; --link: #2997ff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text-primary); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+        .nav { position: sticky; top: 0; z-index: 100; background: rgba(29,29,31,0.72); backdrop-filter: blur(20px); }
+        .nav-inner { max-width: 980px; margin: 0 auto; display: flex; align-items: center; padding: 0 22px; height: 48px; }
+        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-primary); font-size: 1.06rem; font-weight: 600; }
+        .container { max-width: 680px; margin: 0 auto; padding: 32px 22px 60px; }
+        .page-header { margin-bottom: 32px; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--link); text-decoration: none; font-size: 0.88rem; margin-bottom: 20px; }
+        .page-header h1 { font-size: 2.5rem; font-weight: 600; margin-bottom: 12px; }
+        .description { background: var(--surface); border-radius: 12px; padding: 20px 24px; font-size: 0.94rem; color: var(--text-secondary); margin-bottom: 28px; }
+        .card { background: var(--surface-raised); border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+        input { width: 100%; padding: 14px 16px; background: var(--surface-raised); color: var(--text-primary); border: none; border-radius: 8px; font-size: 1.1rem; margin-bottom: 12px; font-family: monospace; }
+        .result { padding: 16px; background: var(--surface); border-radius: 8px; font-family: monospace; font-size: 1rem; word-break: break-all; }
+        .ads { margin-top: 40px; text-align: center; }
+    </style>
+</head>
+<body>
+    <nav class="nav"><div class="nav-inner"><a href="index.html" class="nav-logo"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#0071e3" stroke-width="1.5"/><circle cx="10" cy="10" r="3" fill="#0071e3"/></svg><span>Utilities</span></a></div></nav>
+    <div class="container">
+        <div class="page-header"><a href="index.html" class="back-link">← Home</a><h1>진법 변환</h1></div>
+        <div class="description">2진수, 8진수, 10진수, 16진수 간 변환합니다.</div>
+        <div class="card">
+            <input type="text" id="decimal" placeholder="10진수 (예: 255)" oninput="fromDec('decimal')">
+            <input type="text" id="hex" placeholder="16진수 (예: FF)" oninput="fromDec('hex')">
+            <input type="text" id="binary" placeholder="2진수 (예: 11111111)" oninput="fromDec('binary')">
+            <input type="text" id="octal" placeholder="8진수 (예: 377)" oninput="fromDec('octal')">
+        </div>
+        <div class="ads"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins></div>
+    </div>
+    <script>
+        function fromDec(source) {
+            let dec = 0;
+            try {
+                if (source === 'decimal') dec = parseInt(document.getElementById('decimal').value, 10);
+                else if (source === 'hex') dec = parseInt(document.getElementById('hex').value, 16);
+                else if (source === 'binary') dec = parseInt(document.getElementById('binary').value, 2);
+                else if (source === 'octal') dec = parseInt(document.getElementById('octal').value, 8);
+            } catch(e) { return; }
+            if (isNaN(dec)) return;
+            if (source !== 'decimal') document.getElementById('decimal').value = dec;
+            if (source !== 'hex') document.getElementById('hex').value = dec.toString(16).toUpperCase();
+            if (source !== 'binary') document.getElementById('binary').value = dec.toString(2);
+            if (source !== 'octal') document.getElementById('octal').value = dec.toString(8);
+        }
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>
