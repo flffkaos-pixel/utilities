@@ -4,43 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>랜덤 단어 생성 - Random Word</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='none' stroke='%230071e3' stroke-width='6'/><circle cx='50' cy='50' r='8' fill='%230071e3'/></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎲</text></svg>">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
     <style>
-        :root { --bg: #000000; --surface: #1d1d1f; --surface-raised: #272729; --text-primary: #f5f5f7; --text-secondary: rgba(245,245,247,0.7); --accent: #0071e3; --link: #2997ff; }
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text-primary); min-height: 100vh; -webkit-font-smoothing: antialiased; }
-        .nav { position: sticky; top: 0; z-index: 100; background: rgba(29,29,31,0.72); backdrop-filter: blur(20px); }
-        .nav-inner { max-width: 980px; margin: 0 auto; display: flex; align-items: center; padding: 0 22px; height: 48px; }
-        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-primary); font-size: 1.06rem; font-weight: 600; }
-        .container { max-width: 680px; margin: 0 auto; padding: 32px 22px 60px; text-align: center; }
-        .page-header { margin-bottom: 32px; }
-        .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--link); text-decoration: none; font-size: 0.88rem; margin-bottom: 20px; }
-        .page-header h1 { font-size: 2.5rem; font-weight: 600; margin-bottom: 12px; }
-        .description { background: var(--surface); border-radius: 12px; padding: 20px 24px; font-size: 0.94rem; color: var(--text-secondary); margin-bottom: 28px; }
-        .word { font-size: 3rem; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); margin: 30px 0; }
-        .btn { padding: 14px 32px; background: var(--accent); color: #fff; border: none; border-radius: 980px; cursor: pointer; font-size: 1.1rem; margin: 10px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; text-align: center; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; justify-content: flex-end; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        .lang-btn.active { background: var(--accent); }
+        .word { font-size: 2.5rem; font-weight: 700; letter-spacing: 0.15em; color: var(--accent); margin: 30px 0; }
+        .btn-group { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+        .btn { padding: 12px 24px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.9rem; }
         .btn-outline { background: transparent; border: 2px solid var(--accent); color: var(--accent); }
-        input { width: 100px; padding: 10px; background: var(--surface-raised); color: var(--text-primary); border: none; border-radius: 8px; font-size: 1rem; text-align: center; margin: 10px; }
-        .ads { margin-top: 40px; text-align: center; }
+        .input-group { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px; }
+        .input-group label { font-size: 0.9rem; color: var(--text-muted); }
+        input { width: 80px; padding: 10px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; font-size: 1rem; text-align: center; }
+        .ads { margin-top: 30px; text-align: center; }
+        body.lang-ko .en { display: none !important; }
+        body.lang-en .ko { display: none !important; }
     </style>
 </head>
-<body>
-    <nav class="nav"><div class="nav-inner"><a href="index.html" class="nav-logo"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#0071e3" stroke-width="1.5"/><circle cx="10" cy="10" r="3" fill="#0071e3"/></svg><span>Utilities</span></a></div></nav>
+<body class="lang-ko">
     <div class="container">
-        <div class="page-header"><a href="index.html" class="back-link">← Home</a><h1>랜덤 단어</h1></div>
-        <div class="description">랜덤한 영어 단어를 생성합니다.</div>
-        <div>
-            <label>글자 수:</label>
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">🎲 랜덤 단어</span>
+            <span class="en">🎲 Random Word</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">랜덤한 영어 단어를 생성합니다.</span>
+            <span class="en">Generate random English words.</span>
+        </div>
+        
+        <div class="input-group">
+            <label><span class="ko">글자 수:</span><span class="en">Length:</span></label>
             <input type="number" id="length" value="5" min="3" max="10">
         </div>
+        
         <div class="word" id="word">READY</div>
-        <button class="btn" onclick="generateWord()">생성</button>
-        <button class="btn btn-outline" onclick="copyWord()">복사</button>
-        <div class="ads"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins></div>
+        
+        <div class="btn-group">
+            <button class="btn" onclick="generateWord()">
+                <span class="ko">생성</span>
+                <span class="en">Generate</span>
+            </button>
+            <button class="btn btn-outline" onclick="copyWord()">Copy</button>
+        </div>
+        
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins>
+        </div>
     </div>
+
     <script>
-        const words = ['apple', 'beach', 'cloud', 'dance', 'eagle', 'flame', 'grape', 'house', 'image', 'juice', 'kite', 'lemon', 'music', 'night', 'ocean', 'piano', 'queen', 'river', 'sunny', 'tiger', 'unity', 'vivid', 'water', 'xenon', 'youth', 'zebra', 'bread', 'chair', 'dream', 'earth', 'fruit', 'green', 'heart', 'island', 'joyful', 'knife', 'lemon', 'money', 'noble', 'olive', 'peace', 'quiet', 'radio', 'space', 'table', 'uncle', 'voice', 'watch', 'extra', 'yummy', 'amber', 'brick', 'candy', 'dairy', 'feast', 'grain', 'honey'];
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
+            });
+            localStorage.setItem('util-lang', lang);
+        }
+        setLang('ko');
+        
+        const words = ['apple', 'beach', 'cloud', 'dance', 'eagle', 'flame', 'grape', 'house', 'image', 'juice', 'kite', 'lemon', 'music', 'night', 'ocean', 'piano', 'queen', 'river', 'sunny', 'tiger', 'unity', 'vivid', 'water', 'xenon', 'youth', 'zebra', 'bread', 'chair', 'dream', 'earth', 'fruit', 'green', 'heart', 'island', 'joyful', 'knife', 'money', 'noble', 'olive', 'peace', 'quiet', 'radio', 'space', 'table', 'uncle', 'voice', 'watch', 'extra', 'yummy', 'amber', 'brick', 'candy', 'dairy', 'feast', 'grain', 'honey'];
+        
         function generateWord() {
             const len = parseInt(document.getElementById('length').value) || 5;
             const filtered = words.filter(w => w.length === len);
@@ -48,7 +89,11 @@
             const word = list[Math.floor(Math.random() * list.length)].toUpperCase();
             document.getElementById('word').textContent = word;
         }
-        function copyWord() { navigator.clipboard.writeText(document.getElementById('word').textContent); }
+        
+        function copyWord() {
+            navigator.clipboard.writeText(document.getElementById('word').textContent);
+        }
+        
         generateWord();
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
