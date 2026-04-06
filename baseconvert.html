@@ -18,10 +18,14 @@
         .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
         .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
         .lang-btn.active { background: var(--accent); }
-        .input-group { margin-bottom: 15px; }
-        .input-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; }
-        input { width: 100%; padding: 15px; background: var(--input-bg); color: var(--text); border: none; border-radius: 10px; font-size: 1.1rem; font-family: monospace; }
-        .input-group input:focus { outline: 2px solid var(--accent); }
+        .input-section { margin-bottom: 20px; }
+        .input-section h3 { font-size: 0.9rem; color: var(--accent); margin-bottom: 12px; }
+        .input-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+        .input-row label { min-width: 80px; font-size: 0.85rem; color: var(--text-muted); }
+        .input-row input { flex: 1; padding: 12px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; font-size: 1rem; font-family: monospace; }
+        .input-row input:focus { outline: 2px solid var(--accent); }
+        .input-row .clear-btn { padding: 8px 12px; background: var(--card-bg); color: var(--text-muted); border: none; border-radius: 6px; cursor: pointer; font-size: 0.8rem; }
+        .input-row .clear-btn:hover { color: var(--accent); }
         .results { background: var(--card-bg); padding: 15px; border-radius: 10px; }
         .results h3 { font-size: 0.9rem; color: var(--accent); margin-bottom: 15px; }
         .result-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #333; }
@@ -29,7 +33,7 @@
         .result-row label { font-size: 0.85rem; color: var(--text-muted); }
         .result-row span { font-family: monospace; font-size: 0.95rem; color: var(--text); cursor: pointer; }
         .result-row span:hover { color: var(--accent); }
-        .copy-hint { font-size: 0.75rem; color: var(--text-muted); opacity: 0; transition: opacity 0.2s; }
+        .copy-hint { font-size: 0.75rem; color: var(--text-muted); opacity: 0; transition: opacity 0.2s; margin-left: 8px; }
         .result-row:hover .copy-hint { opacity: 1; }
         .ads { margin-top: 30px; text-align: center; }
         body.lang-ko .en { display: none !important; }
@@ -52,22 +56,46 @@
         </h1>
         
         <div class="description">
-            <span class="ko">10진수 입력하면 모든 진법으로 자동 변환됩니다. 결과를 클릭하면 복사됩니다.</span>
-            <span class="en">Enter decimal and convert to all bases. Click result to copy.</span>
+            <span class="ko">아무 진수나 입력하면 모든 진법으로 변환됩니다. 결과를 클릭하면 복사됩니다.</span>
+            <span class="en">Enter any base to convert to all bases. Click result to copy.</span>
         </div>
         
-        <div class="input-group">
-            <label><span class="ko">10진수 입력</span><span class="en">Enter Decimal</span></label>
-            <input type="text" id="decimal" placeholder="255" oninput="convert()">
+        <div class="input-section">
+            <h3><span class="ko">입력</span><span class="en">Input</span></h3>
+            <div class="input-row">
+                <label>2진수</label>
+                <input type="text" id="binary" placeholder="11111111" oninput="fromBase(2, 'binary')">
+                <button class="clear-btn" onclick="clearInput('binary')">✕</button>
+            </div>
+            <div class="input-row">
+                <label>8진수</label>
+                <input type="text" id="octal" placeholder="377" oninput="fromBase(8, 'octal')">
+                <button class="clear-btn" onclick="clearInput('octal')">✕</button>
+            </div>
+            <div class="input-row">
+                <label>10진수</label>
+                <input type="text" id="decimal" placeholder="255" oninput="fromBase(10, 'decimal')">
+                <button class="clear-btn" onclick="clearInput('decimal')">✕</button>
+            </div>
+            <div class="input-row">
+                <label>16진수</label>
+                <input type="text" id="hex" placeholder="FF" oninput="fromBase(16, 'hex')">
+                <button class="clear-btn" onclick="clearInput('hex')">✕</button>
+            </div>
+            <div class="input-row">
+                <label>32진수</label>
+                <input type="text" id="base32" placeholder="7V" oninput="fromBase(32, 'base32')">
+                <button class="clear-btn" onclick="clearInput('base32')">✕</button>
+            </div>
         </div>
         
         <div class="results">
             <h3><span class="ko">변환 결과</span><span class="en">Converted</span></h3>
-            <div class="result-row"><label>2진수 (Binary)</label><span onclick="copy(this)" class="copy-hint">클릭복사</span><span id="binary">-</span></div>
-            <div class="result-row"><label>8진수 (Octal)</label><span onclick="copy(this)" class="copy-hint">클릭복사</span><span id="octal">-</span></div>
-            <div class="result-row"><label>16진수 (Hex)</label><span onclick="copy(this)" class="copy-hint">클릭복사</span><span id="hex">-</span></div>
-            <div class="result-row"><label>32진수 (Base32)</label><span onclick="copy(this)" class="copy-hint">클릭복사</span><span id="base32">-</span></div>
-            <div class="result-row"><label>64진수 (Base64)</label><span onclick="copy(this)" class="copy-hint">클릭복사</span><span id="base64">-</span></div>
+            <div class="result-row"><label>2진수</label><span onclick="copy(this)" class="copy-hint">클릭</span><span id="r-binary">-</span></div>
+            <div class="result-row"><label>8진수</label><span onclick="copy(this)" class="copy-hint">클릭</span><span id="r-octal">-</span></div>
+            <div class="result-row"><label>10진수</label><span onclick="copy(this)" class="copy-hint">클릭</span><span id="r-decimal">-</span></div>
+            <div class="result-row"><label>16진수</label><span onclick="copy(this)" class="copy-hint">클릭</span><span id="r-hex">-</span></div>
+            <div class="result-row"><label>32진수</label><span onclick="copy(this)" class="copy-hint">클릭</span><span id="r-base32">-</span></div>
         </div>
         
         <div class="ads">
@@ -85,27 +113,44 @@
         }
         setLang('ko');
         
-        function convert() {
-            const input = document.getElementById('decimal').value.trim();
+        let isConverting = false;
+        
+        function fromBase(base, sourceId) {
+            if (isConverting) return;
+            const input = document.getElementById(sourceId).value.trim();
             if (!input) {
-                ['binary', 'octal', 'hex', 'base32', 'base64'].forEach(id => document.getElementById(id).textContent = '-');
+                clearAll();
                 return;
             }
             try {
-                const dec = BigInt(input);
-                document.getElementById('binary').textContent = dec.toString(2);
-                document.getElementById('octal').textContent = dec.toString(8);
-                document.getElementById('hex').textContent = dec.toString(16).toUpperCase();
-                document.getElementById('base32').textContent = toBase32(dec);
-                document.getElementById('base64').textContent = toBase64(dec);
+                let dec;
+                if (base === 32) {
+                    dec = fromBase32(input);
+                } else {
+                    dec = BigInt(input, base);
+                }
+                if (isNaN(dec)) throw new Error('Invalid');
+                isConverting = true;
+                document.getElementById('r-binary').textContent = dec.toString(2);
+                document.getElementById('r-octal').textContent = dec.toString(8);
+                document.getElementById('r-decimal').textContent = dec.toString(10);
+                document.getElementById('r-hex').textContent = dec.toString(16).toUpperCase();
+                document.getElementById('r-base32').textContent = toBase32(dec);
+                
+                if (sourceId !== 'binary') document.getElementById('binary').value = dec.toString(2);
+                if (sourceId !== 'octal') document.getElementById('octal').value = dec.toString(8);
+                if (sourceId !== 'decimal') document.getElementById('decimal').value = dec.toString(10);
+                if (sourceId !== 'hex') document.getElementById('hex').value = dec.toString(16).toUpperCase();
+                if (sourceId !== 'base32') document.getElementById('base32').value = toBase32(dec);
+                isConverting = false;
             } catch(e) {
-                ['binary', 'octal', 'hex', 'base32', 'base64'].forEach(id => document.getElementById(id).textContent = 'Error');
+                clearAll();
             }
         }
         
         function toBase32(n) {
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
             if (n === 0n) return '0';
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
             let arr = [];
             while (n > 0n) {
                 arr.push(chars[Number(n & 31n)]);
@@ -114,15 +159,32 @@
             return arr.reverse().join('');
         }
         
-        function toBase64(n) {
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
-            if (n === 0n) return '0';
-            let arr = [];
-            while (n > 0n) {
-                arr.push(chars[Number(n & 63n)]);
-                n = n >> 6n;
+        function fromBase32(str) {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+            let result = 0n;
+            for (let i = 0; i < str.length; i++) {
+                const char = str[i].toUpperCase();
+                const idx = chars.indexOf(char);
+                if (idx === -1) throw new Error('Invalid');
+                result = result * 32n + BigInt(idx);
             }
-            return arr.reverse().join('');
+            return result;
+        }
+        
+        function clearInput(id) {
+            document.getElementById(id).value = '';
+            if (id === 'binary' || id === 'octal' || id === 'decimal' || id === 'hex' || id === 'base32') {
+                clearAll();
+            }
+        }
+        
+        function clearAll() {
+            ['binary', 'octal', 'decimal', 'hex', 'base32'].forEach(id => {
+                document.getElementById(id).value = '';
+            });
+            ['r-binary', 'r-octal', 'r-decimal', 'r-hex', 'r-base32'].forEach(id => {
+                document.getElementById(id).textContent = '-';
+            });
         }
         
         function copy(el) {
@@ -131,7 +193,7 @@
                 navigator.clipboard.writeText(text);
                 const original = el.textContent;
                 const isKo = document.body.classList.contains('lang-ko');
-                el.textContent = isKo ? '복사됨!' : 'Copied!';
+                el.textContent = isKo ? '복사!' : 'Copied!';
                 setTimeout(() => el.textContent = original, 1000);
             }
         }
