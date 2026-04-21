@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> calor ieCalculator - Free Online Tools</title>
+    <meta name="description" content="Free online calorie calculator. Calculate daily calorie needs for weight loss, maintenance, or gain.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://flffkaos-pixel.github.io/utilities/calorie.html">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #0f0f23; --card-bg: #1a1a3e; --text: #eee; --accent: #00d4ff; --accent2: #ff6b9d; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .back { color: var(--text); text-decoration: none; display: inline-block; margin-bottom: 20px; font-size: 0.9rem; padding: 8px 16px; background: var(--card-bg); border-radius: 8px; }
+        .back:hover { background: var(--accent); color: #000; }
+        h1 { color: var(--accent); font-size: 2rem; margin-bottom: 10px; text-align: center; }
+        .subtitle { color: #888; text-align: center; margin-bottom: 30px; }
+        .calculator { background: var(--card-bg); padding: 30px; border-radius: 20px; margin-bottom: 20px; }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; color: var(--accent); font-weight: bold; }
+        .input-group input, .input-group select { width: 100%; padding: 12px 15px; border-radius: 10px; border: 2px solid #333; background: #1a1a2e; color: #eee; font-size: 1.1rem; }
+        .input-group input:focus, .input-group select:focus { outline: none; border-color: var(--accent); }
+        .btn { width: 100%; padding: 15px; background: var(--accent); color: #000; border: none; border-radius: 10px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: transform 0.3s; }
+        .btn:hover { transform: scale(1.02); }
+        .result { display: none; margin-top: 30px; }
+        .result.show { display: block; }
+        .result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .result-item { background: linear-gradient(145deg, var(--card-bg), #151530); padding: 25px; border-radius: 15px; text-align: center; }
+        .result-value { font-size: 2rem; font-weight: bold; color: var(--accent); }
+        .result-label { color: #888; font-size: 0.85rem; margin-top: 5px; }
+        .goal-btn { padding: 10px 20px; background: var(--card-bg); border: 2px solid #333; border-radius: 10px; color: var(--text); cursor: pointer; }
+        .goal-btn.active { border-color: var(--accent); background: var(--accent); color: #000; }
+        .goals { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
+        .ads { margin-top: 30px; text-align: center; min-height: 100px; background: var(--card-bg); border-radius: 10px; padding: 20px; }
+        .footer { text-align: center; margin-top: 50px; padding: 30px; color: #666; }
+        .footer a { color: var(--accent); text-decoration: none; margin: 0 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back">← Back to Home</a>
+        
+        <h1>Calorie Calculator</h1>
+        <p class="subtitle">Calculate your daily calorie needs</p>
+        
+        <div class="calculator">
+            <div class="goals">
+                <button class="goal-btn active" onclick="setGoal('lose')" id="goalLose">Weigh Loss</button>
+                <button class="goal-btn" onclick="setGoal('maintain')" id="goalMaintain">Maintain</button>
+                <button class="goal-btn" onclick="setGoal('gain')" id="goalGain">Weight Gain</button>
+            </div>
+            
+            <div class="input-group">
+                <label>Gender</label>
+                <select id="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            
+            <div class="input-group">
+                <label>Weigh (kg)</label>
+                <input type="number" id="weight" placeholder="70" step="0.1">
+            </div>
+            
+            <div class="input-group">
+                <label>Height (cm)</label>
+                <input type="number" id="height" placeholder="170">
+            </div>
+            
+            <div class="input-group">
+                <label>Age</label>
+                <input type="number" id="age" placeholder="30">
+            </div>
+            
+            <div class="input-group">
+                <label>Activity Level</label>
+                <select id="activity">
+                    <option value="1.2">Sedentary (little or no exercise)</option>
+                    <option value="1.375">Light (exercise 1-3 days/week)</option>
+                    <option value="1.55">Moderate (exercise 3-5 days/week)</option>
+                    <option value="1.725">Active (exercise 6-7 days/week)</option>
+                    <option value="1.9">Very Active (hard exercise daily)</option>
+                </select>
+            </div>
+            
+            <button class="btn" onclick="calculateCalorie()">Calculate</button>
+            
+            <div class="result" id="result">
+                <div class="result-grid">
+                    <div class="result-item">
+                        <div class="result-value" id="calorieLoss">0</div>
+                        <div class="result-label">Weigh Loss/Day</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value" id="calorieMaintain">0</div>
+                        <div class="result-label">Maintain/Day</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value" id="calorieGain">0</div>
+                        <div class="result-label">Weigh Gain/Day</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ads"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins></div>
+        
+        <div class="footer">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+    
+    <script>
+        let currentGoal = 'lose';
+        
+        function setGoal(goal) {
+            currentGoal = goal;
+            document.querySelectorAll('.goal-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('goal' + goal.charAt(0).toUpperCase() + goal.slice(1)).classList.add('active');
+        }
+        
+        function calculateCalorie() {
+            const gender = document.getElementById('gender').value;
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const age = parseInt(document.getElementById('age').value);
+            const activity = parseFloat(document.getElementById('activity').value);
+            
+            if (!weight || !height || !age) {
+                alert('Please enter all fields!');
+                return;
+            }
+            
+            let bmr;
+            if (gender === 'male') {
+                bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+            } else {
+                bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+            }
+            
+            const tdee = bmr * activity;
+            const lose = Math.round(tdee - 500);
+            const maintain = Math.round(tdee);
+            const gain = Math.round(tdee + 500);
+            
+            document.getElementById('calorieLoss').textContent = lose;
+            document.getElementById('calorieMaintain').textContent = maintain;
+            document.getElementById('calorieGain').textContent = gain;
+            document.getElementById('result').classList.add('show');
+        }
+        
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

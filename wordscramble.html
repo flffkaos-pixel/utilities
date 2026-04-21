@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Scramble - Free Online Tools</title>
+    <meta name="description" content="Free online word scramble generator. Create scrambled words for games and puzzles.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://flffkaos-pixel.github.io/utilities/wordscramble.html">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #0f0f23; --card-bg: #1a1a3e; --text: #eee; --accent: #00d4ff; --accent2: #ff6b9d; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .back { color: var(--text); text-decoration: none; display: inline-block; margin-bottom: 20px; font-size: 0.9rem; padding: 8px 16px; background: var(--card-bg); border-radius: 8px; }
+        .back:hover { background: var(--accent); color: #000; }
+        h1 { color: var(--accent); font-size: 2rem; margin-bottom: 10px; text-align: center; }
+        .subtitle { color: #888; text-align: center; margin-bottom: 30px; }
+        .generator { background: var(--card-bg); padding: 30px; border-radius: 20px; margin-bottom: 20px; }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; color: var(--accent); font-weight: bold; }
+        .input-group textarea { width: 100%; padding: 15px; border-radius: 10px; border: 2px solid #333; background: #1a1a2e; color: #eee; font-size: 1.1rem; min-height: 120px; resize: vertical; }
+        .input-group textarea:focus { outline: none; border-color: var(--accent); }
+        .options { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .option { display: flex; align-items: center; gap: 8px; }
+        .option input { width: 20px; height: 20px; }
+        .btn { width: 100%; padding: 15px; background: var(--accent); color: #000; border: none; border-radius: 10px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: transform 0.3s; margin-bottom: 15px; }
+        .btn:hover { transform: scale(1.02); }
+        .result { background: linear-gradient(145deg, var(--card-bg), #151530); padding: 25px; border-radius: 15px; margin-bottom: 20px; display: none; }
+        .result.show { display: block; }
+        .result-words { font-size: 1.3rem; line-height: 2; color: var(--accent); word-break: break-all; }
+        .copy-btn { padding: 10px 20px; background: var(--card-bg); border: 2px solid var(--accent); border-radius: 10px; color: var(--text); cursor: pointer; margin-top: 15px; }
+        .ads { margin-top: 30px; text-align: center; min-height: 100px; background: var(--card-bg); border-radius: 10px; padding: 20px; }
+        .footer { text-align: center; margin-top: 50px; padding: 30px; color: #666; }
+        .footer a { color: var(--accent); text-decoration: none; margin: 0 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back">← Back to Home</a>
+        
+        <h1>Word Scramble</h1>
+        <p class="subtitle">Scramble words for games and puzzles</p>
+        
+        <div class="generator">
+            <div class="input-group">
+                <label>Enter words (one per line)</label>
+                <textarea id="wordsInput" placeholder="apple&#10;banana&#10;cherry&#10;orange&#10;grape"></textarea>
+            </div>
+            
+            <div class="options">
+                <label class="option">
+                    <input type="checkbox" id="shuffle" checked> Shuffle letters
+                </label>
+                <label class="option">
+                    <input type="checkbox" id="uppercase"> UPPERCASE
+                </label>
+            </div>
+            
+            <button class="btn" onclick="scrambleWords()">Scramble</button>
+            
+            <div class="result" id="result">
+                <div class="result-words" id="scrambledResult"></div>
+                <button class="copy-btn" onclick="copyResult()">Copy</button>
+            </div>
+        </div>
+        
+        <div class="ads"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins></div>
+        
+        <div class="footer">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+    
+    <script>
+        function scrambleWords() {
+            const input = document.getElementById('wordsInput').value.trim();
+            if (!input) {
+                alert('Please enter some words!');
+                return;
+            }
+            
+            const words = input.split('\n').filter(w => w.trim());
+            const shuffle = document.getElementById('shuffle').checked;
+            const uppercase = document.getElementById('uppercase').checked;
+            
+            const scrambled = words.map(word => {
+                let chars = word.split('');
+                if (shuffle) {
+                    for (let i = chars.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [chars[i], chars[j]] = [chars[j], chars[i]];
+                    }
+                }
+                let result = chars.join('');
+                if (uppercase) result = result.toUpperCase();
+                return result;
+            });
+            
+            document.getElementById('scrambledResult').textContent = scrambled.join('\n');
+            document.getElementById('result').classList.add('show');
+        }
+        
+        function copyResult() {
+            const text = document.getElementById('scrambledResult').textContent;
+            navigator.clipboard.writeText(text);
+            alert('Copied to clipboard!');
+        }
+        
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>
