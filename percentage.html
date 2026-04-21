@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage Calculator - Free Online Tools</title>
+    <meta name="description" content="Free online percentage calculator. Calculate percentage of a number, percentage change, discount, tip, and more.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://flffkaos-pixel.github.io/utilities/percentage.html">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #0f0f23; --card-bg: #1a1a3e; --text: #eee; --accent: #00d4ff; --accent2: #ff6b9d; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .back { color: var(--text); text-decoration: none; display: inline-block; margin-bottom: 20px; font-size: 0.9rem; padding: 8px 16px; background: var(--card-bg); border-radius: 8px; }
+        .back:hover { background: var(--accent); color: #000; }
+        h1 { color: var(--accent); font-size: 2rem; margin-bottom: 10px; text-align: center; }
+        .subtitle { color: #888; text-align: center; margin-bottom: 30px; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center; }
+        .tab { padding: 10px 20px; background: var(--card-bg); border: none; border-radius: 10px; color: var(--text); cursor: pointer; font-size: 0.9rem; transition: all 0.3s; }
+        .tab.active { background: var(--accent); color: #000; }
+        .calculator { background: var(--card-bg); padding: 30px; border-radius: 20px; margin-bottom: 20px; }
+        .calc-section { display: none; }
+        .calc-section.active { display: block; }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; color: var(--accent); font-weight: bold; }
+        .input-group input { width: 100%; padding: 12px 15px; border-radius: 10px; border: 2px solid #333; background: #1a1a2e; color: #eee; font-size: 1.1rem; }
+        .input-group input:focus { outline: none; border-color: var(--accent); }
+        .result { background: linear-gradient(135deg, var(--accent), var(--accent2)); padding: 20px; border-radius: 15px; text-align: center; margin-top: 20px; }
+        .result-value { font-size: 2.5rem; font-weight: bold; color: #000; }
+        .result-label { color: #333; font-size: 0.9rem; margin-top: 5px; }
+        .btn { width: 100%; padding: 15px; background: var(--accent); color: #000; border: none; border-radius: 10px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: transform 0.3s; }
+        .btn:hover { transform: scale(1.02); }
+        .ads { margin-top: 30px; text-align: center; min-height: 100px; background: var(--card-bg); border-radius: 10px; padding: 20px; }
+        .footer { text-align: center; margin-top: 50px; padding: 30px; color: #666; }
+        .footer a { color: var(--accent); text-decoration: none; margin: 0 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back">← Back to Home</a>
+        
+        <h1>Percentage Calculator</h1>
+        <p class="subtitle">Free online percentage calculator for all your needs</p>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('of')">X of Y</button>
+            <button class="tab" onclick="showTab('change')">% Change</button>
+            <button class="tab" onclick="showTab('discount')">Discount</button>
+            <button class="tab" onclick="showTab('tip')">Tip</button>
+        </div>
+        
+        <div class="calculator">
+            <div id="of" class="calc-section active">
+                <div class="input-group">
+                    <label>What is</label>
+                    <input type="number" id="percentOfNum" placeholder="20">
+                </div>
+                <div class="input-group">
+                    <label>% of</label>
+                    <input type="number" id="percentOfTotal" placeholder="100">
+                </div>
+                <button class="btn" onclick="calcPercentOf()">Calculate</button>
+                <div class="result" id="resultOf" style="display:none;">
+                    <div class="result-value" id="resultOfValue">0</div>
+                    <div class="result-label">Result</div>
+                </div>
+            </div>
+            
+            <div id="change" class="calc-section">
+                <div class="input-group">
+                    <label>From</label>
+                    <input type="number" id="changeFrom" placeholder="100">
+                </div>
+                <div class="input-group">
+                    <label>To</label>
+                    <input type="number" id="changeTo" placeholder="150">
+                </div>
+                <button class="btn" onclick="calcPercentChange()">Calculate</button>
+                <div class="result" id="resultChange" style="display:none;">
+                    <div class="result-value" id="resultChangeValue">0%</div>
+                    <div class="result-label">Increase/Decrease</div>
+                </div>
+            </div>
+            
+            <div id="discount" class="calc-section">
+                <div class="input-group">
+                    <label>Original Price</label>
+                    <input type="number" id="discountPrice" placeholder="100">
+                </div>
+                <div class="input-group">
+                    <label>Discount %</label>
+                    <input type="number" id="discountPercent" placeholder="20">
+                </div>
+                <button class="btn" onclick="calcDiscount()">Calculate</button>
+                <div class="result" id="resultDiscount" style="display:none;">
+                    <div class="result-value" id="resultDiscountValue">$0</div>
+                    <div class="result-label">You Save: <span id="discountSave">$0</span></div>
+                </div>
+            </div>
+            
+            <div id="tip" class="calc-section">
+                <div class="input-group">
+                    <label>Bill Amount</label>
+                    <input type="number" id="tipBill" placeholder="50">
+                </div>
+                <div class="input-group">
+                    <label>Tip %</label>
+                    <input type="number" id="tipPercent" placeholder="15">
+                </div>
+                <div class="input-group">
+                    <label>Number of People</label>
+                    <input type="number" id="tipPeople" value="1" placeholder="1">
+                </div>
+                <button class="btn" onclick="calcTip()">Calculate</button>
+                <div class="result" id="resultTip" style="display:none;">
+                    <div class="result-value" id="resultTipValue">$0</div>
+                    <div class="result-label">Per Person</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ads"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins></div>
+        
+        <div class="footer">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+    <script>
+        function showTab(tabId) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.calc-section').forEach(c => c.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+        
+        function calcPercentOf() {
+            const percent = parseFloat(document.getElementById('percentOfNum').value);
+            const total = parseFloat(document.getElementById('percentOfTotal').value);
+            if (percent && total) {
+                const result = (percent / 100) * total;
+                document.getElementById('resultOfValue').textContent = result.toLocaleString();
+                document.getElementById('resultOf').style.display = 'block';
+            }
+        }
+        
+        function calcPercentChange() {
+            const from = parseFloat(document.getElementById('changeFrom').value);
+            const to = parseFloat(document.getElementById('changeTo').value);
+            if (from && to) {
+                const change = ((to - from) / from) * 100;
+                const sign = change >= 0 ? '+' : '';
+                document.getElementById('resultChangeValue').textContent = sign + change.toFixed(2) + '%';
+                document.getElementById('resultChange').style.display = 'block';
+            }
+        }
+        
+        function calcDiscount() {
+            const price = parseFloat(document.getElementById('discountPrice').value);
+            const discount = parseFloat(document.getElementById('discountPercent').value);
+            if (price && discount) {
+                const save = (price * discount) / 100;
+                const final = price - save;
+                document.getElementById('resultDiscountValue').textContent = '$' + final.toFixed(2);
+                document.getElementById('discountSave').textContent = '$' + save.toFixed(2);
+                document.getElementById('resultDiscount').style.display = 'block';
+            }
+        }
+        
+        function calcTip() {
+            const bill = parseFloat(document.getElementById('tipBill').value);
+            const tipPercent = parseFloat(document.getElementById('tipPercent').value);
+            const people = parseInt(document.getElementById('tipPeople').value) || 1;
+            if (bill && tipPercent) {
+                const tip = (bill * tipPercent) / 100;
+                const total = (bill + tip) / people;
+                document.getElementById('resultTipValue').textContent = '$' + total.toFixed(2);
+                document.getElementById('resultTip').style.display = 'block';
+            }
+        }
+        
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

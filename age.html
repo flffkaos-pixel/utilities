@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator - Free Online Tools</title>
+    <meta name="description" content="Free online age calculator. Calculate your age in years, months, days, and more. Also calculate birthday countdown.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://flffkaos-pixel.github.io/utilities/age.html">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #0f0f23; --card-bg: #1a1a3e; --text: #eee; --accent: #00d4ff; --accent2: #ff6b9d; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .back { color: var(--text); text-decoration: none; display: inline-block; margin-bottom: 20px; font-size: 0.9rem; padding: 8px 16px; background: var(--card-bg); border-radius: 8px; }
+        .back:hover { background: var(--accent); color: #000; }
+        h1 { color: var(--accent); font-size: 2rem; margin-bottom: 10px; text-align: center; }
+        .subtitle { color: #888; text-align: center; margin-bottom: 30px; }
+        .calculator { background: var(--card-bg); padding: 30px; border-radius: 20px; margin-bottom: 20px; }
+        .input-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; color: var(--accent); font-weight: bold; }
+        .input-group select, .input-group input { width: 100%; padding: 12px 15px; border-radius: 10px; border: 2px solid #333; background: #1a1a2e; color: #eee; font-size: 1.1rem; }
+        .input-group select:focus, .input-group input:focus { outline: none; border-color: var(--accent); }
+        .btn { width: 100%; padding: 15px; background: var(--accent); color: #000; border: none; border-radius: 10px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: transform 0.3s; }
+        .btn:hover { transform: scale(1.02); }
+        
+        .result { display: none; margin-top: 30px; }
+        .result.show { display: block; }
+        .age-display { text-align: center; margin-bottom: 30px; }
+        .age-years { font-size: 3.5rem; font-weight: bold; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .age-label { color: #888; font-size: 1.1rem; }
+        
+        .age-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
+        .age-item { background: linear-gradient(145deg, var(--card-bg), #151530); padding: 20px; border-radius: 15px; text-align: center; }
+        .age-item-value { font-size: 1.8rem; color: var(--accent); font-weight: bold; }
+        .age-item-label { color: #888; font-size: 0.85rem; margin-top: 5px; }
+        
+        .birthday-countdown { background: linear-gradient(135deg, var(--accent), var(--accent2)); padding: 20px; border-radius: 15px; text-align: center; margin-top: 20px; }
+        .countdown-text { color: #000; font-size: 1.1rem; }
+        .countdown-days { color: #000; font-size: 2rem; font-weight: bold; }
+        
+        .ads { margin-top: 30px; text-align: center; min-height: 100px; background: var(--card-bg); border-radius: 10px; padding: 20px; }
+        .footer { text-align: center; margin-top: 50px; padding: 30px; color: #666; }
+        .footer a { color: var(--accent); text-decoration: none; margin: 0 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back">← Back to Home</a>
+        
+        <h1>Age Calculator</h1>
+        <p class="subtitle">Calculate your exact age in years, months, and days</p>
+        
+        <div class="calculator">
+            <div class="input-group">
+                <label>Your Birthday</label>
+                <div class="input-row">
+                    <select id="birthDay">
+                        <option value="">Day</option>
+                    </select>
+                    <select id="birthMonth">
+                        <option value="">Month</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                    <select id="birthYear">
+                        <option value="">Year</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button class="btn" onclick="calculateAge()">Calculate Age</button>
+            
+            <div class="result" id="result">
+                <div class="age-display">
+                    <div class="age-years" id="ageYears">0</div>
+                    <div class="age-label">years old</div>
+                </div>
+                
+                <div class="age-details">
+                    <div class="age-item">
+                        <div class="age-item-value" id="ageMonths">0</div>
+                        <div class="age-item-label">Months</div>
+                    </div>
+                    <div class="age-item">
+                        <div class="age-item-value" id="ageDays">0</div>
+                        <div class="age-item-label">Days</div>
+                    </div>
+                    <div class="age-item">
+                        <div class="age-item-value" id="ageWeeks">0</div>
+                        <div class="age-item-label">Weeks</div>
+                    </div>
+                    <div class="age-item">
+                        <div class="age-item-value" id="ageHours">0</div>
+                        <div class="age-item-label">Hours</div>
+                    </div>
+                </div>
+                
+                <div class="birthday-countdown" id="birthdayCountdown" style="display:none;">
+                    <div class="countdown-text">Days until your next birthday:</div>
+                    <div class="countdown-days" id="birthdayDays">0</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ads"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins></div>
+        
+        <div class="footer">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+    
+    <script>
+        const daySelect = document.getElementById('birthDay');
+        const yearSelect = document.getElementById('birthYear');
+        
+        for (let i = 1; i <= 31; i++) {
+            daySelect.innerHTML += `<option value="${i}">${i}</option>`;
+        }
+        
+        const currentYear = new Date().getFullYear();
+        for (let i = currentYear; i >= currentYear - 120; i--) {
+            yearSelect.innerHTML += `<option value="${i}">${i}</option>`;
+        }
+        
+        function calculateAge() {
+            const day = parseInt(document.getElementById('birthDay').value);
+            const month = parseInt(document.getElementById('birthMonth').value);
+            const year = parseInt(document.getElementById('birthYear').value);
+            
+            if (!day || !month || !year) {
+                alert('Please select your complete birthday!');
+                return;
+            }
+            
+            const birthDate = new Date(year, month - 1, day);
+            const today = new Date();
+            
+            let ageYears = today.getFullYear() - birthDate.getFullYear();
+            let ageMonths = today.getMonth() - birthDate.getMonth();
+            let ageDays = today.getDate() - birthDate.getDate();
+            
+            if (ageDays < 0) {
+                ageMonths--;
+                const lastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+                ageDays += lastMonth.getDate();
+            }
+            
+            if (ageMonths < 0) {
+                ageYears--;
+                ageMonths += 12;
+            }
+            
+            const totalDays = Math.floor((today - birthDate) / (1000 * 60 * 60 * 24));
+            const totalWeeks = Math.floor(totalDays / 7);
+            const totalHours = totalDays * 24;
+            
+            document.getElementById('ageYears').textContent = ageYears;
+            document.getElementById('ageMonths').textContent = ageYears * 12 + ageMonths;
+            document.getElementById('ageDays').textContent = totalDays.toLocaleString();
+            document.getElementById('ageWeeks').textContent = totalWeeks.toLocaleString();
+            document.getElementById('ageHours').textContent = totalHours.toLocaleString();
+            
+            const nextBirthday = new Date(today.getFullYear(), month - 1, day);
+            if (nextBirthday < today) {
+                nextBirthday.setFullYear(today.getFullYear() + 1);
+            }
+            const daysUntil = Math.ceil((nextBirthday - today) / (1000 * 60 * 60 * 24));
+            document.getElementById('birthdayDays').textContent = daysUntil;
+            document.getElementById('birthdayCountdown').style.display = 'block';
+            
+            document.getElementById('result').classList.add('show');
+        }
+        
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

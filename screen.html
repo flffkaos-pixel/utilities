@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Size Calculator - Free Online Tools</title>
+    <meta name="description" content="Free online screen size calculator. Calculate display dimensions from diagonal size and aspect ratio. Convert between inches and centimeters.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://flffkaos-pixel.github.io/utilities/screen.html">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #0f0f23; --card-bg: #1a1a3e; --text: #eee; --accent: #00d4ff; --accent2: #ff6b9d; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .back { color: var(--text); text-decoration: none; display: inline-block; margin-bottom: 20px; font-size: 0.9rem; padding: 8px 16px; background: var(--card-bg); border-radius: 8px; }
+        .back:hover { background: var(--accent); color: #000; }
+        h1 { color: var(--accent); font-size: 2rem; margin-bottom: 10px; text-align: center; }
+        .subtitle { color: #888; text-align: center; margin-bottom: 30px; }
+        
+        .presets { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center; }
+        .preset { padding: 8px 16px; background: var(--card-bg); border: 1px solid #333; border-radius: 20px; color: var(--text); cursor: pointer; font-size: 0.85rem; transition: all 0.3s; }
+        .preset:hover { border-color: var(--accent); }
+        
+        .calculator { background: var(--card-bg); padding: 30px; border-radius: 20px; margin-bottom: 20px; }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; color: var(--accent); font-weight: bold; }
+        .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .input-group input, .input-group select { width: 100%; padding: 12px 15px; border-radius: 10px; border: 2px solid #333; background: #1a1a2e; color: #eee; font-size: 1.1rem; }
+        .input-group input:focus, .input-group select:focus { outline: none; border-color: var(--accent); }
+        
+        .btn { width: 100%; padding: 15px; background: var(--accent); color: #000; border: none; border-radius: 10px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: transform 0.3s; margin-top: 10px; }
+        .btn:hover { transform: scale(1.02); }
+        
+        .result { display: none; margin-top: 30px; }
+        .result.show { display: block; }
+        .result-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .result-item { background: linear-gradient(145deg, var(--card-bg), #151530); padding: 25px; border-radius: 15px; text-align: center; }
+        .result-value { font-size: 1.8rem; font-weight: bold; color: var(--accent); }
+        .result-label { color: #888; font-size: 0.85rem; margin-top: 5px; }
+        
+        .unit-toggle { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
+        .unit-btn { padding: 8px 20px; background: var(--card-bg); border: 2px solid #333; border-radius: 20px; color: var(--text); cursor: pointer; }
+        .unit-btn.active { border-color: var(--accent); background: var(--accent); color: #000; }
+        
+        .visual { background: var(--card-bg); padding: 30px; border-radius: 20px; margin-top: 20px; text-align: center; }
+        .screen-visual { width: 200px; height: 150px; background: linear-gradient(135deg, var(--accent), var(--accent2)); border-radius: 10px; margin: 20px auto; display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold; }
+        
+        .ads { margin-top: 30px; text-align: center; min-height: 100px; background: var(--card-bg); border-radius: 10px; padding: 20px; }
+        .footer { text-align: center; margin-top: 50px; padding: 30px; color: #666; }
+        .footer a { color: var(--accent); text-decoration: none; margin: 0 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back">← Back to Home</a>
+        
+        <h1>Screen Size Calculator</h1>
+        <p class="subtitle">Calculate display dimensions from diagonal and aspect ratio</p>
+        
+        <div class="presets">
+            <button class="preset" onclick="setPreset(15.6, 16, 9)">Laptop 15.6"</button>
+            <button class="preset" onclick="setPreset(27, 16, 9)">Monitor 27"</button>
+            <button class="preset" onclick="setPreset(24, 16, 9)">Monitor 24"</button>
+            <button class="preset" onclick="setPreset(6.7, 9, 16)">Phone 6.7"</button>
+            <button class="preset" onclick="setPreset(10.9, 4, 3)">Tablet 10.9"</button>
+            <button class="preset" onclick="setPreset(55, 16, 9)">TV 55"</button>
+        </div>
+        
+        <div class="unit-toggle">
+            <button class="unit-btn active" onclick="setUnit('inch')" id="unitInch">Inches</button>
+            <button class="unit-btn" onclick="setUnit('cm')" id="unitCm">Centimeters</button>
+        </div>
+        
+        <div class="calculator">
+            <div class="input-group">
+                <label>Diagonal Size</label>
+                <input type="number" id="diagonal" placeholder="27" step="0.1">
+            </div>
+            
+            <div class="input-group">
+                <label>Aspect Ratio</label>
+                <div class="input-row">
+                    <input type="number" id="ratioW" placeholder="16" value="16">
+                    <input type="number" id="ratioH" placeholder="9" value="9">
+                </div>
+            </div>
+            
+            <button class="btn" onclick="calculateScreen()">Calculate</button>
+            
+            <div class="result" id="result">
+                <div class="result-grid">
+                    <div class="result-item">
+                        <div class="result-value" id="widthInch">0"</div>
+                        <div class="result-label">Width (inches)</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value" id="heightInch">0"</div>
+                        <div class="result-label">Height (inches)</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value" id="widthCm">0cm</div>
+                        <div class="result-label">Width (cm)</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value" id="heightCm">0cm</div>
+                        <div class="result-label">Height (cm)</div>
+                    </div>
+                </div>
+                
+                <div class="visual">
+                    <p style="color:#888;">Visual Representation</p>
+                    <div class="screen-visual" id="screenVisual">27"</div>
+                    <p style="color:#666; font-size:0.9rem;">Resolution: <span id="resolution">0 x 0</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ads"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto"></ins></div>
+        
+        <div class="footer">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+    
+    <script>
+        let currentUnit = 'inch';
+        
+        function setUnit(unit) {
+            currentUnit = unit;
+            document.getElementById('unitInch').classList.toggle('active', unit === 'inch');
+            document.getElementById('unitCm').classList.toggle('active', unit === 'cm');
+        }
+        
+        function setPreset(size, w, h) {
+            document.getElementById('diagonal').value = size;
+            document.getElementById('ratioW').value = w;
+            document.getElementById('ratioH').value = h;
+            calculateScreen();
+        }
+        
+        function calculateScreen() {
+            const diagonal = parseFloat(document.getElementById('diagonal').value);
+            const ratioW = parseFloat(document.getElementById('ratioW').value);
+            const ratioH = parseFloat(document.getElementById('ratioH').value);
+            
+            if (!diagonal || !ratioW || !ratioH) {
+                alert('Please enter diagonal size and aspect ratio!');
+                return;
+            }
+            
+            const aspectRatio = ratioW / ratioH;
+            const height = diagonal / Math.sqrt(1 + aspectRatio * aspectRatio);
+            const width = height * aspectRatio;
+            
+            const widthCm = width * 2.54;
+            const heightCm = height * 2.54;
+            
+            document.getElementById('widthInch').textContent = width.toFixed(2) + '"';
+            document.getElementById('heightInch').textContent = height.toFixed(2) + '"';
+            document.getElementById('widthCm').textContent = widthCm.toFixed(2) + 'cm';
+            document.getElementById('heightCm').textContent = heightCm.toFixed(2) + 'cm';
+            
+            const ppi = 150;
+            const resW = Math.round(width * ppi);
+            const resH = Math.round(height * ppi);
+            document.getElementById('resolution').textContent = resW + ' x ' + resH + ' pixels';
+            
+            document.getElementById('screenVisual').textContent = diagonal + '"';
+            document.getElementById('result').classList.add('show');
+        }
+        
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>
