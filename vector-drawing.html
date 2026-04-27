@@ -187,7 +187,7 @@
         canvas.addEventListener('mousedown', startAction);
         canvas.addEventListener('mousemove', moveAction);
         canvas.addEventListener('mouseup', endAction);
-        canvas.addEventListener('dblclick', editTextElement); // Double click to edit text
+        // Removed double-click event listener for text editing
         
         function getPoint(e) {
             const rect = canvas.getBoundingClientRect();
@@ -250,14 +250,10 @@
                 text.setAttribute('font-size', '20');
                 text.setAttribute('text-anchor', 'start');
                 text.setAttribute('dominant-baseline', 'hanging');
-                text.textContent = 'Double click to edit';
+                text.textContent = 'Text'; // Static text, no editing
                 canvas.appendChild(text);
                 pushHistory();
                 state.isDrawing = false;
-                // Auto-select the new text element for editing
-                setTimeout(() => {
-                    text.dispatchEvent(new Event('dblclick'));
-                }, 100);
             }
         }
         
@@ -291,27 +287,6 @@
                 state.isDrawing = false;
                 state.currentElement = null;
                 state.currentPath = null;
-            }
-        }
-        
-        function editTextElement(e) {
-            // Only handle text elements
-            if (e.target.tagName.toLowerCase() === 'text' && state.tool === 'select') {
-                const textEl = e.target;
-                const currentText = textEl.textContent;
-                
-                // Prompt for new text
-                const newText = prompt(
-                    document.body.classList.contains('lang-ko') ? 
-                        '텍스트를 입력하세요:' : 
-                        'Enter text:',
-                    currentText === 'Double click to edit' ? '' : currentText
-                );
-                
-                if (newText !== null) { // User didn't cancel
-                    textEl.textContent = newText;
-                    pushHistory();
-                }
             }
         }
         
@@ -358,12 +333,6 @@
         document.addEventListener('keydown', e => {
             if (e.ctrlKey && e.key === 'z') undo();
             if (e.ctrlKey && e.key === 'y') redo();
-            // Delete key to remove selected element
-            if (e.key === 'Delete' && state.tool === 'select') {
-                // Find selected element (with data-selected attribute) or last clicked
-                // For simplicity, we'll delete the last text element if focused
-                // Better approach would be to track selection state
-            }
         });
     </script>
 </body>
