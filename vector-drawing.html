@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>벡터 그리기 | Vector Drawing</title>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; }
+        .lang-toggle { display: flex; gap: 10px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; }
+        .lang-btn.active { background: var(--accent); }
+        body.lang-ko .en { display: none; }
+        body.lang-en .ko { display: none; }
+        
+        .toolbar { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+        .tool-btn { padding: 8px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+        .tool-btn:hover { background: var(--accent); }
+        .tool-btn.active { background: var(--accent); }
+        
+        .controls { display: flex; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; align-items: center; }
+        .control-group { display: flex; align-items: center; gap: 8px; }
+        .control-group label { font-size: 0.9rem; color: var(--text-muted); }
+        .control-group input[type="color"] { width: 40px; height: 35px; border: none; border-radius: 5px; cursor: pointer; }
+        .control-group input[type="range"] { width: 100px; }
+        .control-group span { font-size: 0.85rem; color: var(--text-muted); min-width: 30px; }
+        
+        .canvas-container { background: white; border-radius: 10px; overflow: hidden; margin-bottom: 15px; }
+        #drawing-canvas { display: block; width: 100%; height: 500px; cursor: crosshair; }
+        
+        .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        .btn { padding: 10px 20px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
+        .btn:hover { background: #5a6bd4; }
+        .btn.secondary { background: var(--card-bg); border: 1px solid var(--accent); }
+        
+        .more-tools { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-top: 20px; }
+        .more-tools h3 { color: var(--accent); font-size: 0.9rem; margin-bottom: 12px; }
+        .more-tools a { display: block; color: var(--text-muted); text-decoration: none; padding: 8px 0; border-bottom: 1px solid #333; font-size: 0.85rem; }
+        .more-tools a:hover { color: var(--accent); }
+        
+        .coord-display { font-size: 0.85rem; color: var(--text-muted); margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1 class="ko">🎨 벡터 그리기</h1>
+        <h1 class="en">🎨 Vector Drawing</h1>
+        
+        <div class="toolbar">
+            <button class="tool-btn active" data-tool="select">선택</button>
+            <button class="tool-btn" data-tool="rect">사각형</button>
+            <button class="tool-btn" data-tool="circle">원</button>
+            <button class="tool-btn" data-tool="line">선</button>
+            <button class="tool-btn" data-tool="path">펜</button>
+            <button class="tool-btn" data-tool="text">텍스트</button>
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label class="ko">채우기</label>
+                <label class="en">Fill</label>
+                <input type="color" id="fill-color" value="#ffffff">
+            </div>
+            <div class="control-group">
+                <label class="ko">테두리</label>
+                <label class="en">Stroke</label>
+                <input type="color" id="stroke-color" value="#000000">
+            </div>
+            <div class="control-group">
+                <label class="ko">굵기</label>
+                <label class="en">Width</label>
+                <input type="range" id="stroke-width" min="1" max="20" value="2">
+                <span id="stroke-width-val">2</span>
+            </div>
+        </div>
+        
+        <div class="canvas-container">
+            <svg id="drawing-canvas" width="100%" height="500" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+        
+        <div class="coord-display" id="coord-display">X: 0, Y: 0</div>
+        
+        <div class="actions">
+            <button class="btn" onclick="undo()">
+                <span class="ko">실행취소</span>
+                <span class="en">Undo</span>
+            </button>
+            <button class="btn" onclick="redo()">
+                <span class="ko">다시실행</span>
+                <span class="en">Redo</span>
+            </button>
+            <button class="btn secondary" onclick="clearCanvas()">
+                <span class="ko">전체지우기</span>
+                <span class="en">Clear All</span>
+            </button>
+            <button class="btn secondary" onclick="exportSVG()">
+                <span class="ko">SVG 내보내기</span>
+                <span class="en">Export SVG</span>
+            </button>
+        </div>
+        
+        <div class="more-tools">
+            <h3>📌 더 많은 유틸리티 | More Tools</h3>
+            <a href="text.html">📝 Text Tools | 텍스트 도구</a>
+            <a href="color.html">🎨 Color Converter | 색상 변환</a>
+            <a href="qrcode.html">📱 QR Code Generator | QR 코드 생성</a>
+            <a href="password.html">🔑 Password Generator | 비밀번호 생성</a>
+            <a href="base64.html">🔐 Base64 Encoder | Base64 인코더</a>
+            <a href="random.html">🎰 Random Number | 랜덤 번호</a>
+        </div>
+    </div>
+
+    <script>
+        const svgns = "http://www.w3.org/2000/svg";
+        const canvas = document.getElementById('drawing-canvas');
+        const coordDisplay = document.getElementById('coord-display');
+        
+        let state = {
+            tool: 'select',
+            fillColor: '#ffffff',
+            strokeColor: '#000000',
+            strokeWidth: 2,
+            history: [],
+            future: [],
+            isDrawing: false,
+            startX: 0,
+            startY: 0,
+            currentElement: null,
+            currentPath: null
+        };
+        
+        function setLang(lang) { document.body.className = lang; localStorage.setItem('util-lang', lang); }
+        const saved = localStorage.getItem('util-lang');
+        if (saved) setLang(saved);
+        
+        pushHistory();
+        
+        document.querySelectorAll('.tool-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                state.tool = btn.dataset.tool;
+            });
+        });
+        
+        document.getElementById('fill-color').addEventListener('input', e => state.fillColor = e.target.value);
+        document.getElementById('stroke-color').addEventListener('input', e => state.strokeColor = e.target.value);
+        document.getElementById('stroke-width').addEventListener('input', e => {
+            state.strokeWidth = parseInt(e.target.value);
+            document.getElementById('stroke-width-val').textContent = e.target.value;
+        });
+        
+        canvas.addEventListener('mousedown', startAction);
+        canvas.addEventListener('mousemove', moveAction);
+        canvas.addEventListener('mouseup', endAction);
+        
+        function getPoint(e) {
+            const rect = canvas.getBoundingClientRect();
+            return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+        }
+        
+        function startAction(e) {
+            if (state.tool === 'select') return;
+            const pt = getPoint(e);
+            state.isDrawing = true;
+            state.startX = pt.x;
+            state.startY = pt.y;
+            
+            if (state.tool === 'rect') {
+                const rect = document.createElementNS(svgns, 'rect');
+                rect.setAttributes = function(attrs) { for (let [k,v] of Object.entries(attrs)) this.setAttribute(k,v); };
+                rect.setAttribute('fill', state.fillColor);
+                rect.setAttribute('stroke', state.strokeColor);
+                rect.setAttribute('stroke-width', state.strokeWidth);
+                rect.setAttribute('x', pt.x);
+                rect.setAttribute('y', pt.y);
+                rect.setAttribute('width', 0);
+                rect.setAttribute('height', 0);
+                canvas.appendChild(rect);
+                state.currentElement = rect;
+            } else if (state.tool === 'circle') {
+                const circle = document.createElementNS(svgns, 'circle');
+                circle.setAttribute('fill', state.fillColor);
+                circle.setAttribute('stroke', state.strokeColor);
+                circle.setAttribute('stroke-width', state.strokeWidth);
+                circle.setAttribute('cx', pt.x);
+                circle.setAttribute('cy', pt.y);
+                circle.setAttribute('r', 0);
+                canvas.appendChild(circle);
+                state.currentElement = circle;
+            } else if (state.tool === 'line') {
+                const line = document.createElementNS(svgns, 'line');
+                line.setAttribute('fill', 'none');
+                line.setAttribute('stroke', state.strokeColor);
+                line.setAttribute('stroke-width', state.strokeWidth);
+                line.setAttribute('x1', pt.x);
+                line.setAttribute('y1', pt.y);
+                line.setAttribute('x2', pt.x);
+                line.setAttribute('y2', pt.y);
+                canvas.appendChild(line);
+                state.currentElement = line;
+            } else if (state.tool === 'path') {
+                const path = document.createElementNS(svgns, 'path');
+                path.setAttribute('fill', 'none');
+                path.setAttribute('stroke', state.strokeColor);
+                path.setAttribute('stroke-width', state.strokeWidth);
+                path.setAttribute('d', `M ${pt.x} ${pt.y}`);
+                canvas.appendChild(path);
+                state.currentPath = path;
+            } else if (state.tool === 'text') {
+                const text = document.createElementNS(svgns, 'text');
+                text.setAttribute('fill', state.strokeColor);
+                text.setAttribute('x', pt.x);
+                text.setAttribute('y', pt.y);
+                text.setAttribute('font-size', '20');
+                text.textContent = 'Text';
+                canvas.appendChild(text);
+                pushHistory();
+                state.isDrawing = false;
+            }
+        }
+        
+        function moveAction(e) {
+            const pt = getPoint(e);
+            coordDisplay.textContent = `X: ${Math.round(pt.x)}, Y: ${Math.round(pt.y)}`;
+            
+            if (!state.isDrawing) return;
+            
+            if (state.tool === 'rect') {
+                const w = pt.x - state.startX, h = pt.y - state.startY;
+                state.currentElement.setAttribute('width', Math.abs(w));
+                state.currentElement.setAttribute('height', Math.abs(h));
+                if (w < 0) state.currentElement.setAttribute('x', pt.x);
+                if (h < 0) state.currentElement.setAttribute('y', pt.y);
+            } else if (state.tool === 'circle') {
+                const r = Math.sqrt(Math.pow(pt.x - state.startX, 2) + Math.pow(pt.y - state.startY, 2));
+                state.currentElement.setAttribute('r', r);
+            } else if (state.tool === 'line') {
+                state.currentElement.setAttribute('x2', pt.x);
+                state.currentElement.setAttribute('y2', pt.y);
+            } else if (state.tool === 'path') {
+                const d = state.currentPath.getAttribute('d');
+                state.currentPath.setAttribute('d', `${d} L ${pt.x} ${pt.y}`);
+            }
+        }
+        
+        function endAction() {
+            if (state.isDrawing) {
+                pushHistory();
+                state.isDrawing = false;
+                state.currentElement = null;
+                state.currentPath = null;
+            }
+        }
+        
+        function pushHistory() {
+            state.history.push(canvas.innerHTML);
+            state.future = [];
+            if (state.history.length > 20) state.history.shift();
+        }
+        
+        function undo() {
+            if (state.history.length > 1) {
+                state.future.push(state.history.pop());
+                canvas.innerHTML = state.history[state.history.length - 1];
+            }
+        }
+        
+        function redo() {
+            if (state.future.length) {
+                canvas.innerHTML = state.future.pop();
+                state.history.push(canvas.innerHTML);
+            }
+        }
+        
+        function clearCanvas() {
+            if (confirm('Are you sure? | 정말 지우시겠습니까?')) {
+                canvas.innerHTML = '';
+                pushHistory();
+            }
+        }
+        
+        function exportSVG() {
+            const svgData = new XMLSerializer().serializeToString(canvas);
+            const blob = new Blob([svgData], { type: 'image/svg+xml' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'drawing.svg';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+        
+        document.addEventListener('keydown', e => {
+            if (e.ctrlKey && e.key === 'z') undo();
+            if (e.ctrlKey && e.key === 'y') redo();
+        });
+    </script>
+</body>
+</html>
