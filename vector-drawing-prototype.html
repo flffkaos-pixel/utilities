@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>벡터 그리기 프로토타입</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            height: 100vh;
+        }
+        #sidebar {
+            width: 260px;
+            background: #fff;
+            border-right: 1px solid #ddd;
+            padding: 20px;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+        #sidebar h2 {
+            margin-top: 0;
+            font-size: 1.4em;
+            color: #333;
+        }
+        #sidebar .section {
+            margin-bottom: 20px;
+        }
+        #sidebar label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        #sidebar input[type="color"],
+        #sidebar input[type="number"],
+        #sidebar input[type="range"] {
+            width: 100%;
+            padding: 6px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        #sidebar button {
+            width: 100%;
+            padding: 8px 12px;
+            margin: 4px 0;
+            border: none;
+            background: #0066cc;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        #sidebar button:hover {
+            background: #0052a3;
+        }
+        #sidebar button.secondary {
+            background: #6c757d;
+        }
+        #sidebar button.secondary:hover {
+            background: #5a6268;
+        }
+        #canvas-container {
+            flex: 1;
+            position: relative;
+            background: #fff;
+            overflow: hidden;
+        }
+        #drawing-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .tooltip {
+            position: absolute;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <h2>벡터 에디터</h2>
+        <div class="section">
+            <label>도구 선택</label>
+            <button id="tool-select" data-tool="select">선택</button>
+            <button id="tool-rect" data-tool="rect">사각형</button>
+            <button id="tool-circle" data-tool="circle">원</button>
+            <button id="tool-line" data-tool="line">선</button>
+            <button id="tool-path" data-tool="path">펜</button>
+        </div>
+        <div class="section">
+            <label>채우기 색</label>
+            <input type="color" id="fill-color" value="#ffffff">
+        </div>
+        <div class="section">
+            <label>스트로크 색</label>
+            <input type="color" id="stroke-color" value="#000000">
+        </div>
+        <div class="section">
+            <label>스트로크 너비</label>
+            <input type="range" id="stroke-width" min="1" max="20" value="2">
+            <span id="stroke-width-value">2</span>px
+        </div>
+        <div class="section">
+            <button id="undo-btn">실행 취소</button>
+            <button id="redo-btn">다시 실행</button>
+            <button id="clear-btn" class="secondary">캔버스 지우기</button>
+            <button id="download-btn" class="secondary">SVG 다운로드</button>
+        </div>
+    </div>
+    <div id="canvas-container">
+        <svg id="drawing-canvas" width="100%" height="100%"></svg>
+        <div class="tooltip" id="tooltip"></div>
+    </div>
+
+    <script>
+        const svgns = "http://www.w3.org/2000/svg";
+        const canvas = document.getElementById('drawing-canvas');
+        const tooltip = document.getElementById('tooltip');
+
+        let state = {
+            tool: 'select',
+            fillColor: '#ffffff',
+            strokeColor: '#000000',
+            strokeWidth: 2,
+            history: [], // 각 단계의 SVG 문자열
+            future: [],
+            selectedElement: null,
+            isDrawing: false,
+            startX: 0,
+            startY: 0,
+            currentPath: null
+        };
+
+        // 초기 기록
+        pushHistory();
+
+        // UI 이벤트
+        document.getElementById('fill-color').addEventListener('input', e => {
+            state.fillColor = e.target.value;
+            if (state.selectedElement) {
+                state.selectedElement.setAttribute('fill', e.target.value);
+                pushHistory();
+            }
+        });
+        document.getElementById('stroke-color').addEventListener('input', e => {
+            state.strokeColor = e.target.value;
+            if (state.selectedElement) {
+                state.selectedElement.setAttribute('stroke', e.target.value);
+                pushHistory();
+            }
+        });
+        document.getElementById('stroke-width').addEventListener('input', e => {
+            state.strokeWidth = parseInt(e.target.value);
+            document.getElementById('stroke-width-value').textContent = state.strokeWidth;
+            if (state.selectedElement) {
+                state.selectedElement.setAttribute('stroke-width', e.target.value);
+                pushHistory();
+            }
+        });
+
+        // 도구 선택
+        const toolButtons = [
+            {id: 'tool-select', tool: 'select'},
+            {id: 'tool-rect', tool: 'rect'},
+            {id: 'tool-circle', tool: 'circle'},
+            {id: 'tool-line', tool: 'line'},
+            {id: 'tool-path', tool: 'path'}
+        ];
+        toolButtons.forEach(btn => {
+            const el = document.getElementById(btn.id);
+            el.addEventListener('click', () => {
+                setTool(btn.tool);
+                // active 스타일
+                document.querySelectorAll('#sidebar button').forEach(b => b.classList.remove('active'));
+                el.classList.add('active');
+            });
+        });
+        document.getElementById('tool-select').classList.add('active');
+
+        function setTool(tool) {
+            state.tool = tool;
+            state.isDrawing = false;
+            state.currentPath = null;
+            canvas.style.cursor = tool === 'select' ? 'default' : 'crosshair';
+        }
+
+        // 실행 취소 / 다시 실행
+        document.getElementById('undo-btn').addEventListener('click', () => {
+            if (state.history.length > 1) {
+                state.future.push(state.history.pop());
+                const previous = state.history[state.history.length - 1];
+                loadSVGString(previous);
+                updateSelectedElement(null);
+            }
+        });
+        document.getElementById('redo-btn').addEventListener('click', () => {
+            if (state.future.length) {
+                const next = state.future.pop();
+                state.history.push(next);
+                loadSVGString(next);
+                updateSelectedElement(null);
+            }
+        });
+        document.getElementById('clear-btn').addEventListener('click', () => {
+            if (confirm('캔버스를 모두 지우시겠습니까?')) {
+                canvas.innerHTML = '';
+                pushHistory();
+                updateSelectedElement(null);
+            }
+        });
+        document.getElementById('download-btn').addEventListener('click', () => {
+            const svgData = new XMLSerializer().serializeToString(canvas);
+            const svgBlob = new Blob([svgData], {type:'image/svg+xml;charset=utf-8'});
+            const url = URL.createObjectURL(svgBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'drawing.svg';
+            link.click();
+            URL.revokeObjectURL(url);
+        });
+
+        // 캔버스 이벤트
+        canvas.addEventListener('mousedown', startAction);
+        canvas.addEventListener('mousemove', moveAction);
+        canvas.addEventListener('mouseup', endAction);
+        canvas.addEventListener('mouseleave', endAction);
+        canvas.addEventListener('click', selectElement); // 선택 도구에서 클릭 시 선택
+
+        function getMousePoint(evt){
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: evt.clientX - rect.left,
+                y: evt.clientY - rect.top
+            };
+        }
+
+        function startAction(e){
+            if(state.tool === 'select') return;
+            const pt = getMousePoint(e);
+            state.isDrawing = true;
+            state.startX = pt.x;
+            state.startY = pt.y;
+
+            switch(state.tool){
+                case 'rect':
+                case 'circle':
+                case 'line':
+                    const shape = document.createElementNS(svgns, state.tool === 'rect' ? 'rect' :
+                                                          state.tool === 'circle' ? 'circle' : 'line');
+                    shape.setAttribute('fill', state.fillColor);
+                    shape.setAttribute('stroke', state.strokeColor);
+                    shape.setAttribute('stroke-width', state.strokeWidth);
+                    if(state.tool === 'rect'){
+                        shape.setAttribute('x', pt.x);
+                        shape.setAttribute('y', pt.y);
+                        shape.setAttribute('width', 0);
+                        shape.setAttribute('height', 0);
+                    }else if(state.tool === 'circle'){
+                        shape.setAttribute('cx', pt.x);
+                        shape.setAttribute('cy', pt.y);
+                        shape.setAttribute('r', 0);
+                    }else if(state.tool === 'line'){
+                        shape.setAttribute('x1', pt.x);
+                        shape.setAttribute('y1', pt.y);
+                        shape.setAttribute('x2', pt.x);
+                        shape.setAttribute('y2', pt.y);
+                    }
+                    canvas.appendChild(shape);
+                    state.currentElement = shape;
+                    break;
+                case 'path':
+                    const path = document.createElementNS(svgns, 'path');
+                    path.setAttribute('fill', 'none');
+                    path.setAttribute('stroke', state.strokeColor);
+                    path.setAttribute('stroke-width', state.strokeWidth);
+                    path.setAttribute('d', `M ${pt.x} ${pt.y}`);
+                    canvas.appendChild(path);
+                    state.currentPath = path;
+                    break;
+            }
+        }
+
+        function moveAction(e){
+            if(!state.isDrawing) return;
+            const pt = getMousePoint(e);
+            showTooltip(pt.x, pt.y, `${Math.round(pt.x)}, ${Math.round(pt.y)}`);
+
+            switch(state.tool){
+                case 'rect':
+                    const rect = state.currentElement;
+                    const width = pt.x - state.startX;
+                    const height = pt.y - state.startY;
+                    rect.setAttribute('width', Math.abs(width));
+                    rect.setAttribute('height', Math.abs(height));
+                    if(width < 0) rect.setAttribute('x', pt.x);
+                    if(height < 0) rect.setAttribute('y', pt.y);
+                    break;
+                case 'circle':
+                    const circle = state.currentElement;
+                    const radius = Math.sqrt(Math.pow(pt.x - state.startX,2) + Math.pow(pt.y - state.startY,2));
+                    circle.setAttribute('cx', state.startX);
+                    circle.setAttribute('cy', state.startY);
+                    circle.setAttribute('r', radius);
+                    break;
+                case 'line':
+                    const line = state.currentElement;
+                    line.setAttribute('x2', pt.x);
+                    line.setAttribute('y2', pt.y);
+                    break;
+                case 'path':
+                    const path = state.currentPath;
+                    const d = path.getAttribute('d');
+                    path.setAttribute('d', `${d} L ${pt.x} ${pt.y}`);
+                    break;
+            }
+        }
+
+        function endAction(e){
+            if(!state.isDrawing) return;
+            state.isDrawing = false;
+            pushHistory();
+            state.currentElement = null;
+            state.currentPath = null;
+            hideTooltip();
+        }
+
+        function selectElement(e){
+            if(state.tool !== 'select') return;
+            const target = e.target;
+            if(target.tagName.toLowerCase() === 'svg') return; // 캔버스 자체 클릭 시 선택 해제
+            updateSelectedElement(target);
+        }
+
+        function updateSelectedElement(el){
+            if(state.selectedElement){
+                state.selectedElement.removeAttribute('data-selected');
+            }
+            state.selectedElement = el;
+            if(el){
+                el.setAttribute('data-selected', '');
+                // UI 업데이트
+                const fill = el.getAttribute('fill') || '#ffffff';
+                const stroke = el.getAttribute('stroke') || '#000000';
+                const sw = el.getAttribute('stroke-width') || '1';
+                document.getElementById('fill-color').value = fill;
+                document.getElementById('stroke-color').value = stroke;
+                document.getElementById('stroke-width').value = sw;
+                document.getElementById('stroke-width-value').textContent = sw;
+            }else{
+                // 기본값으로 리셋 (선택 없음)
+            }
+        }
+
+        function pushHistory(){
+            const svgString = new XMLSerializer().serializeToString(canvas);
+            state.history.push(svgString);
+            // 미래 기록 초기화 (새로운 행동 후)
+            state.future = [];
+            // 기록 제한 (예: 20단계)
+            if(state.history.length > 20){
+                state.history.shift();
+            }
+        }
+
+        function loadSVGString(svgString){
+            canvas.innerHTML = svgString;
+        }
+
+        function showTooltip(x, y, text){
+            tooltip.textContent = text;
+            tooltip.style.left = `${x + 8}px`;
+            tooltip.style.top = `${y + 8}px`;
+            tooltip.style.opacity = '1';
+        }
+        function hideTooltip(){
+            tooltip.style.opacity = '0';
+        }
+
+        // 키보드 단축키 (선택적)
+        document.addEventListener('keydown', e => {
+            if(e.ctrlKey && !e.shiftKey && e.key === 'z'){
+                e.preventDefault();
+                document.getElementById('undo-btn').click();
+            }
+            if(e.ctrlKey && e.shiftKey && e.key === 'Z'){
+                e.preventDefault();
+                document.getElementById('redo-btn').click();
+            }
+            if(e.key === 'Escape'){
+                updateSelectedElement(null);
+            }
+            if(e.key === 'Delete' && state.selectedElement){
+                state.selectedElement.remove();
+                pushHistory();
+                updateSelectedElement(null);
+            }
+        });
+    </script>
+</body>
+</html>
