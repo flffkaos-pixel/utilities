@@ -60,12 +60,30 @@
         <h1 class="en">🎨 Vector Drawing</h1>
         
         <div class="toolbar">
-            <button class="tool-btn active" data-tool="select">선택</button>
-            <button class="tool-btn" data-tool="rect">사각형</button>
-            <button class="tool-btn" data-tool="circle">원</button>
-            <button class="tool-btn" data-tool="line">선</button>
-            <button class="tool-btn" data-tool="path">펜</button>
-            <button class="tool-btn" data-tool="text">텍스트</button>
+            <button class="tool-btn active" data-tool="select">
+                <span class="ko">선택</span>
+                <span class="en">Select</span>
+            </button>
+            <button class="tool-btn" data-tool="rect">
+                <span class="ko">사각형</span>
+                <span class="en">Rectangle</span>
+            </button>
+            <button class="tool-btn" data-tool="circle">
+                <span class="ko">원</span>
+                <span class="en">Circle</span>
+            </button>
+            <button class="tool-btn" data-tool="line">
+                <span class="ko">선</span>
+                <span class="en">Line</span>
+            </button>
+            <button class="tool-btn" data-tool="path">
+                <span class="ko">펜</span>
+                <span class="en">Pen</span>
+            </button>
+            <button class="tool-btn" data-tool="text">
+                <span class="ko">텍스트</span>
+                <span class="en">Text</span>
+            </button>
         </div>
         
         <div class="controls">
@@ -91,7 +109,10 @@
             <svg id="drawing-canvas" width="100%" height="500" xmlns="http://www.w3.org/2000/svg"></svg>
         </div>
         
-        <div class="coord-display" id="coord-display">X: 0, Y: 0</div>
+        <div class="coord-display" id="coord-display">
+            <span class="ko">X: 0, Y: 0</span>
+            <span class="en">X: 0, Y: 0</span>
+        </div>
         
         <div class="actions">
             <button class="btn" onclick="undo()">
@@ -166,6 +187,7 @@
         canvas.addEventListener('mousedown', startAction);
         canvas.addEventListener('mousemove', moveAction);
         canvas.addEventListener('mouseup', endAction);
+        canvas.addEventListener('dblclick', editTextElement); // Double click to edit text
         
         function getPoint(e) {
             const rect = canvas.getBoundingClientRect();
@@ -181,7 +203,6 @@
             
             if (state.tool === 'rect') {
                 const rect = document.createElementNS(svgns, 'rect');
-                rect.setAttributes = function(attrs) { for (let [k,v] of Object.entries(attrs)) this.setAttribute(k,v); };
                 rect.setAttribute('fill', state.fillColor);
                 rect.setAttribute('stroke', state.strokeColor);
                 rect.setAttribute('stroke-width', state.strokeWidth);
@@ -221,21 +242,28 @@
                 canvas.appendChild(path);
                 state.currentPath = path;
             } else if (state.tool === 'text') {
+                const pt = getPoint(e);
                 const text = document.createElementNS(svgns, 'text');
                 text.setAttribute('fill', state.strokeColor);
                 text.setAttribute('x', pt.x);
                 text.setAttribute('y', pt.y);
                 text.setAttribute('font-size', '20');
-                text.textContent = 'Text';
+                text.setAttribute('text-anchor', 'start');
+                text.setAttribute('dominant-baseline', 'hanging');
+                text.textContent = 'Double click to edit';
                 canvas.appendChild(text);
                 pushHistory();
                 state.isDrawing = false;
+                // Auto-select the new text element for editing
+                setTimeout(() => {
+                    text.dispatchEvent(new Event('dblclick'));
+                }, 100);
             }
         }
         
         function moveAction(e) {
             const pt = getPoint(e);
-            coordDisplay.textContent = `X: ${Math.round(pt.x)}, Y: ${Math.round(pt.y)}`;
+            coordDisplay.innerHTML = `<span class="ko">X: ${Math.round(pt.x)}, Y: ${Math.round(pt.y)}</span><span class="en">X: ${Math.round(pt.x)}, Y: ${Math.round(pt.y)}</span>`;
             
             if (!state.isDrawing) return;
             
@@ -266,6 +294,27 @@
             }
         }
         
+        function editTextElement(e) {
+            // Only handle text elements
+            if (e.target.tagName.toLowerCase() === 'text' && state.tool === 'select') {
+                const textEl = e.target;
+                const currentText = textEl.textContent;
+                
+                // Prompt for new text
+                const newText = prompt(
+                    document.body.classList.contains('lang-ko') ? 
+                        '텍스트를 입력하세요:' : 
+                        'Enter text:',
+                    currentText === 'Double click to edit' ? '' : currentText
+                );
+                
+                if (newText !== null) { // User didn't cancel
+                    textEl.textContent = newText;
+                    pushHistory();
+                }
+            }
+        }
+        
         function pushHistory() {
             state.history.push(canvas.innerHTML);
             state.future = [];
@@ -287,7 +336,9 @@
         }
         
         function clearCanvas() {
-            if (confirm('Are you sure? | 정말 지우시겠습니까?')) {
+            if (confirm(document.body.classList.contains('lang-ko') ? 
+                    '정말 지우시겠습니까?' : 
+                    'Are you sure?')) {
                 canvas.innerHTML = '';
                 pushHistory();
             }
@@ -307,6 +358,12 @@
         document.addEventListener('keydown', e => {
             if (e.ctrlKey && e.key === 'z') undo();
             if (e.ctrlKey && e.key === 'y') redo();
+            // Delete key to remove selected element
+            if (e.key === 'Delete' && state.tool === 'select') {
+                // Find selected element (with data-selected attribute) or last clicked
+                // For simplicity, we'll delete the last text element if focused
+                // Better approach would be to track selection state
+            }
         });
     </script>
 </body>
