@@ -1,0 +1,631 @@
+# Chapter 1: What is Python
+
+## Introduction
+This chapter is the first part of the Python tutorial, covering the basic concepts, history, features, and installation methods of the Python language. The tutorial is based on the 2022 version, using the Python textbook (best-seller ranks 1-2) as a basis, and you can also utilize the free Wiki reading and PPT PDF materials.
+
+## What You Can Do with Python
+By learning Python, you can engage in various fields such as:
+- Stock and Bitcoin investment automation and web crawling task automation
+- Learning diverse lecture contents like Dylan Akt
+- Preparing app development and data analysis lectures
+- Creating system utility cleaning and optimization programs
+- Developing GUI programs (using various libraries)
+- Building websites (Django, Flask, Ruby on Rails, etc.)
+- Numerical computation and complex modeling
+- Database programming
+- Data analysis and prediction (using pandas library)
+- Developing AI models
+- Controlling IoT devices
+
+However, for mobile app development or low-level system programming, other languages (e.g., Kotlin, Java) may be more suitable.
+
+## Python's History and Features
+- **Creator**: Guido van Rossum developed it as a hobby in 1989, and the first version was released in 1991.
+- **Version History**: Python 2.0 was released in 2000, and Python 3.0 was released in 2008.
+- **Origin of Name**: Derived from the famous British comedy show "Monty Python".
+- **Key Features**:
+  - **Readable Syntax**: Designed to be easy for humans to read, allowing beginners to learn quickly.
+  - **Forced Indentation**: Code blocks are distinguished by indentation, improving readability.
+  - **Free and Powerful**: Available for free download anywhere, with a rich standard library.
+  - **Interoperability with C Language**: Python is easy but slow, while C is fast but complex. Combining both languages allows you to get both fast execution and easy development. Libraries like NumPy wrap C code so it can be used in Python.
+  - **Compilation vs Interpretation**: C language is converted to machine code via a compiler for fast execution speed, whereas Python is interpreted line by line, making it relatively slower.
+  - **Simplicity**: Prefers one way to solve problems, resulting in clean and consistent code.
+
+## Python Installation Method
+1. **Download**: Access the official website (python.org) and download the latest stable version (3.10.1 used in this tutorial). Choose the installer matching your environment's bit size (64-bit recommended) from Windows/macOS installers.
+2. **Installation Options**:
+   - Must check the "Add Python 3.10 to PATH" checkbox to make the `python` command work in the command prompt.
+   - In "Customize installation", check all options and set the installation path as recommended in the tutorial.
+   - After installation, activate the "Disable path length limit" option to prevent errors from long paths in advance.
+3. **Installation Verification**: Open the command prompt (`cmd`) and type `python` to check if the version is displayed correctly. If PATH is not set correctly, add the Python installation path and `Scripts` folder to system environment variables.
+4. **Alternative Execution Environment**: If local installation is difficult, you can use online Python execution environments like Google Colab.
+
+## Development Environment Setup
+- **IDLE**: A simple IDE provided with Python's basic installation, allowing immediate coding and execution.
+- **VS Code**: A free, highly extensible editor configured as follows:
+  1. Search for and install "Python" in the extensions menu.
+  2. Open a working folder (e.g., `jocoding`) via `File > Open Folder` and trust it.
+  3. Create a new file (`hello.py`) and enter the following basic code:
+     ```python
+     print('Hello, World')
+     ```
+  4. Save (`Ctrl+S`) and click the play button in the top right to check the execution result.
+- **PyCharm**: A professional IDE offering more features, though setup can be somewhat complex.
+- **Terminal Usage**: Setting Command Prompt (`cmd`) as the default terminal instead of PowerShell allows for more familiar work. You can also execute scripts using the `python hello.py` command in the terminal.
+
+## Online Learning Materials
+If installing Python locally is difficult, you can use the following online services:
+- **Google Colab**: Write and execute Python code in notebook format instantly, integrated with Google Drive.
+- - Other various online Python compilers and execution environments can be easily found through search.
+
+## Summary
+This chapter examined what Python is, why it's popular, and how to actually install it and set up a development environment. Python is widely used from beginners to experts due to its concise and readable syntax, rich libraries, and flexible integration capabilities with other languages. In the next chapter, we will look at basic data types (numeric, string, list, etc.) in detail.
+
+# Chapter 2: Python Programming Basic Data Types
+
+## Overview
+This chapter covers Python's basic data types, variables, and simple operations. Understanding data types is half of learning a programming language. Here, we look at the basic concepts and main operations of numeric types, string types, boolean types, and lists.
+
+---
+
+## 1. Basic Concepts of Variables and Data Types
+- **Variables** are containers that hold values. Example: `a = 3` → Store number `3` in variable `a`.
+- In Python, the **type** (data type) of the value stored in a variable is important. Even the same expression can yield different results depending on the data type.
+  - Numeric type: `1 + 1 = 2`
+  - String type: `"1" + "1" = "11"` (string concatenation)
+  
+> **Data Type** = The type of value (whether it's a number or string, etc.), determining how the value is stored and handled.
+
+---
+
+## 2. Numeric Types (Number Types)
+Python's numeric types include several kinds.
+
+| Type | Description | Example |
+|------|-------------|---------|
+| **Integer Type (int)** | Integer without decimal point | `a = 1` → `type(a)` → `<class 'int'>` |
+| **Float Type (float)** | Number with decimal point | `b = 4.24` → `type(b)` → `<class 'float'>` |
+| **Exponential Notation** | Simple expression of very large or small numbers | `c = 4e10` → `4 × 10¹⁰` |
+| **Base Notation** | Octal (`0o...`), Hexadecimal (`0x...`) (low usage frequency) | `0o10` (8), `0xFF` (255) |
+
+### Basic Operations
+- **Arithmetic Operations**: `+`, `-`, `*`, `/`
+  - `3 + 4 = 7`
+  - `5 * 4 = 20`
+  - `7 / 2 = 3.5` (result is float type)
+- **Quotient and Remainder**
+  - `7 // 3 = 2` (integer quotient)
+  - `7 % 3 = 1` (remainder)
+- **Exponentiation**: `**`
+  - `3 ** 4 = 81`
+- **Backslash Escape**: Expressing special characters in strings (explained later)
+
+> **Note**: You can check a variable's data type using the `type()` function in Python.
+
+---
+
+## 3. String Type (String)
+Strings are used to handle text data. They are expressed by enclosing them in quotes.
+
+### String Creation Methods
+- Double quotes: `"Hello World"`
+- Single quotes: `'Hello World'`
+- Triple quotes (multi-line): `"""여러 줄 문자열"""`
+
+> **Note**: If you need a single quote inside single quotes, wrap the outside with double quotes or use escape (`\'`).
+
+### Indexing
+You can access each character of a string by its position (index) starting from 0.
+```
+s = "파이썬"
+s[0]  # '파'
+s[1]  # '이'
+s[2]  # '썬'
+```
+Negative indices count from the end, so `s[-1]` is the last character `'썬'`.
+
+### Slicing
+Extract a substring by specifying a range. Format: `string[start:end:step]`
+- `s[0:2]` → `'파이'` (0 inclusive, 2 exclusive)
+- `s[:3]` → From start to 3 exclusive → `'파이'`
+- `s[2:]` → From 2 to end → `'썬'`
+- `s[::2]` → Every 2nd character → `'파썬'`
+- `s[::-1]` → Reverse → `'너썬이파'`
+
+### String Concatenation and Repetition
+- Concatenation with `+`: `"안녕" + "세상"` → `"안녕세상"`
+- Repetition with `*`: `"파이" * 3` → `"파이파이파이"`
+
+### Formatting
+- `%s`, `%d` etc. old style (f-string recommended now)
+  - `name = "홍길동"; print("이름: %s" % name)`
+- **f-string** (Python 3.6+): `print(f"이름: {name}")`
+- `.format()` method: `"이름: {}".format(name)`
+
+### Useful String Methods
+| Method | Description |
+|--------|-------------|
+| `.upper()` | Convert to uppercase |
+| `.lower()` | Convert to lowercase |
+| `.strip()` | Remove whitespace from both ends |
+| `.count('a')` | Return count of specific character |
+| `.find('sub')` | Return first position of substring (returns -1 if not found) |
+| `.index('sub')` | Same as above, but raises error if not found |
+| `.split()` | Split by whitespace into a list |
+| `.replace('old', 'new')` | Replace strings |
+
+---
+
+## 4. Boolean Type (Boolean)
+A data type that has only `True` or `False` values. Used in comparisons and conditional statements.
+
+### Basic Values
+- `True`  → True
+- `False` → False
+
+### Falsy Values (Values Considered False)
+- `False`
+- `0` (0 in all numeric types)
+- `""` (empty string)
+- `[]` (empty list)
+- `{}` (empty dictionary)
+- `set()` (empty set)
+- `None`
+
+> **Note**: In Python, these values are automatically treated as False in conditional statements.
+
+### Comparison Operators
+| Operator | Meaning | Example |
+|----------|---------|---------|
+| `==`     | Equal   | `5 == 5` → `True` |
+| `!=`     | Not equal | `5 != 3` → `True` |
+| `<`      | Less than | `3 < 7` → `True` |
+| `>`      | Greater than | `10 > 2` → `True` |
+| `<=`     | Less than or equal | `4 <= 4` → `True` |
+| `>=`     | Greater than or equal | `6 >= 5` → `True` |
+
+### Logical Operators
+- `and`: True only if both are True
+- `or`: True if at least one is True
+- `not`: Negation
+
+---
+
+## 5. Lists (List)
+A data type that can store multiple values in order. Allows duplicates, mutable, supports indexing and slicing.
+
+### List Creation
+```python
+my_list = [1, 2, 3, 'apple', True]
+```
+- Uses square brackets `[ ]`
+- Can store mixed data types
+
+### Basic Operations
+- **Indexing**: `my_list[0]` → First element
+- **Slicing**: `my_list[1:3]` → `[2, 3]`
+- **Concatenation**: `list1 + list2` → New list
+- **Repetition**: `['a', 'b'] * 3` → `['a','b','a','b','a','b']`
+
+### Mutability (Mutable)
+- Element modification: `my_list[0] = 99`
+- Element deletion: `del my_list[2]` or `my_list.remove(value)`
+- Element addition:
+  - `.append(x)` → Add one element at the end
+  - `.extend(iterable)` → Add multiple elements
+  - `.insert(idx, x)` → Insert at specific position
+- `.pop(idx)` → Remove and return element at specific position (default is last element)
+
+### Useful List Methods
+| Method | Description |
+|--------|-------------|
+| `.sort()` | Sort in ascending order (strings in alphabetical order, numbers by size) |
+| `.reverse()` | Reverse list order |
+| `.index(x)` | Return first position of value `x` |
+| `.count(x)` | Return occurrence count of value `x` |
+| `.copy()` | Create a shallow copy of the list |
+
+> **Note**: Since lists are mutable (changeable), if multiple variables point to the same list, changing it through one variable affects the others. To copy, use `.copy()` or slicing `list[:]`.
+
+---
+
+## 6. Simple Examples and Practice Tips
+Below are simple script examples using basic data types.
+
+```python
+# Numeric type example
+a = 10
+b = 3
+print("Sum:", a + b)          # 13
+print("Quotient:", a // b)    # 3
+print("Remainder:", a % b)    # 1
+print("Square:", a ** 2)      # 100
+
+# String type example
+name = "Alice"
+greeting = f"Hello, {name}!"
+print(greeting)              # Hello, Alice!
+print("Length:", len(name))    # 5
+print("Uppercase:", name.upper()) # ALICE
+
+# List example
+numbers = [5, 2, 9, 1]
+numbers.sort()
+print("Sorted:", numbers)      # [1, 2, 5, 9]
+numbers.append(7)
+print("After addition:", numbers)   # [1, 2, 5, 9, 7]
+print("Removal with pop():", numbers.pop())  # Remove and return last element 7
+print("Current list:", numbers) # [1, 2, 5, 9]
+```
+
+---
+
+## 7. Summary
+- **Variables** are containers for values, and the **data type** of that value determines its behavior.
+- Python's main data types:
+  - **Numeric types** (`int`, `float`, exponential, etc.)
+  - **String type** (`str`) – supports indexing, slicing, formatting
+  - **Boolean type** (`bool`) – True/False, essential for conditionals
+  - **List** (`list`) – ordered, mutable collection
+- Operators (`+`, `-`, `*`, `/`, `//`, `%`, `**`) and methods (`.upper()`, `.sort()`, `.append()` etc.) can be combined to solve various problems simply.
+- Mastering these basic data types naturally leads to learning dictionaries, sets, functions, and object-oriented programming.
+
+> Next chapter, we will learn **conditional statements** and **loops** using these data types.
+
+# Chapter 3: Conditional Statements and Loops
+
+## Overview
+This chapter covers **conditional statements** that change program execution flow based on conditions, and **loops** that repeat the same operation multiple times. Conditional statements consist of `if`, `elif`, `else`, while loops are represented by `while` and `for`. Additionally, we look at flow control keywords `break`, `continue`, `pass`, Python-specific **conditional expressions** (ternary operator), and the `range()` function.
+
+---
+
+## 1. Conditional Statements (Conditional Statement)
+
+### 1.1 Basic Structure
+```python
+if condition1:
+    # Execute when condition1 is True
+    statement1
+elif condition2:
+    # Execute when condition1 is False and condition2 is True
+    statement2
+else:
+    # Execute when all conditions are False
+    statement3
+```
+- Conditions must evaluate to **Boolean** type (True or False).
+- **Indentation** is mandatory, typically using 4 spaces or 1 tab. Mismatched indentation causes `IndentationError`.
+
+### 1.2 Comparison Operators
+| Operator | Meaning | Example | Result |
+|----------|---------|---------|--------|
+| `==`     | Equal   | `5 == 5` | True |
+| `!=`     | Not equal | `5 != 3` | True |
+| `<`      | Less than | `3 < 7` | True |
+| `>`      | Greater than | `10 > 2` | True |
+| `<=`     | Less than or equal | `4 <= 4` | True |
+| `>=`     | Greater than or equal | `6 >= 5` | True |
+
+### 1.3 Logical Operators
+- `and`: Both sides must be True for the whole to be True.
+- `or`: At least one side must be True for the whole to be True.
+- `not`: Flips Boolean value (`not True` → `False`).
+
+### 1.4 Truthy / Falsy Values
+In Python, the following values are considered **False** (falsy):
+- `False`
+- `0` (0 in all numeric types)
+- `""` (empty string)
+- `[]` (empty list)
+- `{}` (empty dictionary)
+- `set()` (empty set)
+- `None`
+
+All other values are considered **True** (truthy). Therefore, you can directly check variables like `if x:`.
+
+### 1.5 Conditional Expression (Ternary Operator)
+Used to express conditions concisely in one line.
+```python
+value_if_true if condition else value_if_false
+```
+Example:
+```python
+score = 85
+result = "Pass" if score >= 60 else "Fail"
+print(result)   # Pass
+```
+
+### 1.6 Flow Control Keywords
+- `pass`: Placeholder that does nothing. Used when a statement is syntactically required.
+  ```python
+  if condition:
+      pass   # To be implemented later
+  ```
+- `break`: Immediately exits the nearest loop.
+- `continue`: Skips the remaining part of the current iteration and moves to the next iteration.
+
+---
+
+## 2. Loops (Loop)
+
+### 2.1 While Loop
+Executes the block repeatedly as long as the condition is True.
+```python
+while condition:
+    # Execute repeatedly while condition is True
+    statement
+    # Without a statement to change the condition, this becomes an infinite loop.
+```
+**Example**: Sum from 1 to 10
+```python
+i = 1
+total = 0
+while i <= 10:
+    total += i
+    i += 1
+print(total)   # 55
+```
+To intentionally create an infinite loop, use `while True:` and create an exit condition with `break` inside.
+
+### 2.2 For Loop
+Executes once for each element in an iterable object in order.
+```python
+for variable in iterable:
+    # Execute for each element
+    statement
+```
+Iterable objects include lists, tuples, strings, ranges, dictionaries (.keys(), .values(), .items()), etc.
+
+**Example**: List element output
+```python
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(fruit)
+```
+**Example**: Output each character in a string
+```python
+for ch in "Python":
+    print(ch)
+```
+
+#### 2.2.1 enumerate() – Getting Index and Element Together
+```python
+for idx, value in enumerate(['a', 'b', 'c']):
+    print(idx, value)
+# Output: 0 a, 1 b, 2 c
+```
+
+#### 2.2.2 Nested Loops
+The inner loop runs completely for each iteration of the outer loop.
+```python
+for i in range(1, 4):      # 1, 2, 3
+    for j in range(1, 4):  # 1, 2, 3
+        print(i * j, end=' ')
+    print()   # Line break
+```
+Output:
+```
+1 2 3 
+2 4 6 
+3 6 9 
+```
+
+### 2.3 range() Function
+A built-in function that generates integer sequences, primarily used in `for` loops for count-based iteration.
+```python
+range(stop)               # 0 to stop-1
+range(start, stop)        # start to stop-1
+range(start, stop, step)  # start to stop-1 with step interval
+```
+**Examples**
+```python
+for i in range(5):         # 0,1,2,3,4
+    print(i, end=' ')      # 0 1 2 3 4
+
+for i in range(1, 6):      # 1,2,3,4,5
+    print(i, end=' ')      # 1 2 3 4 5
+
+for i in range(0, 11, 2):  # 0,2,4,6,8,10
+    print(i, end=' ')      # 0 2 4 6 8 10
+
+for i in range(10, 0, -1): # 10,9,...,1
+    print(i, end=' ')      # 10 9 8 7 6 5 4 3 2 1
+```
+
+### 2.4 Infinite Loops and Exit
+Unintentional infinite loops can be interrupted with `Ctrl+C`. Intentional infinite loops can be written as:
+```python
+while True:
+    user_input = input("Enter 'q' to quit: ")
+    if user_input == 'q':
+        break
+    # Other processing...
+```
+
+### 2.5 Loop Control Keywords Summary
+| Keyword | Meaning |
+|---------|---------|
+| `break` | Immediately exit the current loop and move outside |
+| `continue` | Skip the rest of the current iteration and move to the next iteration |
+| `pass` | Do nothing placeholder (used when syntax requires a statement) |
+
+---
+
+## 3. Practical Examples
+
+### 3.1 Grade Output Based on Score
+```python
+score = int(input("Enter your score: "))
+
+if score >= 90:
+    grade = "A"
+elif score >= 80:
+    grade = "B"
+elif score >= 70:
+    grade = "C"
+elif score >= 60:
+    grade = "D"
+else:
+    grade = "F"
+
+print(f"Grade: {grade}")
+```
+
+### 3.2 Sum from 1 to 100 (While Version)
+```python
+i = 1
+total = 0
+while i <= 100:
+    total += i
+    i += 1
+print("Sum:", total)   # 5050
+```
+
+### 3.3 Output Only Even Numbers (for + continue)
+```python
+for num in range(1, 21):
+    if num % 2 != 0:
+        continue   # Skip if odd
+    print(num, end=' ')   # 2 4 6 8 10 12 14 16 18 20
+```
+
+### 3.4 Multiplication Table (Nested for)
+```python
+for dan in range(2, 10):      # 2 times table to 9 times table
+    print(f"--- {dan} times table ---")
+    for n in range(1, 10):
+        print(f"{dan} x {n} = {dan*n}")
+    print()   # Blank line between tables
+```
+
+---
+
+## 4. Summary
+- **Conditional statements** use `if-elif-else` structure, where conditions are evaluated as Boolean values. Indentation determines block boundaries, so it must be exact.
+- **Comparison operators** (`==`, `!=`, `<`, `>`, `<=`, `>=`) and **logical operators** (`and`, `or`, `not`) can create complex conditions.
+- Understanding **truthy/falsy** allows concise condition checks like `if x:`.
+- **Conditional expressions** (`value_if_true if condition else value_if_false`) express conditions in one line.
+- **Loops** are divided into `while` (condition-based) and `for` (iterable-based).
+- `break`, `continue`, `pass` allow fine-grained flow control.
+- The `range()` function generates integer sequences useful for count-based loops.
+- Using nested loops and `enumerate()` makes handling multi-dimensional data or index-requiring situations easy.
+
+Next chapter, we will learn how to define **functions** and create reusable code based on these conditional statements and loops.
+
+# Chapter 4 (Summary): Functions and Modules
+
+## 1. Function Definition and Calling
+- **def keyword**: Start with `def function_name(parameter1, parameter2, ...):`
+- **Indentation**: Function body must be indented (4 spaces or 1 tab).
+- **Parameters**: Variables that receive values passed to the function.
+- **Arguments**: Actual values passed when calling the function.
+- **Default Arguments**: Specify default values like `def foo(x, y=10):`
+- **Keyword Arguments**: Pass by name like `foo(y=5, x=2)`
+- **Variable-length Arguments (*args, **kwargs)**:
+  - `*args`: Receive positional arguments as a tuple.
+  - `**kwargs`: Receive keyword arguments as a dictionary.
+
+## 2. Return Value (Return)
+- Use `return` statement to return results. Returns `None` automatically if no return value.
+- To return multiple values, use tuple form: `return a, b` → Caller can unpack with `x, y = func()`
+- Early return: Return immediately based on condition, skipping remaining code.
+
+## 3. Variable Scope (Range)
+- **Local Variables**: Variables defined inside a function. Cannot be accessed outside the function.
+- **Global Variables**: Variables defined at module top level (outside functions).
+  - Readable inside functions. To modify, need `global` keyword.
+  - Example: `global cnt; cnt += 1`
+- **Enclosing Scope (Nested Functions)**: To access outer function's variable from inner function, use `nonlocal` keyword.
+- **LEGB Rule**: Name resolution order: Local → Enclosing → Global → Built-in.
+
+## 4. Modules and Import
+- **Module (.py file)**: A file containing functions, classes, variables. The filename is the module name.
+- **Import Statements**:
+  - `import math` → Import entire module and use like `math.sqrt()`
+  - `from math import sqrt` → Import specific name and use directly as `sqrt()`
+  - `from math import *` → Import all names from module (caution: namespace pollution)
+- **Aliases**: `import matplotlib.pyplot as plt` or `from math import sqrt as sq`
+- **Packages**: Directory structure with `__init__.py`. Use like `import pkg.module`
+- **Standard Library**: Useful modules provided with Python installation.
+  - `sys`: System-related information and arguments (`sys.argv`) access.
+  - `os`: Interact with operating system (path manipulation, file/directory handling).
+  - `datetime`: Date and time processing.
+  - `random`: Random number generation.
+  - `json`: JSON data encoding/decoding.
+  - `urllib.request`, `requests` (external library): HTTP requests.
+  - `math`: Mathematical functions (sqrt, sin, cos, pi, etc.).
+  - `collections`: Special container types (Counter, defaultdict, deque, etc.).
+  - `itertools`: Efficient iterator combination tools.
+- **Creating Custom Modules**: Create your own `.py` file, place it in the same directory or `sys.path`, then import for reuse.
+
+## 5. Standard Library Usage Examples
+```python
+# math example
+import math
+print(math.sqrt(16))          # 4.0
+print(math.pi)                # 3.141592653589793
+
+# datetime example
+from datetime import datetime, timedelta
+now = datetime.now()
+print(now.strftime('%Y-%m-%d %H:%M:%S'))
+future = now + timedelta(days=10)
+print(future)
+
+# random example
+import random
+print(random.randint(1, 10))   # Random integer from 1 to 10
+print(random.choice(['사과', '바나나', '체리']))  # Randomly select one from list
+
+# json example
+import json
+data = {'이름': '홍길동', '나이': 30}
+json_str = json.dumps(data, ensure_ascii=False, indent=2)
+print(json_str)
+loaded = json.loads(json_str)
+print(loaded['이름'])
+
+# os.path example
+import os
+print(os.path.join('folder', 'subfolder', 'file.txt'))  # Platform-appropriate path
+print(os.path.exists('folder'))                         # Check file/folder existence
+```
+
+## 6. Function Design Tips
+- **Single Responsibility Principle (SRP)**: Make functions do one thing well.
+- **Readability**: Use verb+noun form for function names (`calculate_total`, `is_valid`) to make intent clear.
+- **Documentation (docstring)**: Place triple-quoted description right below function definition so it's visible via `help(func)` or in IDE.
+  ```python
+  def add(a, b):
+      """
+      Returns the sum of two numbers.
+      
+      Parameters
+      ----------
+      a : int or float
+          First number to add
+      b : int or float
+          Second number to add
+      
+      Returns
+      -------
+      int or float
+          Sum of a and b
+      """
+      return a + b
+  ```
+- **Type Hints**: Indicate types in function signatures (Python 3.5+) to improve static analysis (myPy) and IDE support.
+  ```python
+  def greet(name: str) -> str:
+      return f"Hello, {name}!"
+  ```
+- **Exception Handling**: If a function can produce errors, handle them appropriately with `raise` or internal `try/except`.
+
+## 7. Summary
+- Functions are core tools for increasing code reusability and readability.
+- Understanding parameters, return values, and scope rules helps create functions that work as intended and reduce errors.
+- Through modules and import, you can systematically manage standard library or your own code.
+- This tutorial's Chapter 4 explains these concepts with practice examples, laying the foundation for advanced topics like object-oriented programming, file I/O, exception handling, etc.
+
+---  
+*This summary is based on the general Chapter 4 curriculum of the Python tutorial. Actual tutorials may differ slightly, so please refer to tutorial videos or materials and try following the detailed examples yourself.*

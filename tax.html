@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세금 계산기 - Tax Calculator</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        input { width: 100%; padding: 12px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; font-size: 1rem; margin-bottom: 15px; }
+        .btn { padding: 15px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; width: 100%; margin-bottom: 20px; }
+        .result-box { padding: 25px; background: var(--card-bg); border-radius: 10px; margin-bottom: 30px; }
+        .result-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .result-row:last-child { border: none; font-weight: bold; }
+        .result-label { color: var(--text-muted); }
+        .result-value { color: var(--accent); }
+        .tax-table { margin-top: 20px; background: var(--card-bg); padding: 20px; border-radius: 10px; font-size: 0.85rem; }
+        .tax-table h3 { margin-bottom: 10px; color: var(--accent); }
+        .tax-table table { width: 100%; border-collapse: collapse; }
+        .tax-table td { padding: 8px 5px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .content-section { margin-top: 30px; background: var(--card-bg); padding: 25px; border-radius: 12px; line-height: 1.9; }
+        .content-section h3 { color: var(--accent); margin-bottom: 15px; }
+        .content-section p { margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; }
+        .more-tools { margin-top: 40px; padding: 20px; background: var(--card-bg); border-radius: 10px; }
+        .more-tools h3 { margin-bottom: 15px; color: var(--accent); }
+        .more-tools a { display: block; color: var(--text-muted); text-decoration: none; padding: 8px 0; }
+        .ads { margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+        </div>
+        
+        <h1>🏛️ 세금 계산기 (연소득)</h1>
+        
+        <div class="description">
+            연간 소득을 입력하여 결정적 산출세액을 계산합니다. 한국의 종합소득세율표를 기준으로 합니다.
+        </div>
+        
+        <input type="number" id="income" placeholder="연간 소득 (예: 50000000)">
+        
+        <button class="btn" onclick="calculate()">🏛️ 계산하기</button>
+        
+        <div class="result-box" id="results">
+            <div class="result-row">
+                <span class="result-label">소득공제 (연간)</span>
+                <span class="result-value" id="deduction">-</span>
+            </div>
+            <div class="result-row">
+                <span class="result-label">과세표준</span>
+                <span class="result-value" id="taxable">-</span>
+            </div>
+            <div class="result-row">
+                <span class="result-label">산출세액</span>
+                <span class="result-value" id="tax">-</span>
+            </div>
+            <div class="result-row">
+                <span class="result-label">실수령 (연간)</span>
+                <span class="result-value" id="net">-</span>
+            </div>
+            <div class="result-row">
+                <span class="result-label">실수령 (월)</span>
+                <span class="result-value" id="monthly">-</span>
+            </div>
+        </div>
+        
+        <div class="tax-table">
+            <h3>📊 2026년 종합소득세율표</h3>
+            <table>
+                <tr><td>1,200만원 이하</td><td>6%</td></tr>
+                <tr><td>4,600만원 이하</td><td>15%</td></tr>
+                <tr><td>8,800만원 이하</td><td>24%</td></tr>
+                <tr><td>1억 5천만원 이하</td><td>35%</td></tr>
+                <tr><td>3억원 이하</td><td>38%</td></tr>
+                <tr><td>5억원 이하</td><td>40%</td></tr>
+                <tr><td>10억원 이하</td><td>42%</td></tr>
+                <tr><td>20억원 이하</td><td>45%</td></tr>
+                <tr><td>30억원 이하</td><td>47%</td></tr>
+                <tr><td>30억원 초과</td><td>50%</td></tr>
+            </table>
+        </div>
+        
+        <div class="content-section">
+            <h3>소득세 계산 방법</h3>
+            <p><strong>1. 기본공제:</strong> 연간 150만원 (근로소득만 해당)</p>
+            <p><strong>2. 산출세액:</strong> 과세표준 × 세율 - 누진공제</p>
+            <p><strong>3. 지방소득세:</strong> 산출세액의 10% (별도 계산)</p>
+            
+            <h3>주의사항</h3>
+            <p>• 이 계산기는 기본적인 참고용입니다. 실제 세액은 전문 세무사 상담을 권장합니다.</p>
+            <p>• 연말정산, 기쁜所得的情形에 따라 실제와 다를 수 있습니다.</p>
+            <p>• 부양가족 수, 보험료 등에 따른 추가 공제 제외됩니다.</p>
+            
+            <h3>AdSense를 위한 팁</h3>
+            <p>세금 관련 콘텐츠는 재테크, 금융,취업搜索에서 꾸준한 트래픽을 벌어다줍니다. "소득세 계산", "연말정산", "세금 절약" 등의 키워드가 유용합니다.</p>
+        </div>
+        
+        <div class="more-tools">
+            <h3>📌 더 많은 유틸리티</h3>
+            <a href="loan.html">→ 대출 계산기</a>
+            <a href="discount.html">→ 할인 계산기</a>
+            <a href="bmi.html">→ BMI 계산기</a>
+        </div>
+
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            const income = parseFloat(document.getElementById('income').value);
+            if (!income) return;
+            const deduction = 1500000;
+            const taxable = Math.max(0, income - deduction);
+            
+            let tax = 0;
+            const brackets = [
+                { max: 14000000, rate: 0.06, ded: 0 },
+                { max: 50000000, rate: 0.15, ded: 740000 },
+                { max: 88000000, rate: 0.24, ded: 5900000 },
+                { max: 150000000, rate: 0.35, ded: 14800000 },
+                { max: 300000000, rate: 0.38, ded: 20400000 },
+                { max: 500000000, rate: 0.40, ded: 29000000 },
+                { max: 1000000000, rate: 0.42, ded: 39000000 },
+                { max: 2000000000, rate: 0.45, ded: 69000000 },
+                { max: 3000000000, rate: 0.47, ded: 99000000 },
+                { max: Infinity, rate: 0.50, ded: 189000000 }
+            ];
+            
+            for (const b of brackets) {
+                if (taxable <= b.max) {
+                    tax = taxable * b.rate - b.ded;
+                    break;
+                }
+            }
+            
+            document.getElementById('deduction').textContent = deduction.toLocaleString() + '원';
+            document.getElementById('taxable').textContent = taxable.toLocaleString() + '원';
+            document.getElementById('tax').textContent = Math.max(0, Math.round(tax)).toLocaleString() + '원';
+            document.getElementById('net').textContent = Math.max(0, Math.round(income - tax)).toLocaleString() + '원';
+            document.getElementById('monthly').textContent = Math.max(0, Math.round((income - tax) / 12)).toLocaleString() + '원';
+        }
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

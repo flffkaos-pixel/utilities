@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "skills": {
+    "self-improving-agent": {
+      "version": "3.0.16",
+      "installedAt": 1776806409300
+    },
+    "youtube-watcher": {
+      "version": "1.0.0",
+      "installedAt": 1777008486036
+    }
+  }
+}

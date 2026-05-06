@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>텍스트 역순 - Text Reverse</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔄</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        textarea { width: 100%; min-height: 120px; padding: 15px; background: var(--input-bg); color: var(--text); border: none; border-radius: 10px; font-size: 1rem; margin-bottom: 15px; }
+        .btn { padding: 15px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; width: 100%; margin-bottom: 10px; }
+        .result-box { padding: 20px; background: var(--card-bg); border-radius: 10px; margin-bottom: 30px; text-align: center; }
+        .result-value { font-size: 1.2rem; word-break: break-all; padding: 15px; background: var(--input-bg); border-radius: 8px; color: var(--accent); min-height: 60px; }
+        .content-section { margin-top: 30px; background: var(--card-bg); padding: 25px; border-radius: 12px; line-height: 1.9; border: 1px solid rgba(102,126,234,0.2); }
+        .content-section h3 { color: var(--accent); margin-bottom: 20px; margin-top: 25px; font-size: 1.1rem; }
+        .content-section h3:first-child { margin-top: 0; }
+        .content-section p { margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; }
+        .more-tools { margin-top: 40px; padding: 20px; background: var(--card-bg); border-radius: 10px; }
+        .more-tools h3 { margin-bottom: 15px; color: var(--accent); }
+        .more-tools a { display: block; color: var(--text-muted); text-decoration: none; padding: 8px 0; }
+        .more-tools a:hover { color: var(--accent); }
+        body.lang-en .content-section.ko,
+        body.lang-en h1 .ko,
+        body.lang-en .description .ko { display: none !important; }
+        body.lang-ko .content-section.en,
+        body.lang-ko h1 .en,
+        body.lang-ko .description .en { display: none !important; }
+        body.lang-en .lang-btn:last-child,
+        body.lang-ko .lang-btn:first-child { background: var(--accent); }
+        body.lang-en .lang-btn:first-child,
+        body.lang-ko .lang-btn:last-child { background: var(--card-bg); }
+        .ads { margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">🔄 텍스트 역순</span>
+            <span class="en">🔄 Text Reverse</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">텍스트의 문자 순서를 반대로 뒤집습니다. 문자열 처리, 데이터 변환, 암호학 학습에 유용합니다.</span>
+            <span class="en">Reverse the character order of text. Useful for string processing, data transformation, and cryptography learning.</span>
+        </div>
+        
+        <textarea id="input" placeholder="역순으로 변환할 텍스트 입력... / Enter text to reverse..."></textarea>
+        
+        <button class="btn" onclick="reverse()">
+            <span class="ko">🔄 역순 변환</span>
+            <span class="en">🔄 Reverse</span>
+        </button>
+        
+        <div class="result-box">
+            <div class="result-value" id="result">-</div>
+            <button class="btn" onclick="copy()" style="margin-top:10px; background:var(--card-bg); border:1px solid var(--accent);">
+                <span class="ko">📋 복사</span>
+                <span class="en">📋 Copy</span>
+            </button>
+        </div>
+        
+        <!-- 한국어 콘텐츠 -->
+        <div class="content-section ko">
+            <h3>🔄 텍스트 역순이란?</h3>
+            <p>텍스트 역순은 문자열의 문자 순서를 반대로 뒤집는 작업입니다. 예를 들어 "안녕하세요"를 역순으로 변환하면 "요세하녕안"이 됩니다. 이는 단순해 보이지만 프로그래밍 학습, 데이터 처리, 그리고 재미있는 텍스트 트릭에 다양하게 활용됩니다.</p>
+            
+            <h3>💻 프로그래밍에서의 활용</h3>
+            <p>문자열 역순은 프로그래밍의基本概念之一입니다. JavaScript에서는 <code>str.split('').reverse().join('')</code>, Python에서는 <code>s[::-1]</code>로 간단히 구현할 수 있습니다. 이는 배열 조작, 알고리즘 학습, 코딩 테스트 준비에 필수적인 문제 유형입니다.</p>
+            <p>특히 회문(palindrome) 판별, 문자열 비교, 암호화 알고리즘 구현 등에서 문자열 역순 조작能力이 중요합니다. 이러한 기본기를 탄탄히 다지면 더 복잡한 문자열 처리 문제도 쉽게 해결할 수 있습니다.</p>
+            
+            <h3>🎮 재미있는 활용</h3>
+            <p>텍스트 역순은 재미있는 트릭으로도 활용됩니다. 예를 들어, 말장난이나 언어 게임, SNS에서 다른 사람들의 반응을 보는 용도 등으로 사용할 수 있습니다. 또한 글자를 거꾸로 읽는 매직 트릭이나 Mirror 글쓰기 연습에도 활용할 수 있습니다.</p>
+            
+            <h3>🎯 AdSense 수익을 위한 개발 블로그 전략</h3>
+            <p>텍스트 처리 관련 콘텐츠는 프로그래밍 학습, 코딩 테스트, 문자열 처리 검색에서 꾸준한 트래픽을 벌어다줍니다. "문자열 역순", "회문 판별", "코딩 테스트 연습" 등의 키워드는 개발자 시험 준비생에게 특히 접근됩니다.</p>
+        </div>
+        
+        <!-- English Content -->
+        <div class="content-section en">
+            <h3>🔄 What is Text Reversal?</h3>
+            <p>Text reversal is reversing the character order of a string. For example, "Hello" becomes "olleH". Simple as it seems, it has diverse applications in programming learning, data processing, and fun text tricks.</p>
+            
+            <h3>💻 Programming Applications</h3>
+            <p>String reversal is a fundamental programming concept. In JavaScript: <code>str.split('').reverse().join('')</code>, in Python: <code>s[::-1]</code>. This is an essential problem type for array manipulation, algorithm learning, and coding test preparation.</p>
+            <p>String reversal manipulation is especially important in palindrome checking, string comparison, and encryption algorithm implementation.</p>
+            
+            <h3>🎮 Fun Uses</h3>
+            <p>Text reversal also serves as fun tricks—wordplay, language games, or seeing others' reactions on social media. It's also used for mirror writing practice.</p>
+            
+            <h3>🎯 Blog Strategy for AdSense Revenue</h3>
+            <p>Text processing content gets steady traffic from programming learning, coding tests, and string manipulation searches. Keywords like "string reversal", "palindrome check", and "coding test practice" especially reach developers preparing for exams.</p>
+        </div>
+        
+        <div class="more-tools">
+            <h3>📌 More Utilities</h3>
+            <a href="text.html">→ Text Tools</a>
+            <a href="hash.html">→ Hash Generator</a>
+            <a href="base64.html">→ Base64 Encoder</a>
+            <a href="url.html">→ URL Encoder</a>
+        </div>
+
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            localStorage.setItem('util-lang', lang);
+        }
+        const savedLang = localStorage.getItem('util-lang') || 'ko';
+        setLang(savedLang);
+        
+        function reverse() {
+            const text = document.getElementById('input').value;
+            document.getElementById('result').textContent = text.split('').reverse().join('');
+        }
+        function copy() { navigator.clipboard.writeText(document.getElementById('result').textContent); }
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

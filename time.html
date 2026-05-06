@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시간 계산기 - Time Calculator</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⏰</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        .input-row { display: flex; gap: 15px; margin-bottom: 15px; }
+        .input-row input { flex: 1; padding: 12px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; font-size: 1rem; text-align: center; }
+        .btn { padding: 15px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; width: 100%; margin-bottom: 20px; }
+        .result-box { padding: 25px; background: var(--card-bg); border-radius: 10px; text-align: center; margin-bottom: 30px; }
+        .result-value { font-size: 2rem; color: var(--accent); font-weight: bold; }
+        .result-label { font-size: 0.9rem; color: var(--text-muted); margin-top: 5px; }
+        .content-section { margin-top: 30px; background: var(--card-bg); padding: 25px; border-radius: 12px; line-height: 1.9; border: 1px solid rgba(102,126,234,0.2); }
+        .content-section h3 { color: var(--accent); margin-bottom: 20px; margin-top: 25px; font-size: 1.1rem; }
+        .content-section h3:first-child { margin-top: 0; }
+        .content-section p { margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; }
+        .more-tools { margin-top: 40px; padding: 20px; background: var(--card-bg); border-radius: 10px; }
+        .more-tools h3 { margin-bottom: 15px; color: var(--accent); }
+        .more-tools a { display: block; color: var(--text-muted); text-decoration: none; padding: 8px 0; }
+        .more-tools a:hover { color: var(--accent); }
+        body.lang-en .content-section.ko,
+        body.lang-en h1 .ko,
+        body.lang-en .description .ko { display: none !important; }
+        body.lang-ko .content-section.en,
+        body.lang-ko h1 .en,
+        body.lang-ko .description .en { display: none !important; }
+        body.lang-en .lang-btn:last-child,
+        body.lang-ko .lang-btn:first-child { background: var(--accent); }
+        body.lang-en .lang-btn:first-child,
+        body.lang-ko .lang-btn:last-child { background: var(--card-bg); }
+        .ads { margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">⏰ 시간 계산기</span>
+            <span class="en">⏰ Time Calculator</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">시, 분, 초 사이의 변환과 시간 덧셈/뺄셈을 계산합니다. 프로젝트 시간 관리, 근무 시간 계산에 유용합니다.</span>
+            <span class="en">Convert between hours, minutes, seconds and calculate time addition/subtraction. Useful for project time management and work hour calculation.</span>
+        </div>
+        
+        <div class="input-row">
+            <input type="number" id="hours" placeholder="시" min="0">
+            <input type="number" id="minutes" placeholder="분" min="0" max="59">
+            <input type="number" id="seconds" placeholder="초" min="0" max="59">
+        </div>
+        
+        <button class="btn" onclick="calculate()">
+            <span class="ko">⏰ 계산하기</span>
+            <span class="en">⏰ Calculate</span>
+        </button>
+        
+        <div class="result-box">
+            <div class="result-value" id="resultSeconds">0초</div>
+            <div class="result-label ko">총 초</div>
+            <div class="result-label en">Total Seconds</div>
+        </div>
+        
+        <div class="result-box">
+            <div class="result-value" id="resultTime">00:00:00</div>
+            <div class="result-label ko">HH:MM:SS 형식</div>
+            <div class="result-label en">HH:MM:SS Format</div>
+        </div>
+        
+        <!-- 한국어 콘텐츠 -->
+        <div class="content-section ko">
+            <h3>⏰ 시간 계산이 중요한 이유</h3>
+            <p>시간은 우리가 가진 가장 소중한 자원입니다. 정확한 시간 계산을 할 수 있어야 프로젝트 일정을 관리하고, 근무 시간을 정확히 기록하며,-deadline를 맞출 수 있습니다. 특히 소프트웨어 개발, 건설, 제조 등 프로젝트 기반 산업에서는 시간 관리 능력이 곧 업무 성과로 이어집니다.</p>
+            <p>일상에서도 시간 계산은 중요합니다. 출근 시간 계산, 약속 장소까지의 이동 시간 파악, 회의 시간 배분 등 매 순간 우리는时间去管理하고 있습니다. 이 도구를 활용하면 복잡한 시간 변환도 간단하게 해결할 수 있습니다.</p>
+            
+            <h3>🔢 시간 단위 변환 기초</h3>
+            <p>시간 계산의基本은 단위 간의 관계를 이해하는 것입니다. 1시간은 60분이고, 1분은 60초입니다. 따라서 1시간은 3,600초가 됩니다. 이러한 변환 관계를 기억하면 어떤 시간 단위든 쉽게 변환할 수 있습니다.</p>
+            <p>예를 들어, 2시간 30분 45초를 초로 변환하면: (2 × 3,600) + (30 × 60) + 45 = 7,200 + 1,800 + 45 = 9,045초가 됩니다. 반대로 10,000초를 시간으로 변환하면 10,000 ÷ 3,600 = 2시간 remainder 2,800초, 2,800 ÷ 60 = 46분 remainder 40초, 즉 2시간 46분 40초가 됩니다.</p>
+            
+            <h3>💼 업무에서의 시간 관리</h3>
+            <p>직장인에게 근무 시간 계산은 급여와 直接적으로 관련됩니다. 야근, 주말 근무, 휴가 등을正しく 계산해야 정확한 급여를 받을 수 있습니다. 또한 프로젝트 진도 관리에서도 경과 시간과 남은 시간을 정확히 파악하는 것이 중요합니다.</p>
+            <p> agile 방법론이나 스크럼에서는 story point와 시간 추정을 결합하여 작업량을 管理합니다. 정확하게 시간을 측정하고 기록하는 습관은 개인의 생산성 향상에 크게 기여합니다.</p>
+            
+            <h3>🎯 AdSense 수익을 위한 생산성 블로그 전략</h3>
+            <p>시간 계산 관련 콘텐츠는 생산성, 시간 관리, 프로젝트 관리 검색에서 꾸준한 트래픽을 벌어다줍니다. "근무 시간 계산", "프로젝트 시간 관리", "시간 변환표" 등의 키워드는 직장인과 학생 모두에게 접근됩니다.</p>
+            <p>도구 사용법과 함께 "시간 관리 방법", "생산성 향상 팁", "업무 효율화 전략" 등의 콘텐츠를 함께 제공하면 직장인 독자에게 더 많은 가치를 줄 수 있습니다.</p>
+        </div>
+        
+        <!-- English Content -->
+        <div class="content-section en">
+            <h3>⏰ Why Time Calculation Matters</h3>
+            <p>Time is our most precious resource. Accurate time calculation enables project schedule management, precise work hour recording, and deadline compliance. In project-based industries like software development, construction, and manufacturing, time management ability directly translates to work performance.</p>
+            <p>In daily life, time calculation is equally important. Calculating commute time, estimating travel to appointments, and allocating meeting time—we manage time every moment. This tool helps solve complex time conversions simply.</p>
+            
+            <h3>🔢 Time Unit Conversion Basics</h3>
+            <p>Time calculation basics involve understanding unit relationships. 1 hour = 60 minutes, 1 minute = 60 seconds. Therefore 1 hour = 3,600 seconds. Remember these relationships to convert any time unit easily.</p>
+            <p>For example, converting 2 hours 30 minutes 45 seconds to seconds: (2 × 3,600) + (30 × 60) + 45 = 7,200 + 1,800 + 45 = 9,045 seconds. Conversely, converting 10,000 seconds: 10,000 ÷ 3,600 = 2 hours remainder 2,800 seconds, 2,800 ÷ 60 = 46 minutes remainder 40 seconds, i.e., 2h 46m 40s.</p>
+            
+            <h3>💼 Time Management in Work</h3>
+            <p>For employees, work hour calculation directly relates to salary. Correctly calculating overtime, weekend work, and vacation is essential for accurate pay. In project progress management, precisely understanding elapsed and remaining time is crucial.</p>
+            <p>In Agile or Scrum methodologies, combining story points with time estimates helps manage workload. The habit of accurately measuring and recording time significantly contributes to individual productivity improvement.</p>
+            
+            <h3>🎯 Blog Strategy for AdSense Revenue</h3>
+            <p>Time calculation content gets steady traffic from productivity, time management, and project management searches. Keywords like "work hour calculator", "project time management", and "time conversion table" reach both workers and students.</p>
+            <p>Providing "time management methods", "productivity improvement tips", and "work efficiency strategies" alongside tool usage gives working readers more value.</p>
+        </div>
+        
+        <div class="more-tools">
+            <h3>📌 More Utilities</h3>
+            <a href="timezone.html">→ Timezone Converter</a>
+            <a href="unit.html">→ Unit Converter</a>
+            <a href="bmi.html">→ BMI Calculator</a>
+            <a href="countdown.html">→ Countdown Timer</a>
+            <a href="counter.html">→ Counter</a>
+        </div>
+
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            localStorage.setItem('util-lang', lang);
+        }
+        const savedLang = localStorage.getItem('util-lang') || 'ko';
+        setLang(savedLang);
+        
+        function calculate() {
+            const h = parseInt(document.getElementById('hours').value) || 0;
+            const m = parseInt(document.getElementById('minutes').value) || 0;
+            const s = parseInt(document.getElementById('seconds').value) || 0;
+            const totalSeconds = h * 3600 + m * 60 + s;
+            document.getElementById('resultSeconds').textContent = totalSeconds.toLocaleString() + '초';
+            const hh = String(h).padStart(2, '0');
+            const mm = String(m).padStart(2, '0');
+            const ss = String(s).padStart(2, '0');
+            document.getElementById('resultTime').textContent = hh + ':' + mm + ':' + ss;
+        }
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON 정렬기/압축기 - JSON Formatter/Compressor</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        textarea { width: 100%; min-height: 150px; padding: 15px; background: var(--input-bg); color: var(--text); border: none; border-radius: 10px; font-size: 0.9rem; margin-bottom: 15px; font-family: monospace; }
+        .btn-group { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+        .btn { padding: 12px 18px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85rem; flex: 1; min-width: 120px; }
+        .result-box { padding: 15px; background: var(--card-bg); border-radius: 10px; margin-bottom: 30px; }
+        .stats { display: flex; gap: 15px; margin-bottom: 15px; font-size: 0.85rem; color: var(--text-muted); }
+        .content-section { margin-top: 30px; background: var(--card-bg); padding: 25px; border-radius: 12px; line-height: 1.9; border: 1px solid rgba(102,126,234,0.2); }
+        .content-section h3 { color: var(--accent); margin-bottom: 20px; margin-top: 25px; font-size: 1.1rem; }
+        .content-section h3:first-child { margin-top: 0; }
+        .content-section p { margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; }
+        .more-tools { margin-top: 40px; padding: 20px; background: var(--card-bg); border-radius: 10px; }
+        .more-tools h3 { margin-bottom: 15px; color: var(--accent); }
+        .more-tools a { display: block; color: var(--text-muted); text-decoration: none; padding: 8px 0; }
+        .more-tools a:hover { color: var(--accent); }
+        body.lang-en .content-section.ko,
+        body.lang-en h1 .ko,
+        body.lang-en .description .ko { display: none !important; }
+        body.lang-ko .content-section.en,
+        body.lang-ko h1 .en,
+        body.lang-ko .description .en { display: none !important; }
+        body.lang-en .lang-btn:last-child,
+        body.lang-ko .lang-btn:first-child { background: var(--accent); }
+        body.lang-en .lang-btn:first-child,
+        body.lang-ko .lang-btn:last-child { background: var(--card-bg); }
+        .ads { margin-top: 30px; text-align: center; }
+        .error-msg { color: #f44336; padding: 10px; font-size: 0.9rem; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">📋 JSON 정렬기/압축기</span>
+            <span class="en">📋 JSON Formatter & Compressor</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">JSON 데이터를 예쁘게 정렬하거나 최소화합니다. API 개발, 데이터 분석, 설정 파일 편집에 유용합니다.</span>
+            <span class="en">Beautify or minify JSON data. Useful for API development, data analysis, and config file editing.</span>
+        </div>
+        
+        <textarea id="input" placeholder='{"name":"John","age":30,"city":"Seoul"}'>{}</textarea>
+        
+        <div class="btn-group">
+            <button class="btn" onclick="beautify()">
+                <span class="ko">✨ 정렬</span>
+                <span class="en">✨ Format</span>
+            </button>
+            <button class="btn" onclick="minify()">
+                <span class="ko">📦 압축</span>
+                <span class="en">📦 Minify</span>
+            </button>
+            <button class="btn" onclick="validate()">
+                <span class="ko">✅ 검증</span>
+                <span class="en">✅ Validate</span>
+            </button>
+        </div>
+        
+        <div class="result-box">
+            <div class="stats">
+                <span id="chars">0 chars</span>
+                <span id="lines">0 lines</span>
+            </div>
+            <textarea id="output" readonly placeholder="결과... / Result..."></textarea>
+            <button class="btn" onclick="copyJson()" style="margin-top:10px;">
+                <span class="ko">📋 복사</span>
+                <span class="en">📋 Copy</span>
+            </button>
+        </div>
+        
+        <!-- 한국어 콘텐츠 -->
+        <div class="content-section ko">
+            <h3>📋 JSON이란 무엇인가?</h3>
+            <p>JSON(JavaScript Object Notation)은 경량 데이터 교환 형식으로, 사람에게 읽기 쉽고 컴퓨터가 파싱하기에도 효율적인 구조입니다. 2000년대 초에 Douglas Crockford가 제안한 이 형식은 현재 웹 API, 설정 파일, 데이터 저장 등 거의 모든 소프트웨어 개발에서 표준으로 자리잡았습니다. 특히 RESTful API에서는 JSON이 사실상 필수 데이터 형식으로 사용됩니다.</p>
+            <p>JSON의 간단한 구조는 이름-값 쌍의 모음으로 이루어져 있으며, 배열과 중첩된 객체도 지원합니다. 이 simplicity때문에 거의 모든 프로그래밍 언어에서 JSON 파싱 라이브러리를 기본으로 제공하고 있으며, JavaScript에서는 <code>JSON.parse()</code>와 <code>JSON.stringify()</code> 함수만으로 쉽게 처리할 수 있습니다.</p>
+            
+            <h3>🔍 JSON 정렬(Format)의 필요성</h3>
+            <p>API 응답이나他人에게 받은 JSON 데이터가 한 줄로 압축되어 있으면 내용 파악이 어렵습니다. 특히 중첩된 구조가 복잡할 경우, 이를 읽기 좋게 정렬하는 것이 디버깅과 분석의 첫 번째 단계가 됩니다. 들여쓰기와 줄바꿈을 추가하면 계층 구조가 한눈에 보이고,特定の値를찾기가 훨씬 쉬워집니다.</p>
+            <p>웹 개발 시에도 서버에서 받은 응답을 개발자 도구에서 확인할 때 정렬된 형태면 데이터 구조를 빠르게 파악할 수 있습니다. 이는 버그를 찾거나 데이터 흐름을追踪하는 데 큰 도움이 됩니다.</p>
+            
+            <h3>📦 JSON 압축(Minify)의 활용</h3>
+            <p>반대로 프로덕션 환경에서는 JSON 데이터를 최소화하여 네트워크 전송량을 줄이는 것이 중요합니다. 불필요한 공백과 줄바꿈을 제거하면 데이터 크기가 상당히 감소하며, 이는 페이지 로드 속도 개선과带宽 비용 절감으로 이어집니다. 특히 모바일 환경이나 저속 네트워크에서 효과적입니다.</p>
+            <p>CDN에서 배포되는 JavaScript 번들 파일들도 최소화(minification) 과정을 거치는데, 이는 동일한 원리입니다. 다만 개발 환경에서는 가독성을 위해 정렬된 형태를 사용하고, 배포 시에만 압축하는 것이 일반적인開発流程입니다.</p>
+            
+            <h3>⚠️ JSON 검증의重要性</h3>
+            <p>잘못된 JSON 형식은 프로그램 실행 중 치명적인 오류를 발생시킬 수 있습니다. 특히 API 연동을 개발할 때 서버가 보내는 JSON이 유효한지, 파싱 과정에서 에러가 발생하지 않는지를事前に확인하는 것이 중요합니다. 쉼표 빠뜨리기, 따옴표 불일치, trailing comma等问题은 자주 발생하는 실수들입니다.</p>
+            <p>이 도구의 검증 기능을 사용하면 JSON의 문법적 유효성을即時확인할 수 있습니다. 올바르지 않은 구조에서는 어디에서 문제가 발생했는지도 표시해 주므로 디버깅이 훨씬 수월해집니다.</p>
+            
+            <h3>🎯 AdSense 수익을 위한 개발 블로그 전략</h3>
+            <p>JSON 관련 콘텐츠는 웹 개발, API 개발, 백엔드 프로그래밍 검색에서 꾸준한 트래픽을 벌어다줍니다. "JSON 정렬 방법", "JSON 검증기", "API 데이터 파싱" 등의 키워드는 개발자 검색에서 꾸준히 접근됩니다.</p>
+            <p>도구 사용법과 함께 "REST API 기초", "JSON vs XML 비교", "API 응답 구조 설계" 등의 콘텐츠를 함께 제공하면 웹 개발자에게 유용한 정보를 줄 수 있습니다. 실제 코드 예제를 포함하면検索露出에 유리하고, 실용적인 튜토리얼은 백링크 확보에도 효과적입니다.</p>
+        </div>
+        
+        <!-- English Content -->
+        <div class="content-section en">
+            <h3>📋 What is JSON?</h3>
+            <p>JSON (JavaScript Object Notation) is a lightweight data interchange format that's human-readable and computer-parseable. Proposed by Douglas Crockford in the early 2000s, it's now the standard for web APIs, config files, and data storage. RESTful APIs almost exclusively use JSON as their primary data format.</p>
+            <p>JSON's simple structure consists of name-value pairs, supporting arrays and nested objects. Its simplicity means almost every programming language provides JSON parsing libraries by default. In JavaScript, <code>JSON.parse()</code> and <code>JSON.stringify()</code> handle it easily.</p>
+            
+            <h3>🔍 Why Format JSON?</h3>
+            <p>Compressed one-line JSON from API responses or others is difficult to understand. With nested structures, formatting for readability is the first step in debugging and analysis. Indentation and line breaks reveal hierarchy at a glance, making finding specific values much easier.</p>
+            <p>During web development, viewing server responses in developer tools is easier with formatted JSON, helping you quickly understand data structure. This significantly helps with bug finding and tracing data flow.</p>
+            
+            <h3>📦 Using JSON Minification</h3>
+            <p>In production, minimizing JSON reduces network transfer volume. Removing unnecessary whitespace and line breaks significantly decreases data size, improving page load speed and reducing bandwidth costs. Especially effective on mobile and slow networks.</p>
+            <p>JavaScript bundle files distributed via CDN also go through minification—the same principle. However, development environments use formatted JSON, with compression only at deployment.</p>
+            
+            <h3>⚠️ The Importance of JSON Validation</h3>
+            <p>Invalid JSON causes fatal errors during program execution. When developing API integrations, verifying server JSON validity and preventing parsing errors is crucial. Missing commas, quote mismatches, and trailing commas are common mistakes.</p>
+            <p>This tool's validation feature instantly checks JSON syntax validity. For incorrect structures, it shows where problems occur, making debugging much easier.</p>
+            
+            <h3>🎯 Blog Strategy for AdSense Revenue</h3>
+            <p>JSON content gets steady traffic from web development, API development, and backend programming searches. Keywords like "JSON formatter", "JSON validator", and "API data parsing" consistently attract developers.</p>
+            <p>Providing "REST API basics", "JSON vs XML comparison", and "API response structure design" alongside tool usage gives web developers valuable information. Including actual code examples improves search exposure, and practical tutorials are effective for backlink acquisition.</p>
+        </div>
+        
+        <div class="more-tools">
+            <h3>📌 More Utilities</h3>
+            <a href="text.html">→ Text Tools</a>
+            <a href="base64.html">→ Base64 Encoder</a>
+            <a href="url.html">→ URL Encoder</a>
+            <a href="hash.html">→ Hash Generator</a>
+            <a href="uuid.html">→ UUID Generator</a>
+            <a href="password.html">→ Password Generator</a>
+        </div>
+
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            localStorage.setItem('util-lang', lang);
+        }
+        const savedLang = localStorage.getItem('util-lang') || 'ko';
+        setLang(savedLang);
+        
+        function updateStats() {
+            const out = document.getElementById('output').value;
+            document.getElementById('chars').textContent = out.length + ' chars';
+            document.getElementById('lines').textContent = out.split('\n').length + ' lines';
+        }
+        function beautify() {
+            try {
+                const obj = JSON.parse(document.getElementById('input').value);
+                document.getElementById('output').value = JSON.stringify(obj, null, 2);
+                document.getElementById('output').style.color = 'var(--text)';
+            } catch (e) { document.getElementById('output').value = 'Error: ' + e.message; }
+            updateStats();
+        }
+        function minify() {
+            try {
+                const obj = JSON.parse(document.getElementById('input').value);
+                document.getElementById('output').value = JSON.stringify(obj);
+                document.getElementById('output').style.color = 'var(--text)';
+            } catch (e) { document.getElementById('output').value = 'Error: ' + e.message; }
+            updateStats();
+        }
+        function validate() {
+            try {
+                JSON.parse(document.getElementById('input').value);
+                document.getElementById('output').value = '✅ 유효한 JSON입니다! / Valid JSON!';
+                document.getElementById('output').style.color = '#4CAF50';
+            } catch (e) { document.getElementById('output').value = '❌ 오류: ' + e.message; }
+            updateStats();
+        }
+        function copyJson() { navigator.clipboard.writeText(document.getElementById('output').value); }
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

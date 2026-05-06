@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://freeutilities.pages.dev/sitemap.xml

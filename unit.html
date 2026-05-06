@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>단위 변환기 - Unit Converter</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        select, input { width: 100%; padding: 12px; background: var(--input-bg); color: var(--text); border: none; border-radius: 8px; font-size: 1rem; margin-bottom: 15px; }
+        .result { padding: 20px; background: var(--input-bg); border-radius: 10px; font-size: 1.5rem; text-align: center; font-weight: bold; color: var(--accent); margin-bottom: 30px; }
+        .content-section { margin-top: 30px; background: var(--card-bg); padding: 25px; border-radius: 12px; line-height: 1.9; border: 1px solid rgba(102,126,234,0.2); }
+        .content-section h3 { color: var(--accent); margin-bottom: 20px; margin-top: 25px; font-size: 1.1rem; }
+        .content-section h3:first-child { margin-top: 0; }
+        .content-section h4 { color: #8892f0; margin-top: 20px; margin-bottom: 10px; font-size: 1rem; }
+        .content-section p { margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; }
+        .more-tools { margin-top: 40px; padding: 20px; background: var(--card-bg); border-radius: 10px; }
+        .more-tools h3 { margin-bottom: 15px; color: var(--accent); }
+        .more-tools a { display: block; color: var(--text-muted); text-decoration: none; padding: 8px 0; }
+        .more-tools a:hover { color: var(--accent); }
+        body.lang-en .content-section.ko,
+        body.lang-en h1 .ko,
+        body.lang-en .description .ko { display: none !important; }
+        body.lang-ko .content-section.en,
+        body.lang-ko h1 .en,
+        body.lang-ko .description .en { display: none !important; }
+        body.lang-en .lang-btn:last-child,
+        body.lang-ko .lang-btn:first-child { background: var(--accent); }
+        body.lang-en .lang-btn:first-child,
+        body.lang-ko .lang-btn:last-child { background: var(--card-bg); }
+        .ads { margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">⚖️ 단위 변환기</span>
+            <span class="en">⚖️ Unit Converter</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">길이, 무게, 온도, 면적 등 다양한 단위를 변환합니다. 여행, 요리, 학업, 업무에 유용합니다.</span>
+            <span class="en">Convert length, weight, temperature, area and more. Useful for travel, cooking, study, and work.</span>
+        </div>
+        
+        <select id="category" onchange="updateUnits()">
+            <option value="length">📏 길이 (Length)</option>
+            <option value="weight">⚖️ 무게 (Weight)</option>
+            <option value="temp">🌡️ 온도 (Temperature)</option>
+            <option value="area">📐 면적 (Area)</option>
+            <option value="volume">🧊 부피 (Volume)</option>
+            <option value="speed">🚀 속도 (Speed)</option>
+        </select>
+        
+        <input type="number" id="value" placeholder="값 입력..." oninput="convert()">
+        
+        <select id="fromUnit"></select>
+        <span style="text-align:center;display:block;margin:10px 0;">↓ = ↓</span>
+        <select id="toUnit"></select>
+        
+        <div class="result" id="result">0</div>
+        
+        <!-- 한국어 콘텐츠 -->
+        <div class="content-section ko">
+            <h3>⚖️ 단위 변환기란? 왜 필요한가?</h3>
+            <p>단위 변환기는 서로 다른 측정 단위 사이의 값을 변환하는 도구입니다. 우리가 일상에서遭遇하는 대부분의 측정값은 국가나 분야에 따라 다른 단위를 사용합니다. 예를 들어, 한국에서는 거리를 km로 표현하지만 미국에서는 마일(mile)을 사용합니다. 요리할 때 Oz(온스)를/ml(밀리리터)를 변환해야 하는 상황도 많고, 학술论文이나 기술 문서에서는requently 단위 변환이 필요합니다.</p>
+            
+            <h3>📏 길이 단위 변환의 이해</h3>
+            <p>길이 단위 변환은 여행, 무역, 엔지니어링에서 가장 많이 사용됩니다. 한국에서 사용하는 미터법(m)과 미국에서 사용하는 야드파운드법(inch, foot, yard, mile)의 관계를 정확히 이해하는 것이 중요합니다. 1inch는 정확히 2.54cm이고, 1foot는 12inch, 1yard는 3feet, 1mile는 approximately 1.609km입니다. 이러한 기본 변환 계수를 기억하면 빠른 계산이 가능합니다.</p>
+            <p>특히 항공기와 해운 화물에서는 단위 변환이 매출에直接影响됩니다. 무게를 kg이 아닌 lb(파운드)로 계산하거나, 부피를 CBM(cubic meter)이 아닌 CFT(cubic feet)로 계산해야 하는 경우도 있습니다. 정확한 단위 변환은 비용 절약과 오류 방지의 핵심입니다.</p>
+            
+            <h3>🌡️ 온도 변환: 화씨와 섭씨</h3>
+            <p>온도 변환은 특히 여행이나 국제 거래에서 자주 필요합니다. 미국, 영국 등 일부 국가에서는 화씨(Fahrenheit)를 사용하며, 대부분의其他国家는 섭씨(Celsius)를 사용합니다. 변환 공식은 다음과 같습니다: 화씨에서 섭씨로 변환하려면 32를 빼고 5/9를 곱하고, 섭씨에서 화씨로 변환하려면 9/5를 곱하고 32를 더합니다.</p>
+            <p>실용적인 팁으로, 섭씨 0도는 화씨 32도(물의 어는점), 섭씨 100도는 화씨 212도(물의 끓는점)라는 것을 기억하면概略치환이 가능합니다. 또한 절대 온도 Kelvin은 과학 분야에서广泛使用되며, 0K는 -273.15도에 해당합니다.</p>
+            
+            <h3>💡 실전 활용 사례</h3>
+            <p><strong>1. 요리:</strong> 해외 레시피를 따라할 때 Oz(온스)를 g(그램)으로, 컵(cup)을 ml로 변환해야 합니다. 1 컵은 약 240ml, 1 Oz는 약 28g입니다. 정확한 변환은 레시피의 성공을 좌우합니다.</p>
+            <p><strong>2. 여행:</strong> 미국에서 렌터카 시 마일 단위로 거리를 계산하거나, 짐 무게 제한이 lb로 표기되어 있으면 kg으로 환산해야 합니다. 사전에 변환 값을 알고 있으면 surprises를 피할 수 있습니다.</p>
+            <p><strong>3. 비즈니스:</strong> 국제 무역에서 제품 규격, 포장 크기, 화물 무게 등을 다양한 단위로 소통해야 합니다. 특히.container specifications이나 pallet sizes는 표준화가 중요합니다.</p>
+            <p><strong>4. 학업:</strong> 물리, 화학, 생물학 실험에서 측정값을 SI 단위로统一하거나,論文 작성 시 단위를 통일하는 작업이 필수적입니다.</p>
+            
+            <h3>🎯 AdSense 수익을 위한 블로그 콘텐츠 전략</h3>
+            <p>단위 변환 관련 콘텐츠는 검색량이 꾸준하고 비교적 경쟁이激烈하지 않은 틈새시장입니다. "km to mile 변환", "oz to gram 변환", "화씨 섭씨 변환" 등의 키워드는 매년 안정적인 검색량을 보입니다. 이러한 키워드로 콘텐츠를 제작하면 장기적으로 검색 유입을 기대할 수 있습니다.</p>
+            <p>특히 "해외 레시피 단위 변환표", "여행 준비 단위 변환 가이드", "학생을 위한 단위 변환표" 등 구체적인 상황별 가이드를 만들면 더 많은 독자에게 도달할 수 있습니다. 표와 그래프를 적극 활용하면 시각적 효과가 높아져 체류 시간이 길어지고, 이는 AdSense 수익에 긍정적인 영향을 미칩니다.</p>
+        </div>
+        
+        <!-- English Content -->
+        <div class="content-section en">
+            <h3>⚖️ What is a Unit Converter? Why Do You Need It?</h3>
+            <p>A unit converter transforms values between different measurement units. Most measurements use different units depending on country and field. Korea uses metric (km), while the US uses imperial (mile). Cooking often requires Oz-to-gram conversions, and academic papers frequently need unit transformations.</p>
+            
+            <h3>📏 Understanding Length Unit Conversion</h3>
+            <p>Length conversion is most used in travel, trade, and engineering. Korea uses metric (m) while the US uses imperial (inch, foot, yard, mile). Key conversions: 1 inch = 2.54cm, 1 foot = 12 inches, 1 yard = 3 feet, 1 mile ≈ 1.609km. Remembering these helps with quick calculations.</p>
+            <p>In aviation and shipping, accurate weight conversion affects revenue. Knowing whether to calculate in kg or lb, CBM or CFT, can mean cost savings and error prevention.</p>
+            
+            <h3>🌡️ Temperature: Fahrenheit vs Celsius</h3>
+            <p>Temperature conversion is essential for travel and international trade. The US and UK use Fahrenheit while most others use Celsius. Formulas: F to C = (F-32)×5/9; C to F = C×9/5+32. Memorize: 0°C = 32°F (freezing), 100°C = 212°F (boiling).</p>
+            
+            <h3>💡 Real-World Applications</h3>
+            <p><strong>1. Cooking:</strong> Following foreign recipes requires Oz-to-gram and cup-to-ml conversions. 1 cup ≈ 240ml, 1 Oz ≈ 28g. Accurate conversion determines recipe success.</p>
+            <p><strong>2. Travel:</strong> Renting a car in the US requires mile-to-km calculation. Luggage weight limits in lb need conversion to kg. Pre-knowledge prevents surprises.</p>
+            <p><strong>3. Business:</strong> International trade requires product specs, packaging, and weight in various units. Container and pallet specifications need standardization.</p>
+            <p><strong>4. Education:</strong> Physics, chemistry, biology labs require converting measurements to SI units. Paper writing needs uniform units.</p>
+            
+            <h3>🎯 Blog Strategy for AdSense Revenue</h3>
+            <p>Unit conversion content has steady search volume with relatively low competition. Keywords like "km to mile", "oz to gram", "F to C conversion" show annual stability. Creating situation-specific guides like "overseas recipe conversion chart" or "student unit conversion table" reaches more readers.</p>
+            <p>Using tables and graphs increases visual appeal, extends dwell time, and positively impacts AdSense revenue.</p>
+        </div>
+        
+        <div class="more-tools">
+            <h3>📌 More Utilities</h3>
+            <a href="text.html">→ Text Tools</a>
+            <a href="bmi.html">→ BMI Calculator</a>
+            <a href="base64.html">→ Base64 Encoder</a>
+            <a href="url.html">→ URL Encoder</a>
+            <a href="color.html">→ Color Converter</a>
+            <a href="time.html">→ Time Calculator</a>
+            <a href="qrcode.html">→ QR Code Generator</a>
+        </div>
+
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <script>
+        const units = {
+            length: { m: 1, km: 1000, cm: 0.01, mm: 0.001, inch: 0.0254, ft: 0.3048, yard: 0.9144, mile: 1609.34 },
+            weight: { kg: 1, g: 0.001, mg: 0.000001, lb: 0.453592, oz: 0.0283495, ton: 1000 },
+            temp: { C: 'C', F: 'F', K: 'K' },
+            area: { m2: 1, km2: 1000000, ha: 10000, acre: 4046.86, ft2: 0.092903, pyung: 3.30579 },
+            volume: { L: 1, ml: 0.001, m3: 1000, gallon: 3.78541, cup: 0.24 },
+            speed: { 'm/s': 1, 'km/h': 0.277778, 'mph': 0.44704, knot: 0.514444 }
+        };
+        
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            localStorage.setItem('util-lang', lang);
+        }
+        const savedLang = localStorage.getItem('util-lang') || 'ko';
+        setLang(savedLang);
+        
+        function updateUnits() {
+            const cat = document.getElementById('category').value;
+            const from = document.getElementById('fromUnit');
+            const to = document.getElementById('toUnit');
+            from.innerHTML = to.innerHTML = '';
+            Object.keys(units[cat]).forEach(u => {
+                from.innerHTML += `<option value="${u}">${u}</option>`;
+                to.innerHTML += `<option value="${u}">${u}</option>`;
+            });
+            if (to.options[1]) to.selectedIndex = 1;
+        }
+        function convert() {
+            const cat = document.getElementById('category').value;
+            const val = parseFloat(document.getElementById('value').value) || 0;
+            const from = document.getElementById('fromUnit').value;
+            const to = document.getElementById('toUnit').value;
+            if (cat === 'temp') {
+                let c;
+                if (from === 'F') c = (val - 32) * 5/9;
+                else if (from === 'K') c = val - 273.15;
+                else c = val;
+                let result;
+                if (to === 'F') result = c * 9/5 + 32;
+                else if (to === 'K') result = c + 273.15;
+                else result = c;
+                document.getElementById('result').textContent = result.toFixed(4) + ' ' + to;
+            } else {
+                const base = val * units[cat][from];
+                const result = base / units[cat][to];
+                document.getElementById('result').textContent = result.toFixed(6) + ' ' + to;
+            }
+        }
+        updateUnits();
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

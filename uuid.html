@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UUID 생성기 - UUID Generator</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎲</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        .uuid-display { padding: 20px; background: var(--card-bg); border-radius: 10px; margin-bottom: 20px; text-align: center; }
+        .uuid-value { font-size: 1.3rem; font-family: monospace; color: var(--accent); word-break: break-all; padding: 15px; background: var(--input-bg); border-radius: 8px; margin-bottom: 15px; }
+        .btn { padding: 15px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; width: 100%; margin-bottom: 10px; }
+        .btn-secondary { background: var(--card-bg); border: 1px solid var(--accent); }
+        .content-section { margin-top: 30px; background: var(--card-bg); padding: 25px; border-radius: 12px; line-height: 1.9; border: 1px solid rgba(102,126,234,0.2); }
+        .content-section h3 { color: var(--accent); margin-bottom: 20px; margin-top: 25px; font-size: 1.1rem; }
+        .content-section h3:first-child { margin-top: 0; }
+        .content-section p { margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; }
+        .more-tools { margin-top: 40px; padding: 20px; background: var(--card-bg); border-radius: 10px; }
+        .more-tools h3 { margin-bottom: 15px; color: var(--accent); }
+        .more-tools a { display: block; color: var(--text-muted); text-decoration: none; padding: 8px 0; }
+        .more-tools a:hover { color: var(--accent); }
+        body.lang-en .content-section.ko,
+        body.lang-en h1 .ko,
+        body.lang-en .description .ko { display: none !important; }
+        body.lang-ko .content-section.en,
+        body.lang-ko h1 .en,
+        body.lang-ko .description .en { display: none !important; }
+        body.lang-en .lang-btn:last-child,
+        body.lang-ko .lang-btn:first-child { background: var(--accent); }
+        body.lang-en .lang-btn:first-child,
+        body.lang-ko .lang-btn:last-child { background: var(--card-bg); }
+        .ads { margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">🎲 UUID 생성기</span>
+            <span class="en">🎲 UUID Generator</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">UUID(범용 고유 식별자)를 생성합니다. 데이터베이스 ID, 세션 식별자, 트랜잭션 ID 등에 활용됩니다.</span>
+            <span class="en">Generate UUID (Universal Unique Identifier). Used for database IDs, session identifiers, transaction IDs, and more.</span>
+        </div>
+        
+        <div class="uuid-display">
+            <div class="uuid-value" id="uuidValue">-</div>
+            <button class="btn" onclick="generateUUID()">
+                <span class="ko">🔄 새 UUID 생성</span>
+                <span class="en">🔄 Generate New UUID</span>
+            </button>
+            <button class="btn btn-secondary" onclick="copyUUID()">
+                <span class="ko">📋 복사</span>
+                <span class="en">📋 Copy</span>
+            </button>
+        </div>
+        
+        <!-- 한국어 콘텐츠 -->
+        <div class="content-section ko">
+            <h3>🎲 UUID란 무엇인가?</h3>
+            <p>UUID(Universally Unique Identifier, 범용 고유 식별자)는 소프트웨어에서 개체를 고유하게 식별하기 위해使用되는 128비트 숫자 형식입니다. 표준화된 형식으로, "550e8400-e29b-41d4-a716-446655440000"과 같이 5개의 그룹으로 표현됩니다. 수학적으로 동일한 UUID가 생성될 확률은 극히 낮아, 분산 시스템에서도 충돌 없이 고유한 식별자를 만들 수 있습니다.</p>
+            <p>UUID의 가장 큰 장점은 중앙 관리 없이도 全球적으로 고유한 식별자를 생성할 수 있다는 것입니다. 데이터베이스의 기본 키, 분산 캐시의 키, 메시지 큐의 메시지 ID, 로그 추적의 트랜잭션 ID 등 다양한用途に使用됩니다.</p>
+            
+            <h3>🔢 UUID 버전의 종류</h3>
+            <p>UUID에는 여러 버전이 존재하며, 각각 다른 생성 방법을 사용합니다. <strong>UUID v1</strong>은 생성 시간과 MAC 주소를 기반으로 만들어지며, <strong>UUID v4</strong>는 완전한 무작위로 생성됩니다. 가장 널리 사용되는 것은 v4로, 예측 불가능성과 무결성이 보장됩니다.</p>
+            <p><strong>UUID v3</strong>와 <strong>v5</strong>는 이름 기반으로,相同的 입력에서 항상 동일한 UUID를 생성합니다. 이는 DNS 이름이나 URL에서 파생된 식별자를 만들 때 유용합니다.</p>
+            
+            <h3>💻 프로그래밍에서의 UUID 활용</h3>
+            <p>대부분의 프로그래밍 언어는 UUID 생성 기능을 기본으로 제공하고 있습니다. Python에서는 <code>uuid.uuid4()</code>, JavaScript에서는 <code>crypto.randomUUID()</code> (Node.js 14.17+), Java에서는 <code>UUID.randomUUID()</code>를 사용하여 쉽게 생성할 수 있습니다.</p>
+            <p>데이터베이스 연동 시 UUID를 기본 키로 사용하면分布式 환경에서 자동으로 키 충돌을回避할 수 있어 유리합니다. 또한 보안적으로 민감한 데이터를 식별자로 사용할 때 UUID의 무작위성은 예측 공격을 효과적으로防止합니다.</p>
+            
+            <h3>⚖️ UUID의 장단점</h3>
+            <p><strong>장점:</strong> 중앙 관리 불필요, 글로벌 고유성, 예측 불可能性,分布式 시스템 호환</p>
+            <p><strong>단점:</strong> 36자리의 긴 문자열 (저장 공간 증가), 인덱스 성능 저하 (sequential ID 대비), 읽기 어려움 (숫자보다)</p>
+            <p> 따라서 성능이 중요한 읽기 중심의 시스템에서는 auto-increment ID를, 분산 환경이나 보안이 중요한 시스템에서는 UUID를 선택하는 것이 좋습니다.</p>
+            
+            <h3>🎯 AdSense 수익을 위한 개발 블로그 전략</h3>
+            <p>UUID 관련 콘텐츠는 백엔드 개발, 데이터베이스 설계, 소프트웨어 아키텍처 검색에서 꾸준한 트래픽을 벌어다줍니다. "UUID 생성 방법", "UUID란", "데이터베이스 기본 키 선택" 등의 키워드는 개발자 검색에서 꾸준히 접근됩니다.</p>
+            <p>도구 사용법과 함께 "UUID vs auto-increment 비교", "분산 시스템 식별자 설계", "REST API ID 전략" 등의 콘텐츠를 함께 제공하면 백엔드 개발자에게 유용한 정보를 줄 수 있습니다.</p>
+        </div>
+        
+        <!-- English Content -->
+        <div class="content-section en">
+            <h3>🎲 What is UUID?</h3>
+            <p>UUID (Universally Unique Identifier) is a 128-bit number format used to uniquely identify entities in software. A standardized format expressed as five groups like "550e8400-e29b-41d4-a716-446655440000". Mathematically, the probability of generating the same UUID is extremely low, allowing unique identifiers without collisions in distributed systems.</p>
+            <p>UUID's biggest advantage is generating globally unique identifiers without central management. Used for database primary keys, distributed cache keys, message queue IDs, and transaction tracking IDs.</p>
+            
+            <h3>🔢 UUID Version Types</h3>
+            <p>UUID has several versions using different generation methods. <strong>UUID v1</strong> is based on generation time and MAC address. <strong>UUID v4</strong> is completely random—the most widely used, guaranteeing unpredictability and integrity.</p>
+            <p><strong>UUID v3</strong> and <strong>v5</strong> are name-based, always generating the same UUID from identical input. Useful for creating identifiers derived from DNS names or URLs.</p>
+            
+            <h3>💻 Using UUID in Programming</h3>
+            <p>Most programming languages provide UUID generation by default. Python uses <code>uuid.uuid4()</code>, JavaScript uses <code>crypto.randomUUID()</code> (Node.js 14.17+), Java uses <code>UUID.randomUUID()</code>.</p>
+            <p>Using UUID as primary keys in database integration automatically avoids key collisions in distributed environments. UUID randomness also effectively prevents prediction attacks when using sensitive data identifiers.</p>
+            
+            <h3>⚖️ UUID Pros and Cons</h3>
+            <p><strong>Pros:</strong> No central management, global uniqueness, unpredictability, distributed system compatibility</p>
+            <p><strong>Cons:</strong> Long 36-character string (storage increase), index performance degradation (vs sequential ID), harder to read (than numbers)</p>
+            <p>Choose auto-increment IDs for read-heavy systems where performance matters, and UUIDs for distributed environments or security-critical systems.</p>
+            
+            <h3>🎯 Blog Strategy for AdSense Revenue</h3>
+            <p>UUID content gets steady traffic from backend development, database design, and software architecture searches. Keywords like "UUID generation method", "what is UUID", and "database primary key selection" consistently attract developers.</p>
+            <p>Providing "UUID vs auto-increment comparison", "distributed system identifier design", and "REST API ID strategy" alongside tool usage gives backend developers valuable information.</p>
+        </div>
+        
+        <div class="more-tools">
+            <h3>📌 More Utilities</h3>
+            <a href="hash.html">→ Hash Generator</a>
+            <a href="password.html">→ Password Generator</a>
+            <a href="random.html">→ Random Number</a>
+            <a href="text.html">→ Text Tools</a>
+            <a href="json.html">→ JSON Formatter</a>
+            <a href="base64.html">→ Base64 Encoder</a>
+        </div>
+
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            localStorage.setItem('util-lang', lang);
+        }
+        const savedLang = localStorage.getItem('util-lang') || 'ko';
+        setLang(savedLang);
+        
+        function generateUUID() {
+            // Simple UUID v4 generator
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+        function updateUUID() {
+            document.getElementById('uuidValue').textContent = generateUUID();
+        }
+        function copyUUID() { navigator.clipboard.writeText(document.getElementById('uuidValue').textContent); }
+        updateUUID();
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>랜덤 번호 생성기 - Random Number Generator</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎲</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        .option-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        input[type="number"] { width: 120px; padding: 8px; background: var(--input-bg); color: var(--text); border: none; border-radius: 6px; }
+        input[type="checkbox"] { width: 20px; height: 20px; }
+        .btn { padding: 15px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; width: 100%; margin-bottom: 10px; }
+        .result-box { padding: 30px; background: var(--card-bg); border-radius: 10px; text-align: center; margin-bottom: 30px; }
+        .result-value { font-size: 3rem; color: var(--accent); font-weight: bold; }
+        .result-list { margin-top: 20px; font-size: 1.1rem; word-break: break-all; color: var(--text-muted); }
+        .content-section { margin-top: 30px; background: var(--card-bg); padding: 25px; border-radius: 12px; line-height: 1.9; border: 1px solid rgba(102,126,234,0.2); }
+        .content-section h3 { color: var(--accent); margin-bottom: 20px; margin-top: 25px; font-size: 1.1rem; }
+        .content-section h3:first-child { margin-top: 0; }
+        .content-section p { margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; }
+        .more-tools { margin-top: 40px; padding: 20px; background: var(--card-bg); border-radius: 10px; }
+        .more-tools h3 { margin-bottom: 15px; color: var(--accent); }
+        .more-tools a { display: block; color: var(--text-muted); text-decoration: none; padding: 8px 0; }
+        .more-tools a:hover { color: var(--accent); }
+        body.lang-en .content-section.ko,
+        body.lang-en h1 .ko,
+        body.lang-en .description .ko { display: none !important; }
+        body.lang-ko .content-section.en,
+        body.lang-ko h1 .en,
+        body.lang-ko .description .en { display: none !important; }
+        body.lang-en .lang-btn:last-child,
+        body.lang-ko .lang-btn:first-child { background: var(--accent); }
+        body.lang-en .lang-btn:first-child,
+        body.lang-ko .lang-btn:last-child { background: var(--card-bg); }
+        .ads { margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">🎲 랜덤 번호 생성기</span>
+            <span class="en">🎲 Random Number Generator</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">지정된 범위 내에서 랜덤 숫자를 생성합니다. 복권, 게임, 데이터 샘플링,抽奖에 활용됩니다.</span>
+            <span class="en">Generate random numbers within a specified range. Used for lottery, games, data sampling, and raffles.</span>
+        </div>
+        
+        <div class="option-row">
+            <label>
+                <span class="ko">최소값</span>
+                <span class="en">Minimum</span>
+            </label>
+            <input type="number" id="minVal" value="1">
+        </div>
+        
+        <div class="option-row">
+            <label>
+                <span class="ko">최대값</span>
+                <span class="en">Maximum</span>
+            </label>
+            <input type="number" id="maxVal" value="100">
+        </div>
+        
+        <div class="option-row">
+            <label>
+                <span class="ko">생성 개수</span>
+                <span class="en">Count</span>
+            </label>
+            <input type="number" id="count" value="1" min="1" max="100">
+        </div>
+        
+        <div class="option-row">
+            <label>
+                <span class="ko">중복 허용</span>
+                <span class="en">Allow Duplicates</span>
+            </label>
+            <input type="checkbox" id="unique" checked>
+        </div>
+        
+        <button class="btn" onclick="generate()">
+            <span class="ko">🎲 번호 생성</span>
+            <span class="en">🎲 Generate</span>
+        </button>
+        
+        <div class="result-box">
+            <div class="result-value" id="singleResult">-</div>
+            <div class="result-list" id="listResult"></div>
+        </div>
+        
+        <!-- 한국어 콘텐츠 -->
+        <div class="content-section ko">
+            <h3>🎲 랜덤 번호란 무엇인가?</h3>
+            <p>랜덤 번호는 예측 불가능한 순서로 생성되는 숫자입니다. 도박, 게임, 통계 샘플링, 보안 등 다양한领域에서 활용됩니다. 진정한 무작위성(True Random)은 물리적 현상(열잡음, 방사성衰変 등)에서 비롯되며, 컴퓨터에서 생성되는 의사 랜덤(Pseudo-random)은 알고리즘에 기반합니다.</p>
+            
+            <h3>💻 컴퓨터의 랜덤 생성</h3>
+            <p>컴퓨터의 랜덤 번호 생성은 크게 두 가지로 나뉩니다. <strong>진짜 랜덤 번호 생성기(TRNG)</strong>는 물리적 현상을 기반으로 Truly 예측 불가능한 숫자를 생성합니다. <strong>의사 랜덤 번호 생성기(PRNG)</strong>는 시드(seed) 값으로 시작하여 알고리즘을 통해 다음 값을 예측합니다. 대부분의 응용 프로그램에서는 PRNG로 충분합니다.</p>
+            <p>JavaScript의 <code>Math.random()</code>은 0부터 1 사이의 부동소수점을 반환하며, 이를 원하는 범위로 변환하여 사용합니다. 보안이 중요한 경우에는 <code>crypto.getRandomValues()</code>를 사용해야 합니다.</p>
+            
+            <h3>🎯 활용 사례</h3>
+            <p><strong>抽奖/복권:</strong> Event 당첨자 추첨,ランダム 선택에 활용</p>
+            <p><strong>게임:</strong> 주사위, 야구 게임 등 확률 기반 요소 구현</p>
+            <p><strong>샘플링:</strong> 통계 조사에서 무작위 표본 추출</p>
+            <p><strong>테스트:</strong> 테스트 데이터 무작위 생성</p>
+            
+            <h3>🎯 AdSense 수익을 위한 게임 블로그 전략</h3>
+            <p>랜덤 번호 관련 콘텐츠는 게임, 이벤트, 통계 학습 검색에서 꾸준한 트래픽을 벌어다줍니다. "주사위 시뮬레이터", "抽奖 도구", "무작위 추첨" 등의 키워드는 검색량이 높습니다.</p>
+        </div>
+        
+        <!-- English Content -->
+        <div class="content-section en">
+            <h3>🎲 What are Random Numbers?</h3>
+            <p>Random numbers are generated in unpredictable sequences. Used in gambling, gaming, statistical sampling, security, and more. True randomness comes from physical phenomena (thermal noise, radioactive decay), while computer-generated pseudo-randomness is algorithm-based.</p>
+            
+            <h3>💻 Computer Random Generation</h3>
+            <p>Computer random number generation falls into two categories. <strong>True Random Number Generators (TRNG)</strong> use physical phenomena for genuinely unpredictable numbers. <strong>Pseudo-Random Number Generators (PRNG)</strong> start with a seed and predict next values via algorithm. PRNG suffices for most applications.</p>
+            <p>JavaScript's <code>Math.random()</code> returns floating points between 0 and 1—transform to desired range. For security-critical uses, use <code>crypto.getRandomValues()</code>.</p>
+            
+            <h3>🎯 Use Cases</h3>
+            <p><strong>Raffles/Lottery:</strong> Event winners, random selection</p>
+            <p><strong>Gaming:</strong> Dice, probability-based elements</p>
+            <p><strong>Sampling:</strong> Random sample extraction in statistical surveys</p>
+            <p><strong>Testing:</strong> Random test data generation</p>
+            
+            <h3>🎯 Blog Strategy for AdSense Revenue</h3>
+            <p>Random number content gets steady traffic from gaming, events, and statistics learning searches. Keywords like "dice simulator", "raffle tool", and "random picker" have high search volume.</p>
+        </div>
+        
+        <div class="more-tools">
+            <h3>📌 More Utilities</h3>
+            <a href="uuid.html">→ UUID Generator</a>
+            <a href="password.html">→ Password Generator</a>
+            <a href="lorem.html">→ Lorem Ipsum</a>
+            <a href="text.html">→ Text Tools</a>
+        </div>
+
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            localStorage.setItem('util-lang', lang);
+        }
+        const savedLang = localStorage.getItem('util-lang') || 'ko';
+        setLang(savedLang);
+        
+        function generate() {
+            const min = parseInt(document.getElementById('minVal').value);
+            const max = parseInt(document.getElementById('maxVal').value);
+            const count = parseInt(document.getElementById('count').value);
+            const unique = document.getElementById('unique').checked;
+            
+            if (min >= max) {
+                alert('최소값이 최대값보다 작아야 합니다.');
+                return;
+            }
+            
+            const results = [];
+            if (unique && count > (max - min + 1)) {
+                alert('중복 없이 생성 가능한 개수를 초과했습니다.');
+                return;
+            }
+            
+            while (results.length < count) {
+                const num = Math.floor(Math.random() * (max - min + 1)) + min;
+                if (!unique || !results.includes(num)) {
+                    results.push(num);
+                }
+            }
+            
+            if (count === 1) {
+                document.getElementById('singleResult').textContent = results[0];
+                document.getElementById('listResult').textContent = '';
+            } else {
+                document.getElementById('singleResult').textContent = results[0];
+                document.getElementById('listResult').textContent = results.join(', ');
+            }
+        }
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

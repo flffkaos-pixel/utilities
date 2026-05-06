@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL 인코더/디코더 - URL Encoder/Decoder</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .lang-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .lang-btn { padding: 6px 15px; background: var(--card-bg); color: var(--text); border: 1px solid var(--accent); border-radius: 15px; cursor: pointer; font-size: 0.8rem; }
+        textarea { width: 100%; min-height: 100px; padding: 15px; background: var(--input-bg); color: var(--text); border: none; border-radius: 10px; font-size: 0.95rem; margin-bottom: 15px; font-family: monospace; }
+        .btn-group { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .btn { padding: 12px 20px; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.9rem; flex: 1; min-width: 120px; }
+        .result-box { padding: 15px; background: var(--card-bg); border-radius: 10px; margin-bottom: 30px; }
+        .result-box textarea { background: var(--input-bg); min-height: 80px; }
+        .content-section { margin-top: 30px; background: var(--card-bg); padding: 25px; border-radius: 12px; line-height: 1.9; border: 1px solid rgba(102,126,234,0.2); }
+        .content-section h3 { color: var(--accent); margin-bottom: 20px; margin-top: 25px; font-size: 1.1rem; }
+        .content-section h3:first-child { margin-top: 0; }
+        .content-section h4 { color: #8892f0; margin-top: 20px; margin-bottom: 10px; font-size: 1rem; }
+        .content-section p { margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; }
+        .content-section ul { margin: 15px 0; padding-left: 20px; }
+        .content-section li { margin-bottom: 10px; color: var(--text-muted); }
+        .more-tools { margin-top: 40px; padding: 20px; background: var(--card-bg); border-radius: 10px; }
+        .more-tools h3 { margin-bottom: 15px; color: var(--accent); }
+        .more-tools a { display: block; color: var(--text-muted); text-decoration: none; padding: 8px 0; }
+        .more-tools a:hover { color: var(--accent); }
+        body.lang-en .content-section.ko,
+        body.lang-en h1 .ko,
+        body.lang-en .description .ko { display: none !important; }
+        body.lang-ko .content-section.en,
+        body.lang-ko h1 .en,
+        body.lang-ko .description .en { display: none !important; }
+        body.lang-en .lang-btn:last-child,
+        body.lang-ko .lang-btn:first-child { background: var(--accent); }
+        body.lang-en .lang-btn:first-child,
+        body.lang-ko .lang-btn:last-child { background: var(--card-bg); }
+        .ads { margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body class="lang-ko">
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+            <div class="lang-toggle">
+                <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
+        
+        <h1>
+            <span class="ko">🔗 URL 인코더/디코더</span>
+            <span class="en">🔗 URL Encoder/Decoder</span>
+        </h1>
+        
+        <div class="description">
+            <span class="ko">URL의特殊문자를 安全하게 변환합니다. 웹 개발, API 요청, 공유URL制备에 필수입니다.</span>
+            <span class="en">Safely encode special characters in URLs. Essential for web development, API requests, and URL sharing.</span>
+        </div>
+        
+        <textarea id="input" placeholder="URL 또는 텍스트 입력... / Enter URL or text..."></textarea>
+        
+        <div class="btn-group">
+            <button class="btn" onclick="encode()">
+                <span class="ko">인코딩 →</span>
+                <span class="en">Encode →</span>
+            </button>
+            <button class="btn" onclick="decode()">
+                <span class="ko">← 디코딩</span>
+                <span class="en">← Decode</span>
+            </button>
+        </div>
+        
+        <div class="result-box">
+            <textarea id="output" placeholder="결과... / Result..." readonly></textarea>
+            <button class="btn" onclick="copy()" style="margin-top:10px;">
+                <span class="ko">복사</span>
+                <span class="en">Copy</span>
+            </button>
+        </div>
+        
+        <!-- 한국어 콘텐츠 -->
+        <div class="content-section ko">
+            <h3>🔗 URL 인코딩이란 무엇인가?</h3>
+            <p>URL 인코딩(Percent-Encoding)은 URL에서 사용할 수 없는 special문자를 安全하게传输하기 위한 방법입니다. URL은ASCII 문자만 поддерживает하며, 한글, emoji, 공백, special기호 등은 그대로 사용할 수 없습니다. 따라서 이러한 문자를 URL-safe한 형태로 변환해야 하며, 이 과정을 URL 인코딩이라고 합니다.</p>
+            <p>예를 들어, "안녕하세요"라는 한글 문자열을 URL에 포함시키려면 "안녕하세요"를 "%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94"와 같은 형태로 변환해야 합니다. 이는 각 문자를UTF-8 바이트로 변환한 후, 각 바이트를 %XX 형식으로 표기한 것입니다.</p>
+            
+            <h3>📡 URL 인코딩이 필요한 상황</h3>
+            <p><strong>1. 검색어 전달:</strong> 사용자가 검색창에 "한글 검색어"를 입력하면, 브라우저는 이를 자동으로 URL 인코딩하여 서버로 전송합니다. 만약 인코딩 없이 전송하면 서버가 요청을 올바르게 해석하지 못할 수 있습니다.</p>
+            <p><strong>2. Query String 구성:</strong> URL의 ? 이후에 오는 query string에서 파라미터 값으로特殊문자를 사용해야 할 때 인코딩이 필수입니다. 예를 들어, https://example.com/search?q=coffee%20latte 에서 %20은 공백을 의미합니다.</p>
+            <p><strong>3. Form 제출:</strong> HTML form의 데이터가 GET 또는 POST 방식으로 서버로 전송될 때, 모든 데이터는 URL 인코딩을 거칩니다. 특히 multipart/form-data가 아닌application/x-www-form-urlencoded 방식에서는 모든 데이터가 인코딩됩니다.</p>
+            
+            <h3>⚠️ 자주 하는 실수와 해결 방법</h3>
+            <p>URL 인코딩에서 가장 흔한 실수는 <strong>중복 인코딩</strong>입니다. 이미 인코딩된 문자열을 다시 인코딩하면, % 문자가 %%로 변환되어 데이터가 깨집니다. 항상 인코딩 전 원본 데이터를 사용해야 하며, 디코딩 후에는 반드시 원본이 복원되었는지 확인해야 합니다.</p>
+            <p>또 다른 실수는 <strong>일부만 인코딩</strong>하는 것입니다. URL의 구조 部分(path, query, fragment)은 각각 다른 인코딩 규칙을 적용받습니다. query string 전체를 한 번에 인코딩하면 =나 &같은 구조적 문자까지 변환되어 정상적인 파라미터 구성이 불가능해집니다. 각 파라미터의 값만 인코딩하는 것이 правильный 접근입니다.</p>
+            
+            <h3>🛠️ 개발에서의 URL 인코딩 활용</h3>
+            <p>대부분의 프로그래밍 언어는 URL 인코딩/디코딩 함수를 기본으로 제공합니다. JavaScript에서는 <code>encodeURIComponent()</code>와 <code>decodeURIComponent()</code>를 사용하고, Python에서는 <code>urllib.parse.quote()</code>와 <code>unquote()</code>를 사용합니다. 특히 API를 개발하거나 외부 API를 호출할 때는 쿼리 매개변수를 정확히 인코딩하는 것이 요청 성공의 핵심입니다.</p>
+            <p>또한 프론트엔드 개발에서 페이지 이동 시 데이터를 전달하는 상황에서도 URL 인코딩이 활용됩니다. 예를 들어, 검색 결과를 공유하려면 현재 검색어를 URL에 포함시켜야 하는데, 이때 특수문자나 한글을 그대로 사용하면 브라우저가 오류를 발생시킬 수 있습니다.</p>
+            
+            <h3>🎯 AdSense 수익을 위한 웹 개발 블로그 전략</h3>
+            <p>URL 인코딩 관련 콘텐츠는 웹 개발, 프론트엔드, API 관련 검색에서 꾸준한 트래픽을 벌어다줍니다. "URL 인코딩 방법", "한글 URL 인코딩", " Percent-Encoding 설명" 등의 키워드는 개발자 검색에서 꾸준히 접근됩니다.</p>
+            <p>도구 사용법과 함께 "URL 구조 이해하기", "Query String 구성 방법", "API 요청시 주의사항" 등의 콘텐츠를 함께 제공하면 개발자에게 유용한 정보를 줄 수 있습니다. 코드 예제를 포함하면 검색 노출에 유리하고, 실용적인 팁을 제공하면 SNS에서 공유될 확률이 높아집니다.</p>
+        </div>
+        
+        <!-- English Content -->
+        <div class="content-section en">
+            <h3>🔗 What is URL Encoding?</h3>
+            <p>URL encoding (Percent-Encoding) is a method to safely transmit special characters that cannot be used directly in URLs. URLs only support ASCII characters, so Korean, emojis, spaces, and special symbols must be converted to a URL-safe format.</p>
+            <p>For example, the Korean string "안녕하세요" must be converted to "%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94". Each character is converted to UTF-8 bytes, then each byte is represented as %XX.</p>
+            
+            <h3>📡 When URL Encoding is Needed</h3>
+            <p><strong>1. Passing Search Queries:</strong> When a user enters "search term" in a search box, the browser automatically URL-encodes and transmits it. Without encoding, the server may not interpret the request correctly.</p>
+            <p><strong>2. Building Query Strings:</strong> When using special characters as parameter values in URLs, encoding is essential. For example, in https://example.com/search?q=coffee%20latte, %20 represents a space.</p>
+            <p><strong>3. Form Submissions:</strong> When HTML form data is transmitted to the server via GET or POST, all data undergoes URL encoding. In application/x-www-form-urlencoded mode, all data is encoded.</p>
+            
+            <h3>⚠️ Common Mistakes and Solutions</h3>
+            <p>The most common mistake is <strong>double encoding</strong>. Re-encoding an already-encoded string causes % to become %%, corrupting the data. Always use the original data before encoding, and verify the decoded result matches the original.</p>
+            <p>Another mistake is <strong>partial encoding</strong>. URL structure parts (path, query, fragment) each follow different encoding rules. Encoding the entire query string converts structural characters like = and &, making proper parameter configuration impossible. Only encode parameter values, not the entire string.</p>
+            
+            <h3>🛠️ Using URL Encoding in Development</h3>
+            <p>Most programming languages provide URL encoding/decoding functions. JavaScript uses <code>encodeURIComponent()</code> and <code>decodeURIComponent()</code>, Python uses <code>urllib.parse.quote()</code> and <code>unquote()</code>. When developing or calling APIs, correctly encoding query parameters is key to successful requests.</p>
+            <p>In frontend development, URL encoding is also used when passing data during page navigation. Sharing search results requires including the current search term in the URL—special characters or Korean without encoding can cause browser errors.</p>
+            
+            <h3>🎯 Blog Strategy for AdSense Revenue</h3>
+            <p>URL encoding content gets steady traffic from web development, frontend, and API-related searches. Keywords like "URL encoding method", "Korean URL encoding", and "Percent-Encoding explanation" consistently attract developers.</p>
+            <p>Providing "Understanding URL structure", "Query String building methods", and "API request precautions" alongside tool usage gives developers valuable information. Including code examples improves search exposure, and practical tips increase social sharing probability.</p>
+        </div>
+        
+        <div class="more-tools">
+            <h3>📌 More Utilities</h3>
+            <a href="base64.html">→ Base64 Encoder</a>
+            <a href="text.html">→ Text Tools</a>
+            <a href="hash.html">→ Hash Generator</a>
+            <a href="json.html">→ JSON Formatter</a>
+            <a href="uuid.html">→ UUID Generator</a>
+            <a href="password.html">→ Password Generator</a>
+        </div>
+
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            localStorage.setItem('util-lang', lang);
+        }
+        const savedLang = localStorage.getItem('util-lang') || 'ko';
+        setLang(savedLang);
+        
+        function encode() {
+            try {
+                document.getElementById('output').value = encodeURIComponent(document.getElementById('input').value);
+            } catch (e) { document.getElementById('output').value = 'Error'; }
+        }
+        function decode() {
+            try {
+                document.getElementById('output').value = decodeURIComponent(document.getElementById('input').value);
+            } catch (e) { document.getElementById('output').value = 'Error'; }
+        }
+        function copy() { navigator.clipboard.writeText(document.getElementById('output').value); }
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

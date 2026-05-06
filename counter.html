@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카운터 - Counter</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔢</text></svg>">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+    <style>
+        :root { --bg: #1a1a2e; --card-bg: #16213e; --text: #eee; --text-muted: #aaa; --accent: #667eea; --input-bg: #0f3460; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; color: var(--accent); }
+        .back { color: var(--text); text-decoration: none; font-size: 0.9rem; }
+        .description { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6; }
+        .counter-display { font-size: 5rem; font-weight: bold; text-align: center; color: var(--accent); padding: 40px; background: var(--card-bg); border-radius: 15px; margin-bottom: 30px; }
+        .btn-group { display: flex; gap: 15px; justify-content: center; margin-bottom: 20px; }
+        .btn { padding: 20px 40px; background: var(--accent); color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 1.5rem; }
+        .btn-reset { background: var(--card-bg); border: 2px solid var(--accent); }
+        .btn-inc { font-size: 2rem; }
+        .btn-dec { font-size: 2rem; }
+        .content-section { margin-top: 30px; background: var(--card-bg); padding: 25px; border-radius: 12px; line-height: 1.9; }
+        .content-section h3 { color: var(--accent); margin-bottom: 15px; }
+        .content-section p { margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; }
+        .more-tools { margin-top: 40px; padding: 20px; background: var(--card-bg); border-radius: 10px; }
+        .more-tools h3 { margin-bottom: 15px; color: var(--accent); }
+        .more-tools a { display: block; color: var(--text-muted); text-decoration: none; padding: 8px 0; }
+        .ads { margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back">← Back</a>
+        </div>
+        
+        <h1>🔢 카운터</h1>
+        
+        <div class="description">
+            숫자를 세거나 포인트를 추적합니다. 게임, 운동,イベント 관리에 활용됩니다.
+        </div>
+        
+        <div class="counter-display" id="count">0</div>
+        
+        <div class="btn-group">
+            <button class="btn btn-dec" onclick="decrement()">➖</button>
+            <button class="btn" onclick="reset()">🔄 초기화</button>
+            <button class="btn btn-inc" onclick="increment()">➕</button>
+        </div>
+        
+        <div class="content-section">
+            <h3>카운터 활용법</h3>
+            <p>• <strong>운동:</strong> 스쿼트, 푸시업, 버피 등 운동 횟수 카운트</p>
+            <p>• <strong>게임:</strong> 보드게임 포인트, 카드ゲームスコア</p>
+            <p>• <strong>イベント:</strong> 참가자 수,商品 판매 수량</p>
+            <p>• <strong>학습:</strong> 외운 단어 수,读完한 페이지 수</p>
+            
+            <h3>AdSense를 위한 팁</h3>
+            <p>카운터 관련 콘텐츠는 운동/피트니스, 게임, parenting 검색에서 트래픽을 벌어다줍니다. "운동 카운터", "포인트 추적", "습관养成" 등의 키워드가 유용합니다.</p>
+        </div>
+        
+        <div class="more-tools">
+            <h3>📌 더 많은 유틸리티</h3>
+            <a href="countdown.html">→ 카운트다운</a>
+            <a href="random.html">→ 랜덤 번호</a>
+            <a href="time.html">→ 시간 계산기</a>
+        </div>
+
+        <div class="ads">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <script>
+        let count = 0;
+        function increment() { count++; document.getElementById('count').textContent = count; }
+        function decrement() { count--; document.getElementById('count').textContent = count; }
+        function reset() { count = 0; document.getElementById('count').textContent = count; }
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>

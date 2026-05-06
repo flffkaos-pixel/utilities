@@ -1,0 +1,108 @@
+Hello, this is Jo Coding. This video covers Python basics, specifically "Jump to Python."
+
+Let’s begin the 2022 version of the lecture. This course is based on the content of the "Jump to Python" textbook, which is the #1 and #2 bestseller in the Python field. Even if you don't have the book, you can view the content for free on WikiDocs at the provided address. Additionally, I have made the PPT materials used in the lecture available for download as a PDF, so please check the pinned comment.
+
+Some of you may have seen the "Jump to Python" lecture I uploaded in 2020. While the core content hasn't changed significantly, there have been updates to the installation process and environment settings. I have re-recorded or edited the parts that were outdated or contained errors and consolidated them into this single 2022 version.
+
+There is so much you can do after taking this Python course. On the Jo Coding channel, I have already prepared various lectures using Python, such as stock and Bitcoin investment automation, data crawling for work automation, and deep learning. Learning Python will make these tasks much easier. Furthermore, I am preparing lectures on app development and data analysis using Python, so please subscribe to the Jo Coding channel, hit the like button, and follow along.
+
+The "Jump to Python" course consists of seven parts. To learn the basics and start using Python, completing just the first part is sufficient. The second part is more difficult; I recommend it for those who already have programming experience or want to dive deeper. By finishing just the first part, you will be able to do almost everything possible with Python.
+
+Even with this update, if there are further changes or errors in the lecture, I will leave notes in the description or the pinned comment section. I recommend checking those before starting the lecture. I am rooting for your Python studies!
+
+Now, let's begin the lecture. "Jump to Python" Lesson 1: What is Python?
+
+### 1. What is Python?
+First, let's find out what Python is. Python is a programming language created as a hobby by Guido van Rossum. The first version was released in 1991, followed by Python 2.0 in 2000 and Python 3.0 in 2008.
+
+According to the story on the official Python website, Guido was looking for a hobby programming project to keep him occupied during the week around Christmas when his office was closed. This language, developed as a hobby in 1989, is now used so extensively that over 50% of the software at Google is written in Python.
+
+The name "Python" comes from the famous British comedy show *Monty Python's Flying Circus*, which Guido was a big fan of. Although the word "Python" refers to a snake in mythology, the language was named after the comedy show.
+
+Many major corporations use Python. As mentioned in the introduction, it is extremely easy to use, and collaborative work and maintenance are very convenient. A key characteristic of Python is that it is a "human-like" language. For example, even if you’ve never seen code before, you can probably guess what `print("Hello")` does—it prints the content inside the parentheses.
+
+Python's syntax is so simple that you can learn it very quickly. It is used in university liberal arts courses, and experienced programmers say they can learn it in a week. It is even taught in middle and elementary schools.
+
+Python is free and powerful. You can use it for various purposes without worry and download it from anywhere. Furthermore, Python works perfectly with the C language. Python is very easy but relatively slow, while C is very fast but complex. By combining them, you can write easy code in Python and use C for parts that require high-speed performance. Many Python libraries, like NumPy, are actually wrappers for C libraries.
+
+#### Compiled vs. Interpreted Languages
+To understand why C is fast and Python is relatively slow, you need to know the concepts of compiled and interpreted languages. Computers only understand 0s and 1s (binary). To run a program, the computer must read these 0s and 1s.
+
+*   **Compiled Languages (e.g., C):** These use a "compiler" to translate the entire English-like code into a binary file (0s and 1s) that the computer can read directly. Because the translation is done beforehand, the execution speed is very fast.
+*   **Interpreted Languages (e.g., Python):** These use an "interpreter" to read and translate the code line-by-line as the program runs. Because it translates and executes one line at a time, it is slower than compiled languages.
+
+Python is a very concise language. It prefers having one clear way to do things. It has strict rules, such as indentation (spacing), which makes the code look clean and readable. There is a saying: "Life is short, you need Python." You can create programs quickly with much less code compared to languages like Java.
+
+### 2. What can you do with Python?
+*   **System Utilities:** Creating tools to clean or optimize your system.
+*   **GUI Programs:** Creating windows with buttons and menus (using libraries like Tkinter).
+*   **Web Programming:** Using frameworks like Django or Flask to build websites like Naver or Daum.
+*   **Numerical Operations:** Performing complex calculations and modeling.
+*   **Database Programming:** Connecting to and managing data storage.
+*   **Data Analysis:** Using the Pandas library to analyze trends like stock prices.
+*   **Artificial Intelligence:** Predicting stock prices or weather using AI libraries.
+*   **Internet of Things (IoT):** Controlling small devices like smart speakers.
+
+#### What can't you do with Python?
+*   **Mobile Apps:** Python isn't well-suited for building mobile apps. It's better to use Kotlin/Java for Android or Swift for iOS.
+*   **Low-level System Programming:** Python is not ideal for building operating systems like Windows or Linux, which require "closer-to-the-metal" languages.
+
+### 3. Installing Python
+Go to `python.org`. Under "Downloads," you can find the latest version. For consistency in this lecture, we will use **Python 3.10.1**.
+
+**Crucial Step:** When the installer opens, you **MUST** check the box that says **"Add Python 3.10 to PATH."** Then, choose "Customize installation," ensure all options are checked, and proceed with the installation. After it finishes, click "Disable path length limit" to prevent future errors.
+
+To verify the installation, open the Command Prompt (`cmd`) and type `python`. If you see the version information, it’s working. If Microsoft Store opens or you get an error, your PATH is not set correctly. (I explained how to manually set the PATH in the system environment variables in the video).
+
+### 4. Development Tools
+*   **IDLE:** A basic editor that comes with Python. It has a shell to run commands immediately and an editor to save files.
+*   **VS Code (Visual Studio Code):** A more professional and powerful editor. Download it from `code.visualstudio.com`.
+    *   Install the **Python extension** within VS Code.
+    *   Create a folder (e.g., `JoCoding`) and a file named `hello.py`.
+    *   Type `print("Hello World")` and click the "Play" button to run it.
+
+### 5. Python Basics: Data Types
+As the book says, "If you know data types, you have mastered half of the language." Data types define what kind of data a value is (e.g., a number or text). In programming, `1 + 1` equals `2` if they are numbers, but `"1" + "1"` equals `"11"` if they are strings.
+
+#### Variables
+A variable is like a box that holds a value. `a = 3` means you are putting the number 3 into the "box" named `a`. In programming, `=` is the **assignment operator**, not the mathematical "equals." It means "put the value on the right into the variable on the left."
+
+#### Numeric Types
+*   **Integer (`int`):** Whole numbers like 1, 2, -5.
+*   **Floating-point (`float`):** Numbers with decimals like 3.14.
+*   **Operators:** 
+    *   `+` (Add), `-` (Subtract), `*` (Multiply), `/` (Divide)
+    *   `**` (Exponent/Power, e.g., `3 ** 4` is 81)
+    *   `//` (Floor division - gives the quotient)
+    *   `%` (Modulo - gives the remainder)
+
+#### String Type (`str`)
+Strings are sequences of characters. You can create them using single quotes `'`, double quotes `"`, or triple quotes `'''` or `"""`.
+*   **Quotes inside strings:** To use a quote inside a string, wrap it in the opposite type (e.g., `"It's me"`) or use an escape character (`\`), like `'It\'s me'`.
+*   **Multi-line strings:** Use triple quotes to write across multiple lines.
+*   **Concatenation & Repetition:** You can add strings together (`"a" + "b" = "ab"`) or multiply them (`"Hi" * 3 = "HiHiHi"`).
+*   **Indexing:** Accessing a specific character by its position. `a[0]` is the first character. `a[-1]` is the last character.
+*   **Slicing:** Cutting a part of a string. `a[0:4]` gives characters from index 0 up to (but not including) index 4.
+*   **Formatting:** Inserting values into strings using `%d`, `.format()`, or f-strings (`f"My name is {name}"`).
+*   **String Methods:**
+    *   `.count('x')`: Counts occurrences of 'x'.
+    *   `.find('x')`: Returns the index of the first 'x'.
+    *   `.upper()` / `.lower()`: Changes case.
+    *   `.strip()`: Removes whitespace.
+    *   `.replace("old", "new")`: Swaps text.
+    *   `.split()`: Splits a string into a list based on a delimiter.
+
+#### List Type
+A list is a way to manage multiple values in a single variable, like a cabinet with numbered drawers.
+*   Example: `a = [1, 2, 3]`.
+*   Lists can be indexed and sliced just like strings.
+*   You can nest lists inside other lists.
+*   **List Methods:**
+    *   `.append(x)`: Adds `x` to the end.
+    *   `.sort()`: Sorts the list.
+    *   `.reverse()`: Reverses the order.
+    *   `.insert(index, x)`: Inserts `x` at a specific position.
+    *   `.remove(x)`: Removes the first occurrence of `x`.
+    *   `.pop()`: Removes and returns the last item.
+
+This covers the very basics of Python, installation, and the primary data types. Learning these foundations will allow you to build more complex programs later!
