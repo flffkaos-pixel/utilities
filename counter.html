@@ -49,8 +49,69 @@
         </h1>
         
         <div class="description">
-            <span class="ko">글자 수 세기는 텍스트의 단어 수, 문자 수, 줄수를 자동으로 계산합니다. 에세이, 보고서,SNS 글쓰기에 유용합니다.</span>
-            <span class="en">Word Counter automatically counts words, characters, and lines in your text. Great for essays, reports, and social media posts.</span>
+            <span class="ko">글자 수 세기는 텍스트의 단어 수, 문자 수, 줄수를 자동으로 계산합니다. 에세이, 보고서,SNS 글쓰기에 유용합니다. 이 도구는 실시간으로 텍스트를 분석하여 작성 중인 문서의 통계 정보를 즉시 제공합니다.</span>
+            <span class="en">Word Counter automatically counts words, characters, and lines in your text. Great for essays, reports, and social media posts. This tool analyzes text in real-time to provide instant statistics on your documents as you write.</span>
+        </div>
+        
+        <div class="usage-guide">
+            <h3 class="ko">사용 방법</h3>
+            <h3 class="en">How to Use</h3>
+            <ol class="ko">
+                <li>위 텍스트 영역에 분석하고 싶은 텍스트를 입력하거나 붙여넣기 합니다.</li>
+                <li>단어 수, 문자 수, 줄 수가 실시간으로 업데이트되어 표시됩니다.</li>
+                <li>문자 수는 공백과 특수 문자를 포함한 전체 길이를 나타냅니다.</li>
+                <li>단어 수는 공백으로 구분된 토큰들의 개수를 계산합니다.</li>
+                <li>줄 수는 개행 문자로 구분된 줄들의 개수를 셉니다.</li>
+            </ol>
+            <ol class="en">
+                <li>Enter or paste the text you want to analyze in the text area above.</li>
+                <li>Word count, character count, and line count will update in real-time as you type.</li>
+                <li>Character count includes all characters including spaces and punctuation.</li>
+                <li>Word count calculates the number of tokens separated by whitespace.</li>
+                <li>Line count tallies the number of lines separated by newline characters.</li>
+            </ol>
+        </div>
+        
+        <div class="examples">
+            <h3 class="ko">예시</h3>
+            <h3 class="en">Examples</h3>
+            <div class="example-grid">
+                <div class="example-item">
+                    <h4 class="ko">기본 통계</h4>
+                    <h4 class="en">Basic Statistics</h4>
+                    <p class="ko">입력: "Hello World" → 단어: 2, 문자: 11, 줄: 1</p>
+                    <p class="en">Input: "Hello World" → Words: 2, Characters: 11, Lines: 1</p>
+                </div>
+                <div class="example-item">
+                    <h4 class="ko">여러 줄 텍스트</h4>
+                    <h4 class="en">Multi-line Text</h4>
+                    <p class="ko">입력: "첫 줄\n두 줄\n세 줄" → 단어: 6, 문자: 17, 줄: 3</p>
+                    <p class="en">Input: "First line\nSecond line\nThird line" → Words: 6, Characters: 17, Lines: 3</p>
+                </div>
+                <div class="example-item">
+                    <h4 class="ko">특수 문자 포함</h4>
+                    <h4 class="en">Special Characters</h4>
+                    <p class="ko">입력: "Hello, World! How are you?" → 단어: 5, 문자: 28, 줄: 1</p>
+                    <p class="en">Input: "Hello, World! How are you?" → Words: 5, Characters: 28, Lines: 1</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tips">
+            <h3 class="ko">활용 팁</h3>
+            <h3 class="en">Usage Tips</h3>
+            <ul class="ko">
+                <li>에세이나 보고서의 단어 수 제한을 맞출 때 유용합니다.</li>
+                <li>SNS 게시물의 글자 수 제한을 확인할 때 사용하세요.</li>
+                <li>프로그래밍에서 문자열 길이 확인에 활용할 수 있습니다.</li>
+                <li>번역 작업에서 원본과 번역문의 길이 차이를 비교할 때 유용합니다.</li>
+            </ul>
+            <ul class="en">
+                <li>Useful for meeting word count requirements in essays and reports.</li>
+                <li>Check character limits for social media posts.</li>
+                <li>Verify string lengths in programming applications.</li>
+                <li>Compare length differences between source and translated texts in translation work.</li>
+            </ul>
         </div>
         
         <textarea id="input" oninput="count()" placeholder="Enter text... / 텍스트를 입력하세요..."></textarea>
