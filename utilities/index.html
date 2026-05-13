@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Free Utilities - Zenith Productivity</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#005cba",
+                        "tertiary": "#883700",
+                        "secondary-container": "#e2dfe1",
+                        "on-secondary-fixed-variant": "#474649",
+                        "background": "#f9f9ff",
+                        "inverse-on-surface": "#eff0f9",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#e4e2e4",
+                        "surface-bright": "#f9f9ff",
+                        "on-tertiary-container": "#ffe3d6",
+                        "surface-container-low": "#f2f3fc",
+                        "surface-container-high": "#e6e8f1",
+                        "surface-variant": "#e1e2eb",
+                        "error-container": "#ffdad6",
+                        "surface": "#f9f9ff",
+                        "primary-fixed": "#d7e3ff",
+                        "primary": "#004e9f",
+                        "on-secondary-fixed": "#1b1b1d",
+                        "on-secondary-container": "#636264",
+                        "surface-dim": "#d8d9e2",
+                        "surface-container-highest": "#e1e2eb",
+                        "tertiary-container": "#af4900",
+                        "on-surface": "#191c22",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#c8c6c8",
+                        "outline": "#727784",
+                        "inverse-primary": "#aac7ff",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "primary-fixed-dim": "#aac7ff",
+                        "tertiary-fixed": "#ffdbcb",
+                        "on-primary": "#ffffff",
+                        "secondary": "#5f5e60",
+                        "on-tertiary-fixed-variant": "#793000",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2e3037",
+                        "on-tertiary-fixed": "#341100",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#ecedf6",
+                        "on-primary-container": "#dfe8ff",
+                        "on-surface-variant": "#414753",
+                        "on-primary-fixed-variant": "#00458e",
+                        "on-primary-fixed": "#001b3e",
+                        "outline-variant": "#c1c6d5",
+                        "on-background": "#191c22",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#0066cc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1200px",
+                        "stack-sm": "12px",
+                        "unit": "8px",
+                        "stack-md": "24px",
+                        "gutter": "24px",
+                        "section-padding-y": "120px",
+                        "stack-lg": "48px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "h1": ["Inter"],
+                        "h3": ["Inter"],
+                        "button": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                        "body-lg": ["19px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "label-sm": ["13px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "h1": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "h3": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "button": ["15px", {"lineHeight": "1", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #f9f9ff; color: #191c22; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full h-[64px] bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm z-50">
+<div class="flex justify-between items-center h-[64px] px-gutter max-w-container-max mx-auto">
+<div class="flex items-center gap-stack-sm cursor-pointer active:opacity-70">
+<span class="material-symbols-outlined text-primary" data-icon="grid_view">grid_view</span>
+<h1 class="font-h2 text-h2 font-bold tracking-tight text-primary">Free Utilities</h1>
+</div>
+<div class="flex items-center gap-stack-md">
+<nav class="hidden md:flex gap-stack-md">
+<a class="font-label-sm text-label-sm text-primary border-b-2 border-primary transition-colors duration-200" href="#">Tools</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Favorites</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Recents</a>
+</nav>
+<button class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all">English</button>
+</div>
+</div>
+</header>
+<main class="pt-[64px]">
+<!-- Hero Section -->
+<section class="py-section-padding-y px-gutter max-w-container-max mx-auto text-center">
+<h1 class="font-h1 text-h1 text-on-background mb-stack-md max-w-3xl mx-auto">
+                모든 유틸리티를 한 곳에서
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-stack-lg">
+                개발자와 직장인을 위한 100% 무료 온라인 도구 모음입니다. 설치 없이 브라우저에서 바로 사용 가능하며, 어떠한 데이터도 서버에 저장되지 않습니다.
+            </p>
+<!-- Search Bar -->
+<div class="max-w-xl mx-auto relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+</div>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-lowest rounded-xl border-none shadow-sm focus:ring-2 focus:ring-primary focus:bg-white transition-all text-body-md font-body-md placeholder:text-outline-variant" placeholder="필요한 도구를 검색하세요 (예: 글자 수 세기, JSON)" type="text"/>
+</div>
+</section>
+<!-- Tool Sections: Bento-ish Grid -->
+<section class="pb-section-padding-y px-gutter max-w-container-max mx-auto space-y-stack-lg">
+<!-- Popular Tools Section -->
+<div>
+<div class="flex items-center gap-stack-sm mb-stack-md">
+<span class="material-symbols-outlined text-primary" data-icon="trending_up">trending_up</span>
+<h2 class="font-h3 text-h3 text-on-surface">인기 도구</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-stack-md">
+<!-- Tool Card -->
+<div class="group bg-surface-container-lowest p-stack-md rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-outline-variant/10">
+<div class="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center mb-stack-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="description">description</span>
+</div>
+<h3 class="font-h3 text-body-md font-bold mb-1">텍스트 도구</h3>
+<p class="font-body-md text-label-sm text-on-surface-variant">대소문자 변환, 공백 제거</p>
+</div>
+<div class="group bg-surface-container-lowest p-stack-md rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-outline-variant/10">
+<div class="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center mb-stack-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="pin">pin</span>
+</div>
+<h3 class="font-h3 text-body-md font-bold mb-1">글자 수 세기</h3>
+<p class="font-body-md text-label-sm text-on-surface-variant">단어, 문자, 공백 포함 계산</p>
+</div>
+<div class="group bg-surface-container-lowest p-stack-md rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-outline-variant/10">
+<div class="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center mb-stack-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="palette">palette</span>
+</div>
+<h3 class="font-h3 text-body-md font-bold mb-1">색상 변환</h3>
+<p class="font-body-md text-label-sm text-on-surface-variant">HEX, RGB, HSL 상호 변환</p>
+</div>
+<div class="group bg-surface-container-lowest p-stack-md rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-outline-variant/10">
+<div class="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center mb-stack-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="lock">lock</span>
+</div>
+<h3 class="font-h3 text-body-md font-bold mb-1">Base64 인코더</h3>
+<p class="font-body-md text-label-sm text-on-surface-variant">문자열 및 파일 인코딩</p>
+</div>
+</div>
+</div>
+<!-- Calculators Section (Asymmetric / Bento Style) -->
+<div>
+<div class="flex items-center gap-stack-sm mb-stack-md">
+<span class="material-symbols-outlined text-primary" data-icon="calculate">calculate</span>
+<h2 class="font-h3 text-h3 text-on-surface">계산기</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
+<!-- Featured Large Card -->
+<div class="md:col-span-2 group relative overflow-hidden bg-primary p-stack-lg rounded-xl shadow-lg transition-all cursor-pointer">
+<div class="relative z-10 h-full flex flex-col justify-between">
+<div>
+<h3 class="font-h2 text-h2 text-white mb-stack-sm">D-Day 계산기</h3>
+<p class="text-white/80 font-body-md max-w-sm">남은 일수나 지난 일수를 간편하게 계산하세요. 특별한 기념일이나 업무 마감일을 관리하기에 최적입니다.</p>
+</div>
+<div class="mt-stack-md flex items-center gap-2 text-white font-button text-button">
+<span>지금 바로 사용하기</span>
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<div class="absolute -right-8 -bottom-8 opacity-20 transform rotate-12">
+<span class="material-symbols-outlined text-[200px] text-white" data-icon="calendar_month">calendar_month</span>
+</div>
+</div>
+<!-- Side Grid -->
+<div class="space-y-stack-md">
+<div class="group bg-surface-container-lowest p-stack-md rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-outline-variant/10 flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded bg-tertiary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary" data-icon="savings">savings</span>
+</div>
+<div>
+<h4 class="font-body-md font-bold">이자 계산기</h4>
+<p class="text-label-sm text-on-surface-variant">적금/예금 수익 계산</p>
+</div>
+</div>
+<div class="group bg-surface-container-lowest p-stack-md rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-outline-variant/10 flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" data-icon="percent">percent</span>
+</div>
+<div>
+<h4 class="font-body-md font-bold">할인율 계산</h4>
+<p class="text-label-sm text-on-surface-variant">세일 가격 및 차액 계산</p>
+</div>
+</div>
+<div class="group bg-surface-container-lowest p-stack-md rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-outline-variant/10 flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="monitor_weight">monitor_weight</span>
+</div>
+<div>
+<h4 class="font-body-md font-bold">BMI 계산기</h4>
+<p class="text-label-sm text-on-surface-variant">건강을 위한 체질량지수</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- More Tools Button -->
+<div class="text-center pt-stack-md">
+<button class="bg-primary text-white font-button text-button px-10 py-4 rounded-full shadow-lg hover:shadow-xl hover:brightness-110 active:scale-95 transition-all inline-flex items-center gap-stack-sm">
+                    더 많은 도구 보기 (+40개)
+                    <span class="material-symbols-outlined" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</section>
+<!-- App Features Section -->
+<section class="bg-surface-container-low py-section-padding-y">
+<div class="px-gutter max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-stack-lg items-center">
+<div class="relative rounded-2xl overflow-hidden shadow-2xl">
+<img alt="Coding environment" class="w-full h-auto" data-alt="A premium, clean studio photograph of a modern workspace with a high-end laptop showing clean lines of code. The environment is illuminated with soft, natural morning light, creating a bright and professional light-mode aesthetic. The composition is minimal and editorial, featuring high-quality materials like brushed aluminum and white desk surfaces, punctuated by subtle accent blues from the screen. The mood is calm and productive." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkl1z-jE4JoTYMH1s0L72vNTx_w73IJ5bUzskgRvYoChMma6pLddjCJoGuLdkyDRHf5d3nVt_nSaW_4OwgUbLbMM5GHEKNbrSMXO9jqs3PW9kiZe7finMhYrpq1UmI6QM4n9qgM7qiN62UBrnYWQr5iixi6vpjHKoPG8JH6tTaK0lrGZdv-tVvc9HFCBkIsTI2WQ8mxJsfSlKtfSVP5-wug52euyeWJijRgj1uPS3EX4FN4z0GMpWkHAMiWT4-2Azi641cmbCaT0A"/>
+</div>
+<div class="space-y-stack-md">
+<h2 class="font-h2 text-h2 text-on-surface">설치 없이, <br/>모든 기기에서 즉시 사용</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Zenith Utilities는 별도의 로그인이나 설치 과정 없이 웹 브라우저만 있다면 누구나 무료로 이용할 수 있는 전문 도구 세트입니다. 데이터 보호를 최우선으로 하여 입력된 모든 값은 사용자의 브라우저 내에서만 처리됩니다.</p>
+<ul class="space-y-stack-sm">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md">개인정보를 서버에 저장하지 않습니다.</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md">모바일 및 데스크톱에 최적화된 인터페이스.</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md">회원가입 없이 즉시 이용 가능합니다.</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-padding-y bg-surface-container-lowest border-t border-outline-variant/20">
+<div class="flex flex-col md:flex-row justify-between items-start gap-stack-lg px-gutter max-w-container-max mx-auto">
+<div class="space-y-stack-sm max-w-sm">
+<h3 class="font-h3 text-h3 font-bold text-on-surface">Zenith Utilities</h3>
+<p class="font-body-md text-on-surface-variant">© 2024 Zenith Utilities. Precision Engineered Productivity. 일상을 더 효율적으로 만드는 강력한 무료 도구 컬렉션.</p>
+</div>
+<div class="grid grid-cols-2 gap-stack-lg">
+<div class="flex flex-col gap-2">
+<h4 class="font-label-sm font-bold uppercase tracking-wider text-outline mb-2">Legal</h4>
+<a class="font-body-md text-on-surface-variant hover:text-primary hover:underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Privacy Policy</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary hover:underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-2">
+<h4 class="font-label-sm font-bold uppercase tracking-wider text-outline mb-2">Support</h4>
+<a class="font-body-md text-on-surface-variant hover:text-primary hover:underline decoration-1 underline-offset-4 transition-all duration-300" href="#">API Documentation</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary hover:underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Contact Support</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 bg-surface/90 backdrop-blur-lg border-t border-outline-variant/20 md:hidden pb-safe shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+<div class="flex flex-col items-center justify-center text-primary font-semibold cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="home_storage" style="font-variation-settings: 'FILL' 1;">home_storage</span>
+<span class="font-label-sm text-label-sm">Tools</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span class="font-label-sm text-label-sm">Favorites</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-sm text-label-sm">Recents</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</div>
+</nav>
+</body></html>
