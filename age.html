@@ -94,6 +94,8 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .stat { background: #f2f3fc; border-radius: 0.75rem; padding: 16px; text-align: center; }
 #json-result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
+.lang-ko .en { display: none !important; }
+.lang-en .ko { display: none !important; }
 </style>
 </head>
 <body class="bg-background">
@@ -108,10 +110,16 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><a href="index.html" class="back">← Back to Home</a>
+<div class="tool-card"><div class="header">
+            <a href="index.html" class="back">← Back to Home</a>
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="setLang('en')">English</button>
+            </div>
+        </div>
         
-        <h1>Age Calculator</h1>
-        <p class="subtitle">Calculate your exact age in years, months, and days</p>
+        <h1><span class="ko">나이 계산기</span><span class="en">Age Calculator</span></h1>
+        <p class="subtitle"><span class="ko">생일을 입력하여 정확한 나이(년, 월, 일)를 계산합니다.</span><span class="en">Calculate your exact age in years, months, and days from your birthday.</span></p>
         
         <div class="calculator">
             <div class="input-group">
