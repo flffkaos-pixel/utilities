@@ -1,10 +1,10 @@
-Ôªø<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Contact Us | Î¨¥Î£å Ïú†Ìã∏Î¶¨Ìã∞</title>
-<meta name="description" content="Î¨¥Î£å Ïú†Ìã∏Î¶¨Ìã∞ Î™®Ïùå ÏÑúÎπÑÏä§Ïóê Ïó∞ÎùΩÌïòÎäî Î∞©Î≤ïÏûÖÎãàÎã§. Í∏∞Îä• ÏöîÏ≤≠, Î≤ÑÍ∑∏ Ïã†Í≥†, Ï†úÌú¥ Î¨∏Ïùò Îì±ÏùÑ ÌôòÏòÅÌï©ÎãàÎã§."/>
+<title>Contact Us | π´∑· ¿Ø∆ø∏Æ∆º</title>
+<meta name="description" content="π´∑· ¿Ø∆ø∏Æ∆º ∏¿Ω º≠∫ÒΩ∫ø° ø¨∂Ù«œ¥¬ πÊπ˝¿‘¥œ¥Ÿ. ±‚¥… ø‰√ª, πˆ±◊ Ω≈∞Ì, ¡¶»ﬁ πÆ¿« µÓ¿ª »Øøµ«’¥œ¥Ÿ."/>
 <meta name="robots" content="index, follow"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z29KRGF7J3"></script>
@@ -94,6 +94,8 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .stat { background: #f2f3fc; border-radius: 0.75rem; padding: 16px; text-align: center; }
 #json-result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
+body.lang-ko .en { display: none; }
+body.lang-en .ko { display: none; }
 </style>
 </head>
 <body class="bg-background">
@@ -105,15 +107,16 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><a href="index.html" class="back">‚Üê <span class="ko">Î©îÏù∏ÏúºÎ°ú</span><span class="en">Back to Home</span></a>
+<div class="tool-card"><a href="index.html" class="back">°Á <span class="ko">∏ﬁ¿Œ¿∏∑Œ</span><span class="en">Back to Home</span></a>
 
-        <h1><span class="ko">Ïó∞ÎùΩÌïòÍ∏∞</span><span class="en">Contact Us</span></h1>
+        <h1><span class="ko">ø¨∂Ù«œ±‚</span><span class="en">Contact Us</span></h1>
 
         <div class="lang-toggle">
-            <button class="lang-btn active" onclick="setLang('ko')">ÌïúÍµ≠Ïñ¥</button>
+            <button class="lang-btn active" onclick="setLang('ko')">«—±πæÓ</button>
             <button class="lang-btn" onclick="setLang('en')">English</button></div>
 <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -123,7 +126,7 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 <div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
 <div class="space-y-3 max-w-sm">
 <h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3>
-<p class="text-[#414753]">Ïß§ 2026 Free Utilities. All rights reserved.</p>
+<p class="text-[#414753]">¬© 2026 Free Utilities. All rights reserved.</p>
 </div>
 <div class="grid grid-cols-2 gap-8">
 <div class="flex flex-col gap-2">
@@ -153,10 +156,20 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 <span class="text-xs">Home</span>
 </div>
 </nav>
-<script>function setLang(lang) { document.body.className = 'lang-' + lang; document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',lang==='ko'?i===0:i===1)); localStorage.setItem('util-lang', lang); }
-        setLang('ko');
-
-        function handleSubmit(e) {
+<script>function toggleLang() {
+    var l = localStorage.getItem('util-lang') || 'ko';
+    setLang(l === 'ko' ? 'en' : 'ko');
+}
+function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            var btn = document.getElementById('langToggle');
+            if (btn) btn.textContent = lang === 'ko' ? 'English' : '«—±πæÓ';
+            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
+            });
+            localStorage.setItem('util-lang', lang);
+        }
+        setLang('ko');function handleSubmit(e) {
             e.preventDefault();
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;

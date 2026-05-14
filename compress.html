@@ -1,9 +1,9 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ì´ë¯¸ì§€ ì••ì¶•ê¸° - Image Compressor</title>
+<title>ÀÌ¹ÌÁö ¾ĞÃà±â - Image Compressor</title>
 <meta name="description" content="Free online utility tool"/>
 <meta name="robots" content="index, follow"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
@@ -94,6 +94,8 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .stat { background: #f2f3fc; border-radius: 0.75rem; padding: 16px; text-align: center; }
 #json-result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
+body.lang-ko .en { display: none; }
+body.lang-en .ko { display: none; }
 </style>
 </head>
 <body class="bg-background">
@@ -105,26 +107,27 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><h1><span class="ko">ì´ë¯¸ì§€ ì••ì¶•ê¸° - JPG, PNG ì••ì¶• ì´ë¯¸ì§€ ì••ì¶•ê¸° - JPG/PNG íŒŒì¼ì„ í’ˆì§ˆ ì¡°ì ˆí•˜ë©° ì••ì¶• - ğŸ–¼ï¸ ì´ë¯¸ì§€ ì••ì¶•ê¸°</span><span class="en">Image Compressor - Compress images Image Compressor - Compress JPG/PNG with quality control - ğŸ–¼ï¸ Image Compressor</span></h1>
+<div class="tool-card"><h1><span class="ko">ÀÌ¹ÌÁö ¾ĞÃà±â - JPG, PNG ¾ĞÃà ÀÌ¹ÌÁö ¾ĞÃà±â - JPG/PNG ÆÄÀÏÀ» Ç°Áú Á¶ÀıÇÏ¸ç ¾ĞÃà - ??? ÀÌ¹ÌÁö ¾ĞÃà±â</span><span class="en">Image Compressor - Compress images Image Compressor - Compress JPG/PNG with quality control - ??? Image Compressor</span></h1>
         <div class="description">
-            <span class="ko">ì´ë¯¸ì§€ ì••ì¶•ê¸°ëŠ” JPG, PNG ì´ë¯¸ì§€ë¥¼ í’ˆì§ˆ ì¡°ì ˆí•˜ë©° ì••ì¶•í•©ë‹ˆë‹¤. ì›¹ì‚¬ì´íŠ¸ ìµœì í™”ì— ìœ ìš©í•©ë‹ˆë‹¤.</span>
+            <span class="ko">ÀÌ¹ÌÁö ¾ĞÃà±â´Â JPG, PNG ÀÌ¹ÌÁö¸¦ Ç°Áú Á¶ÀıÇÏ¸ç ¾ĞÃàÇÕ´Ï´Ù. À¥»çÀÌÆ® ÃÖÀûÈ­¿¡ À¯¿ëÇÕ´Ï´Ù.</span>
             <span class="en">Image Compressor compresses JPG, PNG images with quality control. Great for website optimization.</span>
         </div>
         <div class="upload-area" onclick="document.getElementById('fileInput').click()">
-            <span class="ko">í´ë¦­í•˜ì—¬ ì´ë¯¸ì§€ ì„ íƒ</span>
+            <span class="ko">Å¬¸¯ÇÏ¿© ÀÌ¹ÌÁö ¼±ÅÃ</span>
             <span class="en">Click to select image</span>
         </div>
         <input type="file" id="fileInput" accept="image/*" onchange="handleFile()">
         <div class="slider-container">
-            <label><span class="ko">í’ˆì§ˆ:</span><span class="en">Quality:</span> <span id="qualityValue">80</span>%</label>
+            <label><span class="ko">Ç°Áú:</span><span class="en">Quality:</span> <span id="qualityValue">80</span>%</label>
             <input type="range" id="quality" min="10" max="100" value="80" oninput="document.getElementById('qualityValue').textContent = this.value">
         </div>
-        <button class="btn" onclick="compress()"><span class="ko">ì••ì¶•í•˜ê¸°</span><span class="en">Compress</span></button>
+        <button class="btn" onclick="compress()"><span class="ko">¾ĞÃàÇÏ±â</span><span class="en">Compress</span></button>
         <div class="result" id="result">
-            <div class="info"><span class="ko">ì••ì¶• í›„ ì´ë¯¸ì§€ê°€ ì—¬ê¸°ì— í‘œì‹œë©ë‹ˆë‹¤</span><span class="en">Compressed image will appear here</span></div>
+            <div class="info"><span class="ko">¾ĞÃà ÈÄ ÀÌ¹ÌÁö°¡ ¿©±â¿¡ Ç¥½ÃµË´Ï´Ù</span><span class="en">Compressed image will appear here</span></div>
         </div></div>
 <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -134,7 +137,7 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 <div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
 <div class="space-y-3 max-w-sm">
 <h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3>
-<p class="text-[#414753]">ì§¤ 2026 Free Utilities. All rights reserved.</p>
+<p class="text-[#414753]">Â© 2026 Free Utilities. All rights reserved.</p>
 </div>
 <div class="grid grid-cols-2 gap-8">
 <div class="flex flex-col gap-2">
@@ -165,14 +168,26 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 </div>
 </nav>
 <script>let originalFile = null;
-        function setLang(lang) { document.body.className = 'lang-' + lang; document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',lang==='ko'?i===0:i===1)); }
+        function toggleLang() {
+    var l = localStorage.getItem('util-lang') || 'ko';
+    setLang(l === 'ko' ? 'en' : 'ko');
+}
+function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            var btn = document.getElementById('langToggle');
+            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'ÇÑ±¹¾î';
+            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
+            });
+            localStorage.setItem('util-lang', lang);
+        }
         setLang('ko');
         function handleFile() {
             const file = document.getElementById('fileInput').files[0];
             if (file) { originalFile = file; document.querySelector('.upload-area').innerHTML = file.name; }
         }
         function compress() {
-            if (!originalFile) { alert('ì´ë¯¸ì§€ë¥¼ ì„ íƒí•˜ì„¸ìš”!'); return; }
+            if (!originalFile) { alert('ÀÌ¹ÌÁö¸¦ ¼±ÅÃÇÏ¼¼¿ä!'); return; }
             const reader = new FileReader();
             reader.onload = function(e) {
                 const img = new Image();
@@ -187,7 +202,7 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
                     const originalSize = (originalFile.size / 1024).toFixed(1);
                     const compressedSize = ((dataUrl.length * 0.75) / 1024).toFixed(1);
                     document.getElementById('result').innerHTML = 
-                        '<p>Original: ' + originalSize + ' KB â†’ Compressed: ' + compressedSize + ' KB</p>' +
+                        '<p>Original: ' + originalSize + ' KB ¡æ Compressed: ' + compressedSize + ' KB</p>' +
                         '<img src="' + dataUrl + '"><br>' +
                         '<a href="' + dataUrl + '" download="compressed.jpg" class="download-link">Download</a>';
                 };

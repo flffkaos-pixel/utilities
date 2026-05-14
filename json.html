@@ -1,9 +1,9 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>JSON ì •ë ¬ê¸° - JSON Formatter</title>
+<title>JSON Á¤·Ä±â - JSON Formatter</title>
 <meta name="description" content="Free online utility tool"/>
 <meta name="robots" content="index, follow"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
@@ -94,6 +94,8 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .stat { background: #f2f3fc; border-radius: 0.75rem; padding: 16px; text-align: center; }
 #json-result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
+body.lang-ko .en { display: none; }
+body.lang-en .ko { display: none; }
 </style>
 </head>
 <body class="bg-background">
@@ -105,27 +107,28 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
 <div class="tool-card"><h1>
-            <span class="ko">JSON ì •ë ¬ê¸° - JSON ì •ë ¬ ë° ê²€ì¦ JSON ì •ë ¬ê¸° - ì˜ëª»ëœ JSONì„ ì˜ˆì˜ê²Œ ì •ë ¬ - ğŸ“‹ JSON ì •ë ¬ê¸°</span>
-            <span class="en">JSON Formatter - Format and validate JSON Formatter - Pretty print messy JSON - ğŸ“‹ JSON Formatter</span>
+            <span class="ko">JSON Á¤·Ä±â - JSON Á¤·Ä ¹× °ËÁõ JSON Á¤·Ä±â - Àß¸øµÈ JSONÀ» ¿¹»Ú°Ô Á¤·Ä - ?? JSON Á¤·Ä±â</span>
+            <span class="en">JSON Formatter - Format and validate JSON Formatter - Pretty print messy JSON - ?? JSON Formatter</span>
         </h1>
         
         <div class="description">
-            <span class="ko">JSON ì •ë ¬ê¸°ëŠ” ë¹„ì •ë ¬ëœ JSONì„ ì˜ˆì˜ê²Œ ì •ë ¬í•˜ê³  ê²€ì¦í•©ë‹ˆë‹¤. ê°œë°œ, ë””ë²„ê¹…ì— ìœ ìš©í•©ë‹ˆë‹¤. ë³µì¡í•œ JSON ë°ì´í„°ë¥¼ ì½ê¸° ì‰½ê²Œ ë§Œë“¤ê³  êµ¬ì¡°ë¥¼ í•œëˆˆì— íŒŒì•…í•  ìˆ˜ ìˆë„ë¡ ë„ì™€ì¤ë‹ˆë‹¤.</span>
+            <span class="ko">JSON Á¤·Ä±â´Â ºñÁ¤·ÄµÈ JSONÀ» ¿¹»Ú°Ô Á¤·ÄÇÏ°í °ËÁõÇÕ´Ï´Ù. °³¹ß, µğ¹ö±ë¿¡ À¯¿ëÇÕ´Ï´Ù. º¹ÀâÇÑ JSON µ¥ÀÌÅÍ¸¦ ÀĞ±â ½±°Ô ¸¸µé°í ±¸Á¶¸¦ ÇÑ´«¿¡ ÆÄ¾ÇÇÒ ¼ö ÀÖµµ·Ï µµ¿ÍÁİ´Ï´Ù.</span>
             <span class="en">JSON Formatter beautifies and validates unformatted JSON. Useful for development and debugging. It makes complex JSON data readable and helps you understand the structure at a glance.</span>
         </div>
         
         <div class="usage-guide">
-            <h3 class="ko">ì‚¬ìš© ë°©ë²•</h3>
+            <h3 class="ko">»ç¿ë ¹æ¹ı</h3>
             <h3 class="en">How to Use</h3>
             <ol class="ko">
-                <li>ìœ„ í…ìŠ¤íŠ¸ ì˜ì—­ì— ì •ë ¬í•˜ê³  ì‹¶ì€ JSONì„ ì…ë ¥í•˜ê±°ë‚˜ ë¶™ì—¬ë„£ê¸° í•©ë‹ˆë‹¤.</li>
-                <li>"ì •ë ¬" ë²„íŠ¼ì„ í´ë¦­í•˜ë©´ ì˜ˆì˜ê²Œ formatted ëœ JSONì´ ê²°ê³¼ ì˜ì—­ì— í‘œì‹œë©ë‹ˆë‹¤.</li>
-                <li>"ìµœì†Œí™”" ë²„íŠ¼ì„ í´ë¦­í•˜ë©´ ê³µë°±ì„ ì œê±°í•œ ì••ì¶•ëœ JSONì´ í‘œì‹œë©ë‹ˆë‹¤.</li>
-                <li>ì˜ëª»ëœ JSONì´ ì…ë ¥ë˜ë©´ ì˜¤ë¥˜ ë©”ì‹œì§€ê°€ í‘œì‹œë˜ì–´ ë¬¸ì œ ìœ„ì¹˜ë¥¼ ì•Œë ¤ì¤ë‹ˆë‹¤.</li>
+                <li>À§ ÅØ½ºÆ® ¿µ¿ª¿¡ Á¤·ÄÇÏ°í ½ÍÀº JSONÀ» ÀÔ·ÂÇÏ°Å³ª ºÙ¿©³Ö±â ÇÕ´Ï´Ù.</li>
+                <li>"Á¤·Ä" ¹öÆ°À» Å¬¸¯ÇÏ¸é ¿¹»Ú°Ô formatted µÈ JSONÀÌ °á°ú ¿µ¿ª¿¡ Ç¥½ÃµË´Ï´Ù.</li>
+                <li>"ÃÖ¼ÒÈ­" ¹öÆ°À» Å¬¸¯ÇÏ¸é °ø¹éÀ» Á¦°ÅÇÑ ¾ĞÃàµÈ JSONÀÌ Ç¥½ÃµË´Ï´Ù.</li>
+                <li>Àß¸øµÈ JSONÀÌ ÀÔ·ÂµÇ¸é ¿À·ù ¸Ş½ÃÁö°¡ Ç¥½ÃµÇ¾î ¹®Á¦ À§Ä¡¸¦ ¾Ë·ÁÁİ´Ï´Ù.</li>
             </ol>
             <ol class="en">
                 <li>Enter or paste the JSON you want to format in the text area above.</li>
@@ -136,45 +139,45 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
         </div>
         
         <div class="examples">
-            <h3 class="ko">ì˜ˆì‹œ</h3>
+            <h3 class="ko">¿¹½Ã</h3>
             <h3 class="en">Examples</h3>
             <div class="example-grid">
                 <div class="example-item">
-                    <h4 class="ko">ê¸°ë³¸ JSON ì •ë ¬</h4>
+                    <h4 class="ko">±âº» JSON Á¤·Ä</h4>
                     <h4 class="en">Basic JSON Formatting</h4>
-                    <p class="ko">ì…ë ¥: {"name":"John","age":30,"city":"New York"}</p>
+                    <p class="ko">ÀÔ·Â: {"name":"John","age":30,"city":"New York"}</p>
                     <p class="en">Input: {"name":"John","age":30,"city":"New York"}</p>
-                    <p class="ko">ì¶œë ¥:{\n  "name": "John",\n  "age": 30,\n  "city": "New York"\n}</p>
+                    <p class="ko">Ãâ·Â:{\n  "name": "John",\n  "age": 30,\n  "city": "New York"\n}</p>
                     <p class="en">Output:{\n  "name": "John",\n  "age": 30,\n  "city": "New York"\n}</p>
                 </div>
                 <div class="example-item">
-                    <h4 class="ko">ì¤‘ì²©ëœ JSON</h4>
+                    <h4 class="ko">ÁßÃ¸µÈ JSON</h4>
                     <h4 class="en">Nested JSON</h4>
-                    <p class="ko">ì…ë ¥: {"user":{"id":1,"profile":{"name":"Alice","skills":["JS","Python"]}}}</p>
+                    <p class="ko">ÀÔ·Â: {"user":{"id":1,"profile":{"name":"Alice","skills":["JS","Python"]}}}</p>
                     <p class="en">Input: {"user":{"id":1,"profile":{"name":"Alice","skills":["JS","Python"]}}}</p>
-                    <p class="ko">ì¶œë ¥:{\n  "user": {\n    "id": 1,\n    "profile": {\n      "name": "Alice",\n      "skills": [\n        "JS",\n        "Python"\n      ]\n    }\n  }\n}</p>
+                    <p class="ko">Ãâ·Â:{\n  "user": {\n    "id": 1,\n    "profile": {\n      "name": "Alice",\n      "skills": [\n        "JS",\n        "Python"\n      ]\n    }\n  }\n}</p>
                     <p class="en">Output:{\n  "user": {\n    "id": 1,\n    "profile": {\n      "name": "Alice",\n      "skills": [\n        "JS",\n        "Python"\n      ]\n    }\n  }\n}</p>
                 </div>
                 <div class="example-item">
-                    <h4 class="ko">ë°°ì—´ì´ í¬í•¨ëœ JSON</h4>
+                    <h4 class="ko">¹è¿­ÀÌ Æ÷ÇÔµÈ JSON</h4>
                     <h4 class="en">JSON with Arrays</h4>
-                    <p class="ko">ì…ë ¥: {"students":[{"name":"Bob","grade":85},{"name":"Anna","grade":92}]}</p>
+                    <p class="ko">ÀÔ·Â: {"students":[{"name":"Bob","grade":85},{"name":"Anna","grade":92}]}</p>
                     <p class="en">Input: {"students":[{"name":"Bob","grade":85},{"name":"Anna","grade":92}]}</p>
-                    <p class="ko">ì¶œë ¥:{\n  "students": [\n    {\n      "name": "Bob",\n      "grade": 85\n    },\n    {\n      "name": "Anna",\n      "grade": 92\n    }\n  ]\n}</p>
+                    <p class="ko">Ãâ·Â:{\n  "students": [\n    {\n      "name": "Bob",\n      "grade": 85\n    },\n    {\n      "name": "Anna",\n      "grade": 92\n    }\n  ]\n}</p>
                     <p class="en">Output:{\n  "students": [\n    {\n      "name": "Bob",\n      "grade": 85\n    },\n    {\n      "name": "Anna",\n      "grade": 92\n    }\n  ]\n}</p>
                 </div>
             </div>
         </div>
         
         <div class="tips">
-            <h3 class="ko">í™œìš© íŒ</h3>
+            <h3 class="ko">È°¿ë ÆÁ</h3>
             <h3 class="en">Usage Tips</h3>
             <ul class="ko">
-                <li>API ì‘ë‹µ ë°ì´í„°ë¥¼ í™•ì¸í•  ë•Œ ì‚¬ìš©í•˜ë©´ êµ¬ì¡°ë¥¼ ì‰½ê²Œ íŒŒì•…í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.</li>
-                <li>ì„¤ì • íŒŒì¼(config íŒŒì¼)ì˜ JSON í˜•ì‹ì„ ê²€ì¦í•˜ê³  ì •ë¦¬í•  ë•Œ ìœ ìš©í•©ë‹ˆë‹¤.</li>
-                <li>ë””ë²„ê¹… ì¤‘ì— ë³µì¡í•œ ë°ì´í„° êµ¬ì¡°ë¥¼ ì‹œê°í™”í•˜ì—¬ ë¬¸ì œë¥¼ ë¹ ë¥´ê²Œ ì°¾ì„ ìˆ˜ ìˆìŠµë‹ˆë‹¤.</li>
-                <li>ìµœì†Œí™” ê¸°ëŠ¥ì„ ì‚¬ìš©í•˜ë©´ í”„ë¡œë•ì…˜ í™˜ê²½ì—ì„œ ì „ì†¡ ë°ì´í„°ë¥¼ ì¤„ì¼ ìˆ˜ ìˆìŠµë‹ˆë‹¤.</li>
-                <li>ì¤‘ê´„í˜¸ë‚˜ ëŒ€ê´„í˜¸ê°€ ë§ì§€ ì•ŠëŠ” ë“± ì¼ë°˜ì ì¸ JSON ì˜¤ë¥˜ë¥¼ ì°¾ì•„ ìˆ˜ì •í•˜ëŠ” ë° ë„ì›€ì´ ë©ë‹ˆë‹¤.</li>
+                <li>API ÀÀ´ä µ¥ÀÌÅÍ¸¦ È®ÀÎÇÒ ¶§ »ç¿ëÇÏ¸é ±¸Á¶¸¦ ½±°Ô ÆÄ¾ÇÇÒ ¼ö ÀÖ½À´Ï´Ù.</li>
+                <li>¼³Á¤ ÆÄÀÏ(config ÆÄÀÏ)ÀÇ JSON Çü½ÄÀ» °ËÁõÇÏ°í Á¤¸®ÇÒ ¶§ À¯¿ëÇÕ´Ï´Ù.</li>
+                <li>µğ¹ö±ë Áß¿¡ º¹ÀâÇÑ µ¥ÀÌÅÍ ±¸Á¶¸¦ ½Ã°¢È­ÇÏ¿© ¹®Á¦¸¦ ºü¸£°Ô Ã£À» ¼ö ÀÖ½À´Ï´Ù.</li>
+                <li>ÃÖ¼ÒÈ­ ±â´ÉÀ» »ç¿ëÇÏ¸é ÇÁ·Î´ö¼Ç È¯°æ¿¡¼­ Àü¼Û µ¥ÀÌÅÍ¸¦ ÁÙÀÏ ¼ö ÀÖ½À´Ï´Ù.</li>
+                <li>Áß°ıÈ£³ª ´ë°ıÈ£°¡ ¸ÂÁö ¾Ê´Â µî ÀÏ¹İÀûÀÎ JSON ¿À·ù¸¦ Ã£¾Æ ¼öÁ¤ÇÏ´Â µ¥ µµ¿òÀÌ µË´Ï´Ù.</li>
             </ul>
             <ul class="en">
                 <li>Useful for inspecting API response data to easily understand the structure.</li>
@@ -188,11 +191,11 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
         <textarea id="json-input" placeholder='{"key": "value"}'></textarea>
         
         <button class="btn" onclick="formatJSON()">
-            <span class="ko">ì •ë ¬</span>
+            <span class="ko">Á¤·Ä</span>
             <span class="en">Format</span>
         </button>
         <button class="btn" onclick="minifyJSON()">
-            <span class="ko">ìµœì†Œí™”</span>
+            <span class="ko">ÃÖ¼ÒÈ­</span>
             <span class="en">Minify</span>
         </button>
         
@@ -205,7 +208,7 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 <div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
 <div class="space-y-3 max-w-sm">
 <h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3>
-<p class="text-[#414753]">ì§¤ 2026 Free Utilities. All rights reserved.</p>
+<p class="text-[#414753]">Â© 2026 Free Utilities. All rights reserved.</p>
 </div>
 <div class="grid grid-cols-2 gap-8">
 <div class="flex flex-col gap-2">
@@ -235,16 +238,20 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 <span class="text-xs">Home</span>
 </div>
 </nav>
-<script>function setLang(lang) {
+<script>function toggleLang() {
+    var l = localStorage.getItem('util-lang') || 'ko';
+    setLang(l === 'ko' ? 'en' : 'ko');
+}
+function setLang(lang) {
             document.body.className = 'lang-' + lang;
+            var btn = document.getElementById('langToggle');
+            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'ÇÑ±¹¾î';
             document.querySelectorAll('.lang-btn').forEach((btn, i) => {
                 btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
             });
             localStorage.setItem('util-lang', lang);
         }
-        setLang('ko');
-        
-        function formatJSON() {
+        setLang('ko');function formatJSON() {
             try {
                 const input = document.getElementById('json-input').value;
                 const parsed = JSON.parse(input);

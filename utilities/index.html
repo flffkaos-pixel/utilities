@@ -1,319 +1,159 @@
 <!DOCTYPE html>
-
-<html class="light" lang="ko"><head>
+<html class="light" lang="ko">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Free Utilities - Zenith Productivity</title>
+<title>Free Utilities - All Tools</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "surface-tint": "#005cba",
-                        "tertiary": "#883700",
-                        "secondary-container": "#e2dfe1",
-                        "on-secondary-fixed-variant": "#474649",
-                        "background": "#f9f9ff",
-                        "inverse-on-surface": "#eff0f9",
-                        "error": "#ba1a1a",
-                        "secondary-fixed": "#e4e2e4",
-                        "surface-bright": "#f9f9ff",
-                        "on-tertiary-container": "#ffe3d6",
-                        "surface-container-low": "#f2f3fc",
-                        "surface-container-high": "#e6e8f1",
-                        "surface-variant": "#e1e2eb",
-                        "error-container": "#ffdad6",
-                        "surface": "#f9f9ff",
-                        "primary-fixed": "#d7e3ff",
-                        "primary": "#004e9f",
-                        "on-secondary-fixed": "#1b1b1d",
-                        "on-secondary-container": "#636264",
-                        "surface-dim": "#d8d9e2",
-                        "surface-container-highest": "#e1e2eb",
-                        "tertiary-container": "#af4900",
-                        "on-surface": "#191c22",
-                        "on-error-container": "#93000a",
-                        "secondary-fixed-dim": "#c8c6c8",
-                        "outline": "#727784",
-                        "inverse-primary": "#aac7ff",
-                        "on-error": "#ffffff",
-                        "tertiary-fixed-dim": "#ffb692",
-                        "primary-fixed-dim": "#aac7ff",
-                        "tertiary-fixed": "#ffdbcb",
-                        "on-primary": "#ffffff",
-                        "secondary": "#5f5e60",
-                        "on-tertiary-fixed-variant": "#793000",
-                        "on-secondary": "#ffffff",
-                        "inverse-surface": "#2e3037",
-                        "on-tertiary-fixed": "#341100",
-                        "surface-container-lowest": "#ffffff",
-                        "surface-container": "#ecedf6",
-                        "on-primary-container": "#dfe8ff",
-                        "on-surface-variant": "#414753",
-                        "on-primary-fixed-variant": "#00458e",
-                        "on-primary-fixed": "#001b3e",
-                        "outline-variant": "#c1c6d5",
-                        "on-background": "#191c22",
-                        "on-tertiary": "#ffffff",
-                        "primary-container": "#0066cc"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "container-max": "1200px",
-                        "stack-sm": "12px",
-                        "unit": "8px",
-                        "stack-md": "24px",
-                        "gutter": "24px",
-                        "section-padding-y": "120px",
-                        "stack-lg": "48px"
-                    },
-                    "fontFamily": {
-                        "h2": ["Inter"],
-                        "body-lg": ["Inter"],
-                        "body-md": ["Inter"],
-                        "label-sm": ["Inter"],
-                        "h1": ["Inter"],
-                        "h3": ["Inter"],
-                        "button": ["Inter"]
-                    },
-                    "fontSize": {
-                        "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.015em", "fontWeight": "600"}],
-                        "body-lg": ["19px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
-                        "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
-                        "label-sm": ["13px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "500"}],
-                        "h1": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                        "h3": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-                        "button": ["15px", {"lineHeight": "1", "letterSpacing": "-0.01em", "fontWeight": "600"}]
-                    }
-                },
-            },
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: { extend: {
+        colors: {
+            "primary": "#004e9f","background": "#f9f9ff","on-surface": "#191c22",
+            "on-surface-variant": "#414753","outline": "#727784","surface-container-lowest": "#ffffff",
+            "surface-container": "#ecedf6","primary-container": "#0066cc","surface": "#f9f9ff",
+            "outline-variant": "#c1c6d5","on-background": "#191c22","tertiary": "#883700","secondary": "#5f5e60"
+        },
+        fontFamily: { h1: ["Inter"], h2: ["Inter"], h3: ["Inter"] },
+        fontSize: {
+            h1: ["48px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }],
+            h2: ["32px", { lineHeight: "1.2", letterSpacing: "-0.015em", fontWeight: "600" }],
+            h3: ["24px", { lineHeight: "1.3", letterSpacing: "-0.01em", fontWeight: "600" }]
         }
-    </script>
+    }}
+}
+</script>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-        }
-        body { font-family: 'Inter', sans-serif; background-color: #f9f9ff; color: #191c22; }
-    </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+body { font-family: 'Inter', sans-serif; background-color: #f9f9ff; color: #191c22; }
+body.en .lang-ko { display: none; }
+body.en .lang-en { display: inline; }
+.lang-en { display: none; }
+</style>
+</head>
 <body class="bg-background">
-<!-- TopAppBar -->
+<script>
+var lang = localStorage.getItem('lang') || 'ko';
+document.body.classList.toggle('en', lang === 'en');
+</script>
 <header class="fixed top-0 w-full h-[64px] bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm z-50">
 <div class="flex justify-between items-center h-[64px] px-gutter max-w-container-max mx-auto">
-<div class="flex items-center gap-stack-sm cursor-pointer active:opacity-70">
+<div class="flex items-center gap-3" onclick="location.href='../index.html'" style="cursor:pointer">
 <span class="material-symbols-outlined text-primary" data-icon="grid_view">grid_view</span>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary">Free Utilities</h1>
 </div>
-<div class="flex items-center gap-stack-md">
-<nav class="hidden md:flex gap-stack-md">
-<a class="font-label-sm text-label-sm text-primary border-b-2 border-primary transition-colors duration-200" href="#">Tools</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Favorites</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Recents</a>
-</nav>
-<button class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all">English</button>
-</div>
+<button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5">English</button>
 </div>
 </header>
-<main class="pt-[64px]">
-<!-- Hero Section -->
-<section class="py-section-padding-y px-gutter max-w-container-max mx-auto text-center">
-<h1 class="font-h1 text-h1 text-on-background mb-stack-md max-w-3xl mx-auto">
-                모든 유틸리티를 한 곳에서
-            </h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-stack-lg">
-                개발자와 직장인을 위한 100% 무료 온라인 도구 모음입니다. 설치 없이 브라우저에서 바로 사용 가능하며, 어떠한 데이터도 서버에 저장되지 않습니다.
-            </p>
-<!-- Search Bar -->
-<div class="max-w-xl mx-auto relative group">
-<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
-</div>
-<input class="w-full pl-12 pr-4 py-4 bg-surface-container-lowest rounded-xl border-none shadow-sm focus:ring-2 focus:ring-primary focus:bg-white transition-all text-body-md font-body-md placeholder:text-outline-variant" placeholder="필요한 도구를 검색하세요 (예: 글자 수 세기, JSON)" type="text"/>
-</div>
-</section>
-<!-- Tool Sections: Bento-ish Grid -->
-<section class="pb-section-padding-y px-gutter max-w-container-max mx-auto space-y-stack-lg">
-<!-- Popular Tools Section -->
-<div>
-<div class="flex items-center gap-stack-sm mb-stack-md">
-<span class="material-symbols-outlined text-primary" data-icon="trending_up">trending_up</span>
-<h2 class="font-h3 text-h3 text-on-surface">인기 도구</h2>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-stack-md">
-<!-- Tool Card -->
-<div class="group bg-surface-container-lowest p-stack-md rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-outline-variant/10">
-<div class="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center mb-stack-sm group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-primary" data-icon="description">description</span>
-</div>
-<h3 class="font-h3 text-body-md font-bold mb-1">텍스트 도구</h3>
-<p class="font-body-md text-label-sm text-on-surface-variant">대소문자 변환, 공백 제거</p>
-</div>
-<div class="group bg-surface-container-lowest p-stack-md rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-outline-variant/10">
-<div class="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center mb-stack-sm group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-primary" data-icon="pin">pin</span>
-</div>
-<h3 class="font-h3 text-body-md font-bold mb-1">글자 수 세기</h3>
-<p class="font-body-md text-label-sm text-on-surface-variant">단어, 문자, 공백 포함 계산</p>
-</div>
-<div class="group bg-surface-container-lowest p-stack-md rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-outline-variant/10">
-<div class="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center mb-stack-sm group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-primary" data-icon="palette">palette</span>
-</div>
-<h3 class="font-h3 text-body-md font-bold mb-1">색상 변환</h3>
-<p class="font-body-md text-label-sm text-on-surface-variant">HEX, RGB, HSL 상호 변환</p>
-</div>
-<div class="group bg-surface-container-lowest p-stack-md rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-outline-variant/10">
-<div class="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center mb-stack-sm group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-primary" data-icon="lock">lock</span>
-</div>
-<h3 class="font-h3 text-body-md font-bold mb-1">Base64 인코더</h3>
-<p class="font-body-md text-label-sm text-on-surface-variant">문자열 및 파일 인코딩</p>
-</div>
-</div>
-</div>
-<!-- Calculators Section (Asymmetric / Bento Style) -->
-<div>
-<div class="flex items-center gap-stack-sm mb-stack-md">
-<span class="material-symbols-outlined text-primary" data-icon="calculate">calculate</span>
-<h2 class="font-h3 text-h3 text-on-surface">계산기</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
-<!-- Featured Large Card -->
-<div class="md:col-span-2 group relative overflow-hidden bg-primary p-stack-lg rounded-xl shadow-lg transition-all cursor-pointer">
-<div class="relative z-10 h-full flex flex-col justify-between">
-<div>
-<h3 class="font-h2 text-h2 text-white mb-stack-sm">D-Day 계산기</h3>
-<p class="text-white/80 font-body-md max-w-sm">남은 일수나 지난 일수를 간편하게 계산하세요. 특별한 기념일이나 업무 마감일을 관리하기에 최적입니다.</p>
-</div>
-<div class="mt-stack-md flex items-center gap-2 text-white font-button text-button">
-<span>지금 바로 사용하기</span>
-<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
-</div>
-</div>
-<div class="absolute -right-8 -bottom-8 opacity-20 transform rotate-12">
-<span class="material-symbols-outlined text-[200px] text-white" data-icon="calendar_month">calendar_month</span>
-</div>
-</div>
-<!-- Side Grid -->
-<div class="space-y-stack-md">
-<div class="group bg-surface-container-lowest p-stack-md rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-outline-variant/10 flex items-center gap-stack-md">
-<div class="w-10 h-10 rounded bg-tertiary/10 flex items-center justify-center">
-<span class="material-symbols-outlined text-tertiary" data-icon="savings">savings</span>
-</div>
-<div>
-<h4 class="font-body-md font-bold">이자 계산기</h4>
-<p class="text-label-sm text-on-surface-variant">적금/예금 수익 계산</p>
-</div>
-</div>
-<div class="group bg-surface-container-lowest p-stack-md rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-outline-variant/10 flex items-center gap-stack-md">
-<div class="w-10 h-10 rounded bg-secondary/10 flex items-center justify-center">
-<span class="material-symbols-outlined text-secondary" data-icon="percent">percent</span>
-</div>
-<div>
-<h4 class="font-body-md font-bold">할인율 계산</h4>
-<p class="text-label-sm text-on-surface-variant">세일 가격 및 차액 계산</p>
-</div>
-</div>
-<div class="group bg-surface-container-lowest p-stack-md rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-outline-variant/10 flex items-center gap-stack-md">
-<div class="w-10 h-10 rounded bg-primary/10 flex items-center justify-center">
-<span class="material-symbols-outlined text-primary" data-icon="monitor_weight">monitor_weight</span>
-</div>
-<div>
-<h4 class="font-body-md font-bold">BMI 계산기</h4>
-<p class="text-label-sm text-on-surface-variant">건강을 위한 체질량지수</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- More Tools Button -->
-<div class="text-center pt-stack-md">
-<button class="bg-primary text-white font-button text-button px-10 py-4 rounded-full shadow-lg hover:shadow-xl hover:brightness-110 active:scale-95 transition-all inline-flex items-center gap-stack-sm">
-                    더 많은 도구 보기 (+40개)
-                    <span class="material-symbols-outlined" data-icon="expand_more">expand_more</span>
-</button>
-</div>
-</section>
-<!-- App Features Section -->
-<section class="bg-surface-container-low py-section-padding-y">
-<div class="px-gutter max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-stack-lg items-center">
-<div class="relative rounded-2xl overflow-hidden shadow-2xl">
-<img alt="Coding environment" class="w-full h-auto" data-alt="A premium, clean studio photograph of a modern workspace with a high-end laptop showing clean lines of code. The environment is illuminated with soft, natural morning light, creating a bright and professional light-mode aesthetic. The composition is minimal and editorial, featuring high-quality materials like brushed aluminum and white desk surfaces, punctuated by subtle accent blues from the screen. The mood is calm and productive." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkl1z-jE4JoTYMH1s0L72vNTx_w73IJ5bUzskgRvYoChMma6pLddjCJoGuLdkyDRHf5d3nVt_nSaW_4OwgUbLbMM5GHEKNbrSMXO9jqs3PW9kiZe7finMhYrpq1UmI6QM4n9qgM7qiN62UBrnYWQr5iixi6vpjHKoPG8JH6tTaK0lrGZdv-tVvc9HFCBkIsTI2WQ8mxJsfSlKtfSVP5-wug52euyeWJijRgj1uPS3EX4FN4z0GMpWkHAMiWT4-2Azi641cmbCaT0A"/>
-</div>
-<div class="space-y-stack-md">
-<h2 class="font-h2 text-h2 text-on-surface">설치 없이, <br/>모든 기기에서 즉시 사용</h2>
-<p class="font-body-md text-body-md text-on-surface-variant">Zenith Utilities는 별도의 로그인이나 설치 과정 없이 웹 브라우저만 있다면 누구나 무료로 이용할 수 있는 전문 도구 세트입니다. 데이터 보호를 최우선으로 하여 입력된 모든 값은 사용자의 브라우저 내에서만 처리됩니다.</p>
-<ul class="space-y-stack-sm">
-<li class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-<span class="font-body-md">개인정보를 서버에 저장하지 않습니다.</span>
-</li>
-<li class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-<span class="font-body-md">모바일 및 데스크톱에 최적화된 인터페이스.</span>
-</li>
-<li class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-<span class="font-body-md">회원가입 없이 즉시 이용 가능합니다.</span>
-</li>
-</ul>
-</div>
-</div>
-</section>
+<main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
+<p class="text-on-surface-variant mb-4">&larr; <a href="../index.html" class="text-primary hover:underline"><span class="lang-ko">메인으로</span><span class="lang-en">Back to Home</span></a></p>
+<div id="allToolsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"></div>
 </main>
-<!-- Footer -->
-<footer class="w-full py-section-padding-y bg-surface-container-lowest border-t border-outline-variant/20">
-<div class="flex flex-col md:flex-row justify-between items-start gap-stack-lg px-gutter max-w-container-max mx-auto">
-<div class="space-y-stack-sm max-w-sm">
-<h3 class="font-h3 text-h3 font-bold text-on-surface">Zenith Utilities</h3>
-<p class="font-body-md text-on-surface-variant">© 2024 Zenith Utilities. Precision Engineered Productivity. 일상을 더 효율적으로 만드는 강력한 무료 도구 컬렉션.</p>
-</div>
-<div class="grid grid-cols-2 gap-stack-lg">
-<div class="flex flex-col gap-2">
-<h4 class="font-label-sm font-bold uppercase tracking-wider text-outline mb-2">Legal</h4>
-<a class="font-body-md text-on-surface-variant hover:text-primary hover:underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Privacy Policy</a>
-<a class="font-body-md text-on-surface-variant hover:text-primary hover:underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Terms of Service</a>
-</div>
-<div class="flex flex-col gap-2">
-<h4 class="font-label-sm font-bold uppercase tracking-wider text-outline mb-2">Support</h4>
-<a class="font-body-md text-on-surface-variant hover:text-primary hover:underline decoration-1 underline-offset-4 transition-all duration-300" href="#">API Documentation</a>
-<a class="font-body-md text-on-surface-variant hover:text-primary hover:underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Contact Support</a>
-</div>
-</div>
+<footer class="w-full py-12 bg-surface-container-lowest border-t border-outline-variant/20">
+<div class="px-gutter max-w-[1200px] mx-auto">
+<p class="text-[#414753]">&copy; 2026 Free Utilities.</p>
 </div>
 </footer>
-<!-- BottomNavBar (Mobile Only) -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 bg-surface/90 backdrop-blur-lg border-t border-outline-variant/20 md:hidden pb-safe shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
-<div class="flex flex-col items-center justify-center text-primary font-semibold cursor-pointer active:scale-95 duration-150">
-<span class="material-symbols-outlined" data-icon="home_storage" style="font-variation-settings: 'FILL' 1;">home_storage</span>
-<span class="font-label-sm text-label-sm">Tools</span>
-</div>
-<div class="flex flex-col items-center justify-center text-secondary cursor-pointer active:scale-95 duration-150">
-<span class="material-symbols-outlined" data-icon="star">star</span>
-<span class="font-label-sm text-label-sm">Favorites</span>
-</div>
-<div class="flex flex-col items-center justify-center text-secondary cursor-pointer active:scale-95 duration-150">
-<span class="material-symbols-outlined" data-icon="history">history</span>
-<span class="font-label-sm text-label-sm">Recents</span>
-</div>
-<div class="flex flex-col items-center justify-center text-secondary cursor-pointer active:scale-95 duration-150">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
-<span class="font-label-sm text-label-sm">Settings</span>
-</div>
-</nav>
-</body></html>
+<script>
+var lang = localStorage.getItem('lang') || 'ko';
+function applyLang(l) {
+  lang = l;
+  localStorage.setItem('lang', l);
+  document.body.classList.toggle('en', l === 'en');
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = l === 'ko' ? 'English' : '한국어';
+}
+document.getElementById('langToggle').addEventListener('click', function() {
+  applyLang(lang === 'ko' ? 'en' : 'ko');
+});
+applyLang(lang);
+
+var allTools = [
+  {file:"../text.html", icon:"description", ko:"텍스트 도구", en:"Text Tools", koDesc:"대소문자 변환, 공백 제거", enDesc:"Case convert, trim spaces", cat:"text"},
+  {file:"../counter.html", icon:"pin", ko:"글자 수 세기", en:"Word Counter", koDesc:"단어, 문자, 줄 수 계산", enDesc:"Count words, chars, lines", cat:"text"},
+  {file:"../reverse.html", icon:"swap_horiz", ko:"텍스트 뒤집기", en:"Text Reverser", koDesc:"문자열 순서 반전", enDesc:"Reverse string order", cat:"text"},
+  {file:"../diff.html", icon:"difference", ko:"텍스트 비교", en:"Text Diff", koDesc:"두 텍스트 차이 비교", enDesc:"Compare two texts", cat:"text"},
+  {file:"../lorem.html", icon:"text_fields", ko:"Lorem Ipsum 생성", en:"Lorem Ipsum Gen", koDesc:"더미 텍스트 생성", enDesc:"Generate dummy text", cat:"text"},
+  {file:"../unicode.html", icon:"abc", ko:"유니코드 변환", en:"Unicode Converter", koDesc:"유니코드 인코딩/디코딩", enDesc:"Unicode encode/decode", cat:"text"},
+  {file:"../sort.html", icon:"sort", ko:"텍스트 정렬", en:"Text Sorter", koDesc:"줄 단위 정렬", enDesc:"Sort lines alphabetically", cat:"text"},
+  {file:"../unique.html", icon:"filter_alt", ko:"중복 제거", en:"Unique Lines", koDesc:"중복 라인 제거", enDesc:"Remove duplicate lines", cat:"text"},
+  {file:"../base64.html", icon:"lock", ko:"Base64 인코더", en:"Base64 Encoder", koDesc:"문자열 및 파일 인코딩", enDesc:"String & file encoding", cat:"dev"},
+  {file:"../json.html", icon:"data_object", ko:"JSON 포맷터", en:"JSON Formatter", koDesc:"JSON 정렬 및 검증", enDesc:"Format & validate JSON", cat:"dev"},
+  {file:"../jsoncsv.html", icon:"table_chart", ko:"JSON↔CSV 변환", en:"JSON to CSV", koDesc:"JSON과 CSV 상호 변환", enDesc:"Convert JSON & CSV", cat:"dev"},
+  {file:"../html.html", icon:"code", ko:"HTML 인코더", en:"HTML Encoder", koDesc:"HTML 특수문자 변환", enDesc:"Encode HTML entities", cat:"dev"},
+  {file:"../url.html", icon:"link", ko:"URL 인코더", en:"URL Encoder", koDesc:"URL 인코딩/디코딩", enDesc:"URL encode/decode", cat:"dev"},
+  {file:"../urlparser.html", icon:"travel_explore", ko:"URL 파서", en:"URL Parser", koDesc:"URL 구성 요소 분석", enDesc:"Parse URL components", cat:"dev"},
+  {file:"../jwt.html", icon:"key", ko:"JWT 디버거", en:"JWT Debugger", koDesc:"JWT 토큰 디코딩", enDesc:"Decode JWT tokens", cat:"dev"},
+  {file:"../hash.html", icon:"fingerprint", ko:"해시 생성기", en:"Hash Generator", koDesc:"MD5, SHA 해시 생성", enDesc:"Generate MD5, SHA hashes", cat:"dev"},
+  {file:"../regex.html", icon:"manage_search", ko:"정규식 테스터", en:"Regex Tester", koDesc:"정규식 패턴 테스트", enDesc:"Test regex patterns", cat:"dev"},
+  {file:"../sql.html", icon:"storage", ko:"SQL 포맷터", en:"SQL Formatter", koDesc:"SQL 쿼리 정렬", enDesc:"Format SQL queries", cat:"dev"},
+  {file:"../binary.html", icon:"numbers", ko:"이진수 변환", en:"Binary Converter", koDesc:"2진수/10진수 변환", enDesc:"Binary/decimal conversion", cat:"dev"},
+  {file:"../baseconvert.html", icon:"123", ko:"진법 변환", en:"Base Converter", koDesc:"다양한 진법 변환", enDesc:"Convert between bases", cat:"dev"},
+  {file:"../cron.html", icon:"schedule", ko:"Cron 표현식", en:"Cron Expression", koDesc:"크론 작업 시간 설정", enDesc:"Set cron job schedules", cat:"dev"},
+  {file:"../cronparser.html", icon:"calendar_clock", ko:"Cron 파서", en:"Cron Parser", koDesc:"크론 표현식 해석", enDesc:"Parse cron expressions", cat:"dev"},
+  {file:"../color.html", icon:"palette", ko:"색상 변환", en:"Color Converter", koDesc:"HEX, RGB, HSL 변환", enDesc:"HEX, RGB, HSL convert", cat:"dev"},
+  {file:"../markdown.html", icon:"article", ko:"마크다운 변환", en:"Markdown Editor", koDesc:"마크다운 미리보기", enDesc:"Markdown preview", cat:"dev"},
+  {file:"../qrcode.html", icon:"qr_code", ko:"QR 코드 생성", en:"QR Code Gen", koDesc:"URL, 텍스트로 QR 생성", enDesc:"Generate QR from URL/text", cat:"dev"},
+  {file:"../password.html", icon:"lock", ko:"비밀번호 생성", en:"Password Gen", koDesc:"안전한 비밀번호 생성", enDesc:"Generate secure passwords", cat:"dev"},
+  {file:"../uuid.html", icon:"tag", ko:"UUID 생성", en:"UUID Generator", koDesc:"고유 식별자 생성", enDesc:"Generate unique IDs", cat:"dev"},
+  {file:"../screen.html", icon:"monitor", ko:"화면 녹화", en:"Screen Recorder", koDesc:"브라우저 화면 녹화", enDesc:"Record your screen", cat:"dev"},
+  {file:"../analyzer.html", icon:"analytics", ko:"웹 분석기", en:"Web Analyzer", koDesc:"웹사이트 메타 분석", enDesc:"Analyze website meta", cat:"dev"},
+  {file:"../compress.html", icon:"compress", ko:"이미지 압축", en:"Image Compress", koDesc:"이미지 파일 크기 축소", enDesc:"Reduce image file size", cat:"dev"},
+  {file:"../pdf-to-text.html", icon:"picture_as_pdf", ko:"PDF→텍스트", en:"PDF to Text", koDesc:"PDF에서 텍스트 추출", enDesc:"Extract text from PDF", cat:"dev"},
+  {file:"../pngtojpg.html", icon:"transform", ko:"PNG→JPG 변환", en:"PNG to JPG", koDesc:"이미지 포맷 변환", enDesc:"Convert image format", cat:"dev"},
+  {file:"../unit.html", icon:"straighten", ko:"단위 변환", en:"Unit Converter", koDesc:"길이, 무게, 온도 변환", enDesc:"Length, weight, temp", cat:"dev"},
+  {file:"../bmi.html", icon:"monitor_weight", ko:"BMI 계산기", en:"BMI Calculator", koDesc:"체질량지수 계산", enDesc:"Calculate body mass index", cat:"calc"},
+  {file:"../loan.html", icon:"savings", ko:"이자 계산기", en:"Loan Calculator", koDesc:"적금/예금 수익 계산", enDesc:"Savings & loan interest", cat:"calc"},
+  {file:"../discount.html", icon:"percent", ko:"할인율 계산", en:"Discount Calc", koDesc:"세일 가격 및 차액 계산", enDesc:"Sale price & savings", cat:"calc"},
+  {file:"../percentage.html", icon:"pie_chart", ko:"퍼센트 계산기", en:"Percentage Calc", koDesc:"백분율 계산", enDesc:"Calculate percentages", cat:"calc"},
+  {file:"../calorie.html", icon:"restaurant", ko:"칼로리 계산기", en:"Calorie Calc", koDesc:"음식 칼로리 계산", enDesc:"Calculate food calories", cat:"calc"},
+  {file:"../gpa.html", icon:"school", ko:"GPA 계산기", en:"GPA Calculator", koDesc:"학점 평균 계산", enDesc:"Grade point average", cat:"calc"},
+  {file:"../tax.html", icon:"receipt_long", ko:"세금 계산기", en:"Tax Calculator", koDesc:"부가세 계산", enDesc:"Calculate tax", cat:"calc"},
+  {file:"../invoice.html", icon:"receipt", ko:"인보이스 계산", en:"Invoice Calc", koDesc:"청구서 계산", enDesc:"Invoice calculation", cat:"calc"},
+  {file:"../age.html", icon:"cake", ko:"나이 계산기", en:"Age Calculator", koDesc:"만 나이 계산", enDesc:"Calculate exact age", cat:"calc"},
+  {file:"../date.html", icon:"calendar_month", ko:"D-Day 계산기", en:"D-Day Calculator", koDesc:"날짜 차이 계산", enDesc:"Calculate date difference", cat:"calc"},
+  {file:"../hourly.html", icon:"payments", ko:"시급 계산기", en:"Hourly Wage Calc", koDesc:"시급/월급 계산", enDesc:"Hourly wage calculator", cat:"calc"},
+  {file:"../countdown.html", icon:"timer", ko:"카운트다운", en:"Countdown", koDesc:"이벤트 카운트다운", enDesc:"Event countdown timer", cat:"calc"},
+  {file:"../stopwatch.html", icon:"alarm", ko:"스톱워치", en:"Stopwatch", koDesc:"시간 측정", enDesc:"Time measurement", cat:"calc"},
+  {file:"../time.html", icon:"schedule", ko:"시간 변환", en:"Time Converter", koDesc:"시간대 변환", enDesc:"Convert time zones", cat:"calc"},
+  {file:"../timestamp.html", icon:"access_time", ko:"타임스탬프", en:"Timestamp Conv", koDesc:"타임스탬프 변환", enDesc:"Convert timestamps", cat:"calc"},
+  {file:"../timezone.html", icon:"public", ko:"시간대 변환", en:"Timezone Conv", koDesc:"세계 시간대 변환", enDesc:"World timezone convert", cat:"calc"},
+  {file:"../morse.html", icon:"radio", ko:"모스 부호", en:"Morse Code", koDesc:"텍스트↔모스 부호", enDesc:"Text to Morse code", cat:"fun"},
+  {file:"../caesar.html", icon:"enhanced_encryption", ko:"시저 암호", en:"Caesar Cipher", koDesc:"암호화/복호화", enDesc:"Encrypt/decrypt text", cat:"fun"},
+  {file:"../numbertowords.html", icon:"123", ko:"숫자→문자 변환", en:"Number to Words", koDesc:"숫자를 한글/영문으로", enDesc:"Convert numbers to words", cat:"fun"},
+  {file:"../typingtest.html", icon:"keyboard", ko:"타이핑 테스트", en:"Typing Test", koDesc:"타이핑 속도 측정", enDesc:"Measure typing speed", cat:"fun"},
+  {file:"../wordscramble.html", icon:"shuffle", ko:"단어 섞기", en:"Word Scramble", koDesc:"단어 철자 뒤섞기", enDesc:"Scramble word letters", cat:"fun"},
+  {file:"../random.html", icon:"casino", ko:"랜덤 생성기", en:"Random Generator", koDesc:"무작위 숫자 생성", enDesc:"Generate random numbers", cat:"fun"},
+  {file:"../randomword.html", icon:"psychology", ko:"랜덤 단어", en:"Random Word", koDesc:"무작위 단어 생성", enDesc:"Generate random words", cat:"fun"},
+];
+
+var catNames = {
+  ko: { text: "텍스트 도구", dev: "개발자 도구", calc: "계산기", fun: "기타 도구" },
+  en: { text: "Text Tools", dev: "Developer Tools", calc: "Calculators", fun: "Other Tools" }
+};
+var catIcons = { text: "text_fields", dev: "code", calc: "calculate", fun: "widgets" };
+
+function renderAllTools() {
+  var container = document.getElementById('allToolsGrid');
+  if (!container) return;
+  var cats = ['text', 'dev', 'calc', 'fun'];
+  var html = '';
+  cats.forEach(function(c) {
+    var tools = allTools.filter(function(t) { return t.cat === c; });
+    html += '<div class="col-span-full mt-2 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-primary">' + catIcons[c] + '</span><h3 class="font-h3 text-body-lg font-bold text-on-surface"><span class="lang-ko">' + catNames.ko[c] + '</span><span class="lang-en">' + catNames.en[c] + '</span></h3></div>';
+    tools.forEach(function(t) {
+      html += '<a href="' + t.file + '" class="group bg-surface-container-lowest p-3 rounded-xl shadow-sm hover:shadow-md transition-all border border-outline-variant/10 flex items-center gap-3">';
+      html += '<div class="w-9 h-9 rounded-lg bg-primary-container/10 flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0"><span class="material-symbols-outlined text-primary" style="font-size:18px">' + t.icon + '</span></div>';
+      html += '<div class="min-w-0"><div class="text-sm font-semibold truncate"><span class="lang-ko">' + t.ko + '</span><span class="lang-en">' + t.en + '</span></div>';
+      html += '<div class="text-xs text-on-surface-variant truncate"><span class="lang-ko">' + t.koDesc + '</span><span class="lang-en">' + t.enDesc + '</span></div></div></a>';
+    });
+  });
+  container.innerHTML = html;
+}
+renderAllTools();
+</script>
+</body>
+</html>

@@ -1,9 +1,9 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ê¸€ì ìˆ˜ ì„¸ê¸° - Word Counter</title>
+<title>±ÛÀÚ ¼ö ¼¼±â - Word Counter</title>
 <meta name="description" content="Free online utility tool"/>
 <meta name="robots" content="index, follow"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
@@ -94,6 +94,8 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .stat { background: #f2f3fc; border-radius: 0.75rem; padding: 16px; text-align: center; }
 #json-result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
+body.lang-ko .en { display: none; }
+body.lang-en .ko { display: none; }
 </style>
 </head>
 <body class="bg-background">
@@ -105,28 +107,29 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
 <div class="tool-card"><h1>
-            <span class="ko">ê¸€ì ìˆ˜ ì„¸ê¸° - ë‹¨ì–´, ê¸€ì, ì¤„ìˆ˜ ê³„ì‚° ğŸ“Š ê¸€ì ìˆ˜ ì„¸ê¸°</span>
-            <span class="en">Word Counter - Count words, chars, lines ğŸ“Š Word Counter</span>
+            <span class="ko">±ÛÀÚ ¼ö ¼¼±â - ´Ü¾î, ±ÛÀÚ, ÁÙ¼ö °è»ê ?? ±ÛÀÚ ¼ö ¼¼±â</span>
+            <span class="en">Word Counter - Count words, chars, lines ?? Word Counter</span>
         </h1>
         
         <div class="description">
-            <span class="ko">ê¸€ì ìˆ˜ ì„¸ê¸°ëŠ” í…ìŠ¤íŠ¸ì˜ ë‹¨ì–´ ìˆ˜, ë¬¸ì ìˆ˜, ì¤„ìˆ˜ë¥¼ ìë™ìœ¼ë¡œ ê³„ì‚°í•©ë‹ˆë‹¤. ì—ì„¸ì´, ë³´ê³ ì„œ,SNS ê¸€ì“°ê¸°ì— ìœ ìš©í•©ë‹ˆë‹¤. ì´ ë„êµ¬ëŠ” ì‹¤ì‹œê°„ìœ¼ë¡œ í…ìŠ¤íŠ¸ë¥¼ ë¶„ì„í•˜ì—¬ ì‘ì„± ì¤‘ì¸ ë¬¸ì„œì˜ í†µê³„ ì •ë³´ë¥¼ ì¦‰ì‹œ ì œê³µí•©ë‹ˆë‹¤.</span>
+            <span class="ko">±ÛÀÚ ¼ö ¼¼±â´Â ÅØ½ºÆ®ÀÇ ´Ü¾î ¼ö, ¹®ÀÚ ¼ö, ÁÙ¼ö¸¦ ÀÚµ¿À¸·Î °è»êÇÕ´Ï´Ù. ¿¡¼¼ÀÌ, º¸°í¼­,SNS ±Û¾²±â¿¡ À¯¿ëÇÕ´Ï´Ù. ÀÌ µµ±¸´Â ½Ç½Ã°£À¸·Î ÅØ½ºÆ®¸¦ ºĞ¼®ÇÏ¿© ÀÛ¼º ÁßÀÎ ¹®¼­ÀÇ Åë°è Á¤º¸¸¦ Áï½Ã Á¦°øÇÕ´Ï´Ù.</span>
             <span class="en">Word Counter automatically counts words, characters, and lines in your text. Great for essays, reports, and social media posts. This tool analyzes text in real-time to provide instant statistics on your documents as you write.</span>
         </div>
         
         <div class="usage-guide">
-            <h3 class="ko">ì‚¬ìš© ë°©ë²•</h3>
+            <h3 class="ko">»ç¿ë ¹æ¹ı</h3>
             <h3 class="en">How to Use</h3>
             <ol class="ko">
-                <li>ìœ„ í…ìŠ¤íŠ¸ ì˜ì—­ì— ë¶„ì„í•˜ê³  ì‹¶ì€ í…ìŠ¤íŠ¸ë¥¼ ì…ë ¥í•˜ê±°ë‚˜ ë¶™ì—¬ë„£ê¸° í•©ë‹ˆë‹¤.</li>
-                <li>ë‹¨ì–´ ìˆ˜, ë¬¸ì ìˆ˜, ì¤„ ìˆ˜ê°€ ì‹¤ì‹œê°„ìœ¼ë¡œ ì—…ë°ì´íŠ¸ë˜ì–´ í‘œì‹œë©ë‹ˆë‹¤.</li>
-                <li>ë¬¸ì ìˆ˜ëŠ” ê³µë°±ê³¼ íŠ¹ìˆ˜ ë¬¸ìë¥¼ í¬í•¨í•œ ì „ì²´ ê¸¸ì´ë¥¼ ë‚˜íƒ€ëƒ…ë‹ˆë‹¤.</li>
-                <li>ë‹¨ì–´ ìˆ˜ëŠ” ê³µë°±ìœ¼ë¡œ êµ¬ë¶„ëœ í† í°ë“¤ì˜ ê°œìˆ˜ë¥¼ ê³„ì‚°í•©ë‹ˆë‹¤.</li>
-                <li>ì¤„ ìˆ˜ëŠ” ê°œí–‰ ë¬¸ìë¡œ êµ¬ë¶„ëœ ì¤„ë“¤ì˜ ê°œìˆ˜ë¥¼ ì…‰ë‹ˆë‹¤.</li>
+                <li>À§ ÅØ½ºÆ® ¿µ¿ª¿¡ ºĞ¼®ÇÏ°í ½ÍÀº ÅØ½ºÆ®¸¦ ÀÔ·ÂÇÏ°Å³ª ºÙ¿©³Ö±â ÇÕ´Ï´Ù.</li>
+                <li>´Ü¾î ¼ö, ¹®ÀÚ ¼ö, ÁÙ ¼ö°¡ ½Ç½Ã°£À¸·Î ¾÷µ¥ÀÌÆ®µÇ¾î Ç¥½ÃµË´Ï´Ù.</li>
+                <li>¹®ÀÚ ¼ö´Â °ø¹é°ú Æ¯¼ö ¹®ÀÚ¸¦ Æ÷ÇÔÇÑ ÀüÃ¼ ±æÀÌ¸¦ ³ªÅ¸³À´Ï´Ù.</li>
+                <li>´Ü¾î ¼ö´Â °ø¹éÀ¸·Î ±¸ºĞµÈ ÅäÅ«µéÀÇ °³¼ö¸¦ °è»êÇÕ´Ï´Ù.</li>
+                <li>ÁÙ ¼ö´Â °³Çà ¹®ÀÚ·Î ±¸ºĞµÈ ÁÙµéÀÇ °³¼ö¸¦ ¼Á´Ï´Ù.</li>
             </ol>
             <ol class="en">
                 <li>Enter or paste the text you want to analyze in the text area above.</li>
@@ -138,38 +141,38 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
         </div>
         
         <div class="examples">
-            <h3 class="ko">ì˜ˆì‹œ</h3>
+            <h3 class="ko">¿¹½Ã</h3>
             <h3 class="en">Examples</h3>
             <div class="example-grid">
                 <div class="example-item">
-                    <h4 class="ko">ê¸°ë³¸ í†µê³„</h4>
+                    <h4 class="ko">±âº» Åë°è</h4>
                     <h4 class="en">Basic Statistics</h4>
-                    <p class="ko">ì…ë ¥: "Hello World" â†’ ë‹¨ì–´: 2, ë¬¸ì: 11, ì¤„: 1</p>
-                    <p class="en">Input: "Hello World" â†’ Words: 2, Characters: 11, Lines: 1</p>
+                    <p class="ko">ÀÔ·Â: "Hello World" ¡æ ´Ü¾î: 2, ¹®ÀÚ: 11, ÁÙ: 1</p>
+                    <p class="en">Input: "Hello World" ¡æ Words: 2, Characters: 11, Lines: 1</p>
                 </div>
                 <div class="example-item">
-                    <h4 class="ko">ì—¬ëŸ¬ ì¤„ í…ìŠ¤íŠ¸</h4>
+                    <h4 class="ko">¿©·¯ ÁÙ ÅØ½ºÆ®</h4>
                     <h4 class="en">Multi-line Text</h4>
-                    <p class="ko">ì…ë ¥: "ì²« ì¤„\në‘ ì¤„\nì„¸ ì¤„" â†’ ë‹¨ì–´: 6, ë¬¸ì: 17, ì¤„: 3</p>
-                    <p class="en">Input: "First line\nSecond line\nThird line" â†’ Words: 6, Characters: 17, Lines: 3</p>
+                    <p class="ko">ÀÔ·Â: "Ã¹ ÁÙ\nµÎ ÁÙ\n¼¼ ÁÙ" ¡æ ´Ü¾î: 6, ¹®ÀÚ: 17, ÁÙ: 3</p>
+                    <p class="en">Input: "First line\nSecond line\nThird line" ¡æ Words: 6, Characters: 17, Lines: 3</p>
                 </div>
                 <div class="example-item">
-                    <h4 class="ko">íŠ¹ìˆ˜ ë¬¸ì í¬í•¨</h4>
+                    <h4 class="ko">Æ¯¼ö ¹®ÀÚ Æ÷ÇÔ</h4>
                     <h4 class="en">Special Characters</h4>
-                    <p class="ko">ì…ë ¥: "Hello, World! How are you?" â†’ ë‹¨ì–´: 5, ë¬¸ì: 28, ì¤„: 1</p>
-                    <p class="en">Input: "Hello, World! How are you?" â†’ Words: 5, Characters: 28, Lines: 1</p>
+                    <p class="ko">ÀÔ·Â: "Hello, World! How are you?" ¡æ ´Ü¾î: 5, ¹®ÀÚ: 28, ÁÙ: 1</p>
+                    <p class="en">Input: "Hello, World! How are you?" ¡æ Words: 5, Characters: 28, Lines: 1</p>
                 </div>
             </div>
         </div>
         
         <div class="tips">
-            <h3 class="ko">í™œìš© íŒ</h3>
+            <h3 class="ko">È°¿ë ÆÁ</h3>
             <h3 class="en">Usage Tips</h3>
             <ul class="ko">
-                <li>ì—ì„¸ì´ë‚˜ ë³´ê³ ì„œì˜ ë‹¨ì–´ ìˆ˜ ì œí•œì„ ë§ì¶œ ë•Œ ìœ ìš©í•©ë‹ˆë‹¤.</li>
-                <li>SNS ê²Œì‹œë¬¼ì˜ ê¸€ì ìˆ˜ ì œí•œì„ í™•ì¸í•  ë•Œ ì‚¬ìš©í•˜ì„¸ìš”.</li>
-                <li>í”„ë¡œê·¸ë˜ë°ì—ì„œ ë¬¸ìì—´ ê¸¸ì´ í™•ì¸ì— í™œìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.</li>
-                <li>ë²ˆì—­ ì‘ì—…ì—ì„œ ì›ë³¸ê³¼ ë²ˆì—­ë¬¸ì˜ ê¸¸ì´ ì°¨ì´ë¥¼ ë¹„êµí•  ë•Œ ìœ ìš©í•©ë‹ˆë‹¤.</li>
+                <li>¿¡¼¼ÀÌ³ª º¸°í¼­ÀÇ ´Ü¾î ¼ö Á¦ÇÑÀ» ¸ÂÃâ ¶§ À¯¿ëÇÕ´Ï´Ù.</li>
+                <li>SNS °Ô½Ã¹°ÀÇ ±ÛÀÚ ¼ö Á¦ÇÑÀ» È®ÀÎÇÒ ¶§ »ç¿ëÇÏ¼¼¿ä.</li>
+                <li>ÇÁ·Î±×·¡¹Ö¿¡¼­ ¹®ÀÚ¿­ ±æÀÌ È®ÀÎ¿¡ È°¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù.</li>
+                <li>¹ø¿ª ÀÛ¾÷¿¡¼­ ¿øº»°ú ¹ø¿ª¹®ÀÇ ±æÀÌ Â÷ÀÌ¸¦ ºñ±³ÇÒ ¶§ À¯¿ëÇÕ´Ï´Ù.</li>
             </ul>
             <ul class="en">
                 <li>Useful for meeting word count requirements in essays and reports.</li>
@@ -179,22 +182,22 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
             </ul>
         </div>
         
-        <textarea id="input" oninput="count()" placeholder="Enter text... / í…ìŠ¤íŠ¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”..."></textarea>
+        <textarea id="input" oninput="count()" placeholder="Enter text... / ÅØ½ºÆ®¸¦ ÀÔ·ÂÇÏ¼¼¿ä..."></textarea>
         
         <div class="stats">
             <div class="stat">
                 <div class="stat-num" id="words">0</div>
-                <div class="stat-label ko">ë‹¨ì–´</div>
+                <div class="stat-label ko">´Ü¾î</div>
                 <div class="stat-label en">Words</div>
             </div>
             <div class="stat">
                 <div class="stat-num" id="chars">0</div>
-                <div class="stat-label ko">ê¸€ì</div>
+                <div class="stat-label ko">±ÛÀÚ</div>
                 <div class="stat-label en">Characters</div>
             </div>
             <div class="stat">
                 <div class="stat-num" id="lines">0</div>
-                <div class="stat-label ko">ì¤„</div>
+                <div class="stat-label ko">ÁÙ</div>
                 <div class="stat-label en">Lines</div>
             </div>
         </div></div>
@@ -206,7 +209,7 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 <div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
 <div class="space-y-3 max-w-sm">
 <h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3>
-<p class="text-[#414753]">ì§¤ 2026 Free Utilities. All rights reserved.</p>
+<p class="text-[#414753]">Â© 2026 Free Utilities. All rights reserved.</p>
 </div>
 <div class="grid grid-cols-2 gap-8">
 <div class="flex flex-col gap-2">
@@ -236,16 +239,20 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 <span class="text-xs">Home</span>
 </div>
 </nav>
-<script>function setLang(lang) {
+<script>function toggleLang() {
+    var l = localStorage.getItem('util-lang') || 'ko';
+    setLang(l === 'ko' ? 'en' : 'ko');
+}
+function setLang(lang) {
             document.body.className = 'lang-' + lang;
+            var btn = document.getElementById('langToggle');
+            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'ÇÑ±¹¾î';
             document.querySelectorAll('.lang-btn').forEach((btn, i) => {
                 btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
             });
             localStorage.setItem('util-lang', lang);
         }
-        setLang('ko');
-        
-        function count() {
+        setLang('ko');function count() {
             const text = document.getElementById('input').value;
             document.getElementById('words').textContent = text.trim() ? text.trim().split(/\s+/).length : 0;
             document.getElementById('chars').textContent = text.length;

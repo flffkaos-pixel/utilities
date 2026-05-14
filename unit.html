@@ -1,9 +1,9 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ë‹¨ìœ„ ë³€í™˜ - Unit Converter</title>
+<title>´ÜÀ§ º¯È¯ - Unit Converter</title>
 <meta name="description" content="Free online utility tool"/>
 <meta name="robots" content="index, follow"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
@@ -94,6 +94,8 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .stat { background: #f2f3fc; border-radius: 0.75rem; padding: 16px; text-align: center; }
 #json-result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
+body.lang-ko .en { display: none; }
+body.lang-en .ko { display: none; }
 </style>
 </head>
 <body class="bg-background">
@@ -105,44 +107,45 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><h1 class="ko">ğŸ“ ë‹¨ìœ„ ë³€í™˜</h1>
-        <h1 class="en">ğŸ“ Unit Converter</h1>
+<div class="tool-card"><h1 class="ko">?? ´ÜÀ§ º¯È¯</h1>
+        <h1 class="en">?? Unit Converter</h1>
         
         <div class="card">
-            <h2 class="ko">ê¸¸ì´ (Length)</h2>
+            <h2 class="ko">±æÀÌ (Length)</h2>
             <h2 class="en">Length</h2>
-            <input type="number" id="lenVal" oninput="convertLength()" placeholder="ê°’ ì…ë ¥">
+            <input type="number" id="lenVal" oninput="convertLength()" placeholder="°ª ÀÔ·Â">
             <select id="lenType" onchange="convertLength()">
-                <option value="km-mile">km â†” mile</option>
-                <option value="m-foot">m â†” foot</option>
-                <option value="cm-inch">cm â†” inch</option>
-                <option value="km-ft">km â†” ft</option>
+                <option value="km-mile">km ¡ê mile</option>
+                <option value="m-foot">m ¡ê foot</option>
+                <option value="cm-inch">cm ¡ê inch</option>
+                <option value="km-ft">km ¡ê ft</option>
             </select>
             <div class="result" id="lenResult">-</div>
         </div>
         
         <div class="card">
-            <h2 class="ko">ë¬´ê²Œ (Weight)</h2>
+            <h2 class="ko">¹«°Ô (Weight)</h2>
             <h2 class="en">Weight</h2>
-            <input type="number" id="wgtVal" oninput="convertWeight()" placeholder="ê°’ ì…ë ¥">
+            <input type="number" id="wgtVal" oninput="convertWeight()" placeholder="°ª ÀÔ·Â">
             <select id="wgtType" onchange="convertWeight()">
-                <option value="kg-pound">kg â†” pound</option>
-                <option value="g-oz">g â†” oz</option>
-                <option value="kg-lb">kg â†” lb</option>
+                <option value="kg-pound">kg ¡ê pound</option>
+                <option value="g-oz">g ¡ê oz</option>
+                <option value="kg-lb">kg ¡ê lb</option>
             </select>
             <div class="result" id="wgtResult">-</div>
         </div>
         
         <div class="card">
-            <h2 class="ko">ì˜¨ë„ (Temperature)</h2>
+            <h2 class="ko">¿Âµµ (Temperature)</h2>
             <h2 class="en">Temperature</h2>
-            <input type="number" id="tempVal" oninput="convertTemp()" placeholder="ê°’ ì…ë ¥">
+            <input type="number" id="tempVal" oninput="convertTemp()" placeholder="°ª ÀÔ·Â">
             <select id="tempType" onchange="convertTemp()">
-                <option value="c-f">Â°C â†” Â°F</option>
-                <option value="c-k">Â°C â†” K</option>
+                <option value="c-f">¡ÆC ¡ê ¡ÆF</option>
+                <option value="c-k">¡ÆC ¡ê K</option>
             </select>
             <div class="result" id="tempResult">-</div>
         </div></div>
@@ -154,7 +157,7 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 <div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
 <div class="space-y-3 max-w-sm">
 <h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3>
-<p class="text-[#414753]">ì§¤ 2026 Free Utilities. All rights reserved.</p>
+<p class="text-[#414753]">Â© 2026 Free Utilities. All rights reserved.</p>
 </div>
 <div class="grid grid-cols-2 gap-8">
 <div class="flex flex-col gap-2">
@@ -184,7 +187,19 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 <span class="text-xs">Home</span>
 </div>
 </nav>
-<script>function setLang(lang) { document.body.className = lang; localStorage.setItem('util-lang', lang); }
+<script>function toggleLang() {
+    var l = localStorage.getItem('util-lang') || 'ko';
+    setLang(l === 'ko' ? 'en' : 'ko');
+}
+function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            var btn = document.getElementById('langToggle');
+            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'ÇÑ±¹¾î';
+            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
+            });
+            localStorage.setItem('util-lang', lang);
+        }
         const saved = localStorage.getItem('util-lang');
         if (saved) setLang(saved);
         
@@ -221,8 +236,8 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
             if (isNaN(val)) { document.getElementById('tempResult').textContent = '-'; return; }
             let res = '';
             switch(type) {
-                case 'c-f': res = `${val}Â°C = ${(val * 9/5 + 32).toFixed(2)}Â°F`; break;
-                case 'c-k': res = `${val}Â°C = ${(val + 273.15).toFixed(2)}K`; break;
+                case 'c-f': res = `${val}¡ÆC = ${(val * 9/5 + 32).toFixed(2)}¡ÆF`; break;
+                case 'c-k': res = `${val}¡ÆC = ${(val + 273.15).toFixed(2)}K`; break;
             }
             document.getElementById('tempResult').textContent = res;
         }
