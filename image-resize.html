@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>이미지 리사이즈 - Image Resize</title>
+<meta name="description" content="Free online image resizer tool"/>
+<meta name="robots" content="index, follow"/>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z29KRGF7J3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Z29KRGF7J3');
+</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "surface-tint": "#005cba", "tertiary": "#883700", "secondary-container": "#e2dfe1",
+                "on-secondary-fixed-variant": "#474649", "background": "#f9f9ff", "inverse-on-surface": "#eff0f9",
+                "error": "#ba1a1a", "secondary-fixed": "#e4e2e4", "surface-bright": "#f9f9ff",
+                "on-tertiary-container": "#ffe3d6", "surface-container-low": "#f2f3fc", "surface-container-high": "#e6e8f1",
+                "surface-variant": "#e1e2eb", "error-container": "#ffdad6", "surface": "#f9f9ff",
+                "primary-fixed": "#d7e3ff", "primary": "#004e9f", "on-secondary-fixed": "#1b1b1d",
+                "on-secondary-container": "#636264", "surface-dim": "#d8d9e2", "surface-container-highest": "#e1e2eb",
+                "tertiary-container": "#af4900", "on-surface": "#191c22", "on-error-container": "#93000a",
+                "secondary-fixed-dim": "#c8c6c8", "outline": "#727784", "inverse-primary": "#aac7ff",
+                "on-error": "#ffffff", "tertiary-fixed-dim": "#ffb692", "primary-fixed-dim": "#aac7ff",
+                "tertiary-fixed": "#ffdbcb", "on-primary": "#ffffff", "secondary": "#5f5e60",
+                "on-tertiary-fixed-variant": "#793000", "on-secondary": "#ffffff", "inverse-surface": "#2e3037",
+                "on-tertiary-fixed": "#341100", "surface-container-lowest": "#ffffff", "surface-container": "#ecedf6",
+                "on-primary-container": "#dfe8ff", "on-surface-variant": "#414753", "on-primary-fixed-variant": "#00458e",
+                "on-primary-fixed": "#001b3e", "outline-variant": "#c1c6d5", "on-background": "#191c22",
+                "on-tertiary": "#ffffff", "primary-container": "#0066cc"
+            },
+            borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+            spacing: { "container-max": "1200px", "stack-sm": "12px", unit: "8px", "stack-md": "24px", gutter: "24px", "section-padding-y": "120px", "stack-lg": "48px" },
+            fontFamily: { h1: ["Inter"], h2: ["Inter"], h3: ["Inter"], "body-lg": ["Inter"], "body-md": ["Inter"], "label-sm": ["Inter"], button: ["Inter"] },
+            fontSize: {
+                h1: ["48px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }],
+                h2: ["32px", { lineHeight: "1.2", letterSpacing: "-0.015em", fontWeight: "600" }],
+                h3: ["24px", { lineHeight: "1.3", letterSpacing: "-0.01em", fontWeight: "600" }],
+                "body-lg": ["19px", { lineHeight: "1.6", letterSpacing: "0", fontWeight: "400" }],
+                "body-md": ["16px", { lineHeight: "1.5", letterSpacing: "0", fontWeight: "400" }],
+                "label-sm": ["13px", { lineHeight: "1.2", letterSpacing: "0.01em", fontWeight: "500" }],
+                button: ["15px", { lineHeight: "1", letterSpacing: "-0.01em", fontWeight: "600" }]
+            }
+        }
+    }
+}
+</script>
+<style>
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+body { font-family: 'Inter', sans-serif; background-color: #f9f9ff; color: #191c22; }
+textarea, input, select { font-family: 'Inter', sans-serif; }
+.tool-card { background: #ffffff; border-radius: 0.75rem; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid rgba(193,198,213,0.2); }
+.tool-card h1, .tool-card h2:first-child { font-size: 28px; font-weight: 600; line-height: 1.2; letter-spacing: -0.015em; color: #191c22; margin-bottom: 12px; }
+.tool-card > p:first-of-type { font-size: 16px; line-height: 1.5; color: #414753; margin-bottom: 24px; }
+.btn-primary { background: #0066cc; color: white; padding: 12px 24px; border-radius: 0.75rem; font-weight: 600; font-size: 15px; border: none; cursor: pointer; transition: all 0.2s; display: inline-block; }
+.btn-primary:hover { filter: brightness(1.1); box-shadow: 0 4px 12px rgba(0,102,204,0.3); }
+.btn-secondary { background: #f2f3fc; color: #191c22; padding: 12px 24px; border-radius: 0.75rem; font-weight: 500; font-size: 15px; border: 1px solid rgba(193,198,213,0.3); cursor: pointer; transition: all 0.2s; display: inline-block; }
+.btn-secondary:hover { background: #e6e8f1; }
+.tool-input { width: 100%; padding: 16px; background: #ffffff; border: 1.5px solid rgba(193,198,213,0.4); border-radius: 0.75rem; font-size: 16px; transition: all 0.2s; margin-bottom: 16px; color: #191c22; box-sizing: border-box; }
+.tool-input:focus { outline: none; border-color: #0066cc; box-shadow: 0 0 0 3px rgba(0,102,204,0.1); }
+.tool-output { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
+.btn-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.description { font-size: 16px; line-height: 1.5; color: #414753; margin-bottom: 24px; }
+.btn { background: #0066cc; color: white; padding: 12px 24px; border-radius: 0.75rem; font-weight: 600; font-size: 15px; border: none; cursor: pointer; transition: all 0.2s; display: inline-block; }
+.btn:hover { filter: brightness(1.1); box-shadow: 0 4px 12px rgba(0,102,204,0.3); }
+.result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
+.lang-ko .en { display: none !important; }
+.lang-en .ko { display: none !important; }
+.preview-img { max-width: 100%; max-height: 400px; border-radius: 0.5rem; margin-bottom: 16px; }
+.dimension-input { width: 120px; padding: 10px 12px; border: 1.5px solid rgba(193,198,213,0.4); border-radius: 0.5rem; font-size: 15px; }
+.dimension-input:focus { outline: none; border-color: #0066cc; box-shadow: 0 0 0 3px rgba(0,102,204,0.1); }
+</style>
+</head>
+<body class="bg-background">
+<header class="fixed top-0 w-full h-[64px] bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm z-50">
+<div class="flex justify-between items-center h-[64px] px-gutter max-w-container-max mx-auto">
+<div class="flex items-center gap-stack-sm">
+<button onclick="location.href='index.html'" class="p-2 hover:bg-surface-container rounded-full transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-primary" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
+</div>
+<button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
+</div>
+</header>
+<main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
+<div class="tool-card"><h1 class="ko">이미지 리사이즈</h1>
+        <h1 class="en">Image Resize</h1>
+        <p class="description ko">이미지를 업로드하고 원하는 크기로 리사이즈하세요. Canvas API를 사용하여 브라우저에서 직접 처리됩니다.</p>
+        <p class="description en">Upload an image and resize it to your desired dimensions. Processed directly in your browser using the Canvas API.</p>
+
+        <input type="file" id="imageInput" accept="image/*" class="tool-input" onchange="loadImage(event)"/>
+        
+        <div id="previewArea" class="text-center" style="display:none">
+            <img id="preview" class="preview-img mx-auto" alt="Preview"/>
+        </div>
+
+        <div class="flex flex-wrap gap-4 items-end mb-4">
+            <div>
+                <label class="block text-sm font-medium text-on-surface-variant mb-1"><span class="ko">너비</span><span class="en">Width</span></label>
+                <input id="widthInput" type="number" class="dimension-input" placeholder="px" min="1" oninput="updateFromWidth()"/>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-on-surface-variant mb-1"><span class="ko">높이</span><span class="en">Height</span></label>
+                <input id="heightInput" type="number" class="dimension-input" placeholder="px" min="1" oninput="updateFromHeight()"/>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-on-surface-variant mb-1"><span class="ko">비율(%)</span><span class="en">Percent(%)</span></label>
+                <input id="percentInput" type="number" class="dimension-input" placeholder="%" min="1" max="1000" value="100" oninput="updateFromPercent()"/>
+            </div>
+            <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" id="lockAspect" checked class="w-4 h-4 accent-primary"/>
+                <span class="text-sm text-on-surface-variant"><span class="ko">비율 유지</span><span class="en">Lock aspect</span></span>
+            </label>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn-primary" onclick="resizeImage()"><span class="ko">리사이즈</span><span class="en">Resize</span></button>
+            <button class="btn-secondary" onclick="downloadImage()"><span class="ko">다운로드</span><span class="en">Download</span></button>
+        </div>
+
+        <div id="result" class="result" style="display:none"></div></div>
+
+<div class="text-center py-8">
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+</div>
+</main>
+<footer class="w-full py-12 bg-surface-container-lowest border-t border-outline-variant/20">
+<div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
+<div class="space-y-3 max-w-sm">
+<h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3>
+<p class="text-[#414753]">© 2026 Free Utilities. All rights reserved.</p>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="flex flex-col gap-2">
+<h4 class="text-xs font-bold uppercase tracking-wider text-[#727784] mb-2">Legal</h4>
+<a href="privacy.html" class="text-[#414753] hover:text-[#004e9f] hover:underline decoration-1 underline-offset-4 transition-all duration-300">Privacy Policy</a>
+<a href="terms.html" class="text-[#414753] hover:text-[#004e9f] hover:underline decoration-1 underline-offset-4 transition-all duration-300">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-2">
+<h4 class="text-xs font-bold uppercase tracking-wider text-[#727784] mb-2">Links</h4>
+<a href="about.html" class="text-[#414753] hover:text-[#004e9f] hover:underline decoration-1 underline-offset-4 transition-all duration-300">About</a>
+<a href="contact.html" class="text-[#414753] hover:text-[#004e9f] hover:underline decoration-1 underline-offset-4 transition-all duration-300">Contact</a>
+</div>
+</div>
+</div>
+</footer>
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 bg-surface/90 backdrop-blur-lg border-t border-outline-variant/20 md:hidden shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+<div class="flex flex-col items-center justify-center text-[#004e9f] font-semibold cursor-pointer active:scale-95 duration-150" onclick="location.href='index.html'">
+<span class="material-symbols-outlined" data-icon="home_storage" style="font-variation-settings: 'FILL' 1;">home_storage</span>
+<span class="text-xs">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#5f5e60] cursor-pointer active:scale-95 duration-150" onclick="location.href='category.html'">
+<span class="material-symbols-outlined" data-icon="apps">apps</span>
+<span class="text-xs">Tools</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#5f5e60] cursor-pointer active:scale-95 duration-150" onclick="location.href='index.html'">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-xs">Home</span>
+</div>
+</nav>
+<script>
+function toggleLang() {
+    var l = localStorage.getItem('util-lang') || 'ko';
+    setLang(l === 'ko' ? 'en' : 'ko');
+}
+function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    var btn = document.getElementById('langToggle');
+    if (btn) btn.textContent = lang === 'ko' ? 'English' : '한국어';
+    localStorage.setItem('util-lang', lang);
+}
+const saved = localStorage.getItem('util-lang');
+if (saved) setLang(saved);
+
+var originalImg = null;
+var currentWidth = 0;
+var currentHeight = 0;
+var aspectRatio = 1;
+
+function loadImage(e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(ev) {
+        var img = new Image();
+        img.onload = function() {
+            originalImg = img;
+            currentWidth = img.width;
+            currentHeight = img.height;
+            aspectRatio = img.width / img.height;
+            document.getElementById('preview').src = ev.target.result;
+            document.getElementById('previewArea').style.display = 'block';
+            document.getElementById('widthInput').value = img.width;
+            document.getElementById('heightInput').value = img.height;
+            document.getElementById('percentInput').value = 100;
+            document.getElementById('result').style.display = 'none';
+        };
+        img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+}
+
+function updateFromWidth() {
+    var w = parseInt(document.getElementById('widthInput').value);
+    if (w > 0 && document.getElementById('lockAspect').checked) {
+        document.getElementById('heightInput').value = Math.round(w / aspectRatio);
+    }
+}
+
+function updateFromHeight() {
+    var h = parseInt(document.getElementById('heightInput').value);
+    if (h > 0 && document.getElementById('lockAspect').checked) {
+        document.getElementById('widthInput').value = Math.round(h * aspectRatio);
+    }
+}
+
+function updateFromPercent() {
+    var p = parseInt(document.getElementById('percentInput').value);
+    if (p > 0 && originalImg) {
+        document.getElementById('widthInput').value = Math.round(originalImg.width * p / 100);
+        document.getElementById('heightInput').value = Math.round(originalImg.height * p / 100);
+    }
+}
+
+var resizedDataUrl = '';
+
+function resizeImage() {
+    if (!originalImg) { alert('Please upload an image first'); return; }
+    var w = parseInt(document.getElementById('widthInput').value);
+    var h = parseInt(document.getElementById('heightInput').value);
+    if (!w || !h || w < 1 || h < 1) { alert('Enter valid dimensions'); return; }
+    var canvas = document.createElement('canvas');
+    canvas.width = w;
+    canvas.height = h;
+    var ctx = canvas.getContext('2d');
+    ctx.drawImage(originalImg, 0, 0, w, h);
+    resizedDataUrl = canvas.toDataURL('image/png');
+    document.getElementById('result').style.display = 'block';
+    document.getElementById('result').innerHTML = '<img src="' + resizedDataUrl + '" class="preview-img mx-auto" alt="Resized"/>';
+    document.getElementById('result').innerHTML += '<p class="text-sm text-on-surface-variant mt-2"><span class="ko">리사이즈 완료! 다운로드 버튼을 클릭하세요.</span><span class="en">Resize complete! Click download.</span></p>';
+}
+
+function downloadImage() {
+    if (!resizedDataUrl) { alert('Please resize first'); return; }
+    var a = document.createElement('a');
+    a.href = resizedDataUrl;
+    a.download = 'resized-image.png';
+    a.click();
+}
+
+(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</body>
+</html>

@@ -363,8 +363,8 @@ document.body.classList.toggle('en', lang === 'en');
 <!-- More Tools Button -->
 <div class="text-center pt-stack-md" id="moreToolsBtnWrapper">
 <button id="moreToolsBtn" class="bg-primary text-white font-button text-button px-10 py-4 rounded-full shadow-lg hover:shadow-xl hover:brightness-110 active:scale-95 transition-all inline-flex items-center gap-stack-sm">
-<span id="moreToolsBtnText" class="lang-ko">더 많은 도구 보기 (+60개)</span>
-<span id="moreToolsBtnTextEn" class="lang-en">View More Tools (+60)</span>
+<span id="moreToolsBtnText" class="lang-ko">더 많은 도구 보기 (+70개)</span>
+<span id="moreToolsBtnTextEn" class="lang-en">View More Tools (+70)</span>
 <span id="moreToolsIcon" class="material-symbols-outlined rotate-icon" data-icon="expand_more">expand_more</span>
 </button>
 </div>
@@ -527,18 +527,28 @@ var allTools = [
   {file:"wordscramble.html", icon:"shuffle", ko:"단어 섞기", en:"Word Scramble", koDesc:"단어 철자 뒤섞기", enDesc:"Scramble word letters", cat:"fun"},
   {file:"random.html", icon:"casino", ko:"랜덤 생성기", en:"Random Generator", koDesc:"무작위 숫자 생성", enDesc:"Generate random numbers", cat:"fun"},
   {file:"randomword.html", icon:"psychology", ko:"랜덤 단어", en:"Random Word", koDesc:"무작위 단어 생성", enDesc:"Generate random words", cat:"fun"},
+  {file:"image-resize.html", icon:"photo_size_select_large", ko:"이미지 리사이즈", en:"Image Resize", koDesc:"이미지 크기 조절", enDesc:"Resize images", cat:"image"},
+  {file:"webp-converter.html", icon:"transform", ko:"WebP 변환", en:"WebP Converter", koDesc:"PNG/JPG를 WebP로", enDesc:"Convert to WebP", cat:"image"},
+  {file:"svg-to-png.html", icon:"photo_library", ko:"SVG to PNG", en:"SVG to PNG", koDesc:"SVG를 PNG로 변환", enDesc:"Convert SVG to PNG", cat:"image"},
+  {file:"image-to-base64.html", icon:"barcode", ko:"이미지 to Base64", en:"Image to Base64", koDesc:"이미지를 Base64로 변환", enDesc:"Convert image to Base64", cat:"image"},
+  {file:"currency-converter.html", icon:"currency_exchange", ko:"통화 변환기", en:"Currency Converter", koDesc:"실시간 환율 변환", enDesc:"Real-time currency conversion", cat:"calc"},
+  {file:"css-minifier.html", icon:"compress", ko:"CSS/JS Minifier", en:"CSS/JS Minifier", koDesc:"코드 압축 최적화", enDesc:"Minify CSS/JS code", cat:"dev"},
+  {file:"http-status.html", icon:"network_check", ko:"HTTP 상태 검사", en:"HTTP Status Check", koDesc:"HTTP 상태 코드 확인", enDesc:"Check HTTP status codes", cat:"dev"},
+  {file:"ip-lookup.html", icon:"dns", ko:"내 IP 확인", en:"IP Lookup", koDesc:"IP 주소 및 위치 정보", enDesc:"IP address & location", cat:"dev"},
+  {file:"keyword-density.html", icon:"analytics", ko:"키워드 밀도", en:"Keyword Density", koDesc:"단어 빈도 분석", enDesc:"Word frequency analysis", cat:"text"},
+  {file:"font-converter.html", icon:"font_download", ko:"폰트 변환기", en:"Font Converter", koDesc:"TTF/OTF 폰트 변환", enDesc:"Convert TTF/OTF fonts", cat:"dev"},
 ];
 
 var catNames = {
-  ko: { text: "텍스트 도구", dev: "개발자 도구", calc: "계산기", fun: "기타 도구" },
-  en: { text: "Text Tools", dev: "Developer Tools", calc: "Calculators", fun: "Other Tools" }
+  ko: { text: "텍스트 도구", dev: "개발자 도구", calc: "계산기", fun: "기타 도구", image: "이미지 도구" },
+  en: { text: "Text Tools", dev: "Developer Tools", calc: "Calculators", fun: "Other Tools", image: "Image Tools" }
 };
-var catIcons = { text: "text_fields", dev: "code", calc: "calculate", fun: "widgets" };
+var catIcons = { text: "text_fields", dev: "code", calc: "calculate", fun: "widgets", image: "image" };
 
 function renderAllTools() {
   var container = document.getElementById('allToolsGrid');
   if (!container) return;
-  var cats = ['text', 'dev', 'calc', 'fun'];
+  var cats = ['text', 'dev', 'calc', 'fun', 'image'];
   var html = '';
   cats.forEach(function(c) {
     var tools = allTools.filter(function(t) { return t.cat === c; });
@@ -562,8 +572,8 @@ document.getElementById('moreToolsBtn').addEventListener('click', function() {
   content.classList.toggle('open');
   icon.classList.toggle('open');
   var isOpen = content.classList.contains('open');
-  document.getElementById('moreToolsBtnText').textContent = isOpen ? '도구 접기' : '더 많은 도구 보기 (+60개)';
-  document.getElementById('moreToolsBtnTextEn').textContent = isOpen ? 'Collapse Tools' : 'View More Tools (+60)';
+  document.getElementById('moreToolsBtnText').textContent = isOpen ? '도구 접기' : '더 많은 도구 보기 (+70개)';
+  document.getElementById('moreToolsBtnTextEn').textContent = isOpen ? 'Collapse Tools' : 'View More Tools (+70)';
   if (isOpen) { window.scrollTo({ top: document.getElementById('all-tools-wrapper').offsetTop - 80, behavior: 'smooth' }); }
 });
 
@@ -587,8 +597,8 @@ searchInput.addEventListener('input', function() {
   } else {
     content.classList.remove('open');
     icon.classList.remove('open');
-    btnText.textContent = '더 많은 도구 보기 (+60개)';
-    btnTextEn.textContent = 'View More Tools (+60)';
+    btnText.textContent = '더 많은 도구 보기 (+70개)';
+    btnTextEn.textContent = 'View More Tools (+70)';
   }
 });
 
