@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
 <meta charset="utf-8"/>
@@ -58,8 +58,8 @@ tailwind.config = {
 </script>
 <style>
 .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
-body { font-family: 'Inter', sans-serif; background-color: #f9f9ff; color: #191c22; }
-textarea, input, select { font-family: 'Inter', sans-serif; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif; background-color: #f9f9ff; color: #191c22; }
+textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif; }
 .tool-card { background: #ffffff; border-radius: 0.75rem; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid rgba(193,198,213,0.2); }
 .tool-card h1, .tool-card h2:first-child { font-size: 28px; font-weight: 600; line-height: 1.2; letter-spacing: -0.015em; color: #191c22; margin-bottom: 12px; }
 .tool-card > p:first-of-type { font-size: 16px; line-height: 1.5; color: #414753; margin-bottom: 24px; }
@@ -116,6 +116,17 @@ body.lang-en .ko { display: none; }
             <div class="lang-toggle">
                 <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
                 <button class="lang-btn" onclick="setLang('en')">English</button></div>
+<div class="cron-builder">
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:16px">
+        <div><label style="font-size:12px;font-weight:600">Minute</label><select id="minute" class="tool-input" onchange="updateCron()"><option value="*">Every</option><option value="0">0</option><option value="*/5">*/5</option><option value="*/10">*/10</option><option value="*/15">*/15</option><option value="*/30">*/30</option></select></div>
+        <div><label style="font-size:12px;font-weight:600">Hour</label><select id="hour" class="tool-input" onchange="updateCron()"><option value="*">Every</option><option value="0">0</option><option value="*/2">*/2</option><option value="*/6">*/6</option><option value="9-17">9-17</option></select></div>
+        <div><label style="font-size:12px;font-weight:600">Day</label><select id="day" class="tool-input" onchange="updateCron()"><option value="*">Every</option><option value="1">1</option><option value="15">15</option><option value="1,15">1,15</option></select></div>
+        <div><label style="font-size:12px;font-weight:600">Month</label><select id="month" class="tool-input" onchange="updateCron()"><option value="*">Every</option><option value="1">Jan</option><option value="6,7,8">Jun-Aug</option></select></div>
+        <div><label style="font-size:12px;font-weight:600">Weekday</label><select id="weekday" class="tool-input" onchange="updateCron()"><option value="*">Every</option><option value="1-5">Mon-Fri</option><option value="0,6">Sat-Sun</option><option value="1">Mon</option><option value="5">Fri</option></select></div>
+    </div>
+    <div class="result" style="text-align:center"><strong>Cron:</strong> <span id="cron">* * * * *</span></div>
+    <div class="result" style="text-align:center"><span id="desc">Every minute</span></div>
+</div>
 <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
 </div>
@@ -124,7 +135,7 @@ body.lang-en .ko { display: none; }
 <div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
 <div class="space-y-3 max-w-sm">
 <h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3>
-<p class="text-[#414753]">짤 2026 Free Utilities. All rights reserved.</p>
+<p class="text-[#414753]">© 2026 Free Utilities. All rights reserved.</p>
 </div>
 <div class="grid grid-cols-2 gap-8">
 <div class="flex flex-col gap-2">
