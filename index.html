@@ -211,7 +211,7 @@ document.body.classList.toggle('en', lang === 'en');
 <h2 class="font-h3 text-h3 text-on-surface lang-ko">인기 도구</h2>
 <h2 class="font-h3 text-h3 text-on-surface lang-en">Popular Tools</h2>
 </div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-stack-md">
+<div id="popularToolsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-stack-md">
 <a href="text.html" class="group bg-surface-container-lowest p-stack-md rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-outline-variant/10 block">
 <div class="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center mb-stack-sm group-hover:scale-110 transition-transform">
 <span class="material-symbols-outlined text-primary" data-icon="description">description</span>
@@ -293,7 +293,7 @@ document.body.classList.toggle('en', lang === 'en');
 <h2 class="font-h3 text-h3 text-on-surface lang-ko">계산기</h2>
 <h2 class="font-h3 text-h3 text-on-surface lang-en">Calculators</h2>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
+<div id="calculatorsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
 <a href="date.html" class="md:col-span-2 group relative overflow-hidden bg-primary p-stack-lg rounded-xl shadow-lg transition-all cursor-pointer block">
 <div class="relative z-10 h-full flex flex-col justify-between">
 <div>
@@ -570,14 +570,25 @@ document.getElementById('moreToolsBtn').addEventListener('click', function() {
 var searchInput = document.getElementById('searchInput');
 searchInput.addEventListener('input', function() {
   var q = this.value.toLowerCase();
-  var items = document.querySelectorAll('#allToolsGrid > a');
-  items.forEach(function(item) {
+  var allItems = document.querySelectorAll('#popularToolsGrid > a, #calculatorsGrid a[href], #allToolsGrid > a');
+  allItems.forEach(function(item) {
     var text = item.textContent.toLowerCase();
     item.style.display = text.indexOf(q) > -1 ? '' : 'none';
   });
+  var content = document.getElementById('allToolsContent');
+  var icon = document.getElementById('moreToolsIcon');
+  var btnText = document.getElementById('moreToolsBtnText');
+  var btnTextEn = document.getElementById('moreToolsBtnTextEn');
   if (q.length > 0) {
-    document.getElementById('allToolsContent').classList.add('open');
-    document.getElementById('moreToolsIcon').classList.add('open');
+    content.classList.add('open');
+    icon.classList.add('open');
+    btnText.textContent = '도구 접기';
+    btnTextEn.textContent = 'Collapse Tools';
+  } else {
+    content.classList.remove('open');
+    icon.classList.remove('open');
+    btnText.textContent = '더 많은 도구 보기 (+60개)';
+    btnTextEn.textContent = 'View More Tools (+60)';
   }
 });
 
