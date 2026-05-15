@@ -1,9 +1,9 @@
-癤?!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>諛붿씠?덈━ 蹂??- Binary Text</title>
+<title>이진수 변환 - Binary Text</title>
 <meta name="description" content="Free online utility tool"/>
 <meta name="robots" content="index, follow"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
@@ -112,9 +112,9 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
 <div class="tool-card"><div class="header">
-            <a href="index.html" class="back">??Back</a>
+            <a href="index.html" class="back"><span class="ko">← 메인으로</span><span class="en">← Back to Home</span></a>
             <div class="lang-toggle">
-                <button class="lang-btn active" onclick="setLang('ko')">?쒓뎅??/button>
+                <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
                 <button class="lang-btn" onclick="setLang('en')">English</button></div>
     <div class="calculator">
         <textarea id="input" class="tool-input" rows="6" placeholder="Enter text or binary..."></textarea>
@@ -133,7 +133,7 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 <div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
 <div class="space-y-3 max-w-sm">
 <h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3>
-<p class="text-[#414753]">吏?2026 Free Utilities. All rights reserved.</p>
+<p class="text-[#414753]">© 2026 Free Utilities. All rights reserved.</p>
 </div>
 <div class="grid grid-cols-2 gap-8">
 <div class="flex flex-col gap-2">
@@ -170,7 +170,7 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 function setLang(lang) {
             document.body.className = 'lang-' + lang;
             var btn = document.getElementById('langToggle');
-            if (btn) btn.textContent = lang === 'ko' ? 'English' : '�ѱ���';
+            if (btn) btn.textContent = lang === 'ko' ? 'English' : '한국어';
             document.querySelectorAll('.lang-btn').forEach((btn, i) => {
                 btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
             });

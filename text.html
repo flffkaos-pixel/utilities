@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>占쌔쏙옙트 占쏙옙占쏙옙 - Text Tools</title>
-<meta name="description" content="Free online utility tool"/>
+<title>텍스트 도구 - 대소문자 변환, 공백 제거, 줄바꿈 변환 - Text Tools</title>
+<meta name="description" content="무료 온라인 텍스트 변환 도구 - 대소문자 변환, 공백 제거, 첫 글자 대문자, 줄바꿈 변환 등 다양한 텍스트 처리 기능을 제공합니다."/>
 <meta name="robots" content="index, follow"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z29KRGF7J3"></script>
@@ -96,136 +96,6 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 #json-result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
 body.lang-ko .en { display: none; }
 body.lang-en .ko { display: none; }
-.usage-guide, .tips, .faq, .related-tools {
-    background: #ffffff;
-    border-radius: 0.75rem;
-    padding: 24px;
-    margin-bottom: 24px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    border: 1px solid rgba(193,198,213,0.2);
-}
-
-.usage-guide h3, .tips h3, .faq h3, .related-tools h3 {
-    font-size: 20px;
-    font-weight: 600;
-    color: #191c22;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.usage-guide h3::before, .tips h3::before, .faq h3::before, .related-tools h3::before {
-    font-family: "Material Symbols Outlined";
-    font-variation-settings: 'FIX' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-}
-
-.usage-guide h3::before { content: 'help_outline'; }
-.tips h3::before { content: 'lightbulb'; }
-.faq h3::before { content: 'help'; }
-.related-tools h3::before { content: 'share'; }
-
-.usage-guide ol, .tips ul, .faq .faq-item, .related-grid {
-    margin-bottom: 16px;
-}
-
-.usage-guide li, .tips li {
-    margin-bottom: 12px;
-    padding-left: 20px;
-    position: relative;
-}
-
-.usage-guide li::before, .tips li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: #0066cc;
-}
-
-.faq-item {
-    background: #f8f9ff;
-    border-radius: 0.5rem;
-    padding: 16px;
-    margin-bottom: 12px;
-    border-left: 3px solid #0066cc;
-}
-
-.faq-item h4 {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #191c22;
-}
-
-.faq-item p {
-    color: #414753;
-    line-height: 1.6;
-}
-
-.example-grid, .related-grid {
-    display: grid;
-    gap: 16px;
-}
-
-.example-item, .related-tool {
-    background: #f8f9ff;
-    border-radius: 0.5rem;
-    padding: 16px;
-    border: 1px solid #e9ecef;
-    transition: all 0.2s;
-}
-
-.example-item:hover, .related-tool:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border-color: #d0d7ff;
-}
-
-.example-item h4, .related-tool h4 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-
-.example-item p, .related-tool p {
-    color: #414753;
-    font-size: 14px;
-}
-
-.related-icon {
-    width: 48px;
-    height: 48px;
-    background: #e3f2fd;
-    border-radius: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 12px;
-}
-
-.related-info {
-    text-align: center;
-}
-
-.related-info h4 {
-    margin: 8px 0 4px 0;
-}
-
-.related-info p {
-    color: #6c757d;
-    font-size: 13px;
-}
-
-@media (max-width: 768px) {
-    .example-grid, .related-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .usage-guide, .tips, .faq, .related-tools {
-        padding: 20px;
-        margin-bottom: 20px;
-    }
-}
 </style>
 </head>
 <body class="bg-background">
@@ -242,58 +112,60 @@ body.lang-en .ko { display: none; }
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
 <div class="tool-card"><h1>
-            <span class="ko">占쌔쏙옙트 占쏙옙占쏙옙 - 占쏙옙拈占쏙옙占?占쏙옙환, 占쏙옙占쏙옙 占쏙옙占쏙옙 占쌔쏙옙트 占쏙옙占쏙옙 - 占쏙옙拈占쏙옙占?占쏙옙환, 占쏙옙占쏙옙 占쏙옙占쏙옙, 占쌕바뀐옙 占쏙옙환 - ?? 占쌔쏙옙트 占쏙옙占쏙옙</span>
-            <span class="en">Text Tools - Convert case, remove spaces Text Tools - Case conversion, whitespace removal, line break conversion - ?? Text Tools</span>
+            <span class="ko">텍스트 도구 - 대소문자 변환, 공백 제거, 줄바꿈 변환</span>
+            <span class="en">Text Tools - Case conversion, whitespace removal, line break conversion</span>
         </h1>
         
         <div class="description">
-            <span class="ko">占쌔쏙옙트 占쏙옙占쏙옙占쏙옙 占쏙옙占쌘울옙占쏙옙 占쎈문占쏙옙, 占쌀뱄옙占쏙옙, 첫 占쏙옙占쏙옙 占쎈문占쌘뤄옙 占쏙옙환占싹거놂옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쌍쏙옙占싹댐옙. 占쏙옙占쏙옙 占쌜쇽옙, 占쌘듸옙, 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쌌니댐옙. 占쏙옙 占쏙옙占쏙옙占쏙옙 占쌕억옙占쏙옙 占쌔쏙옙트 占쏙옙환 占쏙옙占쏙옙占?占쏙옙占쏙옙占싹울옙 占싹삼옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쌔쏙옙트 처占쏙옙 효占쏙옙占쏙옙 占쏙옙占쏙옙占쌥니댐옙.</span>
+            <span class="ko">텍스트 도구는 문자열을 대문자, 소문자, 첫 글자 대문자로 변환하거나 공백을 제거할 수 있는 도구입니다. 문서 작성, 코딩, 데이터 정리 등에 유용합니다. 이 도구는 다양한 텍스트 변환 기능을 제공하여 일상 작업에서 텍스트 처리 효율을 높여줍니다.</span>
             <span class="en">Text Tools convert strings to uppercase, lowercase, capitalize first letters, or trim whitespace. Useful for document editing, coding, and data cleaning. This tool provides various text transformation features to improve text processing efficiency in daily work.</span>
         </div>
         
         <div class="usage-guide">
-            <h3 class="ko">占쏙옙占?占쏙옙占?/h3>
+            <h3 class="ko">사용 방법</h3>
             <h3 class="en">How to Use</h3>
             <ol class="ko">
-                <li>占쏙옙 占쌔쏙옙트 占쏙옙占쏙옙占쏙옙 占쏙옙환占싹곤옙 占쏙옙占쏙옙 占쌔쏙옙트占쏙옙 占쌉뤄옙占싹거놂옙 占쌕울옙占쌍깍옙 占쌌니댐옙.</li>
-                <li>占쏙옙占싹댐옙 占쏙옙환 占쏙옙튼占쏙옙 클占쏙옙占쌌니댐옙 (占쎈문占쏙옙, 占쌀뱄옙占쏙옙, 첫 占쏙옙占쏙옙 占쎈문占쏙옙, 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙).</li>
-                <li>占쏙옙환占쏙옙 占쏙옙占쏙옙占?占싣뤄옙 占쏙옙占?占쏙옙占쏙옙占쏙옙 표占시됩니댐옙.</li>
-                <li>占쏙옙占쏙옙 占쏙옙튼占쏙옙 클占쏙옙占싹울옙 占쏙옙占쏙옙占?클占쏙옙占쏙옙占썲에 占쏙옙占쏙옙占쏙옙 占쏙옙 占쌍쏙옙占싹댐옙.</li>
+                <li>위 텍스트 영역에 변환하고 싶은 텍스트를 입력하거나 붙여넣기 합니다.</li>
+                <li>원하는 변환 버튼을 클릭합니다 (대문자, 소문자, 첫 글자 대문자, 공백 제거 등).</li>
+                <li>변환된 결과가 아래 결과 영역에 표시됩니다.</li>
+                <li>복사 버튼을 클릭하여 결과를 클립보드에 복사할 수 있습니다.</li>
+                <li>새로운 변환을 위해 텍스트 영역을 클릭하고 기존 텍스트를 삭제한 후 새로 입력하세요.</li>
             </ol>
             <ol class="en">
                 <li>Enter or paste the text you want to convert in the text area above.</li>
                 <li>Click the desired conversion button (UPPERCASE, lowercase, Capitalize, or Trim).</li>
                 <li>The converted result will be displayed in the result area below.</li>
                 <li>Click the copy button to copy the result to your clipboard.</li>
+                <li>To perform a new conversion, click in the text area and clear existing text before entering new input.</li>
             </ol>
         </div>
         
         <div class="examples">
-            <h3 class="ko">占쏙옙占쏙옙</h3>
+            <h3 class="ko">예시</h3>
             <h3 class="en">Examples</h3>
             <div class="example-grid">
                 <div class="example-item">
-                    <h4 class="ko">占쏙옙拈占쏙옙占?占쏙옙환</h4>
+                    <h4 class="ko">대소문자 변환</h4>
                     <h4 class="en">Case Conversion</h4>
-                    <p class="ko">占쌉뤄옙: "hello WORLD" 占쏙옙 占쎈문占쏙옙: "HELLO WORLD"</p>
-                    <p class="en">Input: "hello WORLD" 占쏙옙 UPPERCASE: "HELLO WORLD"</p>
+                    <p class="ko">입력: "hello WORLD" → 대문자: "HELLO WORLD"</p>
+                    <p class="en">Input: "hello WORLD" → UPPERCASE: "HELLO WORLD"</p>
                 </div>
                 <div class="example-item">
-                    <h4 class="ko">첫 占쏙옙占쏙옙 占쎈문占쏙옙</h4>
+                    <h4 class="ko">첫 글자 대문자</h4>
                     <h4 class="en">Capitalize</h4>
-                    <p class="ko">占쌉뤄옙: "hello world" 占쏙옙 Capitalize: "Hello World"</p>
-                    <p class="en">Input: "hello world" 占쏙옙 Capitalize: "Hello World"</p>
+                    <p class="ko">입력: "hello world" → Capitalize: "Hello World"</p>
+                    <p class="en">Input: "hello world" → Capitalize: "Hello World"</p>
                 </div>
                 <div class="example-item">
-                    <h4 class="ko">占쏙옙占쏙옙 占쏙옙占쏙옙</h4>
+                    <h4 class="ko">공백 제거</h4>
                     <h4 class="en">Trim Whitespace</h4>
-                    <p class="ko">占쌉뤄옙: "  hello world  " 占쏙옙 Trim: "hello world"</p>
-                    <p class="en">Input: "  hello world  " 占쏙옙 Trim: "hello world"</p>
+                    <p class="ko">입력: "  hello world  " → Trim: "hello world"</p>
+                    <p class="en">Input: "  hello world  " → Trim: "hello world"</p>
                 </div>
             </div>
         </div>
         
-        <textarea id="input" placeholder="Enter text... / 占쌔쏙옙트占쏙옙 占쌉뤄옙占싹쇽옙占쏙옙..."></textarea>
+        <textarea id="input" placeholder="Enter text... / 텍스트를 입력하세요..."></textarea>
         
         <div class="btn-group">
             <button class="btn" onclick="upperCase()">UPPERCASE</button>
@@ -307,14 +179,14 @@ body.lang-en .ko { display: none; }
         
         <!-- Usage Guide -->
         <div class="usage-guide">
-            <h3 class="ko">?곸꽭 ?ъ슜踰?/h3>
+            <h3 class="ko">상세 사용 가이드</h3>
             <h3 class="en">Detailed Usage Guide</h3>
             <ol class="ko">
-                <li>???띿뒪???곸뿭??蹂?섑븯怨??띠? ?띿뒪?몃? ?낅젰?섍굅??遺숈뿬?ｊ린 ?⑸땲??</li>
-                <li>?먰븯??蹂??踰꾪듉???대┃?⑸땲??(?臾몄옄, ?뚮Ц?? 泥?湲???臾몄옄, 怨듬갚 ?쒓굅 以??좏깮).</li>
-                <li>蹂?섎맂 寃곌낵媛 ?꾨옒 寃곌낵 ?곸뿭???쒖떆?⑸땲??</li>
-                <li>蹂듭궗 踰꾪듉???대┃?섏뿬 寃곌낵瑜??대┰蹂대뱶??蹂듭궗?????덉뒿?덈떎.</li>
-                <li>?덈줈??蹂?섏쓣 ?꾪빐?쒕뒗 ?띿뒪???곸뿭???대┃?섍퀬 湲곗〈 ?띿뒪?몃? ??젣?????덈줈 ?낅젰?섏꽭??</li>
+                <li>텍스트 영역에 변환하려는 텍스트를 입력하거나 붙여넣기 합니다.</li>
+                <li>원하는 변환 버튼을 클릭합니다 (대문자, 소문자, 첫 글자 대문자, 공백 제거 등 선택).</li>
+                <li>변환된 결과가 아래 결과 영역에 표시됩니다.</li>
+                <li>복사 버튼을 클릭하여 결과를 클립보드에 복사할 수 있습니다.</li>
+                <li>새로운 변환을 위해 텍스트 영역을 클릭하고 기존 텍스트를 삭제한 후 새로 입력하세요.</li>
             </ol>
             <ol class="en">
                 <li>Enter or paste the text you want to convert in the text area above.</li>
@@ -327,31 +199,31 @@ body.lang-en .ko { display: none; }
         
         <!-- Examples -->
         <div class="examples">
-            <h3 class="ko">?ㅼ뼇???ъ슜 ?щ?</h3>
+            <h3 class="ko">다양한 사용 예시</h3>
             <h3 class="en">Various Use Cases</h3>
             <div class="example-grid">
                 <div class="example-item">
-                    <h4 class="ko">臾몄꽌 ?묒꽦 ???쒖슜</h4>
+                    <h4 class="ko">문서 작성 시 활용</h4>
                     <h4 class="en">Document Writing</h4>
-                    <p class="ko">蹂닿퀬?쒕굹 ?쇰Ц ?묒꽦 ???쒕ぉ? 泥?湲???臾몄옄, 蹂몃Ц? ?뚮Ц?먮줈 ?쇨??섍쾶 ?뺤떇 吏?뺥븷 ???좎슜?⑸땲??</p>
+                    <p class="ko">보고서나 논문 작성 시 제목은 첫 글자 대문자, 본문은 소문자로 일관성 있게 포맷팅할 때 유용합니다.</p>
                     <p class="en">When writing reports or papers, useful for setting titles in Capitalize case and body text in lowercase for consistent formatting.</p>
                 </div>
                 <div class="example-item">
-                    <h4 class="ko">肄붾뵫 諛??붾쾭源?/h4>
+                    <h4 class="ko">코딩 및 디버깅</h4>
                     <h4 class="en">Coding & Debugging</h4>
-                    <p class="ko">?섍꼍 蹂?섎굹 ?곸닔 ?대쫫???臾몄옄濡?蹂?섑븯嫄곕굹, ?ъ슜???낅젰???뚮Ц?먮줈 ?뺢퇋?뷀븯??鍮꾧탳?????좎슜?⑸땲??</p>
+                    <p class="ko">환경 변수나 함수 이름을 대문자로 변환하거나, 사용자 입력을 소문자로 정규화하여 비교할 때 유용합니다.</p>
                     <p class="en">Useful for converting environment variable or constant names to uppercase, or normalizing user input to lowercase for comparison.</p>
                 </div>
                 <div class="example-item">
-                    <h4 class="ko">?곗씠???뺤젣</h4>
+                    <h4 class="ko">데이터 정제</h4>
                     <h4 class="en">Data Cleaning</h4>
-                    <p class="ko">CSV??TSV ?뚯씪 泥섎━ ???욌뮘 怨듬갚???쒓굅?섏뿬 ?곗씠???덉쭏???μ긽?쒗궗 ???덉뒿?덈떎.</p>
+                    <p class="ko">CSV나 TSV 파일 처리 시 불필요한 공백을 제거하여 데이터 품질을 개선할 수 있습니다.</p>
                     <p class="en">When processing CSV or TSV files, useful for trimming whitespace to improve data quality.</p>
                 </div>
                 <div class="example-item">
-                    <h4 class="ko">?뚯뀥 誘몃뵒??肄섑뀗痢?/h4>
+                    <h4 class="ko">소셜 미디어 콘텐츠</h4>
                     <h4 class="en">Social Media Content</h4>
-                    <p class="ko">?몄뒪?洹몃옩 ?댁떆?쒓렇????뚮Ц?먮? 援щ텇?섏? ?딆?留? 媛?낆꽦???꾪빐 泥?湲???臾몄옄 ?뺤떇?쇰줈 ?ъ슜?????덉뒿?덈떎.</p>
+                    <p class="ko">인스타그램 해시태그는 대소문자를 구분하지 않지만, 가독성을 위해 첫 글자 대문자 포맷으로 사용할 수 있습니다.</p>
                     <p class="en">Instagram hashtags are case-insensitive, but you can use Capitalize format for better readability.</p>
                 </div>
             </div>
@@ -359,57 +231,57 @@ body.lang-en .ko { display: none; }
         
         <!-- Tips -->
         <div class="tips">
-            <h3 class="ko">?쒖슜 ??/h3>
+            <h3 class="ko">프로 팁</h3>
             <h3 class="en">Pro Tips</h3>
             <ul class="ko">
-                <li>?뮕 keyboard ?⑥텞???ъ슜: Ctrl+A濡??꾩껜 ?좏깮, Ctrl+C濡?蹂듭궗, Ctrl+V濡?遺숈뿬?ｊ린</li>
-                <li>?뮕 ????띿뒪??泥섎━ ???깅뒫 理쒖쟻?붾? ?꾪빐 10,000???댄븯濡??섎늻??泥섎━?섎뒗 寃껋씠 醫뗭뒿?덈떎.</li>
-                <li>?뮕 ???섏씠吏 ?뚯뒪 肄붾뱶?먯꽌 ?띿뒪??異붿텧 ???뺤젣???좎슜?⑸땲??</li>
-                <li>?뮕 ?щ윭 以??띿뒪??泥섎━ ??以꾨컮轅덉? 洹몃?濡??좎??섎ŉ, 媛?以꾨퀎濡?蹂?곸슜?섏? ?딆뒿?덈떎.</li>
-                <li>?뮕 紐⑤컮?쇱뿉?쒕룄 ?꾩쟾?섍쾶 ?묐룞?섎?濡??몄젣 ?대뵒?쒕뱺 ?띿뒪???뺤젣媛 媛?ν빀?덈떎.</li>
+                <li>키보드 단축키 활용: Ctrl+A로 전체 선택, Ctrl+C로 복사, Ctrl+V로 붙여넣기</li>
+                <li>대용량 텍스트 처리 시 성능 최적화를 위해 10,000자 이하로 나누어 처리하는 것이 좋습니다.</li>
+                <li>웹 페이지 소스 코드에서 텍스트 추출 후 정제에 유용합니다.</li>
+                <li>여러 줄 텍스트 처리 시 줄바꿈은 유지되며 변환에 영향을 받지 않습니다.</li>
+                <li>모바일 기기에서도 완벽하게 작동하므로 언제 어디서나 텍스트 정제가 가능합니다.</li>
             </ul>
             <ul class="en">
-                <li>?뮕 Keyboard shortcuts: Ctrl+A to select all, Ctrl+C to copy, Ctrl+V to paste</li>
-                <li>?뮕 For processing large texts, it's recommended to split into chunks under 10,000 characters for optimal performance.</li>
-                <li>?뮕 Useful for cleaning text extracted from web page source code.</li>
-                <li>?뮕 When processing multi-line text, line breaks are preserved and not affected by the conversion.</li>
-                <li>?뮕 Works fully on mobile devices, so you can clean text anytime, anywhere.</li>
+                <li>Keyboard shortcuts: Ctrl+A to select all, Ctrl+C to copy, Ctrl+V to paste</li>
+                <li>For processing large texts, it is recommended to split into chunks under 10,000 characters for optimal performance.</li>
+                <li>Useful for cleaning text extracted from web page source code.</li>
+                <li>When processing multi-line text, line breaks are preserved and not affected by the conversion.</li>
+                <li>Works fully on mobile devices, so you can clean text anytime, anywhere.</li>
             </ul>
         </div>
         
         <!-- FAQ -->
         <div class="faq">
-            <h3 class="ko">?먯＜ 臾삳뒗 吏덈Ц</h3>
+            <h3 class="ko">자주 묻는 질문</h3>
             <h3 class="en">Frequently Asked Questions</h3>
             <div class="faq-item">
-                <h4 class="ko">???꾧뎄?????곗씠?곕? ??ν븯嫄곕굹 ?꾩넚?⑸땲源?</h4>
+                <h4 class="ko">이 도구는 내 데이터를 저장하거나 전송하나요?</h4>
                 <h4 class="en">Does this tool store or transmit my data?</h4>
-                <p class="ko">?덈? ?꾨떃?덈떎. 紐⑤뱺 ?띿뒪??泥섎━ ?묒뾽? 洹?섏쓽 釉뚮씪?곗? ?댁뿉???꾩쟾??濡쒖뺄濡??섑뻾?섎ŉ, ?대뼡 ?곗씠?곕룄 ?쒕쾭濡??꾩넚?섍굅????λ릺吏 ?딆뒿?덈떎.</p>
+                <p class="ko">전혀 그렇지 않습니다. 모든 텍스트 처리 작업은 귀하의 브라우저 내에서 완전히 로컬로 실행되며, 어떤 데이터도 서버로 전송되거나 저장되지 않습니다.</p>
                 <p class="en">Absolutely not. All text processing is performed entirely locally in your browser, and no data is ever transmitted to or stored on any server.</p>
             </div>
             <div class="faq-item">
-                <h4 class="ko">?뱀닔 臾몄옄? ?대え吏???대뼸寃?泥섎━?⑸땲源?</h4>
+                <h4 class="ko">특수 문자와 이모지는 어떻게 처리되나요?</h4>
                 <h4 class="en">How are special characters and emojis handled?</h4>
-                <p class="ko">?뱀닔 臾몄옄? ?대え吏??蹂???묒뾽?먯꽌 洹몃?濡??좎??⑸땲?? ?덈? ?ㅼ뼱, "Hello ?뙇"瑜??臾몄옄濡?蹂?섑븯硫?"HELLO ?뙇"媛 ?⑸땲??</p>
-                <p class="en">Special characters and emojis remain unchanged during conversion. For example, converting "Hello ?뙇" to uppercase results in "HELLO ?뙇".</p>
+                <p class="ko">특수 문자와 이모지는 변환 과정에서 그대로 유지됩니다. 예를 들어, "Hello 😀"를 대문자로 변환하면 "HELLO 😀"가 됩니다.</p>
+                <p class="en">Special characters and emojis remain unchanged during conversion. For example, converting "Hello 😀" to uppercase results in "HELLO 😀".</p>
             </div>
             <div class="faq-item">
-                <h4 class="ko">??踰덉뿉 泥섎━?????덈뒗 理쒕? ?띿뒪??湲몄씠???쇰쭏?낅땲源?</h4>
+                <h4 class="ko">한 번에 처리할 수 있는 최대 텍스트 길이는 얼마인가요?</h4>
                 <h4 class="en">What is the maximum text length I can process at once?</h4>
-                <p class="ko">?ㅼ젣 ?쒗븳? 釉뚮씪?곗?? 湲곌린??硫붾え由ъ뿉 ?곕씪 ?ㅻⅤ吏留? ?쇰컲?곸쑝濡?100,000???댁긽??臾몄젣?놁씠 泥섎━?????덉뒿?덈떎. ??⑸웾 ?띿뒪?몄쓽 寃쎌슦 ?깅뒫???ㅼ냼 ??섎맆 ???덉뒿?덈떎.</p>
+                <p class="ko">실제 제한은 브라우저와 기기 메모리에 따라 다르지만, 일반적으로 100,000자 이상도 문제없이 처리할 수 있습니다. 매우 큰 텍스트의 경우 성능이 약간 저하될 수 있습니다.</p>
                 <p class="en">The actual limit depends on your browser and device memory, but typically you can process over 100,000 characters without issues. For very large texts, performance may slightly decrease.</p>
             </div>
             <div class="faq-item">
-                <h4 class="ko">???꾧뎄瑜??ㅽ봽?쇱씤?먯꽌 ?ъ슜?????덉뒿?덇퉴?</h4>
+                <h4 class="ko">이 도구를 오프라인에서도 사용할 수 있나요?</h4>
                 <h4 class="en">Can I use this tool offline?</h4>
-                <p class="ko">?? ?섏씠吏媛 ?꾩쟾??濡쒕뱶???꾩뿉???명꽣???곌껐 ?놁씠???꾩쟾???ㅽ봽?쇱씤?쇰줈 ?ъ슜?????덉뒿?덈떎. 紐⑤뱺 泥섎━媛 濡쒖뺄?먯꽌 ?대（?댁쭛?덈떎.</p>
+                <p class="ko">네, 이 페이지가 완전히 로드된 후에는 인터넷 연결 없이도 완전히 오프라인 상태로 사용할 수 있습니다. 모든 처리가 로컬에서 이루어지기 때문입니다.</p>
                 <p class="en">Yes! Once the page is fully loaded, you can use it completely offline without an internet connection, as all processing happens locally.</p>
             </div>
         </div>
         
         <!-- Related Tools -->
         <div class="related-tools">
-            <h3 class="ko">愿???꾧뎄 異붿쿇</h3>
+            <h3 class="ko">관련 도구 추천</h3>
             <h3 class="en">Related Tools</h3>
             <div class="related-grid">
                 <a href="counter.html" class="related-tool">
@@ -417,9 +289,9 @@ body.lang-en .ko { display: none; }
                         <span class="material-symbols-outlined">format_list_numbered</span>
                     </div>
                     <div class="related-info">
-                        <h4 class="ko">臾몄옄 ???멸린</h4>
+                        <h4 class="ko">글자 수 세기</h4>
                         <h4 class="en">Character Counter</h4>
-                        <p class="ko">湲?? ?⑥뼱, 臾몄옣, ?⑤씫 ?섎? ?몃뒗 ?꾧뎄</p>
+                        <p class="ko">단어, 문자, 문장, 문단 수를 세는 도구</p>
                         <p class="en">Count characters, words, sentences, and paragraphs</p>
                     </div>
                 </a>
@@ -428,9 +300,9 @@ body.lang-en .ko { display: none; }
                         <span class="material-symbols-outlined">reverse</span>
                     </div>
                     <div class="related-info">
-                        <h4 class="ko">?띿뒪???ㅼ쭛湲?/h4>
+                        <h4 class="ko">텍스트 뒤집기</h4>
                         <h4 class="en">Text Reverser</h4>
-                        <p class="ko">臾몄옄?댁쓣 嫄곌씀濡??ㅼ쭛???꾧뎄</p>
+                        <p class="ko">문자열을 거꾸로 뒤집는 도구</p>
                         <p class="en">Reverse string order</p>
                     </div>
                 </a>
@@ -439,9 +311,9 @@ body.lang-en .ko { display: none; }
                         <span class="material-symbols-outlined">sort</span>
                     </div>
                     <div class="related-info">
-                        <h4 class="ko">?띿뒪???뺣젹</h4>
+                        <h4 class="ko">텍스트 정렬</h4>
                         <h4 class="en">Text Sorter</h4>
-                        <p class="ko">以??⑥쐞濡??띿뒪?몃? ?뚰뙆踰녹닚?쇰줈 ?뺣젹?섎뒗 ?꾧뎄</p>
+                        <p class="ko">줄 단위로 텍스트를 알파벳순으로 정렬하는 도구</p>
                         <p class="en">Sort lines alphabetically</p>
                     </div>
                 </a>
@@ -450,15 +322,14 @@ body.lang-en .ko { display: none; }
                         <span class="material-symbols-outlined">filter_alt</span>
                     </div>
                     <div class="related-info">
-                        <h4 class="ko">以묐났 ?쒓굅</h4>
+                        <h4 class="ko">중복 제거</h4>
                         <h4 class="en">Remove Duplicates</h4>
-                        <p class="ko">以묐났??以꾩쓣 ?쒓굅?섏뿬 ?좎씪??媛믩쭔 ?④린???꾧뎄</p>
+                        <p class="ko">중복된 줄을 제거하여 고유한 값만 남기는 도구</p>
                         <p class="en">Remove duplicate lines to keep only unique values</p>
                     </div>
                 </a>
             </div>
-        </div>
-    <div class="text-center py-8">
+        </div><div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
 </div>
 </main>
@@ -503,7 +374,7 @@ body.lang-en .ko { display: none; }
 function setLang(lang) {
             document.body.className = 'lang-' + lang;
             var btn = document.getElementById('langToggle');
-            if (btn) btn.textContent = lang === 'ko' ? 'English' : '?쒓뎅??;
+            if (btn) btn.textContent = lang === 'ko' ? 'English' : '한국어';
             document.querySelectorAll('.lang-btn').forEach((btn, i) => {
                 btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
             });
@@ -520,4 +391,3 @@ function setLang(lang) {
         (adsbygoogle = window.adsbygoogle || []).push({});</script>
 </body>
 </html>
-
