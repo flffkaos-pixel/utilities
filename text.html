@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>텍스트 도구 - Text Tools</title>
+<title>�ؽ�Ʈ ���� - Text Tools</title>
 <meta name="description" content="Free online utility tool"/>
 <meta name="robots" content="index, follow"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
@@ -94,6 +94,138 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .stat { background: #f2f3fc; border-radius: 0.75rem; padding: 16px; text-align: center; }
 #json-result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
+body.lang-ko .en { display: none; }
+body.lang-en .ko { display: none; }
+.usage-guide, .tips, .faq, .related-tools {
+    background: #ffffff;
+    border-radius: 0.75rem;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    border: 1px solid rgba(193,198,213,0.2);
+}
+
+.usage-guide h3, .tips h3, .faq h3, .related-tools h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #191c22;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.usage-guide h3::before, .tips h3::before, .faq h3::before, .related-tools h3::before {
+    font-family: "Material Symbols Outlined";
+    font-variation-settings: 'FIX' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.usage-guide h3::before { content: 'help_outline'; }
+.tips h3::before { content: 'lightbulb'; }
+.faq h3::before { content: 'help'; }
+.related-tools h3::before { content: 'share'; }
+
+.usage-guide ol, .tips ul, .faq .faq-item, .related-grid {
+    margin-bottom: 16px;
+}
+
+.usage-guide li, .tips li {
+    margin-bottom: 12px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.usage-guide li::before, .tips li::before {
+    content: '��';
+    position: absolute;
+    left: 0;
+    color: #0066cc;
+}
+
+.faq-item {
+    background: #f8f9ff;
+    border-radius: 0.5rem;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-left: 3px solid #0066cc;
+}
+
+.faq-item h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #191c22;
+}
+
+.faq-item p {
+    color: #414753;
+    line-height: 1.6;
+}
+
+.example-grid, .related-grid {
+    display: grid;
+    gap: 16px;
+}
+
+.example-item, .related-tool {
+    background: #f8f9ff;
+    border-radius: 0.5rem;
+    padding: 16px;
+    border: 1px solid #e9ecef;
+    transition: all 0.2s;
+}
+
+.example-item:hover, .related-tool:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-color: #d0d7ff;
+}
+
+.example-item h4, .related-tool h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.example-item p, .related-tool p {
+    color: #414753;
+    font-size: 14px;
+}
+
+.related-icon {
+    width: 48px;
+    height: 48px;
+    background: #e3f2fd;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.related-info {
+    text-align: center;
+}
+
+.related-info h4 {
+    margin: 8px 0 4px 0;
+}
+
+.related-info p {
+    color: #6c757d;
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+    .example-grid, .related-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .usage-guide, .tips, .faq, .related-tools {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+}
 </style>
 </head>
 <body class="bg-background">
@@ -105,27 +237,28 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
 <div class="tool-card"><h1>
-            <span class="ko">텍스트 도구 - 대소문자 변환, 공백 제거 텍스트 도구 - 대소문자 변환, 공백 제거, 줄바꿈 변환 - 📝 텍스트 도구</span>
-            <span class="en">Text Tools - Convert case, remove spaces Text Tools - Case conversion, whitespace removal, line break conversion - 📝 Text Tools</span>
+            <span class="ko">�ؽ�Ʈ ���� - ��ҹ���?��ȯ, ���� ���� �ؽ�Ʈ ���� - ��ҹ���?��ȯ, ���� ����, �ٹٲ� ��ȯ - ?? �ؽ�Ʈ ����</span>
+            <span class="en">Text Tools - Convert case, remove spaces Text Tools - Case conversion, whitespace removal, line break conversion - ?? Text Tools</span>
         </h1>
         
         <div class="description">
-            <span class="ko">텍스트 도구는 문자열을 대문자, 소문자, 첫 글자 대문자로 변환하거나 공백을 제거할 수 있습니다. 문서 작성, 코딩, 데이터 정리에 유용합니다. 이 도구는 다양한 텍스트 변환 기능을 제공하여 일상 업무에서 텍스트 처리 효율을 높여줍니다.</span>
+            <span class="ko">�ؽ�Ʈ ������ ���ڿ��� �빮��, �ҹ���, ù ���� �빮�ڷ� ��ȯ�ϰų� ������ ������ �� �ֽ��ϴ�. ���� �ۼ�, �ڵ�, ������ ������ �����մϴ�. �� ������ �پ��� �ؽ�Ʈ ��ȯ �����?�����Ͽ� �ϻ� �������� �ؽ�Ʈ ó�� ȿ���� �����ݴϴ�.</span>
             <span class="en">Text Tools convert strings to uppercase, lowercase, capitalize first letters, or trim whitespace. Useful for document editing, coding, and data cleaning. This tool provides various text transformation features to improve text processing efficiency in daily work.</span>
         </div>
         
         <div class="usage-guide">
-            <h3 class="ko">사용 방법</h3>
+            <h3 class="ko">���?���?/h3>
             <h3 class="en">How to Use</h3>
             <ol class="ko">
-                <li>위 텍스트 영역에 변환하고 싶은 텍스트를 입력하거나 붙여넣기 합니다.</li>
-                <li>원하는 변환 버튼을 클릭합니다 (대문자, 소문자, 첫 글자 대문자, 공백 제거 중 선택).</li>
-                <li>변환된 결과가 아래 결과 영역에 표시됩니다.</li>
-                <li>복사 버튼을 클릭하여 결과를 클립보드에 복사할 수 있습니다.</li>
+                <li>�� �ؽ�Ʈ ������ ��ȯ�ϰ� ���� �ؽ�Ʈ�� �Է��ϰų� �ٿ��ֱ� �մϴ�.</li>
+                <li>���ϴ� ��ȯ ��ư�� Ŭ���մϴ� (�빮��, �ҹ���, ù ���� �빮��, ���� ���� �� ����).</li>
+                <li>��ȯ�� �����?�Ʒ� ���?������ ǥ�õ˴ϴ�.</li>
+                <li>���� ��ư�� Ŭ���Ͽ� �����?Ŭ�����忡 ������ �� �ֽ��ϴ�.</li>
             </ol>
             <ol class="en">
                 <li>Enter or paste the text you want to convert in the text area above.</li>
@@ -136,31 +269,31 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
         </div>
         
         <div class="examples">
-            <h3 class="ko">예시</h3>
+            <h3 class="ko">����</h3>
             <h3 class="en">Examples</h3>
             <div class="example-grid">
                 <div class="example-item">
-                    <h4 class="ko">대소문자 변환</h4>
+                    <h4 class="ko">��ҹ���?��ȯ</h4>
                     <h4 class="en">Case Conversion</h4>
-                    <p class="ko">입력: "hello WORLD" → 대문자: "HELLO WORLD"</p>
-                    <p class="en">Input: "hello WORLD" → UPPERCASE: "HELLO WORLD"</p>
+                    <p class="ko">�Է�: "hello WORLD" �� �빮��: "HELLO WORLD"</p>
+                    <p class="en">Input: "hello WORLD" �� UPPERCASE: "HELLO WORLD"</p>
                 </div>
                 <div class="example-item">
-                    <h4 class="ko">첫 글자 대문자</h4>
+                    <h4 class="ko">ù ���� �빮��</h4>
                     <h4 class="en">Capitalize</h4>
-                    <p class="ko">입력: "hello world" → Capitalize: "Hello World"</p>
-                    <p class="en">Input: "hello world" → Capitalize: "Hello World"</p>
+                    <p class="ko">�Է�: "hello world" �� Capitalize: "Hello World"</p>
+                    <p class="en">Input: "hello world" �� Capitalize: "Hello World"</p>
                 </div>
                 <div class="example-item">
-                    <h4 class="ko">공백 제거</h4>
+                    <h4 class="ko">���� ����</h4>
                     <h4 class="en">Trim Whitespace</h4>
-                    <p class="ko">입력: "  hello world  " → Trim: "hello world"</p>
-                    <p class="en">Input: "  hello world  " → Trim: "hello world"</p>
+                    <p class="ko">�Է�: "  hello world  " �� Trim: "hello world"</p>
+                    <p class="en">Input: "  hello world  " �� Trim: "hello world"</p>
                 </div>
             </div>
         </div>
         
-        <textarea id="input" placeholder="Enter text... / 텍스트를 입력하세요..."></textarea>
+        <textarea id="input" placeholder="Enter text... / �ؽ�Ʈ�� �Է��ϼ���..."></textarea>
         
         <div class="btn-group">
             <button class="btn" onclick="upperCase()">UPPERCASE</button>
@@ -171,7 +304,161 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
         </div>
         
         <div class="result" id="result"></div></div>
-<div class="text-center py-8">
+        
+        <!-- Usage Guide -->
+        <div class="usage-guide">
+            <h3 class="ko">?�세 ?�용�?/h3>
+            <h3 class="en">Detailed Usage Guide</h3>
+            <ol class="ko">
+                <li>???�스???�역??변?�하�??��? ?�스?��? ?�력?�거??붙여?�기 ?�니??</li>
+                <li>?�하??변??버튼???�릭?�니??(?�문자, ?�문?? �?글???�문자, 공백 ?�거 �??�택).</li>
+                <li>변?�된 결과가 ?�래 결과 ?�역???�시?�니??</li>
+                <li>복사 버튼???�릭?�여 결과�??�립보드??복사?????�습?�다.</li>
+                <li>?�로??변?�을 ?�해?�는 ?�스???�역???�릭?�고 기존 ?�스?��? ??��?????�로 ?�력?�세??</li>
+            </ol>
+            <ol class="en">
+                <li>Enter or paste the text you want to convert in the text area above.</li>
+                <li>Click the desired conversion button (UPPERCASE, lowercase, Capitalize, or Trim).</li>
+                <li>The converted result will be displayed in the result area below.</li>
+                <li>Click the copy button to copy the result to your clipboard.</li>
+                <li>To perform a new conversion, click in the text area and clear existing text before entering new input.</li>
+            </ol>
+        </div>
+        
+        <!-- Examples -->
+        <div class="examples">
+            <h3 class="ko">?�양???�용 ?��?</h3>
+            <h3 class="en">Various Use Cases</h3>
+            <div class="example-grid">
+                <div class="example-item">
+                    <h4 class="ko">문서 ?�성 ???�용</h4>
+                    <h4 class="en">Document Writing</h4>
+                    <p class="ko">보고?�나 ?�문 ?�성 ???�목?� �?글???�문자, 본문?� ?�문?�로 ?��??�게 ?�식 지?�할 ???�용?�니??</p>
+                    <p class="en">When writing reports or papers, useful for setting titles in Capitalize case and body text in lowercase for consistent formatting.</p>
+                </div>
+                <div class="example-item">
+                    <h4 class="ko">코딩 �??�버�?/h4>
+                    <h4 class="en">Coding & Debugging</h4>
+                    <p class="ko">?�경 변?�나 ?�수 ?�름???�문자�?변?�하거나, ?�용???�력???�문?�로 ?�규?�하??비교?????�용?�니??</p>
+                    <p class="en">Useful for converting environment variable or constant names to uppercase, or normalizing user input to lowercase for comparison.</p>
+                </div>
+                <div class="example-item">
+                    <h4 class="ko">?�이???�제</h4>
+                    <h4 class="en">Data Cleaning</h4>
+                    <p class="ko">CSV??TSV ?�일 처리 ???�뒤 공백???�거?�여 ?�이???�질???�상?�킬 ???�습?�다.</p>
+                    <p class="en">When processing CSV or TSV files, useful for trimming whitespace to improve data quality.</p>
+                </div>
+                <div class="example-item">
+                    <h4 class="ko">?�셜 미디??콘텐�?/h4>
+                    <h4 class="en">Social Media Content</h4>
+                    <p class="ko">?�스?�그램 ?�시?�그???�?�문?��? 구분?��? ?��?�? 가?�성???�해 �?글???�문자 ?�식?�로 ?�용?????�습?�다.</p>
+                    <p class="en">Instagram hashtags are case-insensitive, but you can use Capitalize format for better readability.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tips -->
+        <div class="tips">
+            <h3 class="ko">?�용 ??/h3>
+            <h3 class="en">Pro Tips</h3>
+            <ul class="ko">
+                <li>?�� keyboard ?�축???�용: Ctrl+A�??�체 ?�택, Ctrl+C�?복사, Ctrl+V�?붙여?�기</li>
+                <li>?�� ?�???�스??처리 ???�능 최적?��? ?�해 10,000???�하�??�누??처리?�는 것이 좋습?�다.</li>
+                <li>?�� ???�이지 ?�스 코드?�서 ?�스??추출 ???�제???�용?�니??</li>
+                <li>?�� ?�러 �??�스??처리 ??줄바꿈�? 그�?�??��??�며, �?줄별�?변?�용?��? ?�습?�다.</li>
+                <li>?�� 모바?�에?�도 ?�전?�게 ?�동?��?�??�제 ?�디?�든 ?�스???�제가 가?�합?�다.</li>
+            </ul>
+            <ul class="en">
+                <li>?�� Keyboard shortcuts: Ctrl+A to select all, Ctrl+C to copy, Ctrl+V to paste</li>
+                <li>?�� For processing large texts, it's recommended to split into chunks under 10,000 characters for optimal performance.</li>
+                <li>?�� Useful for cleaning text extracted from web page source code.</li>
+                <li>?�� When processing multi-line text, line breaks are preserved and not affected by the conversion.</li>
+                <li>?�� Works fully on mobile devices, so you can clean text anytime, anywhere.</li>
+            </ul>
+        </div>
+        
+        <!-- FAQ -->
+        <div class="faq">
+            <h3 class="ko">?�주 묻는 질문</h3>
+            <h3 class="en">Frequently Asked Questions</h3>
+            <div class="faq-item">
+                <h4 class="ko">???�구?????�이?��? ?�?�하거나 ?�송?�니�?</h4>
+                <h4 class="en">Does this tool store or transmit my data?</h4>
+                <p class="ko">?��? ?�닙?�다. 모든 ?�스??처리 ?�업?� 귀?�의 브라?��? ?�에???�전??로컬�??�행?�며, ?�떤 ?�이?�도 ?�버�??�송?�거???�?�되지 ?�습?�다.</p>
+                <p class="en">Absolutely not. All text processing is performed entirely locally in your browser, and no data is ever transmitted to or stored on any server.</p>
+            </div>
+            <div class="faq-item">
+                <h4 class="ko">?�수 문자?� ?�모지???�떻�?처리?�니�?</h4>
+                <h4 class="en">How are special characters and emojis handled?</h4>
+                <p class="ko">?�수 문자?� ?�모지??변???�업?�서 그�?�??��??�니?? ?��? ?�어, "Hello ?��"�??�문자�?변?�하�?"HELLO ?��"가 ?�니??</p>
+                <p class="en">Special characters and emojis remain unchanged during conversion. For example, converting "Hello ?��" to uppercase results in "HELLO ?��".</p>
+            </div>
+            <div class="faq-item">
+                <h4 class="ko">??번에 처리?????�는 최�? ?�스??길이???�마?�니�?</h4>
+                <h4 class="en">What is the maximum text length I can process at once?</h4>
+                <p class="ko">?�제 ?�한?� 브라?��??� 기기??메모리에 ?�라 ?�르지�? ?�반?�으�?100,000???�상??문제?�이 처리?????�습?�다. ?�?�량 ?�스?�의 경우 ?�능???�소 ?�?�될 ???�습?�다.</p>
+                <p class="en">The actual limit depends on your browser and device memory, but typically you can process over 100,000 characters without issues. For very large texts, performance may slightly decrease.</p>
+            </div>
+            <div class="faq-item">
+                <h4 class="ko">???�구�??�프?�인?�서 ?�용?????�습?�까?</h4>
+                <h4 class="en">Can I use this tool offline?</h4>
+                <p class="ko">?? ?�이지가 ?�전??로드???�에???�터???�결 ?�이???�전???�프?�인?�로 ?�용?????�습?�다. 모든 처리가 로컬?�서 ?�루?�집?�다.</p>
+                <p class="en">Yes! Once the page is fully loaded, you can use it completely offline without an internet connection, as all processing happens locally.</p>
+            </div>
+        </div>
+        
+        <!-- Related Tools -->
+        <div class="related-tools">
+            <h3 class="ko">관???�구 추천</h3>
+            <h3 class="en">Related Tools</h3>
+            <div class="related-grid">
+                <a href="counter.html" class="related-tool">
+                    <div class="related-icon">
+                        <span class="material-symbols-outlined">format_list_numbered</span>
+                    </div>
+                    <div class="related-info">
+                        <h4 class="ko">문자 ???�기</h4>
+                        <h4 class="en">Character Counter</h4>
+                        <p class="ko">글?? ?�어, 문장, ?�락 ?��? ?�는 ?�구</p>
+                        <p class="en">Count characters, words, sentences, and paragraphs</p>
+                    </div>
+                </a>
+                <a href="reverse.html" class="related-tool">
+                    <div class="related-icon">
+                        <span class="material-symbols-outlined">reverse</span>
+                    </div>
+                    <div class="related-info">
+                        <h4 class="ko">?�스???�집�?/h4>
+                        <h4 class="en">Text Reverser</h4>
+                        <p class="ko">문자?�을 거꾸�??�집???�구</p>
+                        <p class="en">Reverse string order</p>
+                    </div>
+                </a>
+                <a href="sort.html" class="related-tool">
+                    <div class="related-icon">
+                        <span class="material-symbols-outlined">sort</span>
+                    </div>
+                    <div class="related-info">
+                        <h4 class="ko">?�스???�렬</h4>
+                        <h4 class="en">Text Sorter</h4>
+                        <p class="ko">�??�위�??�스?��? ?�파벳순?�로 ?�렬?�는 ?�구</p>
+                        <p class="en">Sort lines alphabetically</p>
+                    </div>
+                </a>
+                <a href="unique.html" class="related-tool">
+                    <div class="related-icon">
+                        <span class="material-symbols-outlined">filter_alt</span>
+                    </div>
+                    <div class="related-info">
+                        <h4 class="ko">중복 ?�거</h4>
+                        <h4 class="en">Remove Duplicates</h4>
+                        <p class="ko">중복??줄을 ?�거?�여 ?�일??값만 ?�기???�구</p>
+                        <p class="en">Remove duplicate lines to keep only unique values</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
 </div>
 </main>
@@ -179,7 +466,7 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 <div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
 <div class="space-y-3 max-w-sm">
 <h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3>
-<p class="text-[#414753]">짤 2026 Free Utilities. All rights reserved.</p>
+<p class="text-[#414753]">© 2026 Free Utilities. All rights reserved.</p>
 </div>
 <div class="grid grid-cols-2 gap-8">
 <div class="flex flex-col gap-2">
@@ -209,16 +496,20 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 <span class="text-xs">Home</span>
 </div>
 </nav>
-<script>function setLang(lang) {
+<script>function toggleLang() {
+    var l = localStorage.getItem('util-lang') || 'ko';
+    setLang(l === 'ko' ? 'en' : 'ko');
+}
+function setLang(lang) {
             document.body.className = 'lang-' + lang;
+            var btn = document.getElementById('langToggle');
+            if (btn) btn.textContent = lang === 'ko' ? 'English' : '?�국??;
             document.querySelectorAll('.lang-btn').forEach((btn, i) => {
                 btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
             });
             localStorage.setItem('util-lang', lang);
         }
-        setLang('ko');
-        
-        function getVal() { return document.getElementById('input').value; }
+        setLang('ko');function getVal() { return document.getElementById('input').value; }
         function setResult(text) { document.getElementById('result').textContent = text; }
         function upperCase() { setResult(getVal().toUpperCase()); }
         function lowerCase() { setResult(getVal().toLowerCase()); }
@@ -229,3 +520,4 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
         (adsbygoogle = window.adsbygoogle || []).push({});</script>
 </body>
 </html>
+

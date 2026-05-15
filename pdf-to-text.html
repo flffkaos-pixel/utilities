@@ -1,9 +1,9 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>PDF to Text | PDFë¥¼ í…ìŠ¤íŠ¸ë¡œ</title>
+<title>PDF to Text | PDF¸¦ ÅØ½ºÆ®·Î</title>
 <meta name="description" content="Free online utility tool"/>
 <meta name="robots" content="index, follow"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
@@ -94,6 +94,8 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .stat { background: #f2f3fc; border-radius: 0.75rem; padding: 16px; text-align: center; }
 #json-result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
+body.lang-ko .en { display: none; }
+body.lang-en .ko { display: none; }
 </style>
 </head>
 <body class="bg-background">
@@ -105,48 +107,49 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><h1 class="ko">ğŸ“„ PDFë¥¼ í…ìŠ¤íŠ¸ë¡œ ë³€í™˜</h1>
-        <h1 class="en">ğŸ“„ PDF to Text Converter</h1>
+<div class="tool-card"><h1 class="ko">?? PDF¸¦ ÅØ½ºÆ®·Î º¯È¯</h1>
+        <h1 class="en">?? PDF to Text Converter</h1>
         
         <div class="upload-area" id="upload-area">
-            <div class="upload-icon">ğŸ“„</div>
+            <div class="upload-icon">??</div>
             <p class="upload-text">
-                <span class="ko"><strong>PDF íŒŒì¼</strong>ì„ ë“œë˜ê·¸í•˜ê±°ë‚˜ í´ë¦­í•˜ì—¬ ì„ íƒí•˜ì„¸ìš”</span>
+                <span class="ko"><strong>PDF ÆÄÀÏ</strong>À» µå·¡±×ÇÏ°Å³ª Å¬¸¯ÇÏ¿© ¼±ÅÃÇÏ¼¼¿ä</span>
                 <span class="en">Drag & drop a <strong>PDF file</strong> or click to select</span>
             </p>
             <p class="note">
-                <span class="ko">í´ë¼ì´ì–¸íŠ¸ ì¸¡ì—ì„œë§Œ ì²˜ë¦¬ë©ë‹ˆë‹¤. íŒŒì¼ì€ ì„œë²„ì— ì—…ë¡œë“œë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.</span>
+                <span class="ko">Å¬¶óÀÌ¾ğÆ® Ãø¿¡¼­¸¸ Ã³¸®µË´Ï´Ù. ÆÄÀÏÀº ¼­¹ö¿¡ ¾÷·ÎµåµÇÁö ¾Ê½À´Ï´Ù.</span>
                 <span class="en">Processed locally in your browser. Files are never uploaded to a server.</span>
             </p>
             <input type="file" id="file-input" accept=".pdf">
         </div>
         
         <div class="status" id="status">
-            <span class="ko">PDF íŒŒì¼ì„ ì„ íƒí•´ì£¼ì„¸ìš”.</span>
+            <span class="ko">PDF ÆÄÀÏÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.</span>
             <span class="en">Please select a PDF file.</span>
         </div>
         
         <div class="preview" id="preview" style="display: none;">
             <div class="preview-header">
-                <h3>ğŸ“„ PDF ì •ë³´</h3>
+                <h3>?? PDF Á¤º¸</h3>
             </div>
             <p class="file-info" id="file-info"></p>
         </div>
         
         <div id="controls" style="display: none;">
             <button class="btn" onclick="extractText()">
-                <span class="ko">í…ìŠ¤íŠ¸ ì¶”ì¶œ</span>
+                <span class="ko">ÅØ½ºÆ® ÃßÃâ</span>
                 <span class="en">Extract Text</span>
             </button>
             <button class="btn secondary" onclick="downloadText()">
-                <span class="ko">íŒŒì¼ ë‹¤ìš´ë¡œë“œ</span>
+                <span class="ko">ÆÄÀÏ ´Ù¿î·Îµå</span>
                 <span class="en">Download TXT</span>
             </button>
             <button class="btn secondary" onclick="copyText()">
-                <span class="ko">í´ë¦½ë³´ë“œì— ë³µì‚¬</span>
+                <span class="ko">Å¬¸³º¸µå¿¡ º¹»ç</span>
                 <span class="en">Copy to Clipboard</span>
             </button>
         </div>
@@ -154,7 +157,7 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
         <div class="result" id="result" style="display: none;">
             <div class="result-header">
                 <h3>
-                    <span class="ko">ì¶”ì¶œëœ í…ìŠ¤íŠ¸</span>
+                    <span class="ko">ÃßÃâµÈ ÅØ½ºÆ®</span>
                     <span class="en">Extracted Text</span>
                 </h3>
                 <span id="char-count" style="font-size: 0.85rem; color: var(--text-muted);">0 characters</span>
@@ -169,7 +172,7 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 <div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
 <div class="space-y-3 max-w-sm">
 <h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3>
-<p class="text-[#414753]">ì§¤ 2026 Free Utilities. All rights reserved.</p>
+<p class="text-[#414753]">Â© 2026 Free Utilities. All rights reserved.</p>
 </div>
 <div class="grid grid-cols-2 gap-8">
 <div class="flex flex-col gap-2">
@@ -204,7 +207,19 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
         let currentFile = null;
         let extractedText = '';
         
-        function setLang(lang) { document.body.className = lang; localStorage.setItem('util-lang', lang); }
+        function toggleLang() {
+    var l = localStorage.getItem('util-lang') || 'ko';
+    setLang(l === 'ko' ? 'en' : 'ko');
+}
+function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            var btn = document.getElementById('langToggle');
+            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'ÇÑ±¹¾î';
+            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
+            });
+            localStorage.setItem('util-lang', lang);
+        }
         const saved = localStorage.getItem('util-lang');
         if (saved) setLang(saved);
         
@@ -236,7 +251,7 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
             if (files.length > 0 && files[0].type === 'application/pdf') {
                 handleFile(files[0]);
             } else {
-                showStatus('Please select a PDF file. | PDF íŒŒì¼ì„ ì„ íƒí•´ì£¼ì„¸ìš”.', 'error');
+                showStatus('Please select a PDF file. | PDF ÆÄÀÏÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.', 'error');
             }
         });
         
@@ -256,14 +271,14 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
             result.style.display = 'none';
             extractedText = '';
             
-            showStatus(isKo ? 'PDF íŒŒì¼ì´ ë¡œë“œë˜ì—ˆìŠµë‹ˆë‹¤. "í…ìŠ¤íŠ¸ ì¶”ì¶œ" ë²„íŠ¼ì„ í´ë¦­í•˜ì„¸ìš”.' : 'PDF file loaded. Click "Extract Text" to begin.', 'success');
+            showStatus(isKo ? 'PDF ÆÄÀÏÀÌ ·ÎµåµÇ¾ú½À´Ï´Ù. "ÅØ½ºÆ® ÃßÃâ" ¹öÆ°À» Å¬¸¯ÇÏ¼¼¿ä.' : 'PDF file loaded. Click "Extract Text" to begin.', 'success');
         }
         
         async function extractText() {
             if (!currentFile) return;
             
             const isKo = document.body.classList.contains('lang-ko');
-            showStatus(isKo ? 'í…ìŠ¤íŠ¸ ì¶”ì¶œ ì¤‘...' : 'Extracting text...', 'normal');
+            showStatus(isKo ? 'ÅØ½ºÆ® ÃßÃâ Áß...' : 'Extracting text...', 'normal');
             
             try {
                 const arrayBuffer = await currentFile.arrayBuffer();
@@ -284,10 +299,10 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
                 charCount.textContent = `${extractedText.length} characters`;
                 result.style.display = 'block';
                 
-                showStatus(isKo ? `${totalPages}í˜ì´ì§€ì—ì„œ í…ìŠ¤íŠ¸ë¥¼ ì„±ê³µì ìœ¼ë¡œ ì¶”ì¶œí–ˆìŠµë‹ˆë‹¤.` : `Successfully extracted text from ${totalPages} pages.`, 'success');
+                showStatus(isKo ? `${totalPages}ÆäÀÌÁö¿¡¼­ ÅØ½ºÆ®¸¦ ¼º°øÀûÀ¸·Î ÃßÃâÇß½À´Ï´Ù.` : `Successfully extracted text from ${totalPages} pages.`, 'success');
                 
             } catch (error) {
-                showStatus(isKo ? 'í…ìŠ¤íŠ¸ ì¶”ì¶œ ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤: ' + error.message : 'Error extracting text: ' + error.message, 'error');
+                showStatus(isKo ? 'ÅØ½ºÆ® ÃßÃâ Áß ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù: ' + error.message : 'Error extracting text: ' + error.message, 'error');
             }
         }
         
@@ -308,7 +323,7 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
             
             navigator.clipboard.writeText(extractedText).then(() => {
                 const isKo = document.body.classList.contains('lang-ko');
-                showStatus(isKo ? 'í´ë¦½ë³´ë“œì— ë³µì‚¬ë˜ì—ˆìŠµë‹ˆë‹¤!' : 'Copied to clipboard!', 'success');
+                showStatus(isKo ? 'Å¬¸³º¸µå¿¡ º¹»çµÇ¾ú½À´Ï´Ù!' : 'Copied to clipboard!', 'success');
             }).catch(() => {
                 textOutput.select();
                 document.execCommand('copy');

@@ -1,9 +1,9 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>QR ì½”ë“œ ìƒì„±ê¸° - QR Generator</title>
+<title>QR ÄÚµå »ı¼º±â - QR Generator</title>
 <meta name="description" content="Free online utility tool"/>
 <meta name="robots" content="index, follow"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
@@ -94,6 +94,8 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .stat { background: #f2f3fc; border-radius: 0.75rem; padding: 16px; text-align: center; }
 #json-result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
+body.lang-ko .en { display: none; }
+body.lang-en .ko { display: none; }
 </style>
 </head>
 <body class="bg-background">
@@ -105,21 +107,22 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
 <div class="tool-card"><h1>
-            <span class="ko">QR ì½”ë“œ ìƒì„±ê¸° - QR ì½”ë“œ ë§Œë“¤ê¸° QR ì½”ë“œ ìƒì„±ê¸° - í…ìŠ¤íŠ¸ë‚˜ URLë¡œ QR ì½”ë“œ ë§Œë“¤ê¸° - ğŸ“± QR ì½”ë“œ ìƒì„±ê¸°</span>
-            <span class="en">QR Generator - Create QR codes QR Code Generator - Create QR from text or URL - ğŸ“± QR Code Generator</span>
+            <span class="ko">QR ÄÚµå »ı¼º±â - QR ÄÚµå ¸¸µé±â QR ÄÚµå »ı¼º±â - ÅØ½ºÆ®³ª URL·Î QR ÄÚµå ¸¸µé±â - ?? QR ÄÚµå »ı¼º±â</span>
+            <span class="en">QR Generator - Create QR codes QR Code Generator - Create QR from text or URL - ?? QR Code Generator</span>
         </h1>
         
         <div class="description">
-            <span class="ko">QR ì½”ë“œ ìƒì„±ê¸°ëŠ” í…ìŠ¤íŠ¸, URL, ì—°ë½ì²˜ ë“±ì„ QR ì½”ë“œë¡œ ë³€í™˜í•©ë‹ˆë‹¤. ë§ˆì¼€íŒ…, ê²°ì œ, ì •ë³´ ê³µìœ ì— ìœ ìš©í•©ë‹ˆë‹¤.</span>
+            <span class="ko">QR ÄÚµå »ı¼º±â´Â ÅØ½ºÆ®, URL, ¿¬¶ôÃ³ µîÀ» QR ÄÚµå·Î º¯È¯ÇÕ´Ï´Ù. ¸¶ÄÉÆÃ, °áÁ¦, Á¤º¸ °øÀ¯¿¡ À¯¿ëÇÕ´Ï´Ù.</span>
             <span class="en">QR Code Generator converts text, URLs, contacts into QR codes. Useful for marketing, payments, and information sharing.</span>
         </div>
         
-        <input type="text" id="qr-input" placeholder="URL or text / URL ë˜ëŠ” í…ìŠ¤íŠ¸">
-        <button class="btn" onclick="generateQR()">Generate QR / ìƒì„±</button>
+        <input type="text" id="qr-input" placeholder="URL or text / URL ¶Ç´Â ÅØ½ºÆ®">
+        <button class="btn" onclick="generateQR()">Generate QR / »ı¼º</button>
         
         <div id="qr-result"></div></div>
 <div class="text-center py-8">
@@ -130,7 +133,7 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 <div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
 <div class="space-y-3 max-w-sm">
 <h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3>
-<p class="text-[#414753]">ì§¤ 2026 Free Utilities. All rights reserved.</p>
+<p class="text-[#414753]">Â© 2026 Free Utilities. All rights reserved.</p>
 </div>
 <div class="grid grid-cols-2 gap-8">
 <div class="flex flex-col gap-2">
@@ -160,16 +163,20 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 <span class="text-xs">Home</span>
 </div>
 </nav>
-<script>function setLang(lang) {
+<script>function toggleLang() {
+    var l = localStorage.getItem('util-lang') || 'ko';
+    setLang(l === 'ko' ? 'en' : 'ko');
+}
+function setLang(lang) {
             document.body.className = 'lang-' + lang;
+            var btn = document.getElementById('langToggle');
+            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'ÇÑ±¹¾î';
             document.querySelectorAll('.lang-btn').forEach((btn, i) => {
                 btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
             });
             localStorage.setItem('util-lang', lang);
         }
-        setLang('ko');
-        
-        function generateQR() {
+        setLang('ko');function generateQR() {
             const text = document.getElementById('qr-input').value;
             if (!text) return;
             const result = document.getElementById('qr-result');

@@ -1,9 +1,9 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ë§ˆí¬ë‹¤ìš´ ì—ë””í„° - Markdown Editor</title>
+<title>¸¶Å©´Ù¿î ¿¡µğÅÍ - Markdown Editor</title>
 <meta name="description" content="Free online utility tool"/>
 <meta name="robots" content="index, follow"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
@@ -94,6 +94,8 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .stat { background: #f2f3fc; border-radius: 0.75rem; padding: 16px; text-align: center; }
 #json-result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
+body.lang-ko .en { display: none; }
+body.lang-en .ko { display: none; }
 </style>
 </head>
 <body class="bg-background">
@@ -105,16 +107,17 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><h1><span class="ko">ë§ˆí¬ë‹¤ìš´ ì—ë””í„° - MDë¥¼ HTMLë¡œ ë§ˆí¬ë‹¤ìš´ ì—ë””í„° - ë§ˆí¬ë‹¤ìš´ì„ HTMLë¡œ ë³€í™˜ - ğŸ“ ë§ˆí¬ë‹¤ìš´ ì—ë””í„°</span><span class="en">Markdown Editor - MD to HTML Markdown Editor - Convert markdown to HTML - ğŸ“ Markdown Editor</span></h1>
+<div class="tool-card"><h1><span class="ko">¸¶Å©´Ù¿î ¿¡µğÅÍ - MD¸¦ HTML·Î ¸¶Å©´Ù¿î ¿¡µğÅÍ - ¸¶Å©´Ù¿îÀ» HTML·Î º¯È¯ - ?? ¸¶Å©´Ù¿î ¿¡µğÅÍ</span><span class="en">Markdown Editor - MD to HTML Markdown Editor - Convert markdown to HTML - ?? Markdown Editor</span></h1>
         <div class="description">
-            <span class="ko">ë§ˆí¬ë‹¤ìš´ ì—ë””í„°ëŠ” ë§ˆí¬ë‹¤ìš´ ë¬¸ë²•ì„ HTMLë¡œ ë³€í™˜í•©ë‹ˆë‹¤. ë¸”ë¡œê±°, ê°œë°œì ì¶”ì²œí•©ë‹ˆë‹¤.</span>
+            <span class="ko">¸¶Å©´Ù¿î ¿¡µğÅÍ´Â ¸¶Å©´Ù¿î ¹®¹ıÀ» HTML·Î º¯È¯ÇÕ´Ï´Ù. ºí·Î°Å, °³¹ßÀÚ ÃßÃµÇÕ´Ï´Ù.</span>
             <span class="en">Markdown Editor converts markdown to HTML. Great for bloggers and developers.</span>
         </div>
-        <textarea id="md-input" placeholder="# ì œëª©&#10;**êµµê²Œ**&#10;*ê¸°ìš¸ì„*"></textarea>
-        <button class="btn" onclick="convert()"><span class="ko">ë³€í™˜</span><span class="en">Convert</span></button>
+        <textarea id="md-input" placeholder="# Á¦¸ñ&#10;**±½°Ô**&#10;*±â¿ïÀÓ*"></textarea>
+        <button class="btn" onclick="convert()"><span class="ko">º¯È¯</span><span class="en">Convert</span></button>
         <div id="html-output"></div></div>
 <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -124,7 +127,7 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 <div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
 <div class="space-y-3 max-w-sm">
 <h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3>
-<p class="text-[#414753]">ì§¤ 2026 Free Utilities. All rights reserved.</p>
+<p class="text-[#414753]">Â© 2026 Free Utilities. All rights reserved.</p>
 </div>
 <div class="grid grid-cols-2 gap-8">
 <div class="flex flex-col gap-2">
@@ -154,9 +157,20 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 <span class="text-xs">Home</span>
 </div>
 </nav>
-<script>function setLang(lang) { document.body.className = 'lang-' + lang; document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',lang==='ko'?i===0:i===1)); }
-        setLang('ko');
-        function convert() {
+<script>function toggleLang() {
+    var l = localStorage.getItem('util-lang') || 'ko';
+    setLang(l === 'ko' ? 'en' : 'ko');
+}
+function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            var btn = document.getElementById('langToggle');
+            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'ÇÑ±¹¾î';
+            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
+            });
+            localStorage.setItem('util-lang', lang);
+        }
+        setLang('ko');function convert() {
             const md = document.getElementById('md-input').value;
             let html = md.replace(/^### (.*$)/gm, '<h3>$1</h3>').replace(/^## (.*$)/gm, '<h2>$1</h2>').replace(/^# (.*$)/gm, '<h1>$1</h1>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>').replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>').replace(/^\* (.*$)/gm, '<li>$1</li>').replace(/\n/g, '<br>');
             document.getElementById('html-output').innerHTML = html;

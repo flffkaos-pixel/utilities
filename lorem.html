@@ -1,9 +1,9 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Lorem Ipsum ìƒì„±ê¸° - Lorem Ipsum Generator</title>
+<title>Lorem Ipsum »ı¼º±â - Lorem Ipsum Generator</title>
 <meta name="description" content="Free online utility tool"/>
 <meta name="robots" content="index, follow"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
@@ -94,6 +94,8 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .stat { background: #f2f3fc; border-radius: 0.75rem; padding: 16px; text-align: center; }
 #json-result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
+body.lang-ko .en { display: none; }
+body.lang-en .ko { display: none; }
 </style>
 </head>
 <body class="bg-background">
@@ -105,16 +107,17 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><h1><span class="ko">Lorem Ipsum - í…ŒìŠ¤íŠ¸ìš© ë”ë¯¸ í…ìŠ¤íŠ¸ Lorem Ipsum ìƒì„±ê¸° - í…ŒìŠ¤íŠ¸ìš© ë”ë¯¸ í…ìŠ¤íŠ¸ ë§Œë“¤ê¸° - ğŸ“ Lorem Ipsum ìƒì„±ê¸°</span><span class="en">Lorem Ipsum - Dummy text Lorem Ipsum Generator - Create dummy text for testing - ğŸ“ Lorem Ipsum Generator</span></h1>
+<div class="tool-card"><h1><span class="ko">Lorem Ipsum - Å×½ºÆ®¿ë ´õ¹Ì ÅØ½ºÆ® Lorem Ipsum »ı¼º±â - Å×½ºÆ®¿ë ´õ¹Ì ÅØ½ºÆ® ¸¸µé±â - ?? Lorem Ipsum »ı¼º±â</span><span class="en">Lorem Ipsum - Dummy text Lorem Ipsum Generator - Create dummy text for testing - ?? Lorem Ipsum Generator</span></h1>
         <div class="description">
-            <span class="ko">Lorem Ipsum ìƒì„±ê¸°ëŠ” í…ŒìŠ¤íŠ¸ìš© ë”ë¯¸ í…ìŠ¤íŠ¸ë¥¼ ìƒì„±í•©ë‹ˆë‹¤. ë””ìì¸, ë ˆì´ì•„ì›ƒ í…ŒìŠ¤íŠ¸ì— ìœ ìš©í•©ë‹ˆë‹¤.</span>
+            <span class="ko">Lorem Ipsum »ı¼º±â´Â Å×½ºÆ®¿ë ´õ¹Ì ÅØ½ºÆ®¸¦ »ı¼ºÇÕ´Ï´Ù. µğÀÚÀÎ, ·¹ÀÌ¾Æ¿ô Å×½ºÆ®¿¡ À¯¿ëÇÕ´Ï´Ù.</span>
             <span class="en">Lorem Ipsum Generator creates dummy text for testing. Useful for design and layout testing.</span>
         </div>
         <input type="number" id="count" value="5" min="1" max="100">
-        <button class="btn" onclick="generate()"><span class="ko">ìƒì„±</span><span class="en">Generate</span></button>
+        <button class="btn" onclick="generate()"><span class="ko">»ı¼º</span><span class="en">Generate</span></button>
         <div id="result" class="result"></div></div>
 <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -124,7 +127,7 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 <div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
 <div class="space-y-3 max-w-sm">
 <h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3>
-<p class="text-[#414753]">ì§¤ 2026 Free Utilities. All rights reserved.</p>
+<p class="text-[#414753]">Â© 2026 Free Utilities. All rights reserved.</p>
 </div>
 <div class="grid grid-cols-2 gap-8">
 <div class="flex flex-col gap-2">
@@ -154,9 +157,20 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 <span class="text-xs">Home</span>
 </div>
 </nav>
-<script>function setLang(lang) { document.body.className = 'lang-' + lang; document.querySelectorAll('.lang-btn').forEach((b,i)=>b.classList.toggle('active',lang==='ko'?i===0:i===1)); }
-        setLang('ko');
-        const lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+<script>function toggleLang() {
+    var l = localStorage.getItem('util-lang') || 'ko';
+    setLang(l === 'ko' ? 'en' : 'ko');
+}
+function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            var btn = document.getElementById('langToggle');
+            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'ÇÑ±¹¾î';
+            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
+            });
+            localStorage.setItem('util-lang', lang);
+        }
+        setLang('ko');const lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
         function generate() { const n = parseInt(document.getElementById('count').value) || 5; let text = ''; for(let i=0;i<n;i++) text += lorem + ' '; document.getElementById('result').textContent = text; }
         generate();
         (adsbygoogle = window.adsbygoogle || []).push({});</script>

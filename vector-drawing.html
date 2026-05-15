@@ -1,9 +1,9 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ë²¡í„° ê·¸ë¦¬ê¸° | Vector Drawing</title>
+<title>º¤ÅÍ ±×¸®±â | Vector Drawing</title>
 <meta name="description" content="Free online utility tool"/>
 <meta name="robots" content="index, follow"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
@@ -94,6 +94,8 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .stat { background: #f2f3fc; border-radius: 0.75rem; padding: 16px; text-align: center; }
 #json-result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
+body.lang-ko .en { display: none; }
+body.lang-en .ko { display: none; }
 </style>
 </head>
 <body class="bg-background">
@@ -105,52 +107,53 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><h1 class="ko">ğŸ¨ ë²¡í„° ê·¸ë¦¬ê¸°</h1>
-        <h1 class="en">ğŸ¨ Vector Drawing</h1>
+<div class="tool-card"><h1 class="ko">?? º¤ÅÍ ±×¸®±â</h1>
+        <h1 class="en">?? Vector Drawing</h1>
         
         <div class="toolbar">
             <button class="tool-btn active" data-tool="select">
-                <span class="ko">ì„ íƒ</span>
+                <span class="ko">¼±ÅÃ</span>
                 <span class="en">Select</span>
             </button>
             <button class="tool-btn" data-tool="rect">
-                <span class="ko">ì‚¬ê°í˜•</span>
+                <span class="ko">»ç°¢Çü</span>
                 <span class="en">Rectangle</span>
             </button>
             <button class="tool-btn" data-tool="circle">
-                <span class="ko">ì›</span>
+                <span class="ko">¿ø</span>
                 <span class="en">Circle</span>
             </button>
             <button class="tool-btn" data-tool="line">
-                <span class="ko">ì„ </span>
+                <span class="ko">¼±</span>
                 <span class="en">Line</span>
             </button>
             <button class="tool-btn" data-tool="path">
-                <span class="ko">íœ</span>
+                <span class="ko">Ææ</span>
                 <span class="en">Pen</span>
             </button>
             <button class="tool-btn" data-tool="text">
-                <span class="ko">í…ìŠ¤íŠ¸</span>
+                <span class="ko">ÅØ½ºÆ®</span>
                 <span class="en">Text</span>
             </button>
         </div>
         
         <div class="controls">
             <div class="control-group">
-                <label class="ko">ì±„ìš°ê¸°</label>
+                <label class="ko">Ã¤¿ì±â</label>
                 <label class="en">Fill</label>
                 <input type="color" id="fill-color" value="#ffffff">
             </div>
             <div class="control-group">
-                <label class="ko">í…Œë‘ë¦¬</label>
+                <label class="ko">Å×µÎ¸®</label>
                 <label class="en">Stroke</label>
                 <input type="color" id="stroke-color" value="#000000">
             </div>
             <div class="control-group">
-                <label class="ko">êµµê¸°</label>
+                <label class="ko">±½±â</label>
                 <label class="en">Width</label>
                 <input type="range" id="stroke-width" min="1" max="20" value="2">
                 <span id="stroke-width-val">2</span>
@@ -168,19 +171,19 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
         
         <div class="actions">
             <button class="btn" onclick="undo()">
-                <span class="ko">ì‹¤í–‰ì·¨ì†Œ</span>
+                <span class="ko">½ÇÇàÃë¼Ò</span>
                 <span class="en">Undo</span>
             </button>
             <button class="btn" onclick="redo()">
-                <span class="ko">ë‹¤ì‹œì‹¤í–‰</span>
+                <span class="ko">´Ù½Ã½ÇÇà</span>
                 <span class="en">Redo</span>
             </button>
             <button class="btn secondary" onclick="clearCanvas()">
-                <span class="ko">ì „ì²´ì§€ìš°ê¸°</span>
+                <span class="ko">ÀüÃ¼Áö¿ì±â</span>
                 <span class="en">Clear All</span>
             </button>
             <button class="btn secondary" onclick="exportSVG()">
-                <span class="ko">SVG ë‚´ë³´ë‚´ê¸°</span>
+                <span class="ko">SVG ³»º¸³»±â</span>
                 <span class="en">Export SVG</span>
             </button>
         </div></div>
@@ -192,7 +195,7 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 <div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
 <div class="space-y-3 max-w-sm">
 <h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3>
-<p class="text-[#414753]">ì§¤ 2026 Free Utilities. All rights reserved.</p>
+<p class="text-[#414753]">Â© 2026 Free Utilities. All rights reserved.</p>
 </div>
 <div class="grid grid-cols-2 gap-8">
 <div class="flex flex-col gap-2">
@@ -240,7 +243,19 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
             currentPath: null
         };
         
-        function setLang(lang) { document.body.className = lang; localStorage.setItem('util-lang', lang); }
+        function toggleLang() {
+    var l = localStorage.getItem('util-lang') || 'ko';
+    setLang(l === 'ko' ? 'en' : 'ko');
+}
+function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            var btn = document.getElementById('langToggle');
+            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'ÇÑ±¹¾î';
+            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
+            });
+            localStorage.setItem('util-lang', lang);
+        }
         const saved = localStorage.getItem('util-lang');
         if (saved) setLang(saved);
         
@@ -389,7 +404,7 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
         
         function clearCanvas() {
             if (confirm(document.body.classList.contains('lang-ko') ? 
-                    'ì •ë§ ì§€ìš°ì‹œê² ìŠµë‹ˆê¹Œ?' : 
+                    'Á¤¸» Áö¿ì½Ã°Ú½À´Ï±î?' : 
                     'Are you sure?')) {
                 canvas.innerHTML = '';
                 pushHistory();
