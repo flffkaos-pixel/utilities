@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>PNG to JPG º¯È¯±â - PNG to JPG Converter</title>
+<title>PNG to JPG ë³€í™˜ê¸° - PNG to JPG Converter</title>
 <meta name="description" content="Free online utility tool"/>
 <meta name="robots" content="index, follow"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
@@ -111,19 +111,19 @@ body.lang-en .ko { display: none; }
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><h1><span class="ko">PNG to JPG - ÀÌ¹ÌÁö Æ÷¸Ë º¯È¯ PNG to JPG º¯È¯±â - PNG ÀÌ¹ÌÁö¸¦ JPG·Î º¯È¯ - ??? PNG to JPG º¯È¯±â</span><span class="en">PNG to JPG - Convert format PNG to JPG Converter - Convert PNG images to JPG - ??? PNG to JPG Converter</span></h1>
+<div class="tool-card"><h1><span class="ko">PNG to JPG - ì´ë¯¸ì§€ í¬ë§· ë³€í™˜ PNG to JPG ë³€í™˜ê¸° - PNG ì´ë¯¸ì§€ë¥¼ JPGë¡œ ë³€í™˜ - ??? PNG to JPG ë³€í™˜ê¸°</span><span class="en">PNG to JPG - Convert format PNG to JPG Converter - Convert PNG images to JPG - ??? PNG to JPG Converter</span></h1>
         <div class="description">
-            <span class="ko">PNG ÀÌ¹ÌÁö¸¦ JPG·Î º¯È¯ÇÕ´Ï´Ù. Åõ¸í ¹è°æÀº Èò»öÀ¸·Î º¯È¯µË´Ï´Ù.</span>
+            <span class="ko">PNG ì´ë¯¸ì§€ë¥¼ JPGë¡œ ë³€í™˜í•©ë‹ˆë‹¤. íˆ¬ëª… ë°°ê²½ì€ í°ìƒ‰ìœ¼ë¡œ ë³€í™˜ë©ë‹ˆë‹¤.</span>
             <span class="en">Convert PNG images to JPG. Transparent background becomes white.</span>
         </div>
         <div class="upload-area" onclick="document.getElementById('fileInput').click()">
-            <span class="ko">Å¬¸¯ÇÏ¿© PNG ÆÄÀÏ ¼±ÅÃ</span>
+            <span class="ko">í´ë¦­í•˜ì—¬ PNG íŒŒì¼ ì„ íƒ</span>
             <span class="en">Click to select PNG file</span>
         </div>
         <input type="file" id="fileInput" accept="image/png" onchange="handleFile()">
-        <button class="btn" onclick="convert()"><span class="ko">º¯È¯ÇÏ±â</span><span class="en">Convert</span></button>
+        <button class="btn" onclick="convert()"><span class="ko">ë³€í™˜í•˜ê¸°</span><span class="en">Convert</span></button>
         <div class="result" id="result">
-            <div class="info"><span class="ko">º¯È¯µÈ ÀÌ¹ÌÁö°¡ ¿©±â¿¡ Ç¥½ÃµË´Ï´Ù</span><span class="en">Converted image will appear here</span></div>
+            <div class="info"><span class="ko">ë³€í™˜ëœ ì´ë¯¸ì§€ê°€ ì—¬ê¸°ì— í‘œì‹œë©ë‹ˆë‹¤</span><span class="en">Converted image will appear here</span></div>
         </div></div>
 <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -133,7 +133,7 @@ body.lang-en .ko { display: none; }
 <div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
 <div class="space-y-3 max-w-sm">
 <h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3>
-<p class="text-[#414753]">Â© 2026 Free Utilities. All rights reserved.</p>
+<p class="text-[#414753]">ì§¤ 2026 Free Utilities. All rights reserved.</p>
 </div>
 <div class="grid grid-cols-2 gap-8">
 <div class="flex flex-col gap-2">
@@ -171,7 +171,7 @@ body.lang-en .ko { display: none; }
 function setLang(lang) {
             document.body.className = 'lang-' + lang;
             var btn = document.getElementById('langToggle');
-            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'ÇÑ±¹¾î';
+            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'í•œêµ­ì–´';
             document.querySelectorAll('.lang-btn').forEach((btn, i) => {
                 btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
             });
@@ -183,7 +183,7 @@ function setLang(lang) {
             if (file) { originalFile = file; document.querySelector('.upload-area').innerHTML = file.name; }
         }
         function convert() {
-            if (!originalFile) { alert('ÆÄÀÏÀ» ¼±ÅÃÇÏ¼¼¿ä!'); return; }
+            if (!originalFile) { alert('íŒŒì¼ì„ ì„ íƒí•˜ì„¸ìš”!'); return; }
             const reader = new FileReader();
             reader.onload = function(e) {
                 const img = new Image();

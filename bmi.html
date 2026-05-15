@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>BMI °è»ê±â - BMI Calculator</title>
+<title>BMI ê³„ì‚°ê¸° - BMI Calculator</title>
 <meta name="description" content="Free online utility tool"/>
 <meta name="robots" content="index, follow"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
@@ -111,14 +111,14 @@ body.lang-en .ko { display: none; }
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><h1 class="ko">?? BMI °è»ê±â</h1>
+<div class="tool-card"><h1 class="ko">?? BMI ê³„ì‚°ê¸°</h1>
         <h1 class="en">?? BMI Calculator</h1>
         
         <div class="card">
-            <h2 class="ko">½ÅÀå (cm) / Ã¼Áß (kg)</h2>
+            <h2 class="ko">ì‹ ìž¥ (cm) / ì²´ì¤‘ (kg)</h2>
             <h2 class="en">Height (cm) / Weight (kg)</h2>
-            <input type="number" id="height" oninput="calcBMI()" placeholder="½ÅÀå (cm)">
-            <input type="number" id="weight" oninput="calcBMI()" placeholder="Ã¼Áß (kg)">
+            <input type="number" id="height" oninput="calcBMI()" placeholder="ì‹ ìž¥ (cm)">
+            <input type="number" id="weight" oninput="calcBMI()" placeholder="ì²´ì¤‘ (kg)">
             
             <div class="result">
                 <div class="bmi-num" id="bmi">-</div>
@@ -133,7 +133,7 @@ body.lang-en .ko { display: none; }
 <div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
 <div class="space-y-3 max-w-sm">
 <h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3>
-<p class="text-[#414753]">Â© 2026 Free Utilities. All rights reserved.</p>
+<p class="text-[#414753]">ì§¤ 2026 Free Utilities. All rights reserved.</p>
 </div>
 <div class="grid grid-cols-2 gap-8">
 <div class="flex flex-col gap-2">
@@ -170,7 +170,7 @@ body.lang-en .ko { display: none; }
 function setLang(lang) {
             document.body.className = 'lang-' + lang;
             var btn = document.getElementById('langToggle');
-            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'ÇÑ±¹¾î';
+            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'í•œêµ­ì–´';
             document.querySelectorAll('.lang-btn').forEach((btn, i) => {
                 btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
             });
@@ -192,10 +192,10 @@ function setLang(lang) {
             
             let status = '';
             let cls = '';
-            if (bmi < 18.5) { status = document.body.classList.contains('en') ? 'Underweight' : 'ÀúÃ¼Áß'; cls = 'status-under'; }
-            else if (bmi < 25) { status = document.body.classList.contains('en') ? 'Normal' : 'Á¤»ó'; cls = 'status-normal'; }
-            else if (bmi < 30) { status = document.body.classList.contains('en') ? 'Overweight' : '°úÃ¼Áß'; cls = 'status-over'; }
-            else { status = document.body.classList.contains('en') ? 'Obese' : 'ºñ¸¸'; cls = 'status-obese'; }
+            if (bmi < 18.5) { status = document.body.classList.contains('en') ? 'Underweight' : 'ì €ì²´ì¤‘'; cls = 'status-under'; }
+            else if (bmi < 25) { status = document.body.classList.contains('en') ? 'Normal' : 'ì •ìƒ'; cls = 'status-normal'; }
+            else if (bmi < 30) { status = document.body.classList.contains('en') ? 'Overweight' : 'ê³¼ì²´ì¤‘'; cls = 'status-over'; }
+            else { status = document.body.classList.contains('en') ? 'Obese' : 'ë¹„ë§Œ'; cls = 'status-obese'; }
             
             statusEl.textContent = status;
             statusEl.className = 'bmi-status ' + cls;

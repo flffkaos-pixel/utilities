@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>½Ã°£´ë º¯È¯±â - Timezone Converter</title>
+<title>ì‹œê°„ëŒ€ ë³€í™˜ê¸° - Timezone Converter</title>
 <meta name="description" content="Free online utility tool"/>
 <meta name="robots" content="index, follow"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
@@ -111,14 +111,14 @@ body.lang-en .ko { display: none; }
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><h1><span class="ko">½Ã°£´ë º¯È¯±â - ¼¼°è ½Ã°£ º¯È¯ ½Ã°£´ë º¯È¯±â - ¼¼°è °¢±¹ÀÇ ½Ã°£ º¯È¯ - ?? ½Ã°£´ë º¯È¯±â</span><span class="en">Timezone - World time Timezone Converter - Convert time between countries - ?? Timezone Converter</span></h1>
+<div class="tool-card"><h1><span class="ko">ì‹œê°„ëŒ€ ë³€í™˜ê¸° - ì„¸ê³„ ì‹œê°„ ë³€í™˜ ì‹œê°„ëŒ€ ë³€í™˜ê¸° - ì„¸ê³„ ê°êµ­ì˜ ì‹œê°„ ë³€í™˜ - ?? ì‹œê°„ëŒ€ ë³€í™˜ê¸°</span><span class="en">Timezone - World time Timezone Converter - Convert time between countries - ?? Timezone Converter</span></h1>
         <div class="description">
-            <span class="ko">½Ã°£´ë º¯È¯±â´Âá¦Í£ÊÀ? ½Ã°£À» º¯È¯ÇÕ´Ï´Ù. ±¹Á¦ ¿¬¶ô, ¿©Çà¿¡ À¯¿ëÇÕ´Ï´Ù.</span>
+            <span class="ko">ì‹œê°„ëŒ€ ë³€í™˜ê¸°ëŠ”ä¸–ç•Œå„? ì‹œê°„ì„ ë³€í™˜í•©ë‹ˆë‹¤. êµ­ì œ ì—°ë½, ì—¬í–‰ì— ìœ ìš©í•©ë‹ˆë‹¤.</span>
             <span class="en">Timezone Converter converts time between world countries. Useful for international calls and travel.</span>
         </div>
-        <select id="fromZone" onchange="convertTime()"><option value="Asia/Seoul">¼­¿ï (KST)</option><option value="America/New_York">´º¿å (EST)</option><option value="Europe/London">·±´ø (GMT)</option><option value="Asia/Tokyo">µµÄì (JST)</option><option value="Asia/Shanghai">Áß±¹ (CST)</option><option value="Europe/Paris">ÆÄ¸® (CET)</option></select>
+        <select id="fromZone" onchange="convertTime()"><option value="Asia/Seoul">ì„œìš¸ (KST)</option><option value="America/New_York">ë‰´ìš• (EST)</option><option value="Europe/London">ëŸ°ë˜ (GMT)</option><option value="Asia/Tokyo">ë„ì¿„ (JST)</option><option value="Asia/Shanghai">ì¤‘êµ­ (CST)</option><option value="Europe/Paris">íŒŒë¦¬ (CET)</option></select>
         <input type="datetime-local" id="timeInput" onchange="convertTime()">
-        <select id="toZone" onchange="convertTime()"><option value="America/New_York">´º¿å (EST)</option><option value="Asia/Seoul">¼­¿ï (KST)</option><option value="Europe/London">·±´ø (GMT)</option><option value="Asia/Tokyo">µµÄì (JST)</option><option value="Asia/Shanghai">Áß±¹ (CST)</option><option value="Europe/Paris">ÆÄ¸® (CET)</option></select>
+        <select id="toZone" onchange="convertTime()"><option value="America/New_York">ë‰´ìš• (EST)</option><option value="Asia/Seoul">ì„œìš¸ (KST)</option><option value="Europe/London">ëŸ°ë˜ (GMT)</option><option value="Asia/Tokyo">ë„ì¿„ (JST)</option><option value="Asia/Shanghai">ì¤‘êµ­ (CST)</option><option value="Europe/Paris">íŒŒë¦¬ (CET)</option></select>
         <div class="result" id="result"></div></div>
 <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -128,7 +128,7 @@ body.lang-en .ko { display: none; }
 <div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
 <div class="space-y-3 max-w-sm">
 <h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3>
-<p class="text-[#414753]">Â© 2026 Free Utilities. All rights reserved.</p>
+<p class="text-[#414753]">ì§¤ 2026 Free Utilities. All rights reserved.</p>
 </div>
 <div class="grid grid-cols-2 gap-8">
 <div class="flex flex-col gap-2">
@@ -165,7 +165,7 @@ body.lang-en .ko { display: none; }
 function setLang(lang) {
             document.body.className = 'lang-' + lang;
             var btn = document.getElementById('langToggle');
-            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'ÇÑ±¹¾î';
+            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'í•œêµ­ì–´';
             document.querySelectorAll('.lang-btn').forEach((btn, i) => {
                 btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
             });

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>½Ã°£ º¯È¯ - Time Converter</title>
+<title>ì‹œê°„ ë³€í™˜ - Time Converter</title>
 <meta name="description" content="Free online utility tool"/>
 <meta name="robots" content="index, follow"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
@@ -111,25 +111,25 @@ body.lang-en .ko { display: none; }
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><h1 class="ko">?? ½Ã°£ º¯È¯</h1>
+<div class="tool-card"><h1 class="ko">?? ì‹œê°„ ë³€í™˜</h1>
         <h1 class="en">?? Time Converter</h1>
         
         <div class="card">
-            <h2 class="ko">Unix Å¸ÀÓ½ºÅÆÇÁ ¡æ ³¯Â¥</h2>
-            <h2 class="en">Unix Timestamp ¡æ Date</h2>
+            <h2 class="ko">Unix íƒ€ìž„ìŠ¤íƒ¬í”„ â†’ ë‚ ì§œ</h2>
+            <h2 class="en">Unix Timestamp â†’ Date</h2>
             <input type="number" id="ts" placeholder="1700000000" oninput="tsToDate()">
             <div class="result" id="tsResult">-</div>
         </div>
         
         <div class="card">
-            <h2 class="ko">³¯Â¥ ¡æ Unix Å¸ÀÓ½ºÅÆÇÁ</h2>
-            <h2 class="en">Date ¡æ Unix Timestamp</h2>
+            <h2 class="ko">ë‚ ì§œ â†’ Unix íƒ€ìž„ìŠ¤íƒ¬í”„</h2>
+            <h2 class="en">Date â†’ Unix Timestamp</h2>
             <input type="datetime-local" id="date" oninput="dateToTs()">
             <div class="result" id="dateResult">-</div>
         </div>
         
         <div class="card">
-            <h2 class="ko">ÇöÀç ½Ã°£</h2>
+            <h2 class="ko">í˜„ìž¬ ì‹œê°„</h2>
             <h2 class="en">Current Time</h2>
             <div class="result" id="nowResult">-</div>
         </div></div>
@@ -141,7 +141,7 @@ body.lang-en .ko { display: none; }
 <div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
 <div class="space-y-3 max-w-sm">
 <h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3>
-<p class="text-[#414753]">Â© 2026 Free Utilities. All rights reserved.</p>
+<p class="text-[#414753]">ì§¤ 2026 Free Utilities. All rights reserved.</p>
 </div>
 <div class="grid grid-cols-2 gap-8">
 <div class="flex flex-col gap-2">
@@ -178,7 +178,7 @@ body.lang-en .ko { display: none; }
 function setLang(lang) {
             document.body.className = 'lang-' + lang;
             var btn = document.getElementById('langToggle');
-            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'ÇÑ±¹¾î';
+            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'í•œêµ­ì–´';
             document.querySelectorAll('.lang-btn').forEach((btn, i) => {
                 btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
             });

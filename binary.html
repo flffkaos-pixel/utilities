@@ -161,7 +161,7 @@ textarea, input, select { font-family: 'Inter', sans-serif; }
 function setLang(lang) {
             document.body.className = 'lang-' + lang;
             var btn = document.getElementById('langToggle');
-            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'ÇÑ±¹¾î';
+            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'ï¿½Ñ±ï¿½ï¿½ï¿½';
             document.querySelectorAll('.lang-btn').forEach((btn, i) => {
                 btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
             });

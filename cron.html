@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Cron »ı¼º±â - Cron Generator</title>
+<title>Cron ìƒì„±ê¸° - Cron Generator</title>
 <meta name="description" content="Free online utility tool"/>
 <meta name="robots" content="index, follow"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
@@ -112,9 +112,9 @@ body.lang-en .ko { display: none; }
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
 <div class="tool-card"><div class="header">
-            <a href="index.html" class="back">¡ç Back</a>
+            <a href="index.html" class="back">â† Back</a>
             <div class="lang-toggle">
-                <button class="lang-btn active" onclick="setLang('ko')">ÇÑ±¹¾î</button>
+                <button class="lang-btn active" onclick="setLang('ko')">í•œêµ­ì–´</button>
                 <button class="lang-btn" onclick="setLang('en')">English</button></div>
 <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -124,7 +124,7 @@ body.lang-en .ko { display: none; }
 <div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
 <div class="space-y-3 max-w-sm">
 <h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3>
-<p class="text-[#414753]">Â© 2026 Free Utilities. All rights reserved.</p>
+<p class="text-[#414753]">ì§¤ 2026 Free Utilities. All rights reserved.</p>
 </div>
 <div class="grid grid-cols-2 gap-8">
 <div class="flex flex-col gap-2">
@@ -161,18 +161,18 @@ body.lang-en .ko { display: none; }
 function setLang(lang) {
             document.body.className = 'lang-' + lang;
             var btn = document.getElementById('langToggle');
-            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'ÇÑ±¹¾î';
+            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'í•œêµ­ì–´';
             document.querySelectorAll('.lang-btn').forEach((btn, i) => {
                 btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
             });
             localStorage.setItem('util-lang', lang);
         }
         setLang('ko');const descs = {
-            minute: { '*': { ko: '¸ÅºĞ', en: 'Every minute' }, '0': { ko: 'Á¤°¢', en: 'At minute 0' }, '*/5': { ko: '5ºĞ¸¶´Ù', en: 'Every 5 min' }, '*/10': { ko: '10ºĞ¸¶´Ù', en: 'Every 10 min' }, '*/15': { ko: '15ºĞ¸¶´Ù', en: 'Every 15 min' }, '*/30': { ko: '30ºĞ¸¶´Ù', en: 'Every 30 min' } },
-            hour: { '*': { ko: '¸Å½Ã', en: 'Every hour' }, '0': { ko: 'ÀÚÁ¤', en: 'Midnight' }, '*/2': { ko: '2½Ã°£¸¶´Ù', en: 'Every 2 hours' }, '*/6': { ko: '6½Ã°£¸¶´Ù', en: 'Every 6 hours' }, '9-17': { ko: '¿ÀÀü 9½Ã-¿ÀÈÄ 5½Ã', en: '9 AM - 5 PM' } },
-            day: { '*': { ko: '¸ÅÀÏ', en: 'Every day' }, '1': { ko: '¸Å¿ù 1ÀÏ', en: '1st of month' }, '15': { ko: '¸Å¿ù 15ÀÏ', en: '15th of month' }, '1,15': { ko: '¸Å¿ù 1ÀÏ°ú 15ÀÏ', en: '1st & 15th' } },
-            month: { '*': { ko: '¸Å¿ù', en: 'Every month' }, '1': { ko: '1¿ù', en: 'January' }, '6,7,8': { ko: '¿©¸§ (6-8¿ù)', en: 'Summer (Jun-Aug)' } },
-            weekday: { '*': { ko: '¸ÅÀÏ', en: 'Every day' }, '1-5': { ko: 'ÆòÀÏ (¿ù-±İ)', en: 'Weekdays (Mon-Fri)' }, '0,6': { ko: 'ÁÖ¸» (Åä-ÀÏ)', en: 'Weekend (Sat-Sun)' }, '1': { ko: '¿ù¿äÀÏ', en: 'Monday' }, '5': { ko: '±İ¿äÀÏ', en: 'Friday' } }
+            minute: { '*': { ko: 'ë§¤ë¶„', en: 'Every minute' }, '0': { ko: 'ì •ê°', en: 'At minute 0' }, '*/5': { ko: '5ë¶„ë§ˆë‹¤', en: 'Every 5 min' }, '*/10': { ko: '10ë¶„ë§ˆë‹¤', en: 'Every 10 min' }, '*/15': { ko: '15ë¶„ë§ˆë‹¤', en: 'Every 15 min' }, '*/30': { ko: '30ë¶„ë§ˆë‹¤', en: 'Every 30 min' } },
+            hour: { '*': { ko: 'ë§¤ì‹œ', en: 'Every hour' }, '0': { ko: 'ìì •', en: 'Midnight' }, '*/2': { ko: '2ì‹œê°„ë§ˆë‹¤', en: 'Every 2 hours' }, '*/6': { ko: '6ì‹œê°„ë§ˆë‹¤', en: 'Every 6 hours' }, '9-17': { ko: 'ì˜¤ì „ 9ì‹œ-ì˜¤í›„ 5ì‹œ', en: '9 AM - 5 PM' } },
+            day: { '*': { ko: 'ë§¤ì¼', en: 'Every day' }, '1': { ko: 'ë§¤ì›” 1ì¼', en: '1st of month' }, '15': { ko: 'ë§¤ì›” 15ì¼', en: '15th of month' }, '1,15': { ko: 'ë§¤ì›” 1ì¼ê³¼ 15ì¼', en: '1st & 15th' } },
+            month: { '*': { ko: 'ë§¤ì›”', en: 'Every month' }, '1': { ko: '1ì›”', en: 'January' }, '6,7,8': { ko: 'ì—¬ë¦„ (6-8ì›”)', en: 'Summer (Jun-Aug)' } },
+            weekday: { '*': { ko: 'ë§¤ì¼', en: 'Every day' }, '1-5': { ko: 'í‰ì¼ (ì›”-ê¸ˆ)', en: 'Weekdays (Mon-Fri)' }, '0,6': { ko: 'ì£¼ë§ (í† -ì¼)', en: 'Weekend (Sat-Sun)' }, '1': { ko: 'ì›”ìš”ì¼', en: 'Monday' }, '5': { ko: 'ê¸ˆìš”ì¼', en: 'Friday' } }
         };
         
         function updateCron() {

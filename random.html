@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html class="light" lang="ko">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>·£´ı ¹øÈ£ »ı¼º±â - Random Number Generator</title>
+<title>ëœë¤ ë²ˆí˜¸ ìƒì„±ê¸° - Random Number Generator</title>
 <meta name="description" content="Free online utility tool"/>
 <meta name="robots" content="index, follow"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
@@ -111,15 +111,15 @@ body.lang-en .ko { display: none; }
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><h1><span class="ko">·£´ı ¹øÈ£ »ı¼º±â - ·£´ı ¼ıÀÚ ·£´ı ¹øÈ£ »ı¼º±â - ÁöÁ¤ ¹üÀ§¿¡¼­ ·£´ı ¼ıÀÚ »ı¼º - ?? ·£´ı ¹øÈ£ »ı¼º±â</span><span class="en">Random Number - Random numbers Random Number Generator - Generate random numbers in range - ?? Random Number Generator</span></h1>
+<div class="tool-card"><h1><span class="ko">ëœë¤ ë²ˆí˜¸ ìƒì„±ê¸° - ëœë¤ ìˆ«ì ëœë¤ ë²ˆí˜¸ ìƒì„±ê¸° - ì§€ì • ë²”ìœ„ì—ì„œ ëœë¤ ìˆ«ì ìƒì„± - ?? ëœë¤ ë²ˆí˜¸ ìƒì„±ê¸°</span><span class="en">Random Number - Random numbers Random Number Generator - Generate random numbers in range - ?? Random Number Generator</span></h1>
         <div class="description">
-            <span class="ko">·£´ı ¹øÈ£ »ı¼º±â´Â ÁöÁ¤ÇÑ ¹üÀ§¿¡¼­ ·£´ı ¼ıÀÚ¸¦ »ı¼ºÇÕ´Ï´Ù. °ÔÀÓ, ÃßÃ·, Å×½ºÆ®¿¡ À¯¿ëÇÕ´Ï´Ù.</span>
+            <span class="ko">ëœë¤ ë²ˆí˜¸ ìƒì„±ê¸°ëŠ” ì§€ì •í•œ ë²”ìœ„ì—ì„œ ëœë¤ ìˆ«ìë¥¼ ìƒì„±í•©ë‹ˆë‹¤. ê²Œì„, ì¶”ì²¨, í…ŒìŠ¤íŠ¸ì— ìœ ìš©í•©ë‹ˆë‹¤.</span>
             <span class="en">Random Number Generator creates random numbers in specified range. Useful for games, raffles, testing.</span>
         </div>
-        <input type="number" id="min" placeholder="ÃÖ¼Ò°ª (±âº» 1)" value="100000">
-        <input type="number" id="max" placeholder="ÃÖ´ë°ª" value="999999">
-        <button class="btn" onclick="generate()"><span class="ko">»ı¼º</span><span class="en">Generate</span></button>
-        <button class="btn" onclick="generateMultiple()"><span class="ko">5°³ »ı¼º</span><span class="en">Generate 5</span></button>
+        <input type="number" id="min" placeholder="ìµœì†Œê°’ (ê¸°ë³¸ 1)" value="100000">
+        <input type="number" id="max" placeholder="ìµœëŒ€ê°’" value="999999">
+        <button class="btn" onclick="generate()"><span class="ko">ìƒì„±</span><span class="en">Generate</span></button>
+        <button class="btn" onclick="generateMultiple()"><span class="ko">5ê°œ ìƒì„±</span><span class="en">Generate 5</span></button>
         <div class="result" id="result"></div></div>
 <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -129,7 +129,7 @@ body.lang-en .ko { display: none; }
 <div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
 <div class="space-y-3 max-w-sm">
 <h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3>
-<p class="text-[#414753]">Â© 2026 Free Utilities. All rights reserved.</p>
+<p class="text-[#414753]">ì§¤ 2026 Free Utilities. All rights reserved.</p>
 </div>
 <div class="grid grid-cols-2 gap-8">
 <div class="flex flex-col gap-2">
@@ -166,7 +166,7 @@ body.lang-en .ko { display: none; }
 function setLang(lang) {
             document.body.className = 'lang-' + lang;
             var btn = document.getElementById('langToggle');
-            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'ÇÑ±¹¾î';
+            if (btn) btn.textContent = lang === 'ko' ? 'English' : 'í•œêµ­ì–´';
             document.querySelectorAll('.lang-btn').forEach((btn, i) => {
                 btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
             });
