@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>목록 랜덤 추첨기 - List Randomizer</title>
+<meta name="description" content="Free online list randomizer and raffle picker - shuffle lists, pick random winners, randomly assign teams."/>
+<meta name="robots" content="index, follow"/>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z29KRGF7J3"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Z29KRGF7J3');</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-tint":"#005cba","tertiary":"#883700","secondary-container":"#e2dfe1","on-secondary-fixed-variant":"#474649","background":"#f9f9ff","inverse-on-surface":"#eff0f9","error":"#ba1a1a","secondary-fixed":"#e4e2e4","surface-bright":"#f9f9ff","on-tertiary-container":"#ffe3d6","surface-container-low":"#f2f3fc","surface-container-high":"#e6e8f1","surface-variant":"#e1e2eb","error-container":"#ffdad6","surface":"#f9f9ff","primary-fixed":"#d7e3ff","primary":"#004e9f","on-secondary-fixed":"#1b1b1d","on-secondary-container":"#636264","surface-dim":"#d8d9e2","surface-container-highest":"#e1e2eb","tertiary-container":"#af4900","on-surface":"#191c22","on-error-container":"#93000a","secondary-fixed-dim":"#c8c6c8","outline":"#727784","inverse-primary":"#aac7ff","on-error":"#ffffff","tertiary-fixed-dim":"#ffb692","primary-fixed-dim":"#aac7ff","tertiary-fixed":"#ffdbcb","on-primary":"#ffffff","secondary":"#5f5e60","on-tertiary-fixed-variant":"#793000","on-secondary":"#ffffff","inverse-surface":"#2e3037","on-tertiary-fixed":"#341100","surface-container-lowest":"#ffffff","surface-container":"#ecedf6","on-primary-container":"#dfe8ff","on-surface-variant":"#414753","on-primary-fixed-variant":"#00458e","on-primary-fixed":"#001b3e","outline-variant":"#c1c6d5","on-background":"#191c22","on-tertiary":"#ffffff","primary-container":"#0066cc"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"container-max":"1200px","stack-sm":"12px",unit:"8px","stack-md":"24px",gutter:"24px","section-padding-y":"120px","stack-lg":"48px"},fontFamily:{h1:["Inter"],h2:["Inter"],h3:["Inter"],"body-lg":["Inter"],"body-md":["Inter"],"label-sm":["Inter"],button:["Inter"]},fontSize:{h1:["48px",{lineHeight:"1.1",letterSpacing:"-0.02em",fontWeight:"700"}],h2:["32px",{lineHeight:"1.2",letterSpacing:"-0.015em",fontWeight:"600"}],h3:["24px",{lineHeight:"1.3",letterSpacing:"-0.01em",fontWeight:"600"}],"body-lg":["19px",{lineHeight:"1.6",letterSpacing:"0",fontWeight:"400"}],"body-md":["16px",{lineHeight:"1.5",letterSpacing:"0",fontWeight:"400"}],"label-sm":["13px",{lineHeight:"1.2",letterSpacing:"0.01em",fontWeight:"500"}],button:["15px",{lineHeight:"1",letterSpacing:"-0.01em",fontWeight:"600"}]}}}}</script>
+<style>
+.material-symbols-outlined{font-variation-settings:'FILL'0,'wght'300,'GRAD'0,'opsz'24}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI Emoji','Apple Color Emoji','Noto Color Emoji',sans-serif;background-color:#f9f9ff;color:#191c22}
+textarea,input,select{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI Emoji','Apple Color Emoji','Noto Color Emoji',sans-serif}
+.tool-card{background:#ffffff;border-radius:.75rem;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,0.08);border:1px solid rgba(193,198,213,0.2)}
+.tool-card h1{font-size:28px;font-weight:600;line-height:1.2;letter-spacing:-0.015em;color:#191c22;margin-bottom:12px}
+.tool-card>p:first-of-type{font-size:16px;line-height:1.5;color:#414753;margin-bottom:24px}
+.btn-primary{background:#0066cc;color:white;padding:12px 24px;border-radius:.75rem;font-weight:600;font-size:15px;border:none;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.btn-primary:hover{filter:brightness(1.1);box-shadow:0 4px 12px rgba(0,102,204,0.3)}
+.btn-primary:disabled{opacity:0.5;cursor:not-allowed;box-shadow:none;filter:none}
+.btn-secondary{background:#f2f3fc;color:#191c22;padding:12px 24px;border-radius:.75rem;font-weight:500;font-size:15px;border:1px solid rgba(193,198,213,0.3);cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.btn-secondary:hover{background:#e6e8f1}
+.lang-ko,.lang-en{transition:opacity .15s ease}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+.result-item{padding:8px 14px;background:#f2f3fc;border-radius:.5rem;font-size:15px;animation:fadeIn .3s ease}
+.winner-item{background:#d7e3ff;border:2px solid #0066cc;font-weight:600;font-size:18px;padding:16px;animation:winAnim .5s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+@keyframes winAnim{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+#wheelCanvas{display:block;margin:0 auto;max-width:100%}
+</style>
+</head>
+<body class="bg-background">
+<script>var lang=localStorage.getItem('lang')||'ko';document.body.classList.toggle('en',lang==='en');</script>
+<div class="max-w-[900px] mx-auto px-4 py-8">
+  <a href="index.html" class="inline-flex items-center gap-1 text-sm text-on-surface-variant hover:text-primary mb-4 transition-colors">
+    <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+    <span class="lang-ko">홈으로</span><span class="lang-en">Back</span>
+  </a>
+  <div class="tool-card">
+    <div class="flex items-center gap-3 mb-2">
+      <span class="material-symbols-outlined text-primary text-3xl">shuffle</span>
+      <div>
+        <h1><span class="lang-ko">랜덤 추첨기</span><span class="lang-en">Random Picker</span></h1>
+        <p><span class="lang-ko">목록을 섞거나 랜덤으로 항목을 뽑으세요. 추첨, 팀 나누기, 경품 추첨에 유용합니다.</span><span class="lang-en">Shuffle lists or pick random items. Perfect for raffles, team assignments, and giveaways.</span></p>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label class="block text-sm font-semibold text-on-surface mb-2"><span class="lang-ko">항목 입력</span><span class="lang-en">Enter Items</span></label>
+        <textarea id="itemList" class="w-full p-4 bg-surface-container-low rounded-xl border border-outline-variant/20 focus:ring-2 focus:ring-primary focus:bg-white transition-all text-body-md font-body-md resize-y" rows="8" placeholder="Enter one item per line...">Alice&#10;Bob&#10;Charlie&#10;Diana&#10;Eve</textarea>
+        <div class="flex flex-wrap gap-2 mt-3">
+          <button onclick="shuffleList()" class="btn-primary text-sm"><span class="material-symbols-outlined text-[18px]">shuffle</span> <span class="lang-ko">섞기</span><span class="lang-en">Shuffle</span></button>
+          <button onclick="pickOne()" class="btn-primary text-sm" style="background:#883700"><span class="material-symbols-outlined text-[18px]">casino</span> <span class="lang-ko">1개 뽑기</span><span class="lang-en">Pick One</span></button>
+          <button onclick="pickMultiple()" class="btn-secondary text-sm"><span class="material-symbols-outlined text-[18px]">filter_none</span> <span class="lang-ko">여러개 뽑기</span><span class="lang-en">Pick Multi</span></button>
+          <button onclick="resetList()" class="btn-secondary text-sm"><span class="material-symbols-outlined text-[18px]">refresh</span> <span class="lang-ko">초기화</span><span class="lang-en">Reset</span></button>
+        </div>
+        <div id="pickMultiControls" class="hidden mt-3 flex items-center gap-3">
+          <span class="text-sm text-on-surface-variant"><span class="lang-ko">뽑을 개수:</span><span class="lang-en">Pick count:</span></span>
+          <input id="pickCount" type="number" min="1" value="2" class="w-20 p-2 bg-surface-container-low rounded-lg border border-outline-variant/20 text-center"/>
+          <button onclick="doPickMultiple()" class="btn-primary text-sm"><span class="lang-ko">확인</span><span class="lang-en">Go</span></button>
+        </div>
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-on-surface mb-2"><span class="lang-ko">결과</span><span class="lang-en">Result</span></label>
+        <div id="resultArea" class="min-h-[200px] bg-surface-container-low rounded-xl border border-outline-variant/20 p-4 space-y-2 overflow-y-auto max-h-[400px]">
+          <div class="text-on-surface-variant text-sm text-center py-8">
+            <span class="material-symbols-outlined text-4xl block mb-2" style="color:#c1c6d5">casino</span>
+            <span class="lang-ko">버튼을 눌러 결과를 확인하세요</span><span class="lang-en">Click a button to see results</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function getItems() {
+  return document.getElementById('itemList').value.split('\n').map(function(s){return s.trim();}).filter(function(s){return s.length>0;});
+}
+function showResult(items, isWinner) {
+  var area = document.getElementById('resultArea');
+  area.innerHTML = '';
+  items.forEach(function(item, i) {
+    var div = document.createElement('div');
+    div.className = 'result-item' + (isWinner ? ' winner-item' : '');
+    div.textContent = (i+1) + '. ' + item;
+    if (isWinner && items.length === 1) {
+      div.style.fontSize = '24px';
+      div.style.textAlign = 'center';
+      div.style.padding = '24px';
+    }
+    area.appendChild(div);
+  });
+}
+function shuffleList() {
+  var items = getItems();
+  if (items.length < 2) return showResult(items, false);
+  for (var i = items.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = items[i]; items[i] = items[j]; items[j] = tmp;
+  }
+  showResult(items, false);
+}
+function pickOne() {
+  var items = getItems();
+  if (!items.length) return;
+  var winner = items[Math.floor(Math.random() * items.length)];
+  showResult([winner], true);
+}
+function pickMultiple() {
+  document.getElementById('pickMultiControls').classList.toggle('hidden');
+}
+function doPickMultiple() {
+  var items = getItems();
+  var count = parseInt(document.getElementById('pickCount').value) || 1;
+  if (count > items.length) count = items.length;
+  var shuffled = items.slice();
+  for (var i = shuffled.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = shuffled[i]; shuffled[i] = shuffled[j]; shuffled[j] = tmp;
+  }
+  showResult(shuffled.slice(0, count), count === 1);
+}
+function resetList() {
+  document.getElementById('itemList').value = '';
+  showResult([], false);
+}
+</script>
+<ins class="adsbygoogle" style="display:block;margin:24px auto;max-width:900px" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+</body>
+</html>
