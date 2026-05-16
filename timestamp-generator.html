@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timestamp Generator - 타임스탬프 생성기</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #00e5ff, #43e97b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .panel {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #00e5ff;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            background: rgba(0,0,0,0.3);
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #00e5ff;
+        }
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #00e5ff, #0099cc);
+            color: #1a1a2e;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,229,255,0.4);
+        }
+        .btn-secondary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        .btn-success {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+            color: #1a1a2e;
+        }
+        .timestamp-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .timestamp-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .timestamp-item input {
+            width: 100px;
+            margin: 0;
+        }
+        .timestamp-item span {
+            color: #ffd600;
+            font-weight: bold;
+            min-width: 80px;
+        }
+        .timestamp-item .label {
+            flex: 1;
+            color: #fff;
+        }
+        .timestamp-item .delete {
+            background: #ff4757;
+            color: white;
+            padding: 8px 15px;
+            font-size: 0.8rem;
+        }
+        .output-area {
+            background: rgba(0,0,0,0.5);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        #output {
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            color: #aaa;
+            line-height: 1.6;
+        }
+        .help {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .help-item {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .help-item .key {
+            color: #00e5ff;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .help-item .desc {
+            color: #888;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⏱️ Timestamp Generator - 타임스탬프 생성기</h1>
+        
+        <div class="panel">
+            <h2>📋 사용 방법</h2>
+            <div class="help">
+                <div class="help-item">
+                    <div class="key">+ 추가</div>
+                    <div class="desc">타임스탬프 추가</div>
+                </div>
+                <div class="help-item">
+                    <div class="key">🔄 자동 생성</div>
+                    <div class="desc">일정 간격으로 자동 생성</div>
+                </div>
+                <div class="help-item">
+                    <div class="key">💾 내보내기</div>
+                    <div class="desc">텍스트/JSON으로 저장</div>
+                </div>
+                <div class="help-item">
+                    <div class="key">⏩ Remotion</div>
+                    <div class="desc">Remotion 형식으로 복사</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel">
+            <h2>⏱️ 타임스탬프 추가</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 2fr auto; gap: 10px; align-items: end;">
+                <div>
+                    <label>시간 (초)</label>
+                    <input type="number" id="timeInput" step="0.1" placeholder="예: 5.5">
+                </div>
+                <div>
+                    <label>레이블</label>
+                    <input type="text" id="labelInput" placeholder="예: 인트로">
+                </div>
+                <div>
+                    <label>설명</label>
+                    <input type="text" id="descInput" placeholder="예: 시작 화면 표시">
+                </div>
+                <button class="btn-primary" onclick="addTimestamp()">+ 추가</button>
+            </div>
+        </div>
+        
+        <div class="panel">
+            <h2>⚡ 자동 생성</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                <div>
+                    <label>시작 시간</label>
+                    <input type="number" id="autoStart" value="0" step="0.1">
+                </div>
+                <div>
+                    <label>간격 (초)</label>
+                    <input type="number" id="autoInterval" value="5">
+                </div>
+                <div>
+                    <label>개수</label>
+                    <input type="number" id="autoCount" value="10">
+                </div>
+                <div>
+                    <label>프리픽스</label>
+                    <input type="text" id="autoPrefix" value="장면">
+                </div>
+            </div>
+            <button class="btn-secondary" onclick="autoGenerate()">🔄 자동 생성</button>
+        </div>
+        
+        <div class="panel">
+            <h2>📝 타임스탬프 목록</h2>
+            <div class="timestamp-list" id="timestampList"></div>
+            <button class="btn-primary" onclick="clearAll()" style="margin-top: 15px;">🗑️ 전체 삭제</button>
+        </div>
+        
+        <div class="panel">
+            <h2>📤 내보내기</h2>
+            <button class="btn-success" onclick="exportText()">📄 텍스트로 내보내기</button>
+            <button class="btn-secondary" onclick="exportJSON()">📋 JSON으로 내보내기</button>
+            <button class="btn-primary" onclick="exportRemotion()">🎬 Remotion 형식</button>
+            <button class="btn-primary" onclick="exportYouTube()">🎥 YouTube 타임스탬프</button>
+            
+            <div class="output-area">
+                <div id="output"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let timestamps = [];
+        
+        function formatTime(seconds, format = 'standard') {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            const ms = Math.round((seconds % 1) * 10);
+            
+            if (format === 'youtube') {
+                return `${mins}:${secs.toString().padStart(2, '0')}`;
+            } else if (format === 'remotion') {
+                return `${mins}:${secs.toString().padStart(2, '0')}.${ms}`;
+            } else {
+                return `${mins}분 ${secs}초`;
+            }
+        }
+        
+        function addTimestamp() {
+            const time = parseFloat(document.getElementById('timeInput').value);
+            const label = document.getElementById('labelInput').value;
+            const desc = document.getElementById('descInput').value;
+            
+            if (isNaN(time)) {
+                alert('시간을 입력해주세요!');
+                return;
+            }
+            
+            timestamps.push({ time, label: label || '타임마크', desc: desc || '' });
+            timestamps.sort((a, b) => a.time - b.time);
+            
+            renderList();
+            clearInputs();
+        }
+        
+        function clearInputs() {
+            document.getElementById('timeInput').value = '';
+            document.getElementById('labelInput').value = '';
+            document.getElementById('descInput').value = '';
+        }
+        
+        function deleteTimestamp(index) {
+            timestamps.splice(index, 1);
+            renderList();
+        }
+        
+        function clearAll() {
+            if (confirm('모든 타임스탬프를 삭제하시겠습니까?')) {
+                timestamps = [];
+                renderList();
+            }
+        }
+        
+        function autoGenerate() {
+            const start = parseFloat(document.getElementById('autoStart').value) || 0;
+            const interval = parseFloat(document.getElementById('autoInterval').value) || 5;
+            const count = parseInt(document.getElementById('autoCount').value) || 10;
+            const prefix = document.getElementById('autoPrefix').value || '장면';
+            
+            for (let i = 0; i < count; i++) {
+                timestamps.push({
+                    time: start + (i * interval),
+                    label: `${prefix} ${i + 1}`,
+                    desc: ''
+                });
+            }
+            
+            timestamps.sort((a, b) => a.time - b.time);
+            renderList();
+        }
+        
+        function renderList() {
+            const list = document.getElementById('timestampList');
+            list.innerHTML = timestamps.map((ts, index) => `
+                <div class="timestamp-item">
+                    <span>#${index + 1}</span>
+                    <span>${formatTime(ts.time)}</span>
+                    <input type="text" value="${ts.label}" onchange="updateLabel(${index}, this.value)">
+                    <input type="text" value="${ts.desc}" placeholder="설명" onchange="updateDesc(${index}, this.value)">
+                    <button class="delete" onclick="deleteTimestamp(${index})">삭제</button>
+                </div>
+            `).join('');
+            
+            generateOutput();
+        }
+        
+        function updateLabel(index, value) {
+            timestamps[index].label = value;
+            generateOutput();
+        }
+        
+        function updateDesc(index, value) {
+            timestamps[index].desc = value;
+            generateOutput();
+        }
+        
+        function generateOutput() {
+            const output = document.getElementById('output');
+            if (timestamps.length === 0) {
+                output.textContent = '타임스탬프가 없습니다.';
+                return;
+            }
+            
+            let text = '타임스탬프 목록:\n\n';
+            timestamps.forEach((ts, index) => {
+                text += `[${formatTime(ts.time)}] ${ts.label}`;
+                if (ts.desc) text += ` - ${ts.desc}`;
+                text += '\n';
+            });
+            
+            output.textContent = text;
+        }
+        
+        function exportText() {
+            let content = '타임스탬프 목록\n';
+            content += '================\n\n';
+            timestamps.forEach((ts, index) => {
+                content += `${index + 1}. [${formatTime(ts.time)}] ${ts.label}`;
+                if (ts.desc) content += `\n   설명: ${ts.desc}`;
+                content += '\n';
+            });
+            
+            downloadFile(content, 'timestamps.txt');
+        }
+        
+        function exportJSON() {
+            const content = JSON.stringify(timestamps, null, 2);
+            downloadFile(content, 'timestamps.json');
+        }
+        
+        function exportRemotion() {
+            let content = '// Remotion 자막 데이터\n';
+            content += 'const LYRICS = [\n';
+            timestamps.forEach((ts, index) => {
+                content += `  { time: ${ts.time}, text: "${ts.label}" }`;
+                if (index < timestamps.length - 1) content += ',';
+                content += '\n';
+            });
+            content += '];';
+            
+            downloadFile(content, 'remotion-timestamps.js');
+        }
+        
+        function exportYouTube() {
+            let content = 'YouTube 타임스탬프:\n\n';
+            timestamps.forEach((ts) => {
+                content += `${formatTime(ts.time, 'youtube')} ${ts.label}\n`;
+            });
+            
+            downloadFile(content, 'youtube-timestamps.txt');
+        }
+        
+        function downloadFile(content, filename) {
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

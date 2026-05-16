@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Resizer - 이미지 리사이즈</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .panel {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #00e5ff;
+        }
+        .drop-zone {
+            border: 3px dashed rgba(255,255,255,0.3);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .drop-zone:hover {
+            border-color: #667eea;
+            background: rgba(102,126,234,0.1);
+        }
+        .drop-zone.dragover {
+            border-color: #43e97b;
+            background: rgba(67,233,123,0.1);
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .preview-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .image-box {
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        .image-box img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+        }
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            background: rgba(0,0,0,0.3);
+            color: #fff;
+            font-size: 1rem;
+        }
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102,126,234,0.4);
+        }
+        .btn-success {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+            color: #1a1a2e;
+        }
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(67,233,123,0.4);
+        }
+        .info {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        .info span {
+            color: #aaa;
+        }
+        .info strong {
+            color: #ffd600;
+        }
+        .presets {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .preset-btn {
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            color: #aaa;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+        .preset-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🖼️ Image Resizer - 이미지 리사이즈</h1>
+        
+        <div class="panel">
+            <h2>📁 이미지 선택</h2>
+            <div class="drop-zone" id="dropZone">
+                <p style="font-size: 1.2rem; margin-bottom: 10px;">이미지를 여기에 드래그하거나 클릭하세요</p>
+                <p style="color: #888; font-size: 0.9rem;">PNG, JPG, GIF, WebP 지원</p>
+            </div>
+            <input type="file" id="fileInput" accept="image/*">
+        </div>
+        
+        <div class="panel">
+            <h2>⚙️ 크기 설정</h2>
+            <div class="presets">
+                <button class="preset-btn" onclick="setPreset(1920, 1080)">YouTube (1920×1080)</button>
+                <button class="preset-btn" onclick="setPreset(1280, 720)">HD (1280×720)</button>
+                <button class="preset-btn" onclick="setPreset(1080, 1920)">Instagram (1080×1920)</button>
+                <button class="preset-btn" onclick="setPreset(1080, 1080)">Square (1080×1080)</button>
+                <button class="preset-btn" onclick="setPreset(1200, 628)">Facebook (1200×628)</button>
+                <button class="preset-btn" onclick="setPreset(256, 256)">Icon (256×256)</button>
+            </div>
+            
+            <div class="controls">
+                <div>
+                    <label>너비 (px)</label>
+                    <input type="number" id="width" value="800" min="1" max="10000">
+                </div>
+                <div>
+                    <label>높이 (px)</label>
+                    <input type="number" id="height" value="600" min="1" max="10000">
+                </div>
+                <div>
+                    <label>품질 (%)</label>
+                    <input type="number" id="quality" value="90" min="1" max="100">
+                </div>
+                <div>
+                    <label>출력 형식</label>
+                    <select id="format">
+                        <option value="image/jpeg">JPEG</option>
+                        <option value="image/png">PNG</option>
+                        <option value="image/webp">WebP</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button class="btn-primary" onclick="resizeImage()">🔄 이미지 리사이즈</button>
+            <button class="btn-success" onclick="downloadImage()">💾 다운로드</button>
+            
+            <div class="info">
+                <span>원본: <strong id="originalSize">-</strong></span>
+                <span>출력: <strong id="outputSize">-</strong></span>
+            </div>
+        </div>
+        
+        <div class="panel">
+            <h2>👁️ 미리보기</h2>
+            <div class="preview-area">
+                <div class="image-box">
+                    <h3 style="color: #aaa; margin-bottom: 10px;">원본</h3>
+                    <img id="originalPreview" src="" alt="원본 이미지">
+                </div>
+                <div class="image-box">
+                    <h3 style="color: #aaa; margin-bottom: 10px;">결과</h3>
+                    <img id="resultPreview" src="" alt="결과 이미지">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let originalImage = null;
+        let resizedImage = null;
+        
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        
+        dropZone.addEventListener('click', () => fileInput.click());
+        
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+        
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+        });
+        
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFile(e.target.files[0]);
+            }
+        });
+        
+        function handleFile(file) {
+            if (!file.type.startsWith('image/')) {
+                alert('이미지 파일만 가능합니다!');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                originalImage = new Image();
+                originalImage.onload = () => {
+                    document.getElementById('originalPreview').src = e.target.result;
+                    document.getElementById('originalSize').textContent = 
+                        `${originalImage.width} × ${originalImage.height} (${(file.size / 1024).toFixed(1)}KB)`;
+                    document.getElementById('width').value = originalImage.width;
+                    document.getElementById('height').value = originalImage.height;
+                    resizeImage();
+                };
+                originalImage.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        function setPreset(w, h) {
+            document.getElementById('width').value = w;
+            document.getElementById('height').value = h;
+        }
+        
+        function resizeImage() {
+            if (!originalImage) {
+                alert('먼저 이미지를 선택하세요!');
+                return;
+            }
+            
+            const width = parseInt(document.getElementById('width').value);
+            const height = parseInt(document.getElementById('height').value);
+            
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(originalImage, 0, 0, width, height);
+            
+            const format = document.getElementById('format').value;
+            const quality = parseInt(document.getElementById('quality').value) / 100;
+            
+            resizedImage = canvas.toDataURL(format, quality);
+            document.getElementById('resultPreview').src = resizedImage;
+            
+            // Calculate approximate file size
+            const base64Length = resizedImage.length - (resizedImage.indexOf(',') + 1);
+            const fileSize = Math.round((base64Length * 3) / 4);
+            document.getElementById('outputSize').textContent = 
+                `${width} × ${height} (${(fileSize / 1024).toFixed(1)}KB)`;
+        }
+        
+        function downloadImage() {
+            if (!resizedImage) {
+                alert('먼저 이미지를 리사이즈하세요!');
+                return;
+            }
+            
+            const format = document.getElementById('format').value;
+            const ext = format === 'image/jpeg' ? 'jpg' : format === 'image/png' ? 'png' : 'webp';
+            
+            const link = document.createElement('a');
+            link.href = resizedImage;
+            link.download = `resized_image.${ext}`;
+            link.click();
+        }
+    </script>
+</body>
+</html>
