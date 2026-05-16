@@ -560,6 +560,7 @@ function renderAllTools() {
   var html = '';
   cats.forEach(function(c) {
     var tools = allTools.filter(function(t) { return t.cat === c; });
+    tools.sort(function(a, b) { return a.ko.localeCompare(b.ko); });
     var cn = catNames;
     html += '<div class="col-span-full mt-4 mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-primary">' + catIcons[c] + '</span><h3 class="font-h3 text-body-lg font-bold text-on-surface"><span class="lang-ko">' + cn.ko[c] + '</span><span class="lang-en">' + cn.en[c] + '</span></h3></div>';
     tools.forEach(function(t) {
