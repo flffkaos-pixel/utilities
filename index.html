@@ -4,28 +4,29 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title id="page-title">무료 온라인 유틸리티 모음 | 개발자와 직장인을 위한 필수 도구</title>
-<meta name="description" content="무료 온라인 유틸리티 도구 모음 - 텍스트 변환, QR 코드 생성, 비밀번호 생성, JSON 정렬, Base64 인코더, 색상 변환, 단위 변환, BMI 계산기, 대출 계산기 등 개발자와 직장인을 위한 필수 도구입니다. 모든 도구 무료 사용, 설치 필요 없음."/>
+<meta id="metaDesc" name="description" content="무료 온라인 유틸리티 도구 모음 - 텍스트 변환, QR 코드 생성, 비밀번호 생성, JSON 정렬, Base64 인코더, 색상 변환, 단위 변환, BMI 계산기, 대출 계산기 등 개발자와 직장인을 위한 필수 도구입니다. 모든 도구 무료 사용, 설치 필요 없음."/>
 <meta name="google-site-verification" content="90ObN9YY1jH6ZHRfL3tGx5HvKoHC8boT6jdFhbSe80s"/>
 <meta name="naver-site-verification" content="81cf6b9cc57541427b735097f0758e94c486e38e"/>
-<meta name="keywords" content="무료 유틸리티, 온라인 도구, 텍스트 변환, QR 코드 생성, 비밀번호 생성기, JSON 정렬기, Base64 인코더, 색상 변환기, 단위 변환기, BMI 계산기, 대출 계산기, 할인 계산기, 개발자 도구, 웹 도구, 텍스트 카운터, 해시 생성기"/>
+<meta name="keywords" content="free online utilities, text converter, QR code generator, password generator, JSON formatter, Base64 encoder, color converter, unit converter, BMI calculator, loan calculator, discount calculator, developer tools, web tools, word counter, hash generator, 무료 유틸리티, 온라인 도구"/>
 <meta name="author" content="Free Utilities"/>
 <meta name="robots" content="index, follow, max-image-preview:large"/>
 <meta name="theme-color" content="#004e9f"/>
 <link rel="canonical" href="https://freeutilities.pages.dev/"/>
 <link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/"/>
 <link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/"/>
-<script type="application/ld+json">
+<script type="application/ld+json" id="schemaJson">
 {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "무료 유틸리티 모음",
-    "alternateName": "Free Online Utilities",
+    "name": "Free Online Utilities",
+    "alternateName": "무료 유틸리티 모음",
     "url": "https://freeutilities.pages.dev/",
-    "description": "개발자와 직장인을 위한 무료 온라인 유틸리티 도구 모음",
+    "description": "Free online utility tools for developers and professionals",
     "author": {
         "@type": "Organization",
         "name": "Free Utilities"
     },
+    "inLanguage": ["ko", "en"],
     "potentialAction": {
         "@type": "SearchAction",
         "target": "https://freeutilities.pages.dev/?q={search_term_string}",
@@ -363,8 +364,8 @@ document.body.classList.toggle('en', lang === 'en');
 <!-- More Tools Button -->
 <div class="text-center pt-stack-md" id="moreToolsBtnWrapper">
 <button id="moreToolsBtn" class="bg-primary text-white font-button text-button px-10 py-4 rounded-full shadow-lg hover:shadow-xl hover:brightness-110 active:scale-95 transition-all inline-flex items-center gap-stack-sm">
-<span id="moreToolsBtnText" class="lang-ko">더 많은 도구 보기 (+70개)</span>
-<span id="moreToolsBtnTextEn" class="lang-en">View More Tools (+70)</span>
+<span id="moreToolsBtnText" class="lang-ko">더 많은 도구 보기</span>
+<span id="moreToolsBtnTextEn" class="lang-en">View More Tools</span>
 <span id="moreToolsIcon" class="material-symbols-outlined rotate-icon" data-icon="expand_more">expand_more</span>
 </button>
 </div>
@@ -464,6 +465,9 @@ function applyLang(l) {
   document.getElementById('searchInput').placeholder = l === 'ko'
     ? '필요한 도구를 검색하세요 (예: 글자 수 세기, JSON)'
     : 'Search tools (e.g., word counter, JSON)';
+  document.getElementById('metaDesc').content = l === 'ko'
+    ? '무료 온라인 유틸리티 도구 모음 - 텍스트 변환, QR 코드 생성, 비밀번호 생성, JSON 정렬, Base64 인코더, 색상 변환, 단위 변환, BMI 계산기, 대출 계산기 등 개발자와 직장인을 위한 필수 도구입니다. 모든 도구 무료 사용, 설치 필요 없음.'
+    : 'Free online utility tools - text converter, QR code generator, password generator, JSON formatter, Base64 encoder, color converter, unit converter, BMI calculator, loan calculator, and more. All free, no installation required.';
 }
 document.getElementById('langToggle').addEventListener('click', function() {
   applyLang(lang === 'ko' ? 'en' : 'ko');
@@ -576,8 +580,9 @@ document.getElementById('moreToolsBtn').addEventListener('click', function() {
   content.classList.toggle('open');
   icon.classList.toggle('open');
   var isOpen = content.classList.contains('open');
-  document.getElementById('moreToolsBtnText').textContent = isOpen ? '도구 접기' : '더 많은 도구 보기 (+70개)';
-  document.getElementById('moreToolsBtnTextEn').textContent = isOpen ? 'Collapse Tools' : 'View More Tools (+70)';
+  var cnt = allTools.length;
+  document.getElementById('moreToolsBtnText').textContent = isOpen ? '도구 접기' : '더 많은 도구 보기 (+' + cnt + '개)';
+  document.getElementById('moreToolsBtnTextEn').textContent = isOpen ? 'Collapse Tools' : 'View More Tools (+' + cnt + ')';
   if (isOpen) { window.scrollTo({ top: document.getElementById('all-tools-wrapper').offsetTop - 80, behavior: 'smooth' }); }
 });
 
