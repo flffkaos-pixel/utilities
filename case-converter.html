@@ -115,12 +115,23 @@ function convert(type) {
 }
 function copyResult() {
   var el = document.getElementById('resultBox');
-  navigator.clipboard.writeText(el.textContent).then(function(){
-    var btn = event.target.closest('button');
-    var orig = btn.innerHTML;
-    btn.innerHTML = '<span class="material-symbols-outlined text-[18px] text-green-600">check</span>';
-    setTimeout(function(){btn.innerHTML=orig;},1500);
-  });
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(el.textContent).then(function(){showCopied();});
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = el.textContent;
+    ta.style.position='fixed';ta.style.left='-9999px';
+    document.body.appendChild(ta);ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showCopied();
+  }
+}
+function showCopied() {
+  var btn = event.target.closest('button');
+  var orig = btn.innerHTML;
+  btn.innerHTML = '<span class="material-symbols-outlined text-[18px] text-green-600">check</span>';
+  setTimeout(function(){btn.innerHTML=orig;},1500);
 }
 document.getElementById('inputText').addEventListener('input', function(){convert('toggle');});
 </script>

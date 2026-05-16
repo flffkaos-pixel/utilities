@@ -100,8 +100,21 @@ function renderEmojis(list) {
   document.getElementById('resultCount').textContent = list.length;
 }
 
+function copyText(text) {
+  if (navigator.clipboard) {
+    return navigator.clipboard.writeText(text);
+  }
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed'; ta.style.left = '-9999px';
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand('copy');
+  document.body.removeChild(ta);
+  return Promise.resolve();
+}
 function copyEmoji(emoji, el) {
-  navigator.clipboard.writeText(emoji).then(function(){
+  copyText(emoji).then(function(){
     var all = document.querySelectorAll('.emoji-cell.copied');
     all.forEach(function(a){a.classList.remove('copied');});
     el.classList.add('copied');
