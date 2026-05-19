@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DNS 조회 도구 - DNS Lookup Tool</title>
+<meta name="description" content="Free online utility tool"/>
+<meta name="robots" content="index, follow"/>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z29KRGF7J3"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Z29KRGF7J3');</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-tint":"#005cba","tertiary":"#883700","secondary-container":"#e2dfe1","on-secondary-fixed-variant":"#474649","background":"#f9f9ff","inverse-on-surface":"#eff0f9","error":"#ba1a1a","secondary-fixed":"#e4e2e4","surface-bright":"#f9f9ff","on-tertiary-container":"#ffe3d6","surface-container-low":"#f2f3fc","surface-container-high":"#e6e8f1","surface-variant":"#e1e2eb","error-container":"#ffdad6","surface":"#f9f9ff","primary-fixed":"#d7e3ff","primary":"#004e9f","on-secondary-fixed":"#1b1b1d","on-secondary-container":"#636264","surface-dim":"#d8d9e2","surface-container-highest":"#e1e2eb","tertiary-container":"#af4900","on-surface":"#191c22","on-error-container":"#93000a","secondary-fixed-dim":"#c8c6c8","outline":"#727784","inverse-primary":"#aac7ff","on-error":"#ffffff","tertiary-fixed-dim":"#ffb692","primary-fixed-dim":"#aac7ff","tertiary-fixed":"#ffdbcb","on-primary":"#ffffff","secondary":"#5f5e60","on-tertiary-fixed-variant":"#793000","on-secondary":"#ffffff","inverse-surface":"#2e3037","on-tertiary-fixed":"#341100","surface-container-lowest":"#ffffff","surface-container":"#ecedf6","on-primary-container":"#dfe8ff","on-surface-variant":"#414753","on-primary-fixed-variant":"#00458e","on-primary-fixed":"#001b3e","outline-variant":"#c1c6d5","on-background":"#191c22","on-tertiary":"#ffffff","primary-container":"#0066cc"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"container-max":"1200px","stack-sm":"12px",unit:"8px","stack-md":"24px",gutter:"24px","section-padding-y":"120px","stack-lg":"48px"},fontFamily:{h1:["Inter"],h2:["Inter"],h3:["Inter"],"body-lg":["Inter"],"body-md":["Inter"],"label-sm":["Inter"],button:["Inter"]},fontSize:{h1:["48px",{lineHeight:"1.1",letterSpacing:"-0.02em",fontWeight:"700"}],h2:["32px",{lineHeight:"1.2",letterSpacing:"-0.015em",fontWeight:"600"}],h3:["24px",{lineHeight:"1.3",letterSpacing:"-0.01em",fontWeight:"600"}],"body-lg":["19px",{lineHeight:"1.6",letterSpacing:"0",fontWeight:"400"}],"body-md":["16px",{lineHeight:"1.5",letterSpacing:"0",fontWeight:"400"}],"label-sm":["13px",{lineHeight:"1.2",letterSpacing:"0.01em",fontWeight:"500"}],button:["15px",{lineHeight:"1",letterSpacing:"-0.01em",fontWeight:"600"}]}}}}</script>
+<style>.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 24}body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI Emoji','Apple Color Emoji','Noto Color Emoji',sans-serif;background-color:#f9f9ff;color:#191c22}textarea,input,select{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI Emoji','Apple Color Emoji','Noto Color Emoji',sans-serif}.tool-card{background:#ffffff;border-radius:.75rem;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid rgba(193,198,213,.2)}.tool-card h1,.tool-card h2:first-child{font-size:28px;font-weight:600;line-height:1.2;letter-spacing:-.015em;color:#191c22;margin-bottom:12px}.tool-card>p:first-of-type{font-size:16px;line-height:1.5;color:#414753;margin-bottom:24px}.btn-primary{background:#0066cc;color:white;padding:12px 24px;border-radius:.75rem;font-weight:600;font-size:15px;border:none;cursor:pointer;transition:all .2s;display:inline-block}.btn-primary:hover{filter:brightness(1.1);box-shadow:0 4px 12px rgba(0,102,204,.3)}.btn-secondary{background:#f2f3fc;color:#191c22;padding:12px 24px;border-radius:.75rem;font-weight:500;font-size:15px;border:1px solid rgba(193,198,213,.3);cursor:pointer;transition:all .2s;display:inline-block}.btn-secondary:hover{background:#e6e8f1}.guide-box{background:#f2f3fc;border-radius:.75rem;padding:20px;margin-bottom:24px}.guide-box h3{font-size:18px;font-weight:600;color:#191c22;margin-bottom:12px}.guide-box ul{color:#414753;line-height:1.8;padding-left:20px}.result-box{background:#f2f3fc;border-radius:.75rem;padding:20px;min-height:60px;font-size:16px;word-break:break-all;margin-bottom:16px;color:#191c22;font-family:monospace;white-space:pre-wrap}.tool-input{width:100%;padding:16px;background:#fff;border:1.5px solid rgba(193,198,213,.4);border-radius:.75rem;font-size:16px;transition:all .2s;margin-bottom:16px;color:#191c22;box-sizing:border-box}.tool-input:focus{outline:none;border-color:#0066cc;box-shadow:0 0 0 3px rgba(0,102,204,.1)}body.lang-ko .en{display:none}body.lang-en .ko{display:none}.rec-type-btn{padding:6px 14px;border-radius:9999px;font-size:13px;font-weight:500;border:1px solid rgba(193,198,213,.3);cursor:pointer;background:#fff;color:#5f5e60;transition:all .2s;margin:4px}.rec-type-btn.active{background:#0066cc;color:#fff;border-color:#0066cc}.rec-type-btn:hover:not(.active){background:#f2f3fc}</style>
+</head>
+<body class="bg-background">
+<header class="fixed top-0 w-full h-[64px] bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm z-50">
+<div class="flex justify-between items-center h-[64px] px-gutter max-w-container-max mx-auto">
+<div class="flex items-center gap-stack-sm">
+<button onclick="location.href='index.html'" class="p-2 hover:bg-surface-container rounded-full transition-colors cursor-pointer"><span class="material-symbols-outlined text-primary" data-icon="arrow_back">arrow_back</span></button>
+<h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
+</div>
+<button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
+</div>
+</header>
+<main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
+<div class="tool-card">
+<h1><span class="ko">DNS 조회 도구</span><span class="en">DNS Lookup Tool</span></h1>
+<div class="description"><span class="ko">도메인의 DNS 레코드를 조회합니다. A, AAAA, MX, CNAME, NS, TXT 레코드를 확인할 수 있습니다.</span><span class="en">Look up DNS records for any domain. Check A, AAAA, MX, CNAME, NS, TXT records.</span></div>
+<input id="domainInput" class="tool-input" placeholder="example.com" onkeydown="if(event.key==='Enter')lookupDNS()"/>
+<div style="margin-bottom:16px">
+<button class="rec-type-btn active" data-type="A" onclick="setType(this)">A</button>
+<button class="rec-type-btn" data-type="AAAA" onclick="setType(this)">AAAA</button>
+<button class="rec-type-btn" data-type="MX" onclick="setType(this)">MX</button>
+<button class="rec-type-btn" data-type="CNAME" onclick="setType(this)">CNAME</button>
+<button class="rec-type-btn" data-type="NS" onclick="setType(this)">NS</button>
+<button class="rec-type-btn" data-type="TXT" onclick="setType(this)">TXT</button>
+<button class="rec-type-btn" data-type="ALL" onclick="setType(this)">ALL</button>
+</div>
+<button class="btn-primary" onclick="lookupDNS()"><span class="ko">조회</span><span class="en">Lookup</span></button>
+<div id="result" class="result-box" style="display:none"></div>
+<div class="guide-box" style="margin-top:24px">
+<h3><span class="ko">DNS 레코드 유형</span><span class="en">DNS Record Types</span></h3>
+<ul><span class="ko"><li><strong>A</strong>: IPv4 주소 매핑</li><li><strong>AAAA</strong>: IPv6 주소 매핑</li><li><strong>MX</strong>: 메일 서버 정보</li><li><strong>CNAME</strong>: 도메인 별칭</li><li><strong>NS</strong>: 네임서버 정보</li><li><strong>TXT</strong>: 텍스트 정보 (SPF, 인증 등)</li></span><span class="en"><li><strong>A</strong>: IPv4 address mapping</li><li><strong>AAAA</strong>: IPv6 address mapping</li><li><strong>MX</strong>: Mail server records</li><li><strong>CNAME</strong>: Domain alias</li><li><strong>NS</strong>: Nameserver records</li><li><strong>TXT</strong>: Text records (SPF, verification)</li></span></ul>
+</div>
+</div>
+<div class="text-center py-8"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+</main>
+<footer class="w-full py-12 bg-surface-container-lowest border-t border-outline-variant/20">
+<div class="flex flex-col md:flex-row justify-between items-start gap-8 px-gutter max-w-[1200px] mx-auto">
+<div class="space-y-3 max-w-sm"><h3 class="text-2xl font-bold text-[#191c22]">Free Utilities</h3><p class="text-[#414753]">© 2026 Free Utilities. All rights reserved.</p></div>
+<div class="grid grid-cols-2 gap-8">
+<div class="flex flex-col gap-2"><h4 class="text-xs font-bold uppercase tracking-wider text-[#727784] mb-2"><span class="ko">법률</span><span class="en">Legal</span></h4><a href="privacy.html" class="text-[#414753] hover:text-[#004e9f] hover:underline decoration-1 underline-offset-4 transition-all duration-300"><span class="ko">개인정보처리방침</span><span class="en">Privacy Policy</span></a><a href="terms.html" class="text-[#414753] hover:text-[#004e9f] hover:underline decoration-1 underline-offset-4 transition-all duration-300"><span class="ko">이용약관</span><span class="en">Terms of Service</span></a></div>
+<div class="flex flex-col gap-2"><h4 class="text-xs font-bold uppercase tracking-wider text-[#727784] mb-2"><span class="ko">지원</span><span class="en">Support</span></h4><a href="about.html" class="text-[#414753] hover:text-[#004e9f] hover:underline decoration-1 underline-offset-4 transition-all duration-300"><span class="ko">소개</span><span class="en">About</span></a><a href="contact.html" class="text-[#414753] hover:text-[#004e9f] hover:underline decoration-1 underline-offset-4 transition-all duration-300"><span class="ko">문의하기</span><span class="en">Contact</span></a></div>
+</div>
+</div>
+</footer>
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 bg-surface/90 backdrop-blur-lg border-t border-outline-variant/20 md:hidden shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+<div class="flex flex-col items-center justify-center text-primary font-semibold cursor-pointer active:scale-95 duration-150" onclick="location.href='index.html'"><span class="material-symbols-outlined" data-icon="home_storage" style="font-variation-settings:'FILL'1">home_storage</span><span class="font-label-sm text-label-sm"><span class="ko">도구</span><span class="en">Tools</span></span></div>
+<div class="flex flex-col items-center justify-center text-secondary cursor-pointer active:scale-95 duration-150"><span class="material-symbols-outlined" data-icon="star">star</span><span class="font-label-sm text-label-sm"><span class="ko">즐겨찾기</span><span class="en">Favorites</span></span></div>
+<div class="flex flex-col items-center justify-center text-secondary cursor-pointer active:scale-95 duration-150"><span class="material-symbols-outlined" data-icon="history">history</span><span class="font-label-sm text-label-sm"><span class="ko">최근</span><span class="en">Recents</span></span></div>
+<div class="flex flex-col items-center justify-center text-secondary cursor-pointer active:scale-95 duration-150" onclick="location.href='index.html'"><span class="material-symbols-outlined" data-icon="settings">settings</span><span class="font-label-sm text-label-sm"><span class="ko">홈</span><span class="en">Home</span></span></div>
+</nav>
+<script>
+function toggleLang(){var l=localStorage.getItem('util-lang')||'ko';setLang(l==='ko'?'en':'ko')}
+function setLang(lang){document.body.className='lang-'+lang;var btn=document.getElementById('langToggle');if(btn)btn.textContent=lang==='ko'?'English':'한국어';localStorage.setItem('util-lang',lang)}
+setLang('ko');
+var selectedType='A';
+function setType(btn){document.querySelectorAll('.rec-type-btn').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');selectedType=btn.getAttribute('data-type')}
+async function lookupDNS(){
+  var domain=document.getElementById('domainInput').value.trim();
+  if(!domain){alert(localStorage.getItem('util-lang')==='en'?'Enter a domain name':'도메인을 입력하세요');return}
+  var resultDiv=document.getElementById('result');
+  resultDiv.style.display='block';
+  resultDiv.textContent=localStorage.getItem('util-lang')==='en'?'Looking up...':'조회 중...';
+  var isEn=localStorage.getItem('util-lang')==='en';
+  try{
+    var url='https://dns.google/resolve?name='+encodeURIComponent(domain)+'&type='+selectedType;
+    if(selectedType==='ALL')url='https://dns.google/resolve?name='+encodeURIComponent(domain);
+    var resp=await fetch(url);
+    if(!resp.ok)throw new Error('HTTP '+resp.status);
+    var data=await resp.json();
+    if(!data.Answer||data.Answer.length===0){
+      resultDiv.textContent=isEn?'No DNS records found for '+domain:'DNS 레코드를 찾을 수 없습니다: '+domain;
+      return
+    }
+    var output='';
+    data.Answer.forEach(function(r){
+      var type=r.type;
+      var typeName={1:'A',28:'AAAA',5:'CNAME',15:'MX',2:'NS',16:'TXT',6:'SOA'}[type]||'TYPE'+type;
+      var rdata=r.data||r.rdata;
+      if(type===15)rdata='Priority: '+r.priority+' | '+rdata;
+      if(type===16)rdata=rdata.replace(/"/g,'');
+      output+=typeName+'  '+r.name+'  →  '+rdata+'\n';
+    });
+    resultDiv.textContent=output;
+  }catch(e){
+    resultDiv.textContent=isEn?'DNS lookup failed: '+e.message:'DNS 조회 실패: '+e.message;
+  }
+}
+(adsbygoogle=window.adsbygoogle||[]).push({});
+</script>
+</body>
+</html>
