@@ -94,8 +94,93 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .stat { background: #f2f3fc; border-radius: 0.75rem; padding: 16px; text-align: center; }
 #json-result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
-body.lang-ko .en { display: none; }
-body.lang-en .ko { display: none; }
+
+
+
+    .lang-en { display: none; }
+    body.en .lang-ko { display: none; }
+    body.en .lang-en { display: inline; }
+
+
+    /* Dark mode overrides */
+    html.dark body,
+    html.dark .bg-background { background-color: #121218 !important; color: #e8e8f0 !important; }
+    html.dark .tool-card { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .tool-card h1,
+    html.dark .tool-card h2,
+    html.dark .tool-card h2:first-child,
+    html.dark .tool-card h3,
+    html.dark .guide-box h3,
+    html.dark .usage-guide h3,
+    html.dark .tips h3,
+    html.dark .tip-box h3,
+    html.dark .examples h3,
+    html.dark .example-item h4,
+    html.dark .faq-item h4 { color: #e8e8f0 !important; }
+    html.dark .tool-card > p:first-of-type,
+    html.dark .description,
+    html.dark body,
+    html.dark .guide-box ol,
+    html.dark .guide-box ul,
+    html.dark .usage-guide ol,
+    html.dark .usage-guide ul,
+    html.dark .tips ol,
+    html.dark .tips ul,
+    html.dark .example-item p,
+    html.dark .faq-item p,
+    html.dark .text-on-surface-variant { color: #b0b0c8 !important; }
+    html.dark .tool-output,
+    html.dark .result,
+    html.dark .stat,
+    html.dark .stat-box,
+    html.dark .guide-box,
+    html.dark .usage-guide,
+    html.dark .tips,
+    html.dark .btn-secondary,
+    html.dark #json-result,
+    html.dark .card { background: #1c1c2e !important; color: #e8e8f0 !important; border-color: #3a3a52 !important; }
+    html.dark .btn-secondary { color: #e8e8f0 !important; }
+    html.dark .btn-secondary:hover { background: #2a2a42 !important; }
+    html.dark .tool-input,
+    html.dark input[type=text],
+    html.dark textarea,
+    html.dark select,
+    html.dark input[type=number],
+    html.dark input[type=url],
+    html.dark input[type=search] { background: #2a2a42 !important; color: #e8e8f0 !important; border-color: #3a3a52 !important; }
+    html.dark .tool-input:focus { border-color: #4d8cff !important; box-shadow: 0 0 0 3px rgba(77,140,255,0.2) !important; }
+    html.dark .stat-num { color: #4d8cff !important; }
+    html.dark .example-item { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .tip-box { background: #1a2a4e !important; }
+    html.dark .tip-box h3 { color: #e8e8f0 !important; }
+    html.dark .tip-box ul { color: #8ab4ff !important; }
+    html.dark .bg-surface-container-low,
+    html.dark .bg-surface-container-lowest,
+    html.dark footer,
+    html.dark .bg-surface { background-color: #16162a !important; }
+    html.dark .bg-surface-container-lowest { background-color: #16162a !important; }
+    html.dark .on-surface,
+    html.dark .text-on-surface { color: #e8e8f0 !important; }
+    html.dark .text-on-surface-variant,
+    html.dark .on-surface-variant { color: #b0b0c8 !important; }
+    html.dark .text-outline,
+    html.dark .outline { color: #7a7a9a !important; }
+    html.dark a { color: #4d8cff !important; }
+    html.dark header,
+    html.dark .bg-surface\/80,
+    html.dark .bg-surface\/90 { background-color: rgba(22,22,42,0.85) !important; border-color: #3a3a52 !important; }
+    html.dark .shadow-sm,
+    html.dark .shadow-md,
+    html.dark .shadow-lg,
+    html.dark .shadow-xl,
+    html.dark .shadow-2xl { box-shadow: 0 1px 3px rgba(0,0,0,0.3) !important; }
+    html.dark .border-outline-variant { border-color: #3a3a52 !important; }
+    html.dark .text-primary { color: #4d8cff !important; }
+    html.dark nav .text-\[\#004e9f\] { color: #4d8cff !important; }
+    html.dark nav .text-\[\#5f5e60\] { color: #b0b0c8 !important; }
+    html.dark .related-tool { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .faq-item { border-color: #3a3a52 !important; }
+
 </style>
 </head>
 <body class="bg-background">
@@ -107,100 +192,98 @@ body.lang-en .ko { display: none; }
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<button id="darkToggle" class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/5 p-2 rounded-full transition-all" onclick="toggleDark()">dark_mode</button>
 <button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
 <div class="tool-card">
-<a href="index.html" class="back">← <span class="ko">메인으로</span><span class="en">Back to Home</span></a>
+<a href="index.html" class="back">← <span class="lang-ko">메인으로</span><span class="lang-en">Back to Home</span></a>
 
-<h1><span class="ko">개인정보처리방침</span><span class="en">Privacy Policy</span></h1>
+<h1><span class="lang-ko">개인정보처리방침</span><span class="lang-en">Privacy Policy</span></h1>
 
-<div class="lang-toggle">
-    <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
-    <button class="lang-btn" onclick="setLang('en')">English</button>
-</div>
+
 
 <div class="space-y-8">
     <section>
-        <h2><span class="ko">1. 개인정보처리방침 개요</span><span class="en">1. Privacy Policy Overview</span></h2>
-        <p><span class="ko">Free Utilities(이하 "당사")는 이용자의 개인정보를 중요시하며, 「개인정보 보호법」 및 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」을 준수합니다. 당사는 개인정보처리방침을 통하여 이용자가 제공하는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며, 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다.</span><span class="en">Free Utilities ("we," "our," or "us") respects your privacy and is committed to protecting it through compliance with applicable privacy laws. This Privacy Policy describes how we collect, use, and protect your information when you use our website and services.</span></p>
+        <h2><span class="lang-ko">1. 개인정보처리방침 개요</span><span class="lang-en">1. Privacy Policy Overview</span></h2>
+        <p><span class="lang-ko">Free Utilities(이하 "당사")는 이용자의 개인정보를 중요시하며, 「개인정보 보호법」 및 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」을 준수합니다. 당사는 개인정보처리방침을 통하여 이용자가 제공하는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며, 개인정보보호를 위해</span><span class="lang-en">Free Utilities ("we," "our," or "us") respects your privacy and is committed to protecting it through compliance with applicable</span></p>
     </section>
 
     <section>
-        <h2><span class="ko">2. 수집하는 개인정보 항목</span><span class="en">2. Information We Collect</span></h2>
-        <p><span class="ko">당사는 다음과 같은 정보를 수집할 수 있습니다:</span><span class="en">We may collect the following types of information:</span></p>
+        <h2><span class="lang-ko">2. 수집하는 개인정보 항목</span><span class="lang-en">2. Information We Collect</span></h2>
+        <p><span class="lang-ko">당사는 다음과 같은 정보를 수집할 수 있습니다:</span><span class="lang-en">We may collect the following types of information:</span></p>
         <ul>
-            <li><span class="ko">Google Analytics를 통한 익명화된 사용 통계 (페이지 조회수, 방문 시간, 브라우저 정보 등)</span><span class="en">Anonymous usage statistics via Google Analytics (page views, visit duration, browser info, etc.)</span></li>
-            <li><span class="ko">Google AdSense를 통한 광고 게재를 위한 쿠키 정보</span><span class="en">Cookie data for Google AdSense advertisement delivery</span></li>
-            <li><span class="ko">이용자가 문의 양식을 통해 자발적으로 제공하는 이름, 이메일 주소 및 메시지</span><span class="en">Name, email address, and message voluntarily provided via contact forms</span></li>
+            <li><span class="lang-ko">Google Analytics를 통한 익명화된 사용 통계 (페이지 조회수, 방문 시간, 브라우저 정보 등)</span><span class="lang-en">Anonymous usage statistics via Google Analytics (page views, visit duration, browser info, etc.)</span></li>
+            <li><span class="lang-ko">Google AdSense를 통한 광고 게재를 위한 쿠키 정보</span><span class="lang-en">Cookie data for Google AdSense advertisement delivery</span></li>
+            <li><span class="lang-ko">이용자가 문의 양식을 통해 자발적으로 제공하는 이름, 이메일 주소 및 메시지</span><span class="lang-en">Name, email address, and message voluntarily provided via contact forms</span></li>
         </ul>
-        <p><span class="ko">당사는 이용자의 개인 식별이 가능한 정보(주민등록번호, 계좌 정보 등)를 수집하지 않습니다. 또한 모든 도구는 사용자의 브라우저 내에서 로컬로 처리되며, 입력된 데이터가 서버로 전송되거나 저장되지 않습니다.</span><span class="en">We do NOT collect personally identifiable information such as resident registration numbers, financial account details, or similar sensitive data. All tools process data locally in your browser; no input data is transmitted to or stored on our servers.</span></p>
+        <p><span class="lang-ko">당사는 이용자의 개인 식별이 가능한 정보(주민등록번호, 계좌 정보 등)를 수집하지 않습니다. 또한 모든 도구는 사용자의 브라우저 내에서 로컬로 처리되며, 입력된 데이터가 서버로 전송되거나 저장되지</span><span class="lang-en">We do NOT collect personally identifiable information such as resident registration numbers, financial account details, or similar sensitive data. All tools process</span></p>
     </section>
 
     <section>
-        <h2><span class="ko">3. 개인정보 수집 방법</span><span class="en">3. How We Collect Information</span></h2>
-        <p><span class="ko">당사는 다음과 같은 방법으로 정보를 수집합니다:</span><span class="en">We collect information through the following methods:</span></p>
+        <h2><span class="lang-ko">3. 개인정보 수집 방법</span><span class="lang-en">3. How We Collect Information</span></h2>
+        <p><span class="lang-ko">당사는 다음과 같은 방법으로 정보를 수집합니다:</span><span class="lang-en">We collect information through the following methods:</span></p>
         <ul>
-            <li><span class="ko">Google Analytics 쿠키 및 추적 기술</span><span class="en">Google Analytics cookies and tracking technologies</span></li>
-            <li><span class="ko">Google AdSense 쿠키</span><span class="en">Google AdSense cookies</span></li>
-            <li><span class="ko">이용자가 문의 양식을 통해 자발적으로 제출하는 정보</span><span class="en">Information voluntarily submitted via contact forms</span></li>
-        </ul>
-    </section>
-
-    <section>
-        <h2><span class="ko">4. 개인정보 이용 목적</span><span class="en">4. How We Use Your Information</span></h2>
-        <p><span class="ko">수집된 정보는 다음의 목적으로만 사용됩니다:</span><span class="en">Collected information is used solely for the following purposes:</span></p>
-        <ul>
-            <li><span class="ko">서비스 이용 분석 및 개선 (Google Analytics)</span><span class="en">Service usage analysis and improvement (Google Analytics)</span></li>
-            <li><span class="ko">맞춤형 광고 제공 (Google AdSense)</span><span class="en">Personalized advertisement delivery (Google AdSense)</span></li>
-            <li><span class="ko">이용자 문의에 대한 응답</span><span class="en">Responding to user inquiries</span></li>
+            <li><span class="lang-ko">Google Analytics 쿠키 및 추적 기술</span><span class="lang-en">Google Analytics cookies and tracking technologies</span></li>
+            <li><span class="lang-ko">Google AdSense 쿠키</span><span class="lang-en">Google AdSense cookies</span></li>
+            <li><span class="lang-ko">이용자가 문의 양식을 통해 자발적으로 제출하는 정보</span><span class="lang-en">Information voluntarily submitted via contact forms</span></li>
         </ul>
     </section>
 
     <section>
-        <h2><span class="ko">5. 쿠키 정책</span><span class="en">5. Cookie Policy</span></h2>
-        <p><span class="ko">당사는 Google AdSense 및 Google Analytics를 통해 다음과 같은 쿠키를 사용할 수 있습니다:</span><span class="en">We may use the following cookies through Google AdSense and Google Analytics:</span></p>
+        <h2><span class="lang-ko">4. 개인정보 이용 목적</span><span class="lang-en">4. How We Use Your Information</span></h2>
+        <p><span class="lang-ko">수집된 정보는 다음의 목적으로만 사용됩니다:</span><span class="lang-en">Collected information is used solely for the following purposes:</span></p>
         <ul>
-            <li><span class="ko">_ga, _gid, _gat: Google Analytics 쿠키로 익명의 사용자 행동 데이터를 수집합니다.</span><span class="en">_ga, _gid, _gat: Google Analytics cookies for anonymous user behavior data.</span></li>
-            <li><span class="ko">NID, __gads: Google AdSense 쿠키로 광고 개인화 및 게재에 사용됩니다.</span><span class="en">NID, __gads: Google AdSense cookies for ad personalization and delivery.</span></li>
-        </ul>
-        <p><span class="ko">이용자는 브라우저 설정에서 쿠키 사용을 거부할 수 있습니다. 단, 쿠키 거부 시 일부 기능이 제한될 수 있습니다.</span><span class="en">You can refuse cookie usage through your browser settings. However, disabling cookies may limit some functionality.</span></p>
-    </section>
-
-    <section>
-        <h2><span class="ko">6. 개인정보 보호 조치</span><span class="en">6. Data Protection Measures</span></h2>
-        <ul>
-            <li><span class="ko">SSL/TLS 암호화를 통한 데이터 전송 보안</span><span class="en">SSL/TLS encryption for secure data transmission</span></li>
-            <li><span class="ko">모든 도구 데이터는 사용자 브라우저 내에서만 로컬 처리</span><span class="en">All tool data is processed locally within your browser</span></li>
-            <li><span class="ko">개인 식별 정보의 서버 저장 최소화</span><span class="en">Minimized storage of personally identifiable information on servers</span></li>
+            <li><span class="lang-ko">서비스 이용 분석 및 개선 (Google Analytics)</span><span class="lang-en">Service usage analysis and improvement (Google Analytics)</span></li>
+            <li><span class="lang-ko">맞춤형 광고 제공 (Google AdSense)</span><span class="lang-en">Personalized advertisement delivery (Google AdSense)</span></li>
+            <li><span class="lang-ko">이용자 문의에 대한 응답</span><span class="lang-en">Responding to user inquiries</span></li>
         </ul>
     </section>
 
     <section>
-        <h2><span class="ko">7. 제3자 제공</span><span class="en">7. Third-Party Sharing</span></h2>
-        <p><span class="ko">당사는 이용자의 개인정보를 다음의 제3자 서비스 제공자와 공유할 수 있습니다:</span><span class="en">We may share information with the following third-party service providers:</span></p>
+        <h2><span class="lang-ko">5. 쿠키 정책</span><span class="lang-en">5. Cookie Policy</span></h2>
+        <p><span class="lang-ko">당사는 Google AdSense 및</span><span class="lang-en">We may use the following cookies through Google AdSense and</span></p>
         <ul>
-            <li><span class="ko">Google LLC (Google Analytics - 사용 분석, Google AdSense - 광고 게재)</span><span class="en">Google LLC (Google Analytics for usage analysis, Google AdSense for ad delivery)</span></li>
+            <li><span class="lang-ko">_ga, _gid, _gat: Google Analytics 쿠키로 익명의 사용자 행동 데이터를 수집합니다.</span><span class="lang-en">_ga, _gid, _gat: Google Analytics cookies for anonymous user behavior data.</span></li>
+            <li><span class="lang-ko">NID, __gads: Google AdSense 쿠키로 광고 개인화 및 게재에 사용됩니다.</span><span class="lang-en">NID, __gads: Google AdSense cookies for ad personalization and delivery.</span></li>
         </ul>
-        <p><span class="ko">당사는 이용자의 동의 없이 개인정보를 제3자에게 제공하지 않습니다. 단, 법령에 의해 요구되는 경우는 예외로 합니다.</span><span class="en">We do not share personal information with third parties without your consent, except as required by law.</span></p>
+        <p><span class="lang-ko">이용자는 브라우저 설정에서 쿠키 사용을 거부할 수 있습니다. 단,</span><span class="lang-en">You can refuse cookie usage through your browser settings. However, disabling cookies may limit some functionality.</span></p>
     </section>
 
     <section>
-        <h2><span class="ko">8. 이용자 권리</span><span class="en">8. User Rights</span></h2>
-        <p><span class="ko">이용자는 다음과 같은 권리를 행사할 수 있습니다:</span><span class="en">You have the following rights:</span></p>
+        <h2><span class="lang-ko">6. 개인정보 보호 조치</span><span class="lang-en">6. Data Protection Measures</span></h2>
         <ul>
-            <li><span class="ko">개인정보 열람, 정정, 삭제 요청 권리</span><span class="en">Right to access, correct, or delete your personal data</span></li>
-            <li><span class="ko">쿠키 설정을 통한 광고 개인화 거부 권리</span><span class="en">Right to opt out of personalized advertising via cookie settings</span></li>
-            <li><span class="ko">Google Analytics 차단 브라우저 확장 프로그램 사용 권리</span><span class="en">Right to use Google Analytics opt-out browser add-on</span></li>
+            <li><span class="lang-ko">SSL/TLS 암호화를 통한 데이터 전송 보안</span><span class="lang-en">SSL/TLS encryption for secure data transmission</span></li>
+            <li><span class="lang-ko">모든 도구 데이터는 사용자 브라우저 내에서만 로컬 처리</span><span class="lang-en">All tool data is processed locally within your browser</span></li>
+            <li><span class="lang-ko">개인 식별 정보의 서버 저장 최소화</span><span class="lang-en">Minimized storage of personally identifiable information on servers</span></li>
         </ul>
     </section>
 
     <section>
-        <h2><span class="ko">9. 문의처</span><span class="en">9. Contact Information</span></h2>
-        <p><span class="ko">개인정보와 관련된 문의사항은 아래 연락처로 문의해 주시기 바랍니다:</span><span class="en">For privacy-related inquiries, please contact us at:</span></p>
-        <p><span class="ko">이메일: freeutilities.contact@gmail.com</span><span class="en">Email: freeutilities.contact@gmail.com</span></p>
-        <p><span class="ko">최종 업데이트: 2026년 1월</span><span class="en">Last updated: January 2026</span></p>
+        <h2><span class="lang-ko">7. 제3자 제공</span><span class="lang-en">7. Third-Party Sharing</span></h2>
+        <p><span class="lang-ko">당사는 이용자의 개인정보를 다음의 제3자 서비스 제공자와 공유할 수 있습니다:</span><span class="lang-en">We may share information with the following third-party service providers:</span></p>
+        <ul>
+            <li><span class="lang-ko">Google LLC</span><span class="lang-en">Google LLC</span></li>
+        </ul>
+        <p><span class="lang-ko">당사는 이용자의 동의 없이 개인정보를 제3자에게 제공하지 않습니다. 단, 법령에 의해 요구되는 경우는 예외로 합니다.</span><span class="lang-en">We do not share personal information with third parties without your consent, except as required by law.</span></p>
+    </section>
+
+    <section>
+        <h2><span class="lang-ko">8. 이용자 권리</span><span class="lang-en">8. User Rights</span></h2>
+        <p><span class="lang-ko">이용자는 다음과 같은 권리를 행사할 수 있습니다:</span><span class="lang-en">You have the following rights:</span></p>
+        <ul>
+            <li><span class="lang-ko">개인정보 열람, 정정, 삭제 요청 권리</span><span class="lang-en">Right to access, correct, or delete your personal data</span></li>
+            <li><span class="lang-ko">쿠키 설정을 통한 광고 개인화 거부 권리</span><span class="lang-en">Right to opt out of personalized advertising via cookie settings</span></li>
+            <li><span class="lang-ko">Google Analytics 차단 브라우저 확장 프로그램 사용 권리</span><span class="lang-en">Right to use Google Analytics opt-out browser add-on</span></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2><span class="lang-ko">9. 문의처</span><span class="lang-en">9. Contact Information</span></h2>
+        <p><span class="lang-ko">개인정보와 관련된 문의사항은 아래 연락처로 문의해 주시기 바랍니다:</span><span class="lang-en">For privacy-related inquiries, please contact us at:</span></p>
+        <p><span class="lang-ko">이메일: freeutilities.contact@gmail.com</span><span class="lang-en">Email: freeutilities.contact@gmail.com</span></p>
+        <p><span class="lang-ko">최종 업데이트: 2026년 1월</span><span class="lang-en">Last updated: January 2026</span></p>
     </section>
 </div>
 
@@ -244,19 +327,38 @@ body.lang-en .ko { display: none; }
 </div>
 </nav>
 
-<script>function toggleLang() {
-    var l = localStorage.getItem('util-lang') || 'ko';
-    setLang(l === 'ko' ? 'en' : 'ko');
+<script>
+
+        (adsbygoogle = window.adsbygoogle || []).push({});</script>
+<script>
+var siteLang = localStorage.getItem('site-lang') || 'ko';
+document.body.classList.toggle('en', siteLang === 'en');
+(function() {
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+})();
+function toggleLang() {
+  siteLang = siteLang === 'ko' ? 'en' : 'ko';
+  localStorage.setItem('site-lang', siteLang);
+  document.body.classList.toggle('en', siteLang === 'en');
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
 }
-function setLang(lang) {
-            document.body.className = 'lang-' + lang;
-            var btn = document.getElementById('langToggle');
-            if (btn) btn.textContent = lang === 'ko' ? 'English' : '한국어';
-            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
-                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
-            });
-            localStorage.setItem('util-lang', lang);
-        }
-        setLang('ko');(adsbygoogle = window.adsbygoogle || []).push({});</script>
+var darkMode = localStorage.getItem('darkMode') === 'true' || (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (darkMode) document.documentElement.classList.add('dark');
+function toggleDark() {
+  document.documentElement.classList.toggle('dark');
+  localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+  var dt = document.getElementById('darkToggle');
+  if (dt) dt.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'HangulMode' || e.keyCode === 229) {
+    e.preventDefault();
+    toggleLang();
+  }
+});
+
+</script>
 </body>
 </html>

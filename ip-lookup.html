@@ -71,12 +71,97 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 .tool-input:focus { outline: none; border-color: #0066cc; box-shadow: 0 0 0 3px rgba(0,102,204,0.1); }
 .tool-output { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
 .description { font-size: 16px; line-height: 1.5; color: #414753; margin-bottom: 24px; }
-.lang-ko .en { display: none !important; }
-.lang-en .ko { display: none !important; }
+
+
 .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .info-item { background: #f2f3fc; border-radius: 0.75rem; padding: 16px; }
 .info-label { font-size: 12px; color: #727784; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px; }
 .info-value { font-size: 18px; font-weight: 700; color: #191c22; }
+
+    .lang-en { display: none; }
+    body.en .lang-ko { display: none; }
+    body.en .lang-en { display: inline; }
+
+
+    /* Dark mode overrides */
+    html.dark body,
+    html.dark .bg-background { background-color: #121218 !important; color: #e8e8f0 !important; }
+    html.dark .tool-card { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .tool-card h1,
+    html.dark .tool-card h2,
+    html.dark .tool-card h2:first-child,
+    html.dark .tool-card h3,
+    html.dark .guide-box h3,
+    html.dark .usage-guide h3,
+    html.dark .tips h3,
+    html.dark .tip-box h3,
+    html.dark .examples h3,
+    html.dark .example-item h4,
+    html.dark .faq-item h4 { color: #e8e8f0 !important; }
+    html.dark .tool-card > p:first-of-type,
+    html.dark .description,
+    html.dark body,
+    html.dark .guide-box ol,
+    html.dark .guide-box ul,
+    html.dark .usage-guide ol,
+    html.dark .usage-guide ul,
+    html.dark .tips ol,
+    html.dark .tips ul,
+    html.dark .example-item p,
+    html.dark .faq-item p,
+    html.dark .text-on-surface-variant { color: #b0b0c8 !important; }
+    html.dark .tool-output,
+    html.dark .result,
+    html.dark .stat,
+    html.dark .stat-box,
+    html.dark .guide-box,
+    html.dark .usage-guide,
+    html.dark .tips,
+    html.dark .btn-secondary,
+    html.dark #json-result,
+    html.dark .card { background: #1c1c2e !important; color: #e8e8f0 !important; border-color: #3a3a52 !important; }
+    html.dark .btn-secondary { color: #e8e8f0 !important; }
+    html.dark .btn-secondary:hover { background: #2a2a42 !important; }
+    html.dark .tool-input,
+    html.dark input[type=text],
+    html.dark textarea,
+    html.dark select,
+    html.dark input[type=number],
+    html.dark input[type=url],
+    html.dark input[type=search] { background: #2a2a42 !important; color: #e8e8f0 !important; border-color: #3a3a52 !important; }
+    html.dark .tool-input:focus { border-color: #4d8cff !important; box-shadow: 0 0 0 3px rgba(77,140,255,0.2) !important; }
+    html.dark .stat-num { color: #4d8cff !important; }
+    html.dark .example-item { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .tip-box { background: #1a2a4e !important; }
+    html.dark .tip-box h3 { color: #e8e8f0 !important; }
+    html.dark .tip-box ul { color: #8ab4ff !important; }
+    html.dark .bg-surface-container-low,
+    html.dark .bg-surface-container-lowest,
+    html.dark footer,
+    html.dark .bg-surface { background-color: #16162a !important; }
+    html.dark .bg-surface-container-lowest { background-color: #16162a !important; }
+    html.dark .on-surface,
+    html.dark .text-on-surface { color: #e8e8f0 !important; }
+    html.dark .text-on-surface-variant,
+    html.dark .on-surface-variant { color: #b0b0c8 !important; }
+    html.dark .text-outline,
+    html.dark .outline { color: #7a7a9a !important; }
+    html.dark a { color: #4d8cff !important; }
+    html.dark header,
+    html.dark .bg-surface\/80,
+    html.dark .bg-surface\/90 { background-color: rgba(22,22,42,0.85) !important; border-color: #3a3a52 !important; }
+    html.dark .shadow-sm,
+    html.dark .shadow-md,
+    html.dark .shadow-lg,
+    html.dark .shadow-xl,
+    html.dark .shadow-2xl { box-shadow: 0 1px 3px rgba(0,0,0,0.3) !important; }
+    html.dark .border-outline-variant { border-color: #3a3a52 !important; }
+    html.dark .text-primary { color: #4d8cff !important; }
+    html.dark nav .text-\[\#004e9f\] { color: #4d8cff !important; }
+    html.dark nav .text-\[\#5f5e60\] { color: #b0b0c8 !important; }
+    html.dark .related-tool { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .faq-item { border-color: #3a3a52 !important; }
+
 </style>
 </head>
 <body class="bg-background">
@@ -88,56 +173,57 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<button id="darkToggle" class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/5 p-2 rounded-full transition-all" onclick="toggleDark()">dark_mode</button>
 <button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><h1 class="ko">내 IP 확인</h1>
-        <h1 class="en">IP Lookup</h1>
-        <p class="description ko">현재 사용 중인 IP 주소와 위치 정보를 확인하세요. 페이지를 열면 자동으로 정보를 불러옵니다.</p>
-        <p class="description en">Check your current IP address and location info. Automatically loads when you open the page.</p>
+<div class="tool-card"><h1 class="lang-ko">내 IP 확인</h1>
+        <h1 class="lang-en">IP Lookup</h1>
+        <p class="description lang-ko">현재 사용 중인 IP 주소와 위치 정보를 확인하세요. 페이지를 열면 자동으로 정보를 불러옵니다.</p>
+        <p class="description lang-en">Check your current IP address and location info. Automatically loads when you open the page.</p>
 
         <div id="loading" class="text-center py-8">
             <span class="material-symbols-outlined text-primary animate-spin" style="font-size:48px">refresh</span>
-            <p class="mt-4 text-on-surface-variant"><span class="ko">IP 정보를 불러오는 중...</span><span class="en">Loading IP info...</span></p>
+            <p class="mt-4 text-on-surface-variant"><span class="lang-ko">IP 정보를 불러오는 중...</span><span class="lang-en">Loading IP info...</span></p>
         </div>
 
         <div id="ipDisplay" style="display:none">
             <div class="text-center mb-6">
                 <span class="text-5xl font-bold text-primary" id="ipAddress">0.0.0.0</span>
-                <p class="text-on-surface-variant mt-2"><span class="ko">내 IP 주소</span><span class="en">Your IP Address</span></p>
+                <p class="text-on-surface-variant mt-2"><span class="lang-ko">내 IP 주소</span><span class="lang-en">Your IP Address</span></p>
             </div>
 
             <div class="info-grid" id="locationInfo">
                 <div class="info-item">
-                    <div class="info-label"><span class="ko">국가</span><span class="en">Country</span></div>
+                    <div class="info-label"><span class="lang-ko">국가</span><span class="lang-en">Country</span></div>
                     <div class="info-value" id="country">-</div>
                 </div>
                 <div class="info-item">
-                    <div class="info-label"><span class="ko">지역</span><span class="en">Region</span></div>
+                    <div class="info-label"><span class="lang-ko">지역</span><span class="lang-en">Region</span></div>
                     <div class="info-value" id="region">-</div>
                 </div>
                 <div class="info-item">
-                    <div class="info-label"><span class="ko">도시</span><span class="en">City</span></div>
+                    <div class="info-label"><span class="lang-ko">도시</span><span class="lang-en">City</span></div>
                     <div class="info-value" id="city">-</div>
                 </div>
                 <div class="info-item">
-                    <div class="info-label"><span class="ko">ISP</span><span class="en">ISP</span></div>
+                    <div class="info-label"><span class="lang-ko">ISP</span><span class="lang-en">ISP</span></div>
                     <div class="info-value" id="isp">-</div>
                 </div>
                 <div class="info-item">
-                    <div class="info-label"><span class="ko">위도</span><span class="en">Latitude</span></div>
+                    <div class="info-label"><span class="lang-ko">위도</span><span class="lang-en">Latitude</span></div>
                     <div class="info-value" id="latitude">-</div>
                 </div>
                 <div class="info-item">
-                    <div class="info-label"><span class="ko">경도</span><span class="en">Longitude</span></div>
+                    <div class="info-label"><span class="lang-ko">경도</span><span class="lang-en">Longitude</span></div>
                     <div class="info-value" id="longitude">-</div>
                 </div>
             </div>
         </div>
 
         <div class="btn-group mt-4">
-            <button class="btn-primary" onclick="refreshIP()"><span class="ko">새로고침</span><span class="en">Refresh</span></button>
+            <button class="btn-primary" onclick="refreshIP()"><span class="lang-ko">새로고침</span><span class="lang-en">Refresh</span></button>
         </div>
 
         <div id="error" class="result" style="display:none"></div></div>
@@ -186,18 +272,9 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </div>
 </nav>
 <script>
-function toggleLang() {
-    var l = localStorage.getItem('util-lang') || 'ko';
-    setLang(l === 'ko' ? 'en' : 'ko');
-}
-function setLang(lang) {
-    document.body.className = 'lang-' + lang;
-    var btn = document.getElementById('langToggle');
-    if (btn) btn.textContent = lang === 'ko' ? 'English' : '한국어';
-    localStorage.setItem('util-lang', lang);
-}
-const saved = localStorage.getItem('util-lang');
-if (saved) setLang(saved);
+
+
+
 
 function lookupIP() {
     document.getElementById('loading').style.display = 'block';
@@ -256,5 +333,35 @@ function refreshIP() { lookupIP(); }
 lookupIP();
 
 (adsbygoogle = window.adsbygoogle || []).push({});</script>
+<script>
+var siteLang = localStorage.getItem('site-lang') || 'ko';
+document.body.classList.toggle('en', siteLang === 'en');
+(function() {
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+})();
+function toggleLang() {
+  siteLang = siteLang === 'ko' ? 'en' : 'ko';
+  localStorage.setItem('site-lang', siteLang);
+  document.body.classList.toggle('en', siteLang === 'en');
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+}
+var darkMode = localStorage.getItem('darkMode') === 'true' || (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (darkMode) document.documentElement.classList.add('dark');
+function toggleDark() {
+  document.documentElement.classList.toggle('dark');
+  localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+  var dt = document.getElementById('darkToggle');
+  if (dt) dt.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'HangulMode' || e.keyCode === 229) {
+    e.preventDefault();
+    toggleLang();
+  }
+});
+
+</script>
 </body>
 </html>

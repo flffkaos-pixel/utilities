@@ -75,10 +75,95 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 .btn { background: #0066cc; color: white; padding: 12px 24px; border-radius: 0.75rem; font-weight: 600; font-size: 15px; border: none; cursor: pointer; transition: all 0.2s; display: inline-block; }
 .btn:hover { filter: brightness(1.1); box-shadow: 0 4px 12px rgba(0,102,204,0.3); }
 .result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
-.lang-ko .en { display: none !important; }
-.lang-en .ko { display: none !important; }
+
+
 .preview-img { max-width: 100%; max-height: 200px; border-radius: 0.5rem; margin-bottom: 16px; }
 .base64-output { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 13px; word-break: break-all; font-family: monospace; max-height: 200px; overflow-y: auto; margin-bottom: 16px; color: #191c22; }
+
+    .lang-en { display: none; }
+    body.en .lang-ko { display: none; }
+    body.en .lang-en { display: inline; }
+
+
+    /* Dark mode overrides */
+    html.dark body,
+    html.dark .bg-background { background-color: #121218 !important; color: #e8e8f0 !important; }
+    html.dark .tool-card { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .tool-card h1,
+    html.dark .tool-card h2,
+    html.dark .tool-card h2:first-child,
+    html.dark .tool-card h3,
+    html.dark .guide-box h3,
+    html.dark .usage-guide h3,
+    html.dark .tips h3,
+    html.dark .tip-box h3,
+    html.dark .examples h3,
+    html.dark .example-item h4,
+    html.dark .faq-item h4 { color: #e8e8f0 !important; }
+    html.dark .tool-card > p:first-of-type,
+    html.dark .description,
+    html.dark body,
+    html.dark .guide-box ol,
+    html.dark .guide-box ul,
+    html.dark .usage-guide ol,
+    html.dark .usage-guide ul,
+    html.dark .tips ol,
+    html.dark .tips ul,
+    html.dark .example-item p,
+    html.dark .faq-item p,
+    html.dark .text-on-surface-variant { color: #b0b0c8 !important; }
+    html.dark .tool-output,
+    html.dark .result,
+    html.dark .stat,
+    html.dark .stat-box,
+    html.dark .guide-box,
+    html.dark .usage-guide,
+    html.dark .tips,
+    html.dark .btn-secondary,
+    html.dark #json-result,
+    html.dark .card { background: #1c1c2e !important; color: #e8e8f0 !important; border-color: #3a3a52 !important; }
+    html.dark .btn-secondary { color: #e8e8f0 !important; }
+    html.dark .btn-secondary:hover { background: #2a2a42 !important; }
+    html.dark .tool-input,
+    html.dark input[type=text],
+    html.dark textarea,
+    html.dark select,
+    html.dark input[type=number],
+    html.dark input[type=url],
+    html.dark input[type=search] { background: #2a2a42 !important; color: #e8e8f0 !important; border-color: #3a3a52 !important; }
+    html.dark .tool-input:focus { border-color: #4d8cff !important; box-shadow: 0 0 0 3px rgba(77,140,255,0.2) !important; }
+    html.dark .stat-num { color: #4d8cff !important; }
+    html.dark .example-item { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .tip-box { background: #1a2a4e !important; }
+    html.dark .tip-box h3 { color: #e8e8f0 !important; }
+    html.dark .tip-box ul { color: #8ab4ff !important; }
+    html.dark .bg-surface-container-low,
+    html.dark .bg-surface-container-lowest,
+    html.dark footer,
+    html.dark .bg-surface { background-color: #16162a !important; }
+    html.dark .bg-surface-container-lowest { background-color: #16162a !important; }
+    html.dark .on-surface,
+    html.dark .text-on-surface { color: #e8e8f0 !important; }
+    html.dark .text-on-surface-variant,
+    html.dark .on-surface-variant { color: #b0b0c8 !important; }
+    html.dark .text-outline,
+    html.dark .outline { color: #7a7a9a !important; }
+    html.dark a { color: #4d8cff !important; }
+    html.dark header,
+    html.dark .bg-surface\/80,
+    html.dark .bg-surface\/90 { background-color: rgba(22,22,42,0.85) !important; border-color: #3a3a52 !important; }
+    html.dark .shadow-sm,
+    html.dark .shadow-md,
+    html.dark .shadow-lg,
+    html.dark .shadow-xl,
+    html.dark .shadow-2xl { box-shadow: 0 1px 3px rgba(0,0,0,0.3) !important; }
+    html.dark .border-outline-variant { border-color: #3a3a52 !important; }
+    html.dark .text-primary { color: #4d8cff !important; }
+    html.dark nav .text-\[\#004e9f\] { color: #4d8cff !important; }
+    html.dark nav .text-\[\#5f5e60\] { color: #b0b0c8 !important; }
+    html.dark .related-tool { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .faq-item { border-color: #3a3a52 !important; }
+
 </style>
 </head>
 <body class="bg-background">
@@ -90,14 +175,15 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<button id="darkToggle" class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/5 p-2 rounded-full transition-all" onclick="toggleDark()">dark_mode</button>
 <button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><h1 class="ko">이미지 to Base64</h1>
-        <h1 class="en">Image to Base64</h1>
-        <p class="description ko">이미지를 업로드하여 Base64 데이터 URL로 변환하세요. HTML, CSS에서 이미지를 인라인으로 사용할 수 있습니다.</p>
-        <p class="description en">Upload an image and convert it to a Base64 data URL. Perfect for using images inline in HTML or CSS.</p>
+<div class="tool-card"><h1 class="lang-ko">이미지 to Base64</h1>
+        <h1 class="lang-en">Image to Base64</h1>
+        <p class="description lang-ko">이미지를 업로드하여 Base64 데이터 URL로 변환하세요. HTML, CSS에서 이미지를 인라인으로 사용할 수 있습니다.</p>
+        <p class="description lang-en">Upload an image and convert it to a Base64 data URL. Perfect for using images inline in HTML or CSS.</p>
 
         <input type="file" id="imageInput" accept="image/*" class="tool-input" onchange="convertToBase64(event)"/>
 
@@ -108,7 +194,7 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
         <div id="base64Output" class="base64-output" style="display:none"></div>
 
         <div class="btn-group">
-            <button class="btn-primary" id="copyBtn" onclick="copyBase64()" style="display:none"><span class="ko">클립보드에 복사</span><span class="en">Copy to Clipboard</span></button>
+            <button class="btn-primary" id="copyBtn" onclick="copyBase64()" style="display:none"><span class="lang-ko">클립보드에 복사</span><span class="lang-en">Copy to Clipboard</span></button>
         </div>
 
         <div id="result" class="result" style="display:none"></div></div>
@@ -152,18 +238,9 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </div>
 </nav>
 <script>
-function toggleLang() {
-    var l = localStorage.getItem('util-lang') || 'ko';
-    setLang(l === 'ko' ? 'en' : 'ko');
-}
-function setLang(lang) {
-    document.body.className = 'lang-' + lang;
-    var btn = document.getElementById('langToggle');
-    if (btn) btn.textContent = lang === 'ko' ? 'English' : '한국어';
-    localStorage.setItem('util-lang', lang);
-}
-const saved = localStorage.getItem('util-lang');
-if (saved) setLang(saved);
+
+
+
 
 var currentBase64 = '';
 
@@ -180,7 +257,7 @@ function convertToBase64(e) {
         document.getElementById('copyBtn').style.display = 'inline-block';
         var sizeKB = Math.round(currentBase64.length * 0.75 / 1024);
         document.getElementById('result').style.display = 'block';
-        document.getElementById('result').innerHTML = '<p><span class="ko">변환 완료! Base64 길이: ' + currentBase64.length + '자 (' + sizeKB + ' KB)</span><span class="en">Converted! Base64 length: ' + currentBase64.length + ' chars (' + sizeKB + ' KB)</span></p>';
+        document.getElementById('result').innerHTML = '<p><span class="lang-ko">변환 완료! Base64 길이: ' + currentBase64.length + '자 (' + sizeKB + ' KB)</span><span class="lang-en">Converted! Base64 length: ' + currentBase64.length + ' chars (' + sizeKB + ' KB)</span></p>';
     };
     reader.readAsDataURL(file);
 }
@@ -188,10 +265,40 @@ function convertToBase64(e) {
 function copyBase64() {
     if (!currentBase64) return;
     navigator.clipboard.writeText(currentBase64).then(function() {
-        document.getElementById('result').innerHTML = '<p class="text-primary"><span class="ko">클립보드에 복사되었습니다!</span><span class="en">Copied to clipboard!</span></p>';
+        document.getElementById('result').innerHTML = '<p class="text-primary"><span class="lang-ko">클립보드에 복사되었습니다!</span><span class="lang-en">Copied to clipboard!</span></p>';
     });
 }
 
 (adsbygoogle = window.adsbygoogle || []).push({});</script>
+<script>
+var siteLang = localStorage.getItem('site-lang') || 'ko';
+document.body.classList.toggle('en', siteLang === 'en');
+(function() {
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+})();
+function toggleLang() {
+  siteLang = siteLang === 'ko' ? 'en' : 'ko';
+  localStorage.setItem('site-lang', siteLang);
+  document.body.classList.toggle('en', siteLang === 'en');
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+}
+var darkMode = localStorage.getItem('darkMode') === 'true' || (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (darkMode) document.documentElement.classList.add('dark');
+function toggleDark() {
+  document.documentElement.classList.toggle('dark');
+  localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+  var dt = document.getElementById('darkToggle');
+  if (dt) dt.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'HangulMode' || e.keyCode === 229) {
+    e.preventDefault();
+    toggleLang();
+  }
+});
+
+</script>
 </body>
 </html>

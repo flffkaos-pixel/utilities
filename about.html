@@ -94,8 +94,93 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .stat { background: #f2f3fc; border-radius: 0.75rem; padding: 16px; text-align: center; }
 #json-result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
-body.lang-ko .en { display: none; }
-body.lang-en .ko { display: none; }
+
+
+
+    .lang-en { display: none; }
+    body.en .lang-ko { display: none; }
+    body.en .lang-en { display: inline; }
+
+
+    /* Dark mode overrides */
+    html.dark body,
+    html.dark .bg-background { background-color: #121218 !important; color: #e8e8f0 !important; }
+    html.dark .tool-card { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .tool-card h1,
+    html.dark .tool-card h2,
+    html.dark .tool-card h2:first-child,
+    html.dark .tool-card h3,
+    html.dark .guide-box h3,
+    html.dark .usage-guide h3,
+    html.dark .tips h3,
+    html.dark .tip-box h3,
+    html.dark .examples h3,
+    html.dark .example-item h4,
+    html.dark .faq-item h4 { color: #e8e8f0 !important; }
+    html.dark .tool-card > p:first-of-type,
+    html.dark .description,
+    html.dark body,
+    html.dark .guide-box ol,
+    html.dark .guide-box ul,
+    html.dark .usage-guide ol,
+    html.dark .usage-guide ul,
+    html.dark .tips ol,
+    html.dark .tips ul,
+    html.dark .example-item p,
+    html.dark .faq-item p,
+    html.dark .text-on-surface-variant { color: #b0b0c8 !important; }
+    html.dark .tool-output,
+    html.dark .result,
+    html.dark .stat,
+    html.dark .stat-box,
+    html.dark .guide-box,
+    html.dark .usage-guide,
+    html.dark .tips,
+    html.dark .btn-secondary,
+    html.dark #json-result,
+    html.dark .card { background: #1c1c2e !important; color: #e8e8f0 !important; border-color: #3a3a52 !important; }
+    html.dark .btn-secondary { color: #e8e8f0 !important; }
+    html.dark .btn-secondary:hover { background: #2a2a42 !important; }
+    html.dark .tool-input,
+    html.dark input[type=text],
+    html.dark textarea,
+    html.dark select,
+    html.dark input[type=number],
+    html.dark input[type=url],
+    html.dark input[type=search] { background: #2a2a42 !important; color: #e8e8f0 !important; border-color: #3a3a52 !important; }
+    html.dark .tool-input:focus { border-color: #4d8cff !important; box-shadow: 0 0 0 3px rgba(77,140,255,0.2) !important; }
+    html.dark .stat-num { color: #4d8cff !important; }
+    html.dark .example-item { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .tip-box { background: #1a2a4e !important; }
+    html.dark .tip-box h3 { color: #e8e8f0 !important; }
+    html.dark .tip-box ul { color: #8ab4ff !important; }
+    html.dark .bg-surface-container-low,
+    html.dark .bg-surface-container-lowest,
+    html.dark footer,
+    html.dark .bg-surface { background-color: #16162a !important; }
+    html.dark .bg-surface-container-lowest { background-color: #16162a !important; }
+    html.dark .on-surface,
+    html.dark .text-on-surface { color: #e8e8f0 !important; }
+    html.dark .text-on-surface-variant,
+    html.dark .on-surface-variant { color: #b0b0c8 !important; }
+    html.dark .text-outline,
+    html.dark .outline { color: #7a7a9a !important; }
+    html.dark a { color: #4d8cff !important; }
+    html.dark header,
+    html.dark .bg-surface\/80,
+    html.dark .bg-surface\/90 { background-color: rgba(22,22,42,0.85) !important; border-color: #3a3a52 !important; }
+    html.dark .shadow-sm,
+    html.dark .shadow-md,
+    html.dark .shadow-lg,
+    html.dark .shadow-xl,
+    html.dark .shadow-2xl { box-shadow: 0 1px 3px rgba(0,0,0,0.3) !important; }
+    html.dark .border-outline-variant { border-color: #3a3a52 !important; }
+    html.dark .text-primary { color: #4d8cff !important; }
+    html.dark nav .text-\[\#004e9f\] { color: #4d8cff !important; }
+    html.dark nav .text-\[\#5f5e60\] { color: #b0b0c8 !important; }
+    html.dark .related-tool { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .faq-item { border-color: #3a3a52 !important; }
+
 </style>
 </head>
 <body class="bg-background">
@@ -107,48 +192,47 @@ body.lang-en .ko { display: none; }
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<button id="darkToggle" class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/5 p-2 rounded-full transition-all" onclick="toggleDark()">dark_mode</button>
 <button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><a href="index.html" class="back">← <span class="ko">메인으로</span><span class="en">Back to Home</span></a>
+<div class="tool-card"><a href="index.html" class="back">← <span class="lang-ko">메인으로</span><span class="lang-en">Back to Home</span></a>
 
-        <h1><span class="ko">무료 유틸리티 모음</span><span class="en">Free Utilities</span></h1>
+        <h1><span class="lang-ko">무료 유틸리티 모음</span><span class="lang-en">Free Utilities</span></h1>
 
-        <div class="lang-toggle">
-            <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
-            <button class="lang-btn" onclick="setLang('en')">English</button></div>
+        
 
 <div class="space-y-8">
     <section>
-        <h2><span class="ko">사이트 소개</span><span class="en">About Free Utilities</span></h2>
-        <p><span class="ko">Free Utilities는 개발자와 직장인을 위한 100% 무료 온라인 유틸리티 모음 사이트입니다. 텍스트 변환, QR 코드 생성, 비밀번호 생성, JSON 정렬, Base64 인코딩, 색상 변환, 단위 변환, BMI 계산, 대출 계산 등 60개 이상의 다양한 도구를 제공합니다. 모든 도구는 별도의 설치나 회원가입 없이 웹 브라우저만으로 즉시 사용할 수 있습니다.</span><span class="en">Free Utilities is a collection of 100% free online utility tools for developers and professionals. We provide over 60 tools including text conversion, QR code generation, password generation, JSON formatting, Base64 encoding, color conversion, unit conversion, BMI calculation, loan calculation, and more. All tools work instantly in your web browser without any installation or registration.</span></p>
+        <h2><span class="lang-ko">사이트 소개</span><span class="lang-en">About Free Utilities</span></h2>
+        <p><span class="lang-ko">Free Utilities는 개발자와 직장인을 위한 100% 무료 온라인 유틸리티 모음 사이트입니다. 텍스트 변환, QR 코드 생성, 비밀번호</span><span class="lang-en">Free Utilities is a collection of 100%</span></p>
     </section>
 
     <section>
-        <h2><span class="ko">미션</span><span class="en">Our Mission</span></h2>
-        <p><span class="ko">저희의 미션은 누구나 쉽고 빠르게 사용할 수 있는 고품질의 무료 온라인 도구를 제공하는 것입니다. 복잡한 소프트웨어 설치나 비용 부담 없이, 인터넷에 연결된 모든 기기에서 필요한 기능을 바로 사용할 수 있도록 하는 것이 저희의 목표입니다.</span><span class="en">Our mission is to provide high-quality, free online tools that anyone can use easily and quickly. We aim to make essential utilities accessible from any internet-connected device without the burden of complex software installation or subscription costs.</span></p>
+        <h2><span class="lang-ko">미션</span><span class="lang-en">Our Mission</span></h2>
+        <p><span class="lang-ko">저희의 미션은 누구나 쉽고 빠르게 사용할 수 있는 고품질의 무료 온라인 도구를 제공하는 것입니다. 복잡한 소프트웨어 설치나 비용 부담 없이, 인터넷에 연결된 모든 기기에서 필요한 기능을 바로</span><span class="lang-en">Our mission is to provide high-quality, free online tools that anyone can use easily and quickly. We aim</span></p>
     </section>
 
     <section>
-        <h2><span class="ko">특징</span><span class="en">Features</span></h2>
+        <h2><span class="lang-ko">특징</span><span class="lang-en">Features</span></h2>
         <ul>
-            <li><span class="ko">100% 무료 - 모든 도구를 무료로 이용 가능</span><span class="en">100% Free - All tools are completely free to use</span></li>
-            <li><span class="ko">설치 불필요 - 웹 브라우저만 있으면 즉시 사용</span><span class="en">No Installation Required - Works in your browser instantly</span></li>
-            <li><span class="ko">개인정보 보호 - 모든 데이터는 브라우저 내에서만 로컬 처리</span><span class="en">Privacy-Focused - All data is processed locally in your browser</span></li>
-            <li><span class="ko">크로스 플랫폼 - Windows, Mac, Linux, 모바일 등 모든 기기 지원</span><span class="en">Cross-Platform - Works on Windows, Mac, Linux, and mobile devices</span></li>
-            <li><span class="ko">광고 지원 - Google AdSense를 통해 서비스를 무료로 유지</span><span class="en">Ad-Supported - Google AdSense helps keep the service free</span></li>
+            <li><span class="lang-ko">100% 무료 - 모든 도구를 무료로 이용 가능</span><span class="lang-en">100% Free - All tools are completely</span></li>
+            <li><span class="lang-ko">설치 불필요 - 웹 브라우저만 있으면 즉시 사용</span><span class="lang-en">No Installation Required - Works in your browser instantly</span></li>
+            <li><span class="lang-ko">개인정보 보호 - 모든 데이터는 브라우저 내에서만 로컬 처리</span><span class="lang-en">Privacy-Focused - All data is processed locally in your browser</span></li>
+            <li><span class="lang-ko">크로스 플랫폼 - Windows, Mac, Linux, 모바일 등 모든 기기 지원</span><span class="lang-en">Cross-Platform - Works on Windows, Mac, Linux, and mobile devices</span></li>
+            <li><span class="lang-ko">광고 지원 - Google AdSense를 통해 서비스를 무료로 유지</span><span class="lang-en">Ad-Supported - Google AdSense helps keep the service free</span></li>
         </ul>
     </section>
 
     <section>
-        <h2><span class="ko">연혁</span><span class="en">History</span></h2>
-        <p><span class="ko">Free Utilities는 개발자들이 일상적으로 필요로 하는 간단한 도구들을 하나의 플랫폼에 모아 제공하고자 시작되었습니다. 지속적인 업데이트를 통해 도구의 종류와 기능을 확장해 나가고 있으며, 사용자 피드백을 적극 반영하여 서비스를 개선하고 있습니다.</span><span class="en">Free Utilities was started to bring together simple everyday tools that developers need into a single platform. We continuously expand our tool collection and functionality, actively incorporating user feedback to improve the service.</span></p>
+        <h2><span class="lang-ko">연혁</span><span class="lang-en">History</span></h2>
+        <p><span class="lang-ko">Free Utilities는 개발자들이 일상적으로 필요로 하는 간단한 도구들을 하나의 플랫폼에 모아 제공하고자 시작되었습니다. 지속적인 업데이트를 통해 도구의 종류와 기능을 확장해 나가고 있으며, 사용자 피드백을 적극 반영하여 서비스를 개선하고 있습니다.</span><span class="lang-en">Free Utilities was started to bring together simple everyday tools that developers need into a single platform. We continuously expand our tool collection and functionality, actively incorporating user feedback</span></p>
     </section>
 
     <section>
-        <h2><span class="ko">비전</span><span class="en">Our Vision</span></h2>
-        <p><span class="ko">저희는 Free Utilities를 전 세계 누구나 신뢰하고 사용하는 최고의 무료 온라인 유틸리티 플랫폼으로 성장시키는 것을 목표로 하고 있습니다. 언어와 지역에 관계없이 모든 사용자가 필요한 도구를 쉽게 찾고 사용할 수 있는 환경을 만들어 나가겠습니다.</span><span class="en">Our vision is to grow Free Utilities into the most trusted and widely used free online utility platform globally. We strive to create an environment where users from all languages and regions can easily find and use the tools they need.</span></p>
+        <h2><span class="lang-ko">비전</span><span class="lang-en">Our Vision</span></h2>
+        <p><span class="lang-ko">저희는 Free Utilities를 전 세계 누구나 신뢰하고 사용하는 최고의 무료 온라인 유틸리티 플랫폼으로 성장시키는 것을 목표로 하고 있습니다. 언어와 지역에 관계없이 모든 사용자가 필요한 도구를 쉽게 찾고 사용할 수 있는 환경을 만들어 나가겠습니다.</span><span class="lang-en">Our vision is to grow Free Utilities into the most trusted and widely used</span></p>
     </section>
 </div>
 
@@ -190,19 +274,38 @@ body.lang-en .ko { display: none; }
 <span class="text-xs">Home</span>
 </div>
 </nav>
-<script>function toggleLang() {
-    var l = localStorage.getItem('util-lang') || 'ko';
-    setLang(l === 'ko' ? 'en' : 'ko');
+<script>
+
+        (adsbygoogle = window.adsbygoogle || []).push({});</script>
+<script>
+var siteLang = localStorage.getItem('site-lang') || 'ko';
+document.body.classList.toggle('en', siteLang === 'en');
+(function() {
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+})();
+function toggleLang() {
+  siteLang = siteLang === 'ko' ? 'en' : 'ko';
+  localStorage.setItem('site-lang', siteLang);
+  document.body.classList.toggle('en', siteLang === 'en');
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
 }
-function setLang(lang) {
-            document.body.className = 'lang-' + lang;
-            var btn = document.getElementById('langToggle');
-            if (btn) btn.textContent = lang === 'ko' ? 'English' : '한국어';
-            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
-                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
-            });
-            localStorage.setItem('util-lang', lang);
-        }
-        setLang('ko');(adsbygoogle = window.adsbygoogle || []).push({});</script>
+var darkMode = localStorage.getItem('darkMode') === 'true' || (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (darkMode) document.documentElement.classList.add('dark');
+function toggleDark() {
+  document.documentElement.classList.toggle('dark');
+  localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+  var dt = document.getElementById('darkToggle');
+  if (dt) dt.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'HangulMode' || e.keyCode === 229) {
+    e.preventDefault();
+    toggleLang();
+  }
+});
+
+</script>
 </body>
 </html>

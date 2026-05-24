@@ -94,8 +94,93 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .stat { background: #f2f3fc; border-radius: 0.75rem; padding: 16px; text-align: center; }
 #json-result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
-.lang-ko .en { display: none !important; }
-.lang-en .ko { display: none !important; }
+
+
+
+    .lang-en { display: none; }
+    body.en .lang-ko { display: none; }
+    body.en .lang-en { display: inline; }
+
+
+    /* Dark mode overrides */
+    html.dark body,
+    html.dark .bg-background { background-color: #121218 !important; color: #e8e8f0 !important; }
+    html.dark .tool-card { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .tool-card h1,
+    html.dark .tool-card h2,
+    html.dark .tool-card h2:first-child,
+    html.dark .tool-card h3,
+    html.dark .guide-box h3,
+    html.dark .usage-guide h3,
+    html.dark .tips h3,
+    html.dark .tip-box h3,
+    html.dark .examples h3,
+    html.dark .example-item h4,
+    html.dark .faq-item h4 { color: #e8e8f0 !important; }
+    html.dark .tool-card > p:first-of-type,
+    html.dark .description,
+    html.dark body,
+    html.dark .guide-box ol,
+    html.dark .guide-box ul,
+    html.dark .usage-guide ol,
+    html.dark .usage-guide ul,
+    html.dark .tips ol,
+    html.dark .tips ul,
+    html.dark .example-item p,
+    html.dark .faq-item p,
+    html.dark .text-on-surface-variant { color: #b0b0c8 !important; }
+    html.dark .tool-output,
+    html.dark .result,
+    html.dark .stat,
+    html.dark .stat-box,
+    html.dark .guide-box,
+    html.dark .usage-guide,
+    html.dark .tips,
+    html.dark .btn-secondary,
+    html.dark #json-result,
+    html.dark .card { background: #1c1c2e !important; color: #e8e8f0 !important; border-color: #3a3a52 !important; }
+    html.dark .btn-secondary { color: #e8e8f0 !important; }
+    html.dark .btn-secondary:hover { background: #2a2a42 !important; }
+    html.dark .tool-input,
+    html.dark input[type=text],
+    html.dark textarea,
+    html.dark select,
+    html.dark input[type=number],
+    html.dark input[type=url],
+    html.dark input[type=search] { background: #2a2a42 !important; color: #e8e8f0 !important; border-color: #3a3a52 !important; }
+    html.dark .tool-input:focus { border-color: #4d8cff !important; box-shadow: 0 0 0 3px rgba(77,140,255,0.2) !important; }
+    html.dark .stat-num { color: #4d8cff !important; }
+    html.dark .example-item { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .tip-box { background: #1a2a4e !important; }
+    html.dark .tip-box h3 { color: #e8e8f0 !important; }
+    html.dark .tip-box ul { color: #8ab4ff !important; }
+    html.dark .bg-surface-container-low,
+    html.dark .bg-surface-container-lowest,
+    html.dark footer,
+    html.dark .bg-surface { background-color: #16162a !important; }
+    html.dark .bg-surface-container-lowest { background-color: #16162a !important; }
+    html.dark .on-surface,
+    html.dark .text-on-surface { color: #e8e8f0 !important; }
+    html.dark .text-on-surface-variant,
+    html.dark .on-surface-variant { color: #b0b0c8 !important; }
+    html.dark .text-outline,
+    html.dark .outline { color: #7a7a9a !important; }
+    html.dark a { color: #4d8cff !important; }
+    html.dark header,
+    html.dark .bg-surface\/80,
+    html.dark .bg-surface\/90 { background-color: rgba(22,22,42,0.85) !important; border-color: #3a3a52 !important; }
+    html.dark .shadow-sm,
+    html.dark .shadow-md,
+    html.dark .shadow-lg,
+    html.dark .shadow-xl,
+    html.dark .shadow-2xl { box-shadow: 0 1px 3px rgba(0,0,0,0.3) !important; }
+    html.dark .border-outline-variant { border-color: #3a3a52 !important; }
+    html.dark .text-primary { color: #4d8cff !important; }
+    html.dark nav .text-\[\#004e9f\] { color: #4d8cff !important; }
+    html.dark nav .text-\[\#5f5e60\] { color: #b0b0c8 !important; }
+    html.dark .related-tool { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .faq-item { border-color: #3a3a52 !important; }
+
 </style>
 </head>
 <body class="bg-background">
@@ -107,27 +192,28 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<button id="darkToggle" class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/5 p-2 rounded-full transition-all" onclick="toggleDark()">dark_mode</button>
 <button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><h1><span class="ko">이미지 압축기 - JPG, PNG 압축 이미지 압축기 - JPG/PNG 파일을 품질 조절하며 압축 - ??? 이미지 압축기</span><span class="en">Image Compressor - Compress images Image Compressor - Compress JPG/PNG with quality control - ??? Image Compressor</span></h1>
+<div class="tool-card"><h1><span class="lang-ko">이미지 압축기 - JPG, PNG 압축</span><span class="lang-en">Image Compressor - Compress images</span></h1>
         <div class="description">
-            <span class="ko">이미지 압축기는 JPG, PNG 이미지를 품질 조절하며 압축합니다. 웹사이트 최적화에 유용합니다.</span>
-            <span class="en">Image Compressor compresses JPG, PNG images with quality control. Great for website optimization.</span>
+            <span class="lang-ko">이미지 압축기는 JPG, PNG 이미지를 품질 조절하며 압축합니다. 웹사이트 최적화에 유용합니다.</span>
+            <span class="lang-en">Image Compressor compresses JPG, PNG images with quality control. Great for website optimization.</span>
         </div>
         <div class="upload-area" onclick="document.getElementById('fileInput').click()">
-            <span class="ko">클릭하여 이미지 선택</span>
-            <span class="en">Click to select image</span>
+            <span class="lang-ko">클릭하여 이미지 선택</span>
+            <span class="lang-en">Click to select image</span>
         </div>
         <input type="file" id="fileInput" accept="image/*" onchange="handleFile()">
         <div class="slider-container">
-            <label><span class="ko">품질:</span><span class="en">Quality:</span> <span id="qualityValue">80</span>%</label>
+            <label><span class="lang-ko">품질:</span><span class="lang-en">Quality:</span> <span id="qualityValue">80</span>%</label>
             <input type="range" id="quality" min="10" max="100" value="80" oninput="document.getElementById('qualityValue').textContent = this.value">
         </div>
-        <button class="btn" onclick="compress()"><span class="ko">압축하기</span><span class="en">Compress</span></button>
+        <button class="btn" onclick="compress()"><span class="lang-ko">압축하기</span><span class="lang-en">Compress</span></button>
         <div class="result" id="result">
-            <div class="info"><span class="ko">압축 후 이미지가 여기에 표시됩니다</span><span class="en">Compressed image will appear here</span></div>
+            <div class="info"><span class="lang-ko">압축 후 이미지가 여기에 표시됩니다</span><span class="lang-en">Compressed image will appear here</span></div>
         </div></div>
 <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -168,20 +254,9 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </div>
 </nav>
 <script>let originalFile = null;
-        function toggleLang() {
-    var l = localStorage.getItem('util-lang') || 'ko';
-    setLang(l === 'ko' ? 'en' : 'ko');
-}
-function setLang(lang) {
-            document.body.className = 'lang-' + lang;
-            var btn = document.getElementById('langToggle');
-            if (btn) btn.textContent = lang === 'ko' ? 'English' : '한국어';
-            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
-                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
-            });
-            localStorage.setItem('util-lang', lang);
-        }
-        setLang('ko');
+        
+
+        
         function handleFile() {
             const file = document.getElementById('fileInput').files[0];
             if (file) { originalFile = file; document.querySelector('.upload-area').innerHTML = file.name; }
@@ -211,5 +286,35 @@ function setLang(lang) {
             reader.readAsDataURL(originalFile);
         }
         (adsbygoogle = window.adsbygoogle || []).push({});</script>
+<script>
+var siteLang = localStorage.getItem('site-lang') || 'ko';
+document.body.classList.toggle('en', siteLang === 'en');
+(function() {
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+})();
+function toggleLang() {
+  siteLang = siteLang === 'ko' ? 'en' : 'ko';
+  localStorage.setItem('site-lang', siteLang);
+  document.body.classList.toggle('en', siteLang === 'en');
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+}
+var darkMode = localStorage.getItem('darkMode') === 'true' || (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (darkMode) document.documentElement.classList.add('dark');
+function toggleDark() {
+  document.documentElement.classList.toggle('dark');
+  localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+  var dt = document.getElementById('darkToggle');
+  if (dt) dt.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'HangulMode' || e.keyCode === 229) {
+    e.preventDefault();
+    toggleLang();
+  }
+});
+
+</script>
 </body>
 </html>

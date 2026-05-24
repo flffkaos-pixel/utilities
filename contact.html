@@ -94,8 +94,93 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .stat { background: #f2f3fc; border-radius: 0.75rem; padding: 16px; text-align: center; }
 #json-result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
-body.lang-ko .en { display: none; }
-body.lang-en .ko { display: none; }
+
+
+
+    .lang-en { display: none; }
+    body.en .lang-ko { display: none; }
+    body.en .lang-en { display: inline; }
+
+
+    /* Dark mode overrides */
+    html.dark body,
+    html.dark .bg-background { background-color: #121218 !important; color: #e8e8f0 !important; }
+    html.dark .tool-card { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .tool-card h1,
+    html.dark .tool-card h2,
+    html.dark .tool-card h2:first-child,
+    html.dark .tool-card h3,
+    html.dark .guide-box h3,
+    html.dark .usage-guide h3,
+    html.dark .tips h3,
+    html.dark .tip-box h3,
+    html.dark .examples h3,
+    html.dark .example-item h4,
+    html.dark .faq-item h4 { color: #e8e8f0 !important; }
+    html.dark .tool-card > p:first-of-type,
+    html.dark .description,
+    html.dark body,
+    html.dark .guide-box ol,
+    html.dark .guide-box ul,
+    html.dark .usage-guide ol,
+    html.dark .usage-guide ul,
+    html.dark .tips ol,
+    html.dark .tips ul,
+    html.dark .example-item p,
+    html.dark .faq-item p,
+    html.dark .text-on-surface-variant { color: #b0b0c8 !important; }
+    html.dark .tool-output,
+    html.dark .result,
+    html.dark .stat,
+    html.dark .stat-box,
+    html.dark .guide-box,
+    html.dark .usage-guide,
+    html.dark .tips,
+    html.dark .btn-secondary,
+    html.dark #json-result,
+    html.dark .card { background: #1c1c2e !important; color: #e8e8f0 !important; border-color: #3a3a52 !important; }
+    html.dark .btn-secondary { color: #e8e8f0 !important; }
+    html.dark .btn-secondary:hover { background: #2a2a42 !important; }
+    html.dark .tool-input,
+    html.dark input[type=text],
+    html.dark textarea,
+    html.dark select,
+    html.dark input[type=number],
+    html.dark input[type=url],
+    html.dark input[type=search] { background: #2a2a42 !important; color: #e8e8f0 !important; border-color: #3a3a52 !important; }
+    html.dark .tool-input:focus { border-color: #4d8cff !important; box-shadow: 0 0 0 3px rgba(77,140,255,0.2) !important; }
+    html.dark .stat-num { color: #4d8cff !important; }
+    html.dark .example-item { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .tip-box { background: #1a2a4e !important; }
+    html.dark .tip-box h3 { color: #e8e8f0 !important; }
+    html.dark .tip-box ul { color: #8ab4ff !important; }
+    html.dark .bg-surface-container-low,
+    html.dark .bg-surface-container-lowest,
+    html.dark footer,
+    html.dark .bg-surface { background-color: #16162a !important; }
+    html.dark .bg-surface-container-lowest { background-color: #16162a !important; }
+    html.dark .on-surface,
+    html.dark .text-on-surface { color: #e8e8f0 !important; }
+    html.dark .text-on-surface-variant,
+    html.dark .on-surface-variant { color: #b0b0c8 !important; }
+    html.dark .text-outline,
+    html.dark .outline { color: #7a7a9a !important; }
+    html.dark a { color: #4d8cff !important; }
+    html.dark header,
+    html.dark .bg-surface\/80,
+    html.dark .bg-surface\/90 { background-color: rgba(22,22,42,0.85) !important; border-color: #3a3a52 !important; }
+    html.dark .shadow-sm,
+    html.dark .shadow-md,
+    html.dark .shadow-lg,
+    html.dark .shadow-xl,
+    html.dark .shadow-2xl { box-shadow: 0 1px 3px rgba(0,0,0,0.3) !important; }
+    html.dark .border-outline-variant { border-color: #3a3a52 !important; }
+    html.dark .text-primary { color: #4d8cff !important; }
+    html.dark nav .text-\[\#004e9f\] { color: #4d8cff !important; }
+    html.dark nav .text-\[\#5f5e60\] { color: #b0b0c8 !important; }
+    html.dark .related-tool { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .faq-item { border-color: #3a3a52 !important; }
+
 </style>
 </head>
 <body class="bg-background">
@@ -107,17 +192,16 @@ body.lang-en .ko { display: none; }
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<button id="darkToggle" class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/5 p-2 rounded-full transition-all" onclick="toggleDark()">dark_mode</button>
 <button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><a href="index.html" class="back">← <span class="ko">메인으로</span><span class="en">Back to Home</span></a>
+<div class="tool-card"><a href="index.html" class="back">← <span class="lang-ko">메인으로</span><span class="lang-en">Back to Home</span></a>
 
-        <h1><span class="ko">연락하기</span><span class="en">Contact Us</span></h1>
+        <h1><span class="lang-ko">연락하기</span><span class="lang-en">Contact Us</span></h1>
 
-        <div class="lang-toggle">
-            <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
-            <button class="lang-btn" onclick="setLang('en')">English</button></div>
+        
 
 <form onsubmit="handleSubmit(event)" class="space-y-4">
     <div><label class="block text-sm font-medium">Name</label><input type="text" id="name" class="tool-input" required></div>
@@ -128,33 +212,33 @@ body.lang-en .ko { display: none; }
 </form>
 <div class="space-y-8">
     <section>
-        <h2><span class="ko">연락처 정보</span><span class="en">Contact Information</span></h2>
-        <p><span class="ko">서비스 이용 중 문의사항이나 제안사항이 있으시면 언제든지 아래 연락처로 연락해 주시기 바랍니다. 기능 요청, 버그 신고, 제휴 문의 등 모든 연락을 환영합니다.</span><span class="en">If you have any questions, suggestions, or issues while using our service, please feel free to contact us using the information below. We welcome feature requests, bug reports, partnership inquiries, and all other communications.</span></p>
+        <h2><span class="lang-ko">연락처 정보</span><span class="lang-en">Contact Information</span></h2>
+        <p><span class="lang-ko">서비스 이용 중 문의사항이나 제안사항이 있으시면 언제든지 아래 연락처로 연락해 주시기 바랍니다. 기능 요청, 버그 신고, 제휴 문의 등 모든 연락을 환영합니다.</span><span class="lang-en">If you have any questions, suggestions, or issues while using our service, please feel free to contact us</span></p>
     </section>
 
     <section>
-        <h2><span class="ko">이메일</span><span class="en">Email</span></h2>
-        <p><span class="ko">모든 문의는 이메일을 통해 접수해 주시기 바랍니다. 가능한 빠른 시일 내에 답변을 드리겠습니다.</span><span class="en">Please send all inquiries via email. We will respond as soon as possible.</span></p>
+        <h2><span class="lang-ko">이메일</span><span class="lang-en">Email</span></h2>
+        <p><span class="lang-ko">모든 문의는 이메일을 통해 접수해 주시기 바랍니다. 가능한 빠른 시일 내에 답변을 드리겠습니다.</span><span class="lang-en">Please send all inquiries via email. We will respond as soon</span></p>
         <p><strong>freeutilities.contact@gmail.com</strong></p>
     </section>
 
     <section>
-        <h2><span class="ko">문의 전 확인사항</span><span class="en">Before Contacting Us</span></h2>
+        <h2><span class="lang-ko">문의 전 확인사항</span><span class="lang-en">Before Contacting Us</span></h2>
         <ul>
-            <li><span class="ko">도구 사용 방법에 관한 문의는 각 도구 페이지의 안내를 먼저 확인해 주세요.</span><span class="en">For usage questions, please first check the guide on the respective tool page.</span></li>
-            <li><span class="ko">버그 신고 시 사용 중인 브라우저와 OS 정보를 함께 보내주시면 더 빠른 문제 해결에 도움이 됩니다.</span><span class="en">When reporting bugs, please include your browser and OS information for faster resolution.</span></li>
-            <li><span class="ko">기능 요청 시 구체적인 사용 사례를 설명해 주시면 검토에 도움이 됩니다.</span><span class="en">For feature requests, please describe specific use cases to help us evaluate.</span></li>
+            <li><span class="lang-ko">도구 사용 방법에 관한 문의는 각</span><span class="lang-en">For usage questions, please first check the guide on</span></li>
+            <li><span class="lang-ko">버그 신고 시 사용 중인 브라우저와 OS 정보를 함께 보내주시면 더 빠른 문제 해결에 도움이 됩니다.</span><span class="lang-en">When reporting bugs, please include your browser and OS information for faster resolution.</span></li>
+            <li><span class="lang-ko">기능 요청 시 구체적인 사용 사례를 설명해 주시면 검토에 도움이 됩니다.</span><span class="lang-en">For feature requests, please describe specific use cases to help us evaluate.</span></li>
         </ul>
     </section>
 
     <section>
-        <h2><span class="ko">응답 시간</span><span class="en">Response Time</span></h2>
-        <p><span class="ko">일반적인 문의에 대해 영업일 기준 1~3일 이내에 답변을 드리도록 노력하겠습니다. 다만, 문의량이 많을 경우 응답이 지연될 수 있는 점 양해 부탁드립니다.</span><span class="en">We strive to respond to general inquiries within 1-3 business days. However, response times may be delayed during periods of high inquiry volume.</span></p>
+        <h2><span class="lang-ko">응답 시간</span><span class="lang-en">Response Time</span></h2>
+        <p><span class="lang-ko">일반적인 문의에 대해 영업일 기준 1~3일 이내에 답변을 드리도록 노력하겠습니다. 다만, 문의량이 많을 경우 응답이 지연될 수 있는 점 양해 부탁드립니다.</span><span class="lang-en">We strive to respond</span></p>
     </section>
 
     <section>
-        <h2><span class="ko">소셜 미디어</span><span class="en">Social Media</span></h2>
-        <p><span class="ko">현재 별도의 소셜 미디어 계정을 운영하고 있지 않습니다. 모든 공지사항과 업데이트는 이 사이트를 통해 안내됩니다.</span><span class="en">We do not currently operate separate social media accounts. All announcements and updates will be posted on this website.</span></p>
+        <h2><span class="lang-ko">소셜 미디어</span><span class="lang-en">Social Media</span></h2>
+        <p><span class="lang-ko">현재 별도의 소셜 미디어 계정을 운영하고 있지 않습니다. 모든 공지사항과 업데이트는 이 사이트를 통해 안내됩니다.</span><span class="lang-en">We do not currently operate separate social media accounts. All announcements and updates will be posted on this website.</span></p>
     </section>
 </div>
 
@@ -196,20 +280,9 @@ body.lang-en .ko { display: none; }
 <span class="text-xs">Home</span>
 </div>
 </nav>
-<script>function toggleLang() {
-    var l = localStorage.getItem('util-lang') || 'ko';
-    setLang(l === 'ko' ? 'en' : 'ko');
-}
-function setLang(lang) {
-            document.body.className = 'lang-' + lang;
-            var btn = document.getElementById('langToggle');
-            if (btn) btn.textContent = lang === 'ko' ? 'English' : '한국어';
-            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
-                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
-            });
-            localStorage.setItem('util-lang', lang);
-        }
-        setLang('ko');function handleSubmit(e) {
+<script>
+
+        function handleSubmit(e) {
             e.preventDefault();
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
@@ -220,5 +293,35 @@ function setLang(lang) {
             window.location.href = mailtoLink;
         }
         (adsbygoogle = window.adsbygoogle || []).push({});</script>
+<script>
+var siteLang = localStorage.getItem('site-lang') || 'ko';
+document.body.classList.toggle('en', siteLang === 'en');
+(function() {
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+})();
+function toggleLang() {
+  siteLang = siteLang === 'ko' ? 'en' : 'ko';
+  localStorage.setItem('site-lang', siteLang);
+  document.body.classList.toggle('en', siteLang === 'en');
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+}
+var darkMode = localStorage.getItem('darkMode') === 'true' || (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (darkMode) document.documentElement.classList.add('dark');
+function toggleDark() {
+  document.documentElement.classList.toggle('dark');
+  localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+  var dt = document.getElementById('darkToggle');
+  if (dt) dt.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'HangulMode' || e.keyCode === 229) {
+    e.preventDefault();
+    toggleLang();
+  }
+});
+
+</script>
 </body>
 </html>

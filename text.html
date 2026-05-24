@@ -94,8 +94,93 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .stat { background: #f2f3fc; border-radius: 0.75rem; padding: 16px; text-align: center; }
 #json-result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
-body.lang-ko .en { display: none; }
-body.lang-en .ko { display: none; }
+
+
+
+    .lang-en { display: none; }
+    body.en .lang-ko { display: none; }
+    body.en .lang-en { display: inline; }
+
+
+    /* Dark mode overrides */
+    html.dark body,
+    html.dark .bg-background { background-color: #121218 !important; color: #e8e8f0 !important; }
+    html.dark .tool-card { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .tool-card h1,
+    html.dark .tool-card h2,
+    html.dark .tool-card h2:first-child,
+    html.dark .tool-card h3,
+    html.dark .guide-box h3,
+    html.dark .usage-guide h3,
+    html.dark .tips h3,
+    html.dark .tip-box h3,
+    html.dark .examples h3,
+    html.dark .example-item h4,
+    html.dark .faq-item h4 { color: #e8e8f0 !important; }
+    html.dark .tool-card > p:first-of-type,
+    html.dark .description,
+    html.dark body,
+    html.dark .guide-box ol,
+    html.dark .guide-box ul,
+    html.dark .usage-guide ol,
+    html.dark .usage-guide ul,
+    html.dark .tips ol,
+    html.dark .tips ul,
+    html.dark .example-item p,
+    html.dark .faq-item p,
+    html.dark .text-on-surface-variant { color: #b0b0c8 !important; }
+    html.dark .tool-output,
+    html.dark .result,
+    html.dark .stat,
+    html.dark .stat-box,
+    html.dark .guide-box,
+    html.dark .usage-guide,
+    html.dark .tips,
+    html.dark .btn-secondary,
+    html.dark #json-result,
+    html.dark .card { background: #1c1c2e !important; color: #e8e8f0 !important; border-color: #3a3a52 !important; }
+    html.dark .btn-secondary { color: #e8e8f0 !important; }
+    html.dark .btn-secondary:hover { background: #2a2a42 !important; }
+    html.dark .tool-input,
+    html.dark input[type=text],
+    html.dark textarea,
+    html.dark select,
+    html.dark input[type=number],
+    html.dark input[type=url],
+    html.dark input[type=search] { background: #2a2a42 !important; color: #e8e8f0 !important; border-color: #3a3a52 !important; }
+    html.dark .tool-input:focus { border-color: #4d8cff !important; box-shadow: 0 0 0 3px rgba(77,140,255,0.2) !important; }
+    html.dark .stat-num { color: #4d8cff !important; }
+    html.dark .example-item { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .tip-box { background: #1a2a4e !important; }
+    html.dark .tip-box h3 { color: #e8e8f0 !important; }
+    html.dark .tip-box ul { color: #8ab4ff !important; }
+    html.dark .bg-surface-container-low,
+    html.dark .bg-surface-container-lowest,
+    html.dark footer,
+    html.dark .bg-surface { background-color: #16162a !important; }
+    html.dark .bg-surface-container-lowest { background-color: #16162a !important; }
+    html.dark .on-surface,
+    html.dark .text-on-surface { color: #e8e8f0 !important; }
+    html.dark .text-on-surface-variant,
+    html.dark .on-surface-variant { color: #b0b0c8 !important; }
+    html.dark .text-outline,
+    html.dark .outline { color: #7a7a9a !important; }
+    html.dark a { color: #4d8cff !important; }
+    html.dark header,
+    html.dark .bg-surface\/80,
+    html.dark .bg-surface\/90 { background-color: rgba(22,22,42,0.85) !important; border-color: #3a3a52 !important; }
+    html.dark .shadow-sm,
+    html.dark .shadow-md,
+    html.dark .shadow-lg,
+    html.dark .shadow-xl,
+    html.dark .shadow-2xl { box-shadow: 0 1px 3px rgba(0,0,0,0.3) !important; }
+    html.dark .border-outline-variant { border-color: #3a3a52 !important; }
+    html.dark .text-primary { color: #4d8cff !important; }
+    html.dark nav .text-\[\#004e9f\] { color: #4d8cff !important; }
+    html.dark nav .text-\[\#5f5e60\] { color: #b0b0c8 !important; }
+    html.dark .related-tool { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .faq-item { border-color: #3a3a52 !important; }
+
 </style>
 </head>
 <body class="bg-background">
@@ -107,31 +192,32 @@ body.lang-en .ko { display: none; }
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<button id="darkToggle" class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/5 p-2 rounded-full transition-all" onclick="toggleDark()">dark_mode</button>
 <button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
 <div class="tool-card"><h1>
-            <span class="ko">텍스트 도구 - 대소문자 변환, 공백 제거, 줄바꿈 변환</span>
-            <span class="en">Text Tools - Case conversion, whitespace removal, line break conversion</span>
+            <span class="lang-ko">텍스트 도구 - 대소문자 변환, 공백 제거, 줄바꿈</span>
+            <span class="lang-en">Text Tools - Case conversion, whitespace removal, line break</span>
         </h1>
         
         <div class="description">
-            <span class="ko">텍스트 도구는 문자열을 대문자, 소문자, 첫 글자 대문자로 변환하거나 공백을 제거할 수 있는 도구입니다. 문서 작성, 코딩, 데이터 정리 등에 유용합니다. 이 도구는 다양한 텍스트 변환 기능을 제공하여 일상 작업에서 텍스트 처리 효율을 높여줍니다.</span>
-            <span class="en">Text Tools convert strings to uppercase, lowercase, capitalize first letters, or trim whitespace. Useful for document editing, coding, and data cleaning. This tool provides various text transformation features to improve text processing efficiency in daily work.</span>
+            <span class="lang-ko">텍스트 도구는 문자열을 대문자, 소문자, 첫 글자 대문자로 변환하거나 공백을 제거할 수 있는 도구입니다. 문서 작성, 코딩, 데이터 정리 등에 유용합니다. 이</span>
+            <span class="lang-en">Text Tools convert strings to uppercase, lowercase, capitalize first letters, or trim whitespace. Useful for document editing, coding, and data cleaning. This tool provides various</span>
         </div>
         
         <div class="usage-guide">
-            <h3 class="ko">사용 방법</h3>
-            <h3 class="en">How to Use</h3>
-            <ol class="ko">
+            <h3 class="lang-ko">사용 방법</h3>
+            <h3 class="lang-en">How to Use</h3>
+            <ol class="lang-ko">
                 <li>위 텍스트 영역에 변환하고 싶은 텍스트를 입력하거나 붙여넣기 합니다.</li>
                 <li>원하는 변환 버튼을 클릭합니다 (대문자, 소문자, 첫 글자 대문자, 공백 제거 등).</li>
                 <li>변환된 결과가 아래 결과 영역에 표시됩니다.</li>
                 <li>복사 버튼을 클릭하여 결과를 클립보드에 복사할 수 있습니다.</li>
                 <li>새로운 변환을 위해 텍스트 영역을 클릭하고 기존 텍스트를 삭제한 후 새로 입력하세요.</li>
             </ol>
-            <ol class="en">
+            <ol class="lang-en">
                 <li>Enter or paste the text you want to convert in the text area above.</li>
                 <li>Click the desired conversion button (UPPERCASE, lowercase, Capitalize, or Trim).</li>
                 <li>The converted result will be displayed in the result area below.</li>
@@ -141,26 +227,26 @@ body.lang-en .ko { display: none; }
         </div>
         
         <div class="examples">
-            <h3 class="ko">예시</h3>
-            <h3 class="en">Examples</h3>
+            <h3 class="lang-ko">예시</h3>
+            <h3 class="lang-en">Examples</h3>
             <div class="example-grid">
                 <div class="example-item">
-                    <h4 class="ko">대소문자 변환</h4>
-                    <h4 class="en">Case Conversion</h4>
-                    <p class="ko">입력: "hello WORLD" → 대문자: "HELLO WORLD"</p>
-                    <p class="en">Input: "hello WORLD" → UPPERCASE: "HELLO WORLD"</p>
+                    <h4 class="lang-ko">대소문자 변환</h4>
+                    <h4 class="lang-en">Case Conversion</h4>
+                    <p class="lang-ko">입력: "hello WORLD" → 대문자: "HELLO WORLD"</p>
+                    <p class="lang-en">Input: "hello WORLD" → UPPERCASE: "HELLO WORLD"</p>
                 </div>
                 <div class="example-item">
-                    <h4 class="ko">첫 글자 대문자</h4>
-                    <h4 class="en">Capitalize</h4>
-                    <p class="ko">입력: "hello world" → Capitalize: "Hello World"</p>
-                    <p class="en">Input: "hello world" → Capitalize: "Hello World"</p>
+                    <h4 class="lang-ko">첫 글자 대문자</h4>
+                    <h4 class="lang-en">Capitalize</h4>
+                    <p class="lang-ko">입력: "hello world" → Capitalize: "Hello World"</p>
+                    <p class="lang-en">Input: "hello world" → Capitalize: "Hello World"</p>
                 </div>
                 <div class="example-item">
-                    <h4 class="ko">공백 제거</h4>
-                    <h4 class="en">Trim Whitespace</h4>
-                    <p class="ko">입력: "  hello world  " → Trim: "hello world"</p>
-                    <p class="en">Input: "  hello world  " → Trim: "hello world"</p>
+                    <h4 class="lang-ko">공백 제거</h4>
+                    <h4 class="lang-en">Trim Whitespace</h4>
+                    <p class="lang-ko">입력: "  hello world  " → Trim: "hello world"</p>
+                    <p class="lang-en">Input: "  hello world  " → Trim: "hello world"</p>
                 </div>
             </div>
         </div>
@@ -179,16 +265,16 @@ body.lang-en .ko { display: none; }
         
         <!-- Usage Guide -->
         <div class="usage-guide">
-            <h3 class="ko">상세 사용 가이드</h3>
-            <h3 class="en">Detailed Usage Guide</h3>
-            <ol class="ko">
+            <h3 class="lang-ko">상세 사용 가이드</h3>
+            <h3 class="lang-en">Detailed Usage Guide</h3>
+            <ol class="lang-ko">
                 <li>텍스트 영역에 변환하려는 텍스트를 입력하거나 붙여넣기 합니다.</li>
                 <li>원하는 변환 버튼을 클릭합니다 (대문자, 소문자, 첫 글자 대문자, 공백 제거 등 선택).</li>
                 <li>변환된 결과가 아래 결과 영역에 표시됩니다.</li>
                 <li>복사 버튼을 클릭하여 결과를 클립보드에 복사할 수 있습니다.</li>
                 <li>새로운 변환을 위해 텍스트 영역을 클릭하고 기존 텍스트를 삭제한 후 새로 입력하세요.</li>
             </ol>
-            <ol class="en">
+            <ol class="lang-en">
                 <li>Enter or paste the text you want to convert in the text area above.</li>
                 <li>Click the desired conversion button (UPPERCASE, lowercase, Capitalize, or Trim).</li>
                 <li>The converted result will be displayed in the result area below.</li>
@@ -199,48 +285,48 @@ body.lang-en .ko { display: none; }
         
         <!-- Examples -->
         <div class="examples">
-            <h3 class="ko">다양한 사용 예시</h3>
-            <h3 class="en">Various Use Cases</h3>
+            <h3 class="lang-ko">다양한 사용 예시</h3>
+            <h3 class="lang-en">Various Use Cases</h3>
             <div class="example-grid">
                 <div class="example-item">
-                    <h4 class="ko">문서 작성 시 활용</h4>
-                    <h4 class="en">Document Writing</h4>
-                    <p class="ko">보고서나 논문 작성 시 제목은 첫 글자 대문자, 본문은 소문자로 일관성 있게 포맷팅할 때 유용합니다.</p>
-                    <p class="en">When writing reports or papers, useful for setting titles in Capitalize case and body text in lowercase for consistent formatting.</p>
+                    <h4 class="lang-ko">문서 작성 시 활용</h4>
+                    <h4 class="lang-en">Document Writing</h4>
+                    <p class="lang-ko">보고서나 논문 작성 시 제목은 첫 글자 대문자, 본문은 소문자로 일관성 있게 포맷팅할 때 유용합니다.</p>
+                    <p class="lang-en">When writing reports or papers, useful for setting titles in Capitalize case and body text in lowercase for consistent formatting.</p>
                 </div>
                 <div class="example-item">
-                    <h4 class="ko">코딩 및 디버깅</h4>
-                    <h4 class="en">Coding & Debugging</h4>
-                    <p class="ko">환경 변수나 함수 이름을 대문자로 변환하거나, 사용자 입력을 소문자로 정규화하여 비교할 때 유용합니다.</p>
-                    <p class="en">Useful for converting environment variable or constant names to uppercase, or normalizing user input to lowercase for comparison.</p>
+                    <h4 class="lang-ko">코딩 및 디버깅</h4>
+                    <h4 class="lang-en">Coding & Debugging</h4>
+                    <p class="lang-ko">환경 변수나 함수 이름을 대문자로 변환하거나, 사용자 입력을 소문자로 정규화하여 비교할 때 유용합니다.</p>
+                    <p class="lang-en">Useful for converting environment variable or constant names to uppercase, or normalizing user input to lowercase for comparison.</p>
                 </div>
                 <div class="example-item">
-                    <h4 class="ko">데이터 정제</h4>
-                    <h4 class="en">Data Cleaning</h4>
-                    <p class="ko">CSV나 TSV 파일 처리 시 불필요한 공백을 제거하여 데이터 품질을 개선할 수 있습니다.</p>
-                    <p class="en">When processing CSV or TSV files, useful for trimming whitespace to improve data quality.</p>
+                    <h4 class="lang-ko">데이터 정제</h4>
+                    <h4 class="lang-en">Data Cleaning</h4>
+                    <p class="lang-ko">CSV나 TSV 파일 처리 시 불필요한 공백을 제거하여 데이터 품질을 개선할 수 있습니다.</p>
+                    <p class="lang-en">When processing CSV or TSV files, useful for trimming whitespace to improve data quality.</p>
                 </div>
                 <div class="example-item">
-                    <h4 class="ko">소셜 미디어 콘텐츠</h4>
-                    <h4 class="en">Social Media Content</h4>
-                    <p class="ko">인스타그램 해시태그는 대소문자를 구분하지 않지만, 가독성을 위해 첫 글자 대문자 포맷으로 사용할 수 있습니다.</p>
-                    <p class="en">Instagram hashtags are case-insensitive, but you can use Capitalize format for better readability.</p>
+                    <h4 class="lang-ko">소셜 미디어 콘텐츠</h4>
+                    <h4 class="lang-en">Social Media Content</h4>
+                    <p class="lang-ko">인스타그램 해시태그는 대소문자를 구분하지 않지만, 가독성을 위해 첫 글자 대문자 포맷으로 사용할 수 있습니다.</p>
+                    <p class="lang-en">Instagram hashtags are case-insensitive, but you can use Capitalize format for better readability.</p>
                 </div>
             </div>
         </div>
         
         <!-- Tips -->
         <div class="tips">
-            <h3 class="ko">프로 팁</h3>
-            <h3 class="en">Pro Tips</h3>
-            <ul class="ko">
+            <h3 class="lang-ko">프로 팁</h3>
+            <h3 class="lang-en">Pro Tips</h3>
+            <ul class="lang-ko">
                 <li>키보드 단축키 활용: Ctrl+A로 전체 선택, Ctrl+C로 복사, Ctrl+V로 붙여넣기</li>
                 <li>대용량 텍스트 처리 시 성능 최적화를 위해 10,000자 이하로 나누어 처리하는 것이 좋습니다.</li>
                 <li>웹 페이지 소스 코드에서 텍스트 추출 후 정제에 유용합니다.</li>
                 <li>여러 줄 텍스트 처리 시 줄바꿈은 유지되며 변환에 영향을 받지 않습니다.</li>
                 <li>모바일 기기에서도 완벽하게 작동하므로 언제 어디서나 텍스트 정제가 가능합니다.</li>
             </ul>
-            <ul class="en">
+            <ul class="lang-en">
                 <li>Keyboard shortcuts: Ctrl+A to select all, Ctrl+C to copy, Ctrl+V to paste</li>
                 <li>For processing large texts, it is recommended to split into chunks under 10,000 characters for optimal performance.</li>
                 <li>Useful for cleaning text extracted from web page source code.</li>
@@ -251,48 +337,48 @@ body.lang-en .ko { display: none; }
         
         <!-- FAQ -->
         <div class="faq">
-            <h3 class="ko">자주 묻는 질문</h3>
-            <h3 class="en">Frequently Asked Questions</h3>
+            <h3 class="lang-ko">자주 묻는 질문</h3>
+            <h3 class="lang-en">Frequently Asked Questions</h3>
             <div class="faq-item">
-                <h4 class="ko">이 도구는 내 데이터를 저장하거나 전송하나요?</h4>
-                <h4 class="en">Does this tool store or transmit my data?</h4>
-                <p class="ko">전혀 그렇지 않습니다. 모든 텍스트 처리 작업은 귀하의 브라우저 내에서 완전히 로컬로 실행되며, 어떤 데이터도 서버로 전송되거나 저장되지 않습니다.</p>
-                <p class="en">Absolutely not. All text processing is performed entirely locally in your browser, and no data is ever transmitted to or stored on any server.</p>
+                <h4 class="lang-ko">이 도구는 내 데이터를 저장하거나 전송하나요?</h4>
+                <h4 class="lang-en">Does this tool store or transmit my data?</h4>
+                <p class="lang-ko">전혀 그렇지 않습니다. 모든 텍스트 처리 작업은 귀하의 브라우저 내에서 완전히 로컬로 실행되며, 어떤 데이터도 서버로 전송되거나 저장되지 않습니다.</p>
+                <p class="lang-en">Absolutely not. All text processing is performed entirely locally in your browser, and no data is ever transmitted to or stored on any server.</p>
             </div>
             <div class="faq-item">
-                <h4 class="ko">특수 문자와 이모지는 어떻게 처리되나요?</h4>
-                <h4 class="en">How are special characters and emojis handled?</h4>
-                <p class="ko">특수 문자와 이모지는 변환 과정에서 그대로 유지됩니다. 예를 들어, "Hello 😀"를 대문자로 변환하면 "HELLO 😀"가 됩니다.</p>
-                <p class="en">Special characters and emojis remain unchanged during conversion. For example, converting "Hello 😀" to uppercase results in "HELLO 😀".</p>
+                <h4 class="lang-ko">특수 문자와 이모지는 어떻게 처리되나요?</h4>
+                <h4 class="lang-en">How are special characters and emojis handled?</h4>
+                <p class="lang-ko">특수 문자와 이모지는 변환 과정에서 그대로 유지됩니다. 예를 들어, "Hello 😀"를 대문자로 변환하면 "HELLO 😀"가 됩니다.</p>
+                <p class="lang-en">Special characters and emojis remain unchanged during conversion. For example, converting "Hello 😀" to uppercase results in "HELLO 😀".</p>
             </div>
             <div class="faq-item">
-                <h4 class="ko">한 번에 처리할 수 있는 최대 텍스트 길이는 얼마인가요?</h4>
-                <h4 class="en">What is the maximum text length I can process at once?</h4>
-                <p class="ko">실제 제한은 브라우저와 기기 메모리에 따라 다르지만, 일반적으로 100,000자 이상도 문제없이 처리할 수 있습니다. 매우 큰 텍스트의 경우 성능이 약간 저하될 수 있습니다.</p>
-                <p class="en">The actual limit depends on your browser and device memory, but typically you can process over 100,000 characters without issues. For very large texts, performance may slightly decrease.</p>
+                <h4 class="lang-ko">한 번에 처리할 수 있는 최대 텍스트 길이는 얼마인가요?</h4>
+                <h4 class="lang-en">What is the maximum text length I can process at once?</h4>
+                <p class="lang-ko">실제 제한은 브라우저와 기기 메모리에 따라 다르지만, 일반적으로 100,000자 이상도 문제없이 처리할 수 있습니다. 매우 큰 텍스트의 경우 성능이 약간 저하될 수 있습니다.</p>
+                <p class="lang-en">The actual limit depends on your browser and device memory, but typically you can process over 100,000 characters without issues. For very large texts, performance may slightly decrease.</p>
             </div>
             <div class="faq-item">
-                <h4 class="ko">이 도구를 오프라인에서도 사용할 수 있나요?</h4>
-                <h4 class="en">Can I use this tool offline?</h4>
-                <p class="ko">네, 이 페이지가 완전히 로드된 후에는 인터넷 연결 없이도 완전히 오프라인 상태로 사용할 수 있습니다. 모든 처리가 로컬에서 이루어지기 때문입니다.</p>
-                <p class="en">Yes! Once the page is fully loaded, you can use it completely offline without an internet connection, as all processing happens locally.</p>
+                <h4 class="lang-ko">이 도구를 오프라인에서도 사용할 수 있나요?</h4>
+                <h4 class="lang-en">Can I use this tool offline?</h4>
+                <p class="lang-ko">네, 이 페이지가 완전히 로드된 후에는 인터넷 연결 없이도 완전히 오프라인 상태로 사용할 수 있습니다. 모든 처리가 로컬에서 이루어지기 때문입니다.</p>
+                <p class="lang-en">Yes! Once the page is fully loaded, you can use it completely offline without an internet connection, as all processing happens locally.</p>
             </div>
         </div>
         
         <!-- Related Tools -->
         <div class="related-tools">
-            <h3 class="ko">관련 도구 추천</h3>
-            <h3 class="en">Related Tools</h3>
+            <h3 class="lang-ko">관련 도구 추천</h3>
+            <h3 class="lang-en">Related Tools</h3>
             <div class="related-grid">
                 <a href="counter.html" class="related-tool">
                     <div class="related-icon">
                         <span class="material-symbols-outlined">format_list_numbered</span>
                     </div>
                     <div class="related-info">
-                        <h4 class="ko">글자 수 세기</h4>
-                        <h4 class="en">Character Counter</h4>
-                        <p class="ko">단어, 문자, 문장, 문단 수를 세는 도구</p>
-                        <p class="en">Count characters, words, sentences, and paragraphs</p>
+                        <h4 class="lang-ko">글자 수 세기</h4>
+                        <h4 class="lang-en">Character Counter</h4>
+                        <p class="lang-ko">단어, 문자, 문장, 문단 수를 세는 도구</p>
+                        <p class="lang-en">Count characters, words, sentences, and paragraphs</p>
                     </div>
                 </a>
                 <a href="reverse.html" class="related-tool">
@@ -300,10 +386,10 @@ body.lang-en .ko { display: none; }
                         <span class="material-symbols-outlined">reverse</span>
                     </div>
                     <div class="related-info">
-                        <h4 class="ko">텍스트 뒤집기</h4>
-                        <h4 class="en">Text Reverser</h4>
-                        <p class="ko">문자열을 거꾸로 뒤집는 도구</p>
-                        <p class="en">Reverse string order</p>
+                        <h4 class="lang-ko">텍스트 뒤집기</h4>
+                        <h4 class="lang-en">Text Reverser</h4>
+                        <p class="lang-ko">문자열을 거꾸로 뒤집는 도구</p>
+                        <p class="lang-en">Reverse string order</p>
                     </div>
                 </a>
                 <a href="sort.html" class="related-tool">
@@ -311,10 +397,10 @@ body.lang-en .ko { display: none; }
                         <span class="material-symbols-outlined">sort</span>
                     </div>
                     <div class="related-info">
-                        <h4 class="ko">텍스트 정렬</h4>
-                        <h4 class="en">Text Sorter</h4>
-                        <p class="ko">줄 단위로 텍스트를 알파벳순으로 정렬하는 도구</p>
-                        <p class="en">Sort lines alphabetically</p>
+                        <h4 class="lang-ko">텍스트 정렬</h4>
+                        <h4 class="lang-en">Text Sorter</h4>
+                        <p class="lang-ko">줄 단위로 텍스트를 알파벳순으로 정렬하는 도구</p>
+                        <p class="lang-en">Sort lines alphabetically</p>
                     </div>
                 </a>
                 <a href="unique.html" class="related-tool">
@@ -322,10 +408,10 @@ body.lang-en .ko { display: none; }
                         <span class="material-symbols-outlined">filter_alt</span>
                     </div>
                     <div class="related-info">
-                        <h4 class="ko">중복 제거</h4>
-                        <h4 class="en">Remove Duplicates</h4>
-                        <p class="ko">중복된 줄을 제거하여 고유한 값만 남기는 도구</p>
-                        <p class="en">Remove duplicate lines to keep only unique values</p>
+                        <h4 class="lang-ko">중복 제거</h4>
+                        <h4 class="lang-en">Remove Duplicates</h4>
+                        <p class="lang-ko">중복된 줄을 제거하여 고유한 값만 남기는 도구</p>
+                        <p class="lang-en">Remove duplicate lines to keep only unique values</p>
                     </div>
                 </a>
             </div>
@@ -367,20 +453,9 @@ body.lang-en .ko { display: none; }
 <span class="text-xs">Home</span>
 </div>
 </nav>
-<script>function toggleLang() {
-    var l = localStorage.getItem('util-lang') || 'ko';
-    setLang(l === 'ko' ? 'en' : 'ko');
-}
-function setLang(lang) {
-            document.body.className = 'lang-' + lang;
-            var btn = document.getElementById('langToggle');
-            if (btn) btn.textContent = lang === 'ko' ? 'English' : '한국어';
-            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
-                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
-            });
-            localStorage.setItem('util-lang', lang);
-        }
-        setLang('ko');function getVal() { return document.getElementById('input').value; }
+<script>
+
+        function getVal() { return document.getElementById('input').value; }
         function setResult(text) { document.getElementById('result').textContent = text; }
         function upperCase() { setResult(getVal().toUpperCase()); }
         function lowerCase() { setResult(getVal().toLowerCase()); }
@@ -389,5 +464,35 @@ function setLang(lang) {
         function copy() { navigator.clipboard.writeText(document.getElementById('result').textContent); }
         
         (adsbygoogle = window.adsbygoogle || []).push({});</script>
+<script>
+var siteLang = localStorage.getItem('site-lang') || 'ko';
+document.body.classList.toggle('en', siteLang === 'en');
+(function() {
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+})();
+function toggleLang() {
+  siteLang = siteLang === 'ko' ? 'en' : 'ko';
+  localStorage.setItem('site-lang', siteLang);
+  document.body.classList.toggle('en', siteLang === 'en');
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+}
+var darkMode = localStorage.getItem('darkMode') === 'true' || (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (darkMode) document.documentElement.classList.add('dark');
+function toggleDark() {
+  document.documentElement.classList.toggle('dark');
+  localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+  var dt = document.getElementById('darkToggle');
+  if (dt) dt.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'HangulMode' || e.keyCode === 229) {
+    e.preventDefault();
+    toggleLang();
+  }
+});
+
+</script>
 </body>
 </html>

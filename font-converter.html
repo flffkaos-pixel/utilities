@@ -76,9 +76,94 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 .btn { background: #0066cc; color: white; padding: 12px 24px; border-radius: 0.75rem; font-weight: 600; font-size: 15px; border: none; cursor: pointer; transition: all 0.2s; display: inline-block; }
 .btn:hover { filter: brightness(1.1); box-shadow: 0 4px 12px rgba(0,102,204,0.3); }
 .result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
-.lang-ko .en { display: none !important; }
-.lang-en .ko { display: none !important; }
+
+
 .font-preview { font-size: 24px; padding: 20px; background: #f2f3fc; border-radius: 0.75rem; margin-bottom: 16px; min-height: 60px; word-break: break-word; }
+
+    .lang-en { display: none; }
+    body.en .lang-ko { display: none; }
+    body.en .lang-en { display: inline; }
+
+
+    /* Dark mode overrides */
+    html.dark body,
+    html.dark .bg-background { background-color: #121218 !important; color: #e8e8f0 !important; }
+    html.dark .tool-card { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .tool-card h1,
+    html.dark .tool-card h2,
+    html.dark .tool-card h2:first-child,
+    html.dark .tool-card h3,
+    html.dark .guide-box h3,
+    html.dark .usage-guide h3,
+    html.dark .tips h3,
+    html.dark .tip-box h3,
+    html.dark .examples h3,
+    html.dark .example-item h4,
+    html.dark .faq-item h4 { color: #e8e8f0 !important; }
+    html.dark .tool-card > p:first-of-type,
+    html.dark .description,
+    html.dark body,
+    html.dark .guide-box ol,
+    html.dark .guide-box ul,
+    html.dark .usage-guide ol,
+    html.dark .usage-guide ul,
+    html.dark .tips ol,
+    html.dark .tips ul,
+    html.dark .example-item p,
+    html.dark .faq-item p,
+    html.dark .text-on-surface-variant { color: #b0b0c8 !important; }
+    html.dark .tool-output,
+    html.dark .result,
+    html.dark .stat,
+    html.dark .stat-box,
+    html.dark .guide-box,
+    html.dark .usage-guide,
+    html.dark .tips,
+    html.dark .btn-secondary,
+    html.dark #json-result,
+    html.dark .card { background: #1c1c2e !important; color: #e8e8f0 !important; border-color: #3a3a52 !important; }
+    html.dark .btn-secondary { color: #e8e8f0 !important; }
+    html.dark .btn-secondary:hover { background: #2a2a42 !important; }
+    html.dark .tool-input,
+    html.dark input[type=text],
+    html.dark textarea,
+    html.dark select,
+    html.dark input[type=number],
+    html.dark input[type=url],
+    html.dark input[type=search] { background: #2a2a42 !important; color: #e8e8f0 !important; border-color: #3a3a52 !important; }
+    html.dark .tool-input:focus { border-color: #4d8cff !important; box-shadow: 0 0 0 3px rgba(77,140,255,0.2) !important; }
+    html.dark .stat-num { color: #4d8cff !important; }
+    html.dark .example-item { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .tip-box { background: #1a2a4e !important; }
+    html.dark .tip-box h3 { color: #e8e8f0 !important; }
+    html.dark .tip-box ul { color: #8ab4ff !important; }
+    html.dark .bg-surface-container-low,
+    html.dark .bg-surface-container-lowest,
+    html.dark footer,
+    html.dark .bg-surface { background-color: #16162a !important; }
+    html.dark .bg-surface-container-lowest { background-color: #16162a !important; }
+    html.dark .on-surface,
+    html.dark .text-on-surface { color: #e8e8f0 !important; }
+    html.dark .text-on-surface-variant,
+    html.dark .on-surface-variant { color: #b0b0c8 !important; }
+    html.dark .text-outline,
+    html.dark .outline { color: #7a7a9a !important; }
+    html.dark a { color: #4d8cff !important; }
+    html.dark header,
+    html.dark .bg-surface\/80,
+    html.dark .bg-surface\/90 { background-color: rgba(22,22,42,0.85) !important; border-color: #3a3a52 !important; }
+    html.dark .shadow-sm,
+    html.dark .shadow-md,
+    html.dark .shadow-lg,
+    html.dark .shadow-xl,
+    html.dark .shadow-2xl { box-shadow: 0 1px 3px rgba(0,0,0,0.3) !important; }
+    html.dark .border-outline-variant { border-color: #3a3a52 !important; }
+    html.dark .text-primary { color: #4d8cff !important; }
+    html.dark nav .text-\[\#004e9f\] { color: #4d8cff !important; }
+    html.dark nav .text-\[\#5f5e60\] { color: #b0b0c8 !important; }
+    html.dark .related-tool { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .faq-item { border-color: #3a3a52 !important; }
+
 </style>
 </head>
 <body class="bg-background">
@@ -90,41 +175,42 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<button id="darkToggle" class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/5 p-2 rounded-full transition-all" onclick="toggleDark()">dark_mode</button>
 <button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><h1 class="ko">폰트 변환기</h1>
-        <h1 class="en">Font Converter</h1>
-        <p class="description ko">TTF 또는 OTF 폰트 파일을 업로드하여 정보를 확인하고 미리보세요. WOFF/WOFF2로 변환할 수 있습니다.</p>
-        <p class="description en">Upload TTF or OTF font files to view info and preview. Can convert to WOFF/WOFF2 format.</p>
+<div class="tool-card"><h1 class="lang-ko">폰트 변환기</h1>
+        <h1 class="lang-en">Font Converter</h1>
+        <p class="description lang-ko">TTF 또는 OTF 폰트 파일을 업로드하여 정보를 확인하고 미리보세요. WOFF/WOFF2로 변환할 수 있습니다.</p>
+        <p class="description lang-en">Upload TTF or OTF font files to view info and preview. Can convert to WOFF/WOFF2 format.</p>
 
         <input type="file" id="fontInput" accept=".ttf,.otf" class="tool-input" onchange="loadFont(event)"/>
 
         <div id="fontInfo" style="display:none" class="mb-4">
-            <h3 class="font-bold text-lg mb-2"><span class="ko">폰트 정보</span><span class="en">Font Info</span></h3>
+            <h3 class="font-bold text-lg mb-2"><span class="lang-ko">폰트 정보</span><span class="lang-en">Font Info</span></h3>
             <div class="info-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
                 <div class="info-item" style="background:#f2f3fc;border-radius:0.75rem;padding:16px">
-                    <div class="info-label" style="font-size:12px;color:#727784;text-transform:uppercase;font-weight:600"><span class="ko">이름</span><span class="en">Name</span></div>
+                    <div class="info-label" style="font-size:12px;color:#727784;text-transform:uppercase;font-weight:600"><span class="lang-ko">이름</span><span class="lang-en">Name</span></div>
                     <div class="info-value" id="fontName" style="font-size:16px;font-weight:700;color:#191c22">-</div>
                 </div>
                 <div class="info-item" style="background:#f2f3fc;border-radius:0.75rem;padding:16px">
-                    <div class="info-label" style="font-size:12px;color:#727784;text-transform:uppercase;font-weight:600"><span class="ko">패밀리</span><span class="en">Family</span></div>
+                    <div class="info-label" style="font-size:12px;color:#727784;text-transform:uppercase;font-weight:600"><span class="lang-ko">패밀리</span><span class="lang-en">Family</span></div>
                     <div class="info-value" id="fontFamily" style="font-size:16px;font-weight:700;color:#191c22">-</div>
                 </div>
                 <div class="info-item" style="background:#f2f3fc;border-radius:0.75rem;padding:16px">
-                    <div class="info-label" style="font-size:12px;color:#727784;text-transform:uppercase;font-weight:600"><span class="ko">스타일</span><span class="en">Style</span></div>
+                    <div class="info-label" style="font-size:12px;color:#727784;text-transform:uppercase;font-weight:600"><span class="lang-ko">스타일</span><span class="lang-en">Style</span></div>
                     <div class="info-value" id="fontStyle" style="font-size:16px;font-weight:700;color:#191c22">-</div>
                 </div>
                 <div class="info-item" style="background:#f2f3fc;border-radius:0.75rem;padding:16px">
-                    <div class="info-label" style="font-size:12px;color:#727784;text-transform:uppercase;font-weight:600"><span class="ko">글리프 수</span><span class="en">Glyphs</span></div>
+                    <div class="info-label" style="font-size:12px;color:#727784;text-transform:uppercase;font-weight:600"><span class="lang-ko">글리프 수</span><span class="lang-en">Glyphs</span></div>
                     <div class="info-value" id="fontGlyphs" style="font-size:16px;font-weight:700;color:#191c22">-</div>
                 </div>
             </div>
         </div>
 
         <div id="previewSection" style="display:none">
-            <h3 class="font-bold text-lg mb-2"><span class="ko">미리보기</span><span class="en">Preview</span></h3>
+            <h3 class="font-bold text-lg mb-2"><span class="lang-ko">미리보기</span><span class="lang-en">Preview</span></h3>
             <div class="font-preview" id="fontPreview" style="font-size:28px">
                 The quick brown fox jumps over the lazy dog<br/>
                 가나다라마바사 아자차카타파하<br/>
@@ -134,9 +220,9 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
         </div>
 
         <div class="btn-group" id="convertSection" style="display:none">
-            <button class="btn-primary" onclick="downloadWOFF()"><span class="ko">WOFF 다운로드</span><span class="en">Download WOFF</span></button>
-            <button class="btn-secondary" onclick="downloadWOFF2()"><span class="ko">WOFF2 다운로드</span><span class="en">Download WOFF2</span></button>
-            <button class="btn-secondary" onclick="downloadTTF()"><span class="ko">TTF 다운로드</span><span class="en">Download TTF</span></button>
+            <button class="btn-primary" onclick="downloadWOFF()"><span class="lang-ko">WOFF 다운로드</span><span class="lang-en">Download WOFF</span></button>
+            <button class="btn-secondary" onclick="downloadWOFF2()"><span class="lang-ko">WOFF2 다운로드</span><span class="lang-en">Download WOFF2</span></button>
+            <button class="btn-secondary" onclick="downloadTTF()"><span class="lang-ko">TTF 다운로드</span><span class="lang-en">Download TTF</span></button>
         </div>
 
         <div id="result" class="result" style="display:none"></div></div>
@@ -180,18 +266,9 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </div>
 </nav>
 <script>
-function toggleLang() {
-    var l = localStorage.getItem('util-lang') || 'ko';
-    setLang(l === 'ko' ? 'en' : 'ko');
-}
-function setLang(lang) {
-    document.body.className = 'lang-' + lang;
-    var btn = document.getElementById('langToggle');
-    if (btn) btn.textContent = lang === 'ko' ? 'English' : '한국어';
-    localStorage.setItem('util-lang', lang);
-}
-const saved = localStorage.getItem('util-lang');
-if (saved) setLang(saved);
+
+
+
 
 var loadedFont = null;
 var fontArrayBuffer = null;
@@ -223,10 +300,10 @@ function loadFont(e) {
             document.head.appendChild(style);
             document.getElementById('fontPreview').style.fontFamily = "'preview-font', serif";
             document.getElementById('result').style.display = 'block';
-            document.getElementById('result').innerHTML = '<p><span class="ko">폰트 로드 완료!</span><span class="en">Font loaded successfully!</span></p>';
+            document.getElementById('result').innerHTML = '<p><span class="lang-ko">폰트 로드 완료!</span><span class="lang-en">Font loaded successfully!</span></p>';
         } catch(e) {
             document.getElementById('result').style.display = 'block';
-            document.getElementById('result').innerHTML = '<p class="text-error"><span class="ko">폰트를 불러올 수 없습니다: ' + e.message + '</span><span class="en">Could not load font: ' + e.message + '</span></p>';
+            document.getElementById('result').innerHTML = '<p class="text-error"><span class="lang-ko">폰트를 불러올 수 없습니다: ' + e.message + '</span><span class="lang-en">Could not load font: ' + e.message + '</span></p>';
         }
     };
     reader.readAsArrayBuffer(file);
@@ -287,5 +364,35 @@ function downloadBlob(buffer, filename) {
 }
 
 (adsbygoogle = window.adsbygoogle || []).push({});</script>
+<script>
+var siteLang = localStorage.getItem('site-lang') || 'ko';
+document.body.classList.toggle('en', siteLang === 'en');
+(function() {
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+})();
+function toggleLang() {
+  siteLang = siteLang === 'ko' ? 'en' : 'ko';
+  localStorage.setItem('site-lang', siteLang);
+  document.body.classList.toggle('en', siteLang === 'en');
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+}
+var darkMode = localStorage.getItem('darkMode') === 'true' || (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (darkMode) document.documentElement.classList.add('dark');
+function toggleDark() {
+  document.documentElement.classList.toggle('dark');
+  localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+  var dt = document.getElementById('darkToggle');
+  if (dt) dt.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'HangulMode' || e.keyCode === 229) {
+    e.preventDefault();
+    toggleLang();
+  }
+});
+
+</script>
 </body>
 </html>

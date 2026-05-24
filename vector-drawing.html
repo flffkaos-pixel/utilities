@@ -94,8 +94,93 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .stat { background: #f2f3fc; border-radius: 0.75rem; padding: 16px; text-align: center; }
 #json-result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
-body.lang-ko .en { display: none; }
-body.lang-en .ko { display: none; }
+
+
+
+    .lang-en { display: none; }
+    body.en .lang-ko { display: none; }
+    body.en .lang-en { display: inline; }
+
+
+    /* Dark mode overrides */
+    html.dark body,
+    html.dark .bg-background { background-color: #121218 !important; color: #e8e8f0 !important; }
+    html.dark .tool-card { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .tool-card h1,
+    html.dark .tool-card h2,
+    html.dark .tool-card h2:first-child,
+    html.dark .tool-card h3,
+    html.dark .guide-box h3,
+    html.dark .usage-guide h3,
+    html.dark .tips h3,
+    html.dark .tip-box h3,
+    html.dark .examples h3,
+    html.dark .example-item h4,
+    html.dark .faq-item h4 { color: #e8e8f0 !important; }
+    html.dark .tool-card > p:first-of-type,
+    html.dark .description,
+    html.dark body,
+    html.dark .guide-box ol,
+    html.dark .guide-box ul,
+    html.dark .usage-guide ol,
+    html.dark .usage-guide ul,
+    html.dark .tips ol,
+    html.dark .tips ul,
+    html.dark .example-item p,
+    html.dark .faq-item p,
+    html.dark .text-on-surface-variant { color: #b0b0c8 !important; }
+    html.dark .tool-output,
+    html.dark .result,
+    html.dark .stat,
+    html.dark .stat-box,
+    html.dark .guide-box,
+    html.dark .usage-guide,
+    html.dark .tips,
+    html.dark .btn-secondary,
+    html.dark #json-result,
+    html.dark .card { background: #1c1c2e !important; color: #e8e8f0 !important; border-color: #3a3a52 !important; }
+    html.dark .btn-secondary { color: #e8e8f0 !important; }
+    html.dark .btn-secondary:hover { background: #2a2a42 !important; }
+    html.dark .tool-input,
+    html.dark input[type=text],
+    html.dark textarea,
+    html.dark select,
+    html.dark input[type=number],
+    html.dark input[type=url],
+    html.dark input[type=search] { background: #2a2a42 !important; color: #e8e8f0 !important; border-color: #3a3a52 !important; }
+    html.dark .tool-input:focus { border-color: #4d8cff !important; box-shadow: 0 0 0 3px rgba(77,140,255,0.2) !important; }
+    html.dark .stat-num { color: #4d8cff !important; }
+    html.dark .example-item { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .tip-box { background: #1a2a4e !important; }
+    html.dark .tip-box h3 { color: #e8e8f0 !important; }
+    html.dark .tip-box ul { color: #8ab4ff !important; }
+    html.dark .bg-surface-container-low,
+    html.dark .bg-surface-container-lowest,
+    html.dark footer,
+    html.dark .bg-surface { background-color: #16162a !important; }
+    html.dark .bg-surface-container-lowest { background-color: #16162a !important; }
+    html.dark .on-surface,
+    html.dark .text-on-surface { color: #e8e8f0 !important; }
+    html.dark .text-on-surface-variant,
+    html.dark .on-surface-variant { color: #b0b0c8 !important; }
+    html.dark .text-outline,
+    html.dark .outline { color: #7a7a9a !important; }
+    html.dark a { color: #4d8cff !important; }
+    html.dark header,
+    html.dark .bg-surface\/80,
+    html.dark .bg-surface\/90 { background-color: rgba(22,22,42,0.85) !important; border-color: #3a3a52 !important; }
+    html.dark .shadow-sm,
+    html.dark .shadow-md,
+    html.dark .shadow-lg,
+    html.dark .shadow-xl,
+    html.dark .shadow-2xl { box-shadow: 0 1px 3px rgba(0,0,0,0.3) !important; }
+    html.dark .border-outline-variant { border-color: #3a3a52 !important; }
+    html.dark .text-primary { color: #4d8cff !important; }
+    html.dark nav .text-\[\#004e9f\] { color: #4d8cff !important; }
+    html.dark nav .text-\[\#5f5e60\] { color: #b0b0c8 !important; }
+    html.dark .related-tool { background: #1c1c2e !important; border-color: #3a3a52 !important; }
+    html.dark .faq-item { border-color: #3a3a52 !important; }
+
 </style>
 </head>
 <body class="bg-background">
@@ -107,54 +192,55 @@ body.lang-en .ko { display: none; }
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<button id="darkToggle" class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/5 p-2 rounded-full transition-all" onclick="toggleDark()">dark_mode</button>
 <button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><h1 class="ko">?? 벡터 그리기</h1>
-        <h1 class="en">?? Vector Drawing</h1>
+<div class="tool-card"><h1 class="lang-ko"> 벡터 그리기</h1>
+        <h1 class="lang-en"> Vector Drawing</h1>
         
         <div class="toolbar">
             <button class="tool-btn active" data-tool="select">
-                <span class="ko">선택</span>
-                <span class="en">Select</span>
+                <span class="lang-ko">선택</span>
+                <span class="lang-en">Select</span>
             </button>
             <button class="tool-btn" data-tool="rect">
-                <span class="ko">사각형</span>
-                <span class="en">Rectangle</span>
+                <span class="lang-ko">사각형</span>
+                <span class="lang-en">Rectangle</span>
             </button>
             <button class="tool-btn" data-tool="circle">
-                <span class="ko">원</span>
-                <span class="en">Circle</span>
+                <span class="lang-ko">원</span>
+                <span class="lang-en">Circle</span>
             </button>
             <button class="tool-btn" data-tool="line">
-                <span class="ko">선</span>
-                <span class="en">Line</span>
+                <span class="lang-ko">선</span>
+                <span class="lang-en">Line</span>
             </button>
             <button class="tool-btn" data-tool="path">
-                <span class="ko">펜</span>
-                <span class="en">Pen</span>
+                <span class="lang-ko">펜</span>
+                <span class="lang-en">Pen</span>
             </button>
             <button class="tool-btn" data-tool="text">
-                <span class="ko">텍스트</span>
-                <span class="en">Text</span>
+                <span class="lang-ko">텍스트</span>
+                <span class="lang-en">Text</span>
             </button>
         </div>
         
         <div class="controls">
             <div class="control-group">
-                <label class="ko">채우기</label>
-                <label class="en">Fill</label>
+                <label class="lang-ko">채우기</label>
+                <label class="lang-en">Fill</label>
                 <input type="color" id="fill-color" value="#ffffff">
             </div>
             <div class="control-group">
-                <label class="ko">테두리</label>
-                <label class="en">Stroke</label>
+                <label class="lang-ko">테두리</label>
+                <label class="lang-en">Stroke</label>
                 <input type="color" id="stroke-color" value="#000000">
             </div>
             <div class="control-group">
-                <label class="ko">굵기</label>
-                <label class="en">Width</label>
+                <label class="lang-ko">굵기</label>
+                <label class="lang-en">Width</label>
                 <input type="range" id="stroke-width" min="1" max="20" value="2">
                 <span id="stroke-width-val">2</span>
             </div>
@@ -165,26 +251,26 @@ body.lang-en .ko { display: none; }
         </div>
         
         <div class="coord-display" id="coord-display">
-            <span class="ko">X: 0, Y: 0</span>
-            <span class="en">X: 0, Y: 0</span>
+            <span class="lang-ko">X: 0, Y: 0</span>
+            <span class="lang-en">X: 0, Y: 0</span>
         </div>
         
         <div class="actions">
             <button class="btn" onclick="undo()">
-                <span class="ko">실행취소</span>
-                <span class="en">Undo</span>
+                <span class="lang-ko">실행취소</span>
+                <span class="lang-en">Undo</span>
             </button>
             <button class="btn" onclick="redo()">
-                <span class="ko">다시실행</span>
-                <span class="en">Redo</span>
+                <span class="lang-ko">다시실행</span>
+                <span class="lang-en">Redo</span>
             </button>
             <button class="btn secondary" onclick="clearCanvas()">
-                <span class="ko">전체지우기</span>
-                <span class="en">Clear All</span>
+                <span class="lang-ko">전체지우기</span>
+                <span class="lang-en">Clear All</span>
             </button>
             <button class="btn secondary" onclick="exportSVG()">
-                <span class="ko">SVG 내보내기</span>
-                <span class="en">Export SVG</span>
+                <span class="lang-ko">SVG 내보내기</span>
+                <span class="lang-en">Export SVG</span>
             </button>
         </div></div>
 <div class="text-center py-8">
@@ -243,21 +329,9 @@ body.lang-en .ko { display: none; }
             currentPath: null
         };
         
-        function toggleLang() {
-    var l = localStorage.getItem('util-lang') || 'ko';
-    setLang(l === 'ko' ? 'en' : 'ko');
-}
-function setLang(lang) {
-            document.body.className = 'lang-' + lang;
-            var btn = document.getElementById('langToggle');
-            if (btn) btn.textContent = lang === 'ko' ? 'English' : '한국어';
-            document.querySelectorAll('.lang-btn').forEach((btn, i) => {
-                btn.classList.toggle('active', (lang === 'ko' && i === 0) || (lang === 'en' && i === 1));
-            });
-            localStorage.setItem('util-lang', lang);
-        }
-        const saved = localStorage.getItem('util-lang');
-        if (saved) setLang(saved);
+        
+
+        
         
         pushHistory();
         
@@ -351,7 +425,7 @@ function setLang(lang) {
         
         function moveAction(e) {
             const pt = getPoint(e);
-            coordDisplay.innerHTML = `<span class="ko">X: ${Math.round(pt.x)}, Y: ${Math.round(pt.y)}</span><span class="en">X: ${Math.round(pt.x)}, Y: ${Math.round(pt.y)}</span>`;
+            coordDisplay.innerHTML = `<span class="lang-ko">X: ${Math.round(pt.x)}, Y: ${Math.round(pt.y)}</span><span class="lang-en">X: ${Math.round(pt.x)}, Y: ${Math.round(pt.y)}</span>`;
             
             if (!state.isDrawing) return;
             
@@ -426,5 +500,35 @@ function setLang(lang) {
             if (e.ctrlKey && e.key === 'z') undo();
             if (e.ctrlKey && e.key === 'y') redo();
         });</script>
+<script>
+var siteLang = localStorage.getItem('site-lang') || 'ko';
+document.body.classList.toggle('en', siteLang === 'en');
+(function() {
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+})();
+function toggleLang() {
+  siteLang = siteLang === 'ko' ? 'en' : 'ko';
+  localStorage.setItem('site-lang', siteLang);
+  document.body.classList.toggle('en', siteLang === 'en');
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+}
+var darkMode = localStorage.getItem('darkMode') === 'true' || (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (darkMode) document.documentElement.classList.add('dark');
+function toggleDark() {
+  document.documentElement.classList.toggle('dark');
+  localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+  var dt = document.getElementById('darkToggle');
+  if (dt) dt.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'HangulMode' || e.keyCode === 229) {
+    e.preventDefault();
+    toggleLang();
+  }
+});
+
+</script>
 </body>
 </html>
