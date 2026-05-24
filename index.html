@@ -619,14 +619,15 @@ function applyLang(l) {
   lang = l;
   localStorage.setItem('site-lang', l);
   document.body.classList.toggle('en', l === 'en');
-  document.getElementById('langBtnText').textContent = l === 'ko' ? 'English' : '한국어';
-  document.getElementById('page-title').textContent = l === 'ko'
+  var el;
+  el = document.getElementById('langBtnText'); if (el) el.textContent = l === 'ko' ? 'English' : '한국어';
+  el = document.getElementById('page-title'); if (el) el.textContent = l === 'ko'
     ? '무료 온라인 유틸리티 모음 | 개발자와 직장인을 위한 필수 도구'
     : 'Free Online Utilities | Essential Tools for Developers';
-  document.getElementById('searchInput').placeholder = l === 'ko'
+  el = document.getElementById('searchInput'); if (el) el.placeholder = l === 'ko'
     ? '필요한 도구를 검색하세요 (예: 글자 수 세기, JSON)'
     : 'Search tools (e.g., word counter, JSON)';
-  document.getElementById('metaDesc').content = l === 'ko'
+  el = document.getElementById('metaDesc'); if (el) el.content = l === 'ko'
     ? '무료 온라인 유틸리티 도구 모음 - 텍스트 변환, QR 코드 생성, 비밀번호 생성, JSON 정렬, Base64 인코더, 색상 변환, 단위 변환, BMI 계산기, 대출 계산기 등 개발자와 직장인을 위한 필수 도구입니다. 모든 도구 무료 사용, 설치 필요 없음.'
     : 'Free online utility tools - text converter, QR code generator, password generator, JSON formatter, Base64 encoder, color converter, unit converter, BMI calculator, loan calculator, and more. All free, no installation required.';
 }
