@@ -205,10 +205,12 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
         <textarea id="input" placeholder="텍스트 입력..."></textarea>
         <button class="btn"</button>
             <div class="btn-group">
-        <button class="btn" onclick="generateHash('SHA-256')">SHA-256</button>
-        <button class="btn" onclick="generateHash('SHA-1')">SHA-1</button>
-        <button class="btn" onclick="generateHash('MD5')">MD5</button>
-    </div>
+        <button class="btn" mh_onclick_done>SHA-256</button>
+        <button class="btn" mh_onclick_done>SHA-1</button>
+        <button class="btn" mh_onclick_done>MD5</button>
+    <textarea id="hashInput" class="tool-input" rows="4" placeholder="Enter text to hash..."></textarea>
+        <div id="hashResult" class="result"></div>
+</div>
     <div id="output" class="result"></div></div></div>
 <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -283,5 +285,29 @@ document.addEventListener('keydown', function(e) {
 });
 
 </script>
+
+<script>
+function generateHash(type) {
+    var input = document.getElementById('hashInput') || document.getElementById('input');
+    if (!input) return;
+    var text = input.value;
+    if (!text) { document.getElementById('hashResult').textContent = ''; return; }
+    var hash = '';
+    switch(type) {
+        case 'MD5':
+            hash = CryptoJS.MD5(text).toString();
+            break;
+        case 'SHA-1':
+            hash = CryptoJS.SHA1(text).toString();
+            break;
+        case 'SHA-256':
+            hash = CryptoJS.SHA256(text).toString();
+            break;
+    }
+    var el = document.getElementById('hashResult');
+    if (el) el.textContent = hash;
+}
+</script>
+
 </body>
 </html>

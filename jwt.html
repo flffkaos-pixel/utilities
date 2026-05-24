@@ -193,9 +193,9 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
 <div class="tool-card">
-    <textarea id="jwtInput" class="tool-input" rows="4" placeholder="Paste JWT token here..."></textarea>
+    <textarea id="jwt" class="tool-input" rows="4" placeholder="Paste JWT token here..."></textarea>
     <button class="btn" onclick="decodeJwt()">Decode JWT</button>
-    <div id="jwtHeader" class="result"><strong>Header:</strong></div><div id="jwtPayload" class="result"><strong>Payload:</strong></div>
+    <div id="header" class="result"><strong>Header:</strong></div><div id="payload" class="result"><strong>Payload:</strong></div>
     <div id="jwtSignature" class="result"><strong>Signature:</strong></div>
 </div>
 </div>

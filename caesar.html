@@ -192,9 +192,22 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><div class="header">
-            <a href="index.html" class="back">← Back</a>
-            
+<div class="tool-card">
+        <h1><span class="lang-ko">시저 암호</span><span class="lang-en">Caesar Cipher</span></h1>
+        <div class="description">
+            <span class="lang-ko">시저 암호는 텍스트를 지정된 칸 수만큼 알파벳을 이동시켜 암호화/복호화합니다.</span>
+            <span class="lang-en">Caesar cipher shifts letters by a specified number to encrypt/decrypt text.</span>
+        </div>
+        <textarea id="input" class="tool-input" rows="4" placeholder="Enter text..."></textarea>
+        <div class="input-group">
+            <label>Shift</label>
+            <input type="number" id="shift" class="tool-input" value="3" min="1" max="25">
+        </div>
+        <div class="btn-group">
+            <button class="btn" onclick="encode()">Encrypt</button>
+            <button class="btn" onclick="decode()">Decrypt</button>
+        </div>
+        <div id="result" class="result" style="font-size:18px"></div>
 <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
 </div>

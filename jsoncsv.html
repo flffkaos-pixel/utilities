@@ -185,7 +185,7 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 <button onclick="location.href='index.html'" class="p-2 hover:bg-surface-container rounded-full transition-colors cursor-pointer">
 <span class="material-symbols-outlined text-primary" data-icon="arrow_back">arrow_back</span>
 </button>
-<h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
+<h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'"><span class="lang-ko">Free Utilities</span><span class="lang-en">Free Utilities</span></h1>
 </div>
 <button id="darkToggle" class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/5 p-2 rounded-full transition-all" onclick="toggleDark()">dark_mode</button>
 <button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
@@ -193,13 +193,14 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
 <div class="tool-card">
+    <h1><span class="lang-ko">JSON CSV 변환기</span><span class="lang-en">JSON to CSV Converter</span></h1>
     <h3>JSON to CSV</h3>
-    <textarea id="jsonInput" class="tool-input" rows="6" placeholder="Paste JSON here..."></textarea>
+    <textarea id="input" class="tool-input" rows="6" placeholder="Paste JSON here..."></textarea>
     <button class="btn" onclick="jsonToCsv()">Convert JSON -> CSV</button>
     <h3>CSV to JSON</h3>
-    <textarea id="csvInput" class="tool-input" rows="6" placeholder="Paste CSV here..."></textarea>
+    <textarea id="input" class="tool-input" rows="6" placeholder="Paste CSV here..."></textarea>
     <button class="btn" onclick="csvToJson()">Convert CSV -> JSON</button>
-    <div id="jsoncsvResult" class="result"></div></div>
+    <div id="result" class="result"></div></div>
 </div>
 <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>

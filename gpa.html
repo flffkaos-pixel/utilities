@@ -185,17 +185,41 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<div class="flex items-center gap-stack-md">
+<button id="darkToggle" class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/5 p-2 rounded-full transition-all" onclick="toggleDark()">dark_mode</button>
+<button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
+</div>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
+
 <div class="tool-card">
-            <div class="scale-select">
-                <label>GPA Scale</label>
-                <div class="scale-options">
-                    <button class="scale-btn active" onclick="setScale(4.0)" id="scale4">4.0</button>
-                    <button class="scale-btn" onclick="setScale(4.3)" id="scale43">4.3</button>
-                    <button class="scale-btn" onclick="setScale(5.0)" id="scale5">5.0</button>
-                    <button class="scale-btn" onclick="setScale(7.0)" id="scale7">7.0</button></div></div>
+    <h1><span class="lang-ko">GPA 계산기</span><span class="lang-en">GPA Calculator</span></h1>
+    <div class="description">
+        <span class="lang-ko">학점(GPA)을 계산하세요. 과목별 학점과 성적을 입력하면 자동으로 계산됩니다.</span>
+        <span class="lang-en">Calculate your GPA. Enter course credits and grades to compute your GPA.</span>
+    </div>
+    <div style="margin-bottom:12px">
+        <label>Grade Scale</label>
+        <select id="gradeScale" class="tool-input">
+            <option value="4.0">4.0 Scale</option>
+            <option value="4.3">4.3 Scale</option>
+            <option value="4.5">4.5 Scale</option>
+            <option value="7.0">7.0 Scale</option>
+        </select>
+    </div>
+    <div id="courses"></div>
+    <div class="btn-group" style="margin-top:12px">
+        <button class="btn" onclick="addCourse()">+ Add Course</button>
+        <button class="btn" onclick="calculateGPA()" style="background:#883700">Calculate GPA</button>
+        <button class="btn" onclick="resetCourses()" style="background:#5f5e60">Reset</button>
+    </div>
+    <div id="result" class="result" style="display:none">
+        <div style="font-size:14px;color:#414753">Total Credits: <span id="totalCredits"></span></div>
+        <div style="font-size:14px;color:#414753">Total Courses: <span id="totalCourses"></span></div>
+        <div id="gpaValue" style="font-size:28px;font-weight:700;color:#004e9f;margin-top:8px"></div>
+    </div>
+</div></div>
 <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
 </div>
@@ -319,5 +343,37 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
         }
         
         (adsbygoogle = window.adsbygoogle || []).push({});</script>
+function resetCourses() { document.getElementById("courses").innerHTML = ""; document.getElementById("result").style.display = "none"; }
+
+
+<script>
+var siteLang = localStorage.getItem('site-lang') || 'ko';
+document.body.classList.toggle('en', siteLang === 'en');
+(function() {
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+})();
+function toggleLang() {
+  siteLang = siteLang === 'ko' ? 'en' : 'ko';
+  localStorage.setItem('site-lang', siteLang);
+  document.body.classList.toggle('en', siteLang === 'en');
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+}
+var darkMode = localStorage.getItem('darkMode') === 'true' || (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (darkMode) document.documentElement.classList.add('dark');
+function toggleDark() {
+  document.documentElement.classList.toggle('dark');
+  localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+  var dt = document.getElementById('darkToggle');
+  if (dt) dt.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'HangulMode' || e.keyCode === 229) {
+    e.preventDefault();
+    toggleLang();
+  }
+});
+</script>
 </body>
 </html>

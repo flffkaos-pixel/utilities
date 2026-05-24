@@ -115,12 +115,16 @@ body.en .lang-en{display:inline}
 </style>
 </head>
 <body class="bg-background">
-<script>var lang=localStorage.getItem('lang')||'ko';document.body.classList.toggle('en',lang==='en');</script>
+<script>var lang=localStorage.getItem('site-lang')||localStorage.getItem('lang')||'ko';document.body.classList.toggle('en',lang==='en');</script>
 <div class="max-w-[900px] mx-auto px-4 py-8">
   <a href="index.html" class="inline-flex items-center gap-1 text-sm text-on-surface-variant hover:text-primary mb-4 transition-colors">
     <span class="material-symbols-outlined text-[18px]">arrow_back</span>
     <span class="lang-ko">홈으로</span><span class="lang-en">Back</span>
   </a>
+  <div style="float:right;display:flex;gap:8px;align-items:center;">
+    <button id="darkToggle" class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/5 p-2 rounded-full transition-all" onclick="toggleDark()" style="font-size:24px">dark_mode</button>
+    <button id="langToggle" class="font-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()" style="font-size:14px;background:transparent">English</button>
+  </div>
   <div class="tool-card">
     <div class="flex items-center gap-3 mb-2">
       <span class="text-3xl">😊</span>
@@ -250,5 +254,35 @@ renderEmojis(EMOJIS);
 </script>
 <ins class="adsbygoogle" style="display:block;margin:24px auto;max-width:900px" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
 <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+
+<script>
+var siteLang = localStorage.getItem('site-lang') || 'ko';
+document.body.classList.toggle('en', siteLang === 'en');
+(function() {
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+})();
+function toggleLang() {
+  siteLang = siteLang === 'ko' ? 'en' : 'ko';
+  localStorage.setItem('site-lang', siteLang);
+  document.body.classList.toggle('en', siteLang === 'en');
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+}
+var darkMode = localStorage.getItem('darkMode') === 'true' || (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (darkMode) document.documentElement.classList.add('dark');
+function toggleDark() {
+  document.documentElement.classList.toggle('dark');
+  localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+  var dt = document.getElementById('darkToggle');
+  if (dt) dt.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'HangulMode' || e.keyCode === 229) {
+    e.preventDefault();
+    toggleLang();
+  }
+});
+</script>
 </body>
 </html>

@@ -183,13 +183,17 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 <button onclick="location.href='index.html'" class="p-2 hover:bg-surface-container rounded-full transition-colors cursor-pointer">
 <span class="material-symbols-outlined text-primary" data-icon="arrow_back">arrow_back</span>
 </button>
-<h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
+<h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'"><span class="lang-ko">Free Utilities</span><span class="lang-en">Free Utilities</span></h1>
+</div>
+<div class="flex items-center gap-stack-md">
+<button id="darkToggle" class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/5 p-2 rounded-full transition-all" onclick="toggleDark()">dark_mode</button>
+<button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
 </div>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
 <div class="tool-card"><div class="header">
-            <h1>? 카운트다운 타이머</h1></div>
+            <h1><span class="lang-ko">카운트다운 타이머</span><span class="lang-en">Countdown Timer</span></h1></div>
     <div class="timer-display" id="display" style="font-size:48px;font-weight:700;text-align:center;padding:24px;background:#f2f3fc;border-radius:0.75rem;margin-bottom:16px;color:#004e9f">00:00:00</div>
     <div class="input-row" style="display:flex;gap:12px;margin-bottom:16px">
         <input type="number" id="hours" placeholder="Hours" value="0" min="0" class="tool-input" style="flex:1">
@@ -268,5 +272,35 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
         function reset() { stop(); totalSeconds = 0; updateDisplay(); }
         
         (adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<script>
+var siteLang = localStorage.getItem('site-lang') || 'ko';
+document.body.classList.toggle('en', siteLang === 'en');
+(function() {
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+})();
+function toggleLang() {
+  siteLang = siteLang === 'ko' ? 'en' : 'ko';
+  localStorage.setItem('site-lang', siteLang);
+  document.body.classList.toggle('en', siteLang === 'en');
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+}
+var darkMode = localStorage.getItem('darkMode') === 'true' || (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (darkMode) document.documentElement.classList.add('dark');
+function toggleDark() {
+  document.documentElement.classList.toggle('dark');
+  localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+  var dt = document.getElementById('darkToggle');
+  if (dt) dt.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'HangulMode' || e.keyCode === 229) {
+    e.preventDefault();
+    toggleLang();
+  }
+});
+</script>
 </body>
 </html>

@@ -185,19 +185,75 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<div class="flex items-center gap-stack-md">
+<button id="darkToggle" class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/5 p-2 rounded-full transition-all" onclick="toggleDark()">dark_mode</button>
+<button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
+</div>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
 <div class="tool-card"><a href="index.html" class="back">← Back to Home</a>
         
-        <h1>Percentage Calculator</h1>
-        <p class="subtitle">Free online percentage calculator for all your needs</p>
+        <h1><span class="lang-ko">퍼센트 계산기</span><span class="lang-en">Percentage Calculator</span></h1>
+        <p class="subtitle"><span class="lang-ko">온라인 퍼센트 계산기 - 비율, 할인, 팁 등을 계산하세요</span><span class="lang-en">Free online percentage calculator for all your needs</span></p>
         
         <div class="tabs">
-            <button class="tab active" onclick="showTab('of')">X of Y</button>
-            <button class="tab" onclick="showTab('change')">% Change</button>
-            <button class="tab" onclick="showTab('discount')">Discount</button>
-            <button class="tab" onclick="showTab('tip')">Tip</button></div>
+            <button class="tab active" onclick="showTab('of', event)"><span class="lang-ko">X의 Y%</span><span class="lang-en">X of Y</span></button>
+            <button class="tab" onclick="showTab('change', event)"><span class="lang-ko">% 변화</span><span class="lang-en">% Change</span></button>
+            <button class="tab" onclick="showTab('discount', event)"><span class="lang-ko">할인</span><span class="lang-en">Discount</span></button>
+            <button class="tab" onclick="showTab('tip', event)"><span class="lang-ko">팁</span><span class="lang-en">Tip</span></button></div>
+<div class="calc-section active" id="of" style="margin-top:16px">
+    <div class="input-group">
+        <label>What is</label>
+        <input type="number" id="percentOfNum" class="tool-input" placeholder="e.g. 15" value="15">
+        <label>% of</label>
+        <input type="number" id="percentOfTotal" class="tool-input" placeholder="e.g. 200" value="200">
+        <button class="btn" onclick="calcPercentOf()">Calculate</button>
+        <div id="resultOf" class="result" style="display:none">
+            <div id="resultOfValue" style="font-size:24px;font-weight:700;color:#004e9f"></div>
+        </div>
+    </div>
+</div>
+<div class="calc-section" id="change" style="margin-top:16px">
+    <div class="input-group">
+        <label>From</label>
+        <input type="number" id="changeFrom" class="tool-input" placeholder="e.g. 40" value="40">
+        <label>To</label>
+        <input type="number" id="changeTo" class="tool-input" placeholder="e.g. 60" value="60">
+        <button class="btn" onclick="calcPercentChange()">Calculate</button>
+        <div id="resultChange" class="result" style="display:none">
+            <div id="resultChangeValue" style="font-size:24px;font-weight:700;color:#004e9f"></div>
+        </div>
+    </div>
+</div>
+<div class="calc-section" id="discount" style="margin-top:16px">
+    <div class="input-group">
+        <label>Price</label>
+        <input type="number" id="discountPrice" class="tool-input" placeholder="e.g. 100" value="100">
+        <label>Discount %</label>
+        <input type="number" id="discountPercent" class="tool-input" placeholder="e.g. 20" value="20">
+        <button class="btn" onclick="calcDiscount()">Calculate</button>
+        <div id="resultDiscount" class="result" style="display:none">
+            <div id="resultDiscountValue" style="font-size:24px;font-weight:700;color:#004e9f"></div>
+            <div>You save: $<span id="discountSave"></span></div>
+        </div>
+    </div>
+</div>
+<div class="calc-section" id="tip" style="margin-top:16px">
+    <div class="input-group">
+        <label>Bill Amount</label>
+        <input type="number" id="tipBill" class="tool-input" placeholder="e.g. 50" value="50">
+        <label>Tip %</label>
+        <input type="number" id="tipPercent" class="tool-input" placeholder="e.g. 15" value="15">
+        <label>Number of People</label>
+        <input type="number" id="tipPeople" class="tool-input" placeholder="e.g. 1" value="1">
+        <button class="btn" onclick="calcTip()">Calculate</button>
+        <div id="resultTip" class="result" style="display:none">
+            <div id="resultTipValue" style="font-size:24px;font-weight:700;color:#004e9f"></div>
+        </div>
+    </div>
+</div>
+
 <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
 </div>
@@ -236,7 +292,7 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 <span class="text-xs">Home</span>
 </div>
 </nav>
-<script>function showTab(tabId) {
+<script>function showTab(tabId, event) {
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.calc-section').forEach(c => c.classList.remove('active'));
             event.target.classList.add('active');
@@ -271,9 +327,69 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
                 const save = (price * discount) / 100;
                 const final = price - save;
                 document.getElementById('resultDiscountValue').textContent = '
+
+<script>
+var siteLang = localStorage.getItem('site-lang') || 'ko';
+document.body.classList.toggle('en', siteLang === 'en');
+(function() {
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+})();
+function toggleLang() {
+  siteLang = siteLang === 'ko' ? 'en' : 'ko';
+  localStorage.setItem('site-lang', siteLang);
+  document.body.classList.toggle('en', siteLang === 'en');
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+}
+var darkMode = localStorage.getItem('darkMode') === 'true' || (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (darkMode) document.documentElement.classList.add('dark');
+function toggleDark() {
+  document.documentElement.classList.toggle('dark');
+  localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+  var dt = document.getElementById('darkToggle');
+  if (dt) dt.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'HangulMode' || e.keyCode === 229) {
+    e.preventDefault();
+    toggleLang();
+  }
+});
+</script>
 </body>
 </html> + final.toFixed(2);
                 document.getElementById('discountSave').textContent = '
+
+<script>
+var siteLang = localStorage.getItem('site-lang') || 'ko';
+document.body.classList.toggle('en', siteLang === 'en');
+(function() {
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+})();
+function toggleLang() {
+  siteLang = siteLang === 'ko' ? 'en' : 'ko';
+  localStorage.setItem('site-lang', siteLang);
+  document.body.classList.toggle('en', siteLang === 'en');
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+}
+var darkMode = localStorage.getItem('darkMode') === 'true' || (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (darkMode) document.documentElement.classList.add('dark');
+function toggleDark() {
+  document.documentElement.classList.toggle('dark');
+  localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+  var dt = document.getElementById('darkToggle');
+  if (dt) dt.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'HangulMode' || e.keyCode === 229) {
+    e.preventDefault();
+    toggleLang();
+  }
+});
+</script>
 </body>
 </html> + save.toFixed(2);
                 document.getElementById('resultDiscount').style.display = 'block';
@@ -288,6 +404,36 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
                 const tip = (bill * tipPercent) / 100;
                 const total = (bill + tip) / people;
                 document.getElementById('resultTipValue').textContent = '
+
+<script>
+var siteLang = localStorage.getItem('site-lang') || 'ko';
+document.body.classList.toggle('en', siteLang === 'en');
+(function() {
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+})();
+function toggleLang() {
+  siteLang = siteLang === 'ko' ? 'en' : 'ko';
+  localStorage.setItem('site-lang', siteLang);
+  document.body.classList.toggle('en', siteLang === 'en');
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+}
+var darkMode = localStorage.getItem('darkMode') === 'true' || (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (darkMode) document.documentElement.classList.add('dark');
+function toggleDark() {
+  document.documentElement.classList.toggle('dark');
+  localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+  var dt = document.getElementById('darkToggle');
+  if (dt) dt.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'HangulMode' || e.keyCode === 229) {
+    e.preventDefault();
+    toggleLang();
+  }
+});
+</script>
 </body>
 </html> + total.toFixed(2);
                 document.getElementById('resultTip').style.display = 'block';
@@ -295,5 +441,35 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
         }
         
         (adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<script>
+var siteLang = localStorage.getItem('site-lang') || 'ko';
+document.body.classList.toggle('en', siteLang === 'en');
+(function() {
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+})();
+function toggleLang() {
+  siteLang = siteLang === 'ko' ? 'en' : 'ko';
+  localStorage.setItem('site-lang', siteLang);
+  document.body.classList.toggle('en', siteLang === 'en');
+  var btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = siteLang === 'ko' ? 'English' : '한국어';
+}
+var darkMode = localStorage.getItem('darkMode') === 'true' || (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+if (darkMode) document.documentElement.classList.add('dark');
+function toggleDark() {
+  document.documentElement.classList.toggle('dark');
+  localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+  var dt = document.getElementById('darkToggle');
+  if (dt) dt.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'HangulMode' || e.keyCode === 229) {
+    e.preventDefault();
+    toggleLang();
+  }
+});
+</script>
 </body>
 </html>

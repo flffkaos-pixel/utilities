@@ -193,9 +193,14 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
 <div class="tool-card">
-    <div class="input-group"><label>Regular Expression</label><input type="text" id="regexPattern" class="tool-input" placeholder="[a-z]+" value="\w+"></div><div class="input-group"><label>Test String</label><textarea id="regexInput" class="tool-input" rows="6" placeholder="Enter test string...">Hello World 123</textarea></div>
+    <div class="input-group"><label>Regular Expression</label><input type="text" id="pattern" class="tool-input" placeholder="[a-z]+" value="\w+"></div><div class="input-group"><label>Test String</label><textarea id="text" class="tool-input" rows="6" placeholder="Enter test string...">Hello World 123</textarea></div>
+    <div style="display:flex;gap:16px;margin-bottom:16px">
+    <label><input type="checkbox" id="flag-g"> Global (g)</label>
+    <label><input type="checkbox" id="flag-i"> Case-insensitive (i)</label>
+    <label><input type="checkbox" id="flag-m"> Multiline (m)</label>
+</div>
     <button class="btn" onclick="test()">Test</button>
-    <div id="regexResult" class="result"></div>
+    <div id="result" class="result"></div>
 </div>
 </div>
 <div class="text-center py-8">
