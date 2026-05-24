@@ -192,25 +192,11 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><div class="header">
-            <a href="index.html" class="back">← Back</a>
-            
-<div class="calculator">
-    <div class="input-group"><label>Regular Expression</label><input type="text" id="regexPattern" class="tool-input" placeholder="[a-z]+" value="\w+"></div>
-    <div class="input-group"><label>Test String</label><textarea id="regexInput" class="tool-input" rows="6" placeholder="Enter test string...">Hello World 123</textarea></div>
-    <button class="btn" onclick="testRegex()">Test</button>
+<div class="tool-card">
+    <div class="input-group"><label>Regular Expression</label><input type="text" id="regexPattern" class="tool-input" placeholder="[a-z]+" value="\w+"></div><div class="input-group"><label>Test String</label><textarea id="regexInput" class="tool-input" rows="6" placeholder="Enter test string...">Hello World 123</textarea></div>
+    <button class="btn" onclick="test()">Test</button>
     <div id="regexResult" class="result"></div>
 </div>
-<div class="calculator">
-    <div class="input-group"><label>Regular Expression</label><input type="text" id="pattern" class="tool-input" placeholder="[a-z]+" value="\w+"></div>
-    <div class="flex gap-3 mb-3" style="display:flex;gap:12px;margin-bottom:12px">
-        <label><input type="checkbox" id="flag-g" checked> global (g)</label>
-        <label><input type="checkbox" id="flag-i"> case-insensitive (i)</label>
-        <label><input type="checkbox" id="flag-m"> multiline (m)</label>
-    </div>
-    <div class="input-group"><label>Test String</label><textarea id="text" class="tool-input" rows="6" placeholder="Enter test string...">Hello World 123</textarea></div>
-    <button class="btn" onclick="testRegex()">Test</button>
-    <div id="result" class="result"></div>
 </div>
 <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>

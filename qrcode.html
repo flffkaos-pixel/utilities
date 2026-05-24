@@ -212,12 +212,6 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
         <button class="btn" onclick="generateQR()">Generate QR / 생성</button>
         
         <div id="qr-result"></div></div>
-<div class="calculator">
-    <div class="input-group"><label>Enter text or URL</label><input type="text" id="qrInput" class="tool-input" placeholder="https://example.com" value="https://freeutilities.pages.dev"></div>
-    <button class="btn" onclick="generateQR()">Generate QR Code</button>
-    <div style="text-align:center;padding:24px"><canvas id="qrCanvas"></canvas></div>
-    <div id="qrCode" class="result" style="text-align:center"></div>
-</div>
 <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
 </div>
@@ -263,10 +257,10 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
             if (!text) return;
             const result = document.getElementById('qr-result');
             result.innerHTML = '';
-            QRCode.toCanvas(result.appendChild(document.createElement('canvas')), text, { width: 200 });
+            new QRCode(result, { text: text, width: 200, height: 200 });
         }
         
-        (adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </script>
 <script>
 var siteLang = localStorage.getItem('site-lang') || 'ko';
 document.body.classList.toggle('en', siteLang === 'en');

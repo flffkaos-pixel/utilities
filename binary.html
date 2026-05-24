@@ -197,17 +197,13 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><div class="header">
-            <a href="index.html" class="back"><span class="lang-ko">← 메인으로</span><span class="lang-en">← Back to Home</span></a>
-            
-    <div class="calculator">
+<div class="tool-card">
         <textarea id="input" class="tool-input" rows="6" placeholder="Enter text or binary..."></textarea>
         <div class="btn-group">
             <button class="btn" onclick="convert()">Convert</button>
             <button class="btn-secondary" onclick="copyResult()">Copy</button>
             <button class="btn-secondary" onclick="document.getElementById('input').value='';document.getElementById('result').textContent=''">Clear</button>
-        </div>
-        <div id="result" class="result">Result will appear here</div>
+        </div><div id="result" class="result">Result will appear here</div>
     </div>
 <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>

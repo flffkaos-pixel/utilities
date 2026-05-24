@@ -185,6 +185,10 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </button>
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
+<div class="flex items-center gap-stack-md">
+<button id="darkToggle" class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/5 p-2 rounded-full transition-all" onclick="toggleDark()">dark_mode</button>
+<button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all" onclick="toggleLang()">English</button>
+</div>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
@@ -193,26 +197,22 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
         <h1>Word Scramble</h1>
         <p class="subtitle">Scramble words for games and puzzles</p>
         
-        <div class="generator">
-            <div class="input-group">
+        <div class="input-group">
                 <label>Enter words (one per line)</label>
-                <textarea id="wordsInput" placeholder="apple&#10;banana&#10;cherry&#10;orange&#10;grape"></textarea></div>
-<div class="calculator">
-    <div class="input-group"><label>Enter text to scramble</label><input type="text" id="input" class="tool-input" placeholder="Enter a word or phrase" value="Hello World"></div>
-    <div class="btn-group">
-        <button class="btn" onclick="scramble()">Scramble</button>
-        <button class="btn-secondary" onclick="document.getElementById('result').textContent=''">Clear</button>
-    </div>
-    <div id="result" class="result" style="font-size:24px;text-align:center"></div>
-</div>
-<div class="calculator">
-    <div class="input-group"><label>Enter text to scramble</label><input type="text" id="input" class="tool-input" placeholder="Enter a word or phrase" value="Hello World"></div>
-    <div class="btn-group">
-        <button class="btn" onclick="scramble()">Scramble</button>
-        <button class="btn-secondary" onclick="document.getElementById('result').textContent=''">Clear</button>
-    </div>
-    <div id="result" class="result" style="font-size:24px;text-align:center"></div>
-</div>
+                <textarea id="wordsInput" placeholder="apple&#10;banana&#10;cherry&#10;orange&#10;grape"></textarea>
+            </div>
+            <div class="btn-group" style="margin-top:12px">
+                <label style="display:inline-flex;align-items:center;gap:6px;margin-right:16px;cursor:pointer">
+                    <input type="checkbox" id="shuffle"> Shuffle letters
+                </label>
+                <label style="display:inline-flex;align-items:center;gap:6px;cursor:pointer">
+                    <input type="checkbox" id="uppercase"> Uppercase
+                </label>
+            </div>
+            <button class="btn" onclick="scrambleWords()">Scramble</button>
+            <button class="btn-secondary" onclick="document.getElementById('scrambledResult').textContent=''">Clear</button>
+            <div id="scrambledResult" class="result" style="font-size:24px;text-align:center"></div>
+            <button class="btn-secondary" onclick="copyResult()">Copy Result</button></div>
 <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
 </div>

@@ -192,16 +192,12 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><div class="header">
-            <a href="index.html" class="back">← Back</a>
-            
-<div class="calculator">
-    <div id="display" style="font-size:48px;font-weight:700;text-align:center;padding:24px;background:#f2f3fc;border-radius:0.75rem;margin-bottom:16px;color:#004e9f;font-family:monospace">00:00:00.00</div>
-    <div class="btn-group">
-        <button id="startBtn" class="btn" onclick="startStop()">Start</button>
+<div class="tool-card">
+    <div id="display" style="font-size:48px;font-weight:700;text-align:center;padding:24px;background:#f2f3fc;border-radius:0.75rem;margin-bottom:16px;color:#004e9f;font-family:monospace">00:00:00.00</div><div class="btn-group">
+        <button id="startBtn" class="btn" onclick="start()">Start</button>
         <button id="stopBtn" class="btn-secondary" onclick="stop()" disabled>Stop</button>
         <button class="btn-secondary" onclick="reset()">Reset</button>
-        <button class="btn-secondary" onclick="lap()">Lap</button>
+        <button class="btn-secondary" onclick="lap()" disabled id="lapBtn">Lap</button>
     </div>
     <ul id="laps" style="list-style:none;padding:0;margin-top:16px"></ul>
 </div>
@@ -285,6 +281,14 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
             }
         }
         
+        function lap() {
+            if (!running) return;
+            lapCount++;
+            var li = document.createElement('li');
+            li.textContent = 'Lap ' + lapCount + ': ' + document.getElementById('display').textContent;
+            li.style.cssText = 'padding:8px 12px;border-bottom:1px solid #e0e0e0;font-family:monospace';
+            document.getElementById('laps').appendChild(li);
+        }
         function reset() {
             running = false;
             elapsed = 0;

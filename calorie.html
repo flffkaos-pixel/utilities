@@ -188,55 +188,11 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><a href="index.html" class="back">← Back to Home</a>
-        
-        <h1>Calorie Calculator</h1>
-        <p class="subtitle">Calculate your daily calorie needs</p>
-        
-        <div class="calculator">
+<div class="tool-card">
             <div class="goals">
                 <button class="goal-btn active" onclick="setGoal('lose')" id="goalLose">Weigh Loss</button>
                 <button class="goal-btn" onclick="setGoal('maintain')" id="goalMaintain">Maintain</button>
-                <button class="goal-btn" onclick="setGoal('gain')" id="goalGain">Weight Gain</button></div>
-<div class="calculator">
-    <div class="input-group">
-        <label>Gender</label>
-        <select id="gender" class="tool-input">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-        </select>
-    </div>
-    <div class="input-group">
-        <label>Weight (kg)</label>
-        <input type="number" id="weight" class="tool-input" placeholder="Weight in kg">
-    </div>
-    <div class="input-group">
-        <label>Height (cm)</label>
-        <input type="number" id="height" class="tool-input" placeholder="Height in cm">
-    </div>
-    <div class="input-group">
-        <label>Age</label>
-        <input type="number" id="age" class="tool-input" placeholder="Age">
-    </div>
-    <div class="input-group">
-        <label>Activity Level</label>
-        <select id="activity" class="tool-input">
-            <option value="1.2">Sedentary (little/no exercise)</option>
-            <option value="1.375">Light (1-3 days/week)</option>
-            <option value="1.55" selected>Moderate (3-5 days/week)</option>
-            <option value="1.725">Active (6-7 days/week)</option>
-            <option value="1.9">Very Active (2x/day)</option>
-        </select>
-    </div>
-    <button class="btn" onclick="calculateCalorie()">Calculate</button>
-    <div class="result" id="result" style="display:none">
-        <div class="stats-grid">
-            <div class="stat-box"><div class="stat-label">Weight Loss</div><div class="stat-num" id="calorieLoss">-</div><div class="stat-label">cal/day</div></div>
-            <div class="stat-box"><div class="stat-label">Maintain</div><div class="stat-num" id="calorieMaintain">-</div><div class="stat-label">cal/day</div></div>
-            <div class="stat-box"><div class="stat-label">Weight Gain</div><div class="stat-num" id="calorieGain">-</div><div class="stat-label">cal/day</div></div>
-        </div>
-    </div>
-</div>
+                <button class="goal-btn" onclick="setGoal('gain')" id="goalGain">Weight Gain</button></div></div>
 <div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
 </div>

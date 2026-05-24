@@ -151,7 +151,7 @@ document.body.classList.toggle('en', lang === 'en');
 <h1 class="font-h2 text-h2 font-bold tracking-tight text-primary cursor-pointer" onclick="location.href='index.html'">Free Utilities</h1>
 </div>
 <button id="darkToggle" class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/5 p-2 rounded-full transition-all" onclick="toggleDark()">dark_mode</button>
-<button id="langToggle" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all"><span id="langBtnText">English</span></button>
+<button id="langToggle" onclick="toggleLang()" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all"><span id="langBtnText">English</span></button>
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
@@ -207,9 +207,6 @@ function applyLang(l) {
   document.getElementById('langBtnText').textContent = l === 'ko' ? 'English' : '한국어';
   document.getElementById('page-title').textContent = l === 'ko' ? '모든 도구 - Free Utilities' : 'All Tools - Free Utilities';
 }
-document.getElementById('langToggle').addEventListener('click', function() {
-  applyLang(lang === 'ko' ? 'en' : 'ko');
-});
 applyLang(lang);
 
 var allTools = [

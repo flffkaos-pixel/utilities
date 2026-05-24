@@ -192,12 +192,8 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </div>
 </header>
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
-<div class="tool-card"><div class="header">
-            <a href="index.html" class="back">← Back</a>
-            
-<div class="calculator">
-    <div class="input-group"><label>Enter text</label><textarea id="input" class="tool-input" rows="6" placeholder="Enter text to reverse line numbering..."></textarea></div>
-    <button class="btn" onclick="process()">Process</button>
+<div class="tool-card">
+    <div class="input-group"><label>Enter text</label><textarea id="input" class="tool-input" rows="6" placeholder="Enter text to reverse line numbering..."></textarea></div><button class="btn" onclick="removeLineNumbers()">Process</button>
     <div id="result" class="result"></div>
 </div>
 <div class="text-center py-8">
