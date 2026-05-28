@@ -3,8 +3,13 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title id="page-title">무료 온라인 유틸리티 모음 | 개발자와 직장인을 위한 필수 도구</title>
-<meta id="metaDesc" name="description" content="무료 온라인 유틸리티 도구 모음 - 텍스트 변환, QR 코드 생성, 비밀번호 생성, JSON 정렬, Base64 인코더, 색상 변환, 단위 변환, BMI 계산기, 대출 계산기 등 개발자와 직장인을 위한 필수 도구입니다. 모든 도구 무료 사용, 설치 필요 없음."/>
+<title id="page-title">Free Utilities - 무료 온라인 유틸리티 도구 100선</title>
+<meta id="metaDesc" name="description" content="100가지 무료 온라인 유틸리티 도구. 텍스트 변환, QR 코드, JSON, 암호 생성, 단위 변환 등 개발자와 직장인을 위한 필수 도구를 설치 없이 사용하세요."/>
+<meta property="og:title" content="Free Utilities - 무료 온라인 유틸리티 도구 모음"/>
+<meta property="og:description" content="100가지 무료 온라인 유틸리티 도구. 개발자와 직장인을 위한 필수 도구를 설치 없이 사용하세요."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://freeutilities.pages.dev/"/>
+<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png"/>
 <meta name="google-site-verification" content="90ObN9YY1jH6ZHRfL3tGx5HvKoHC8boT6jdFhbSe80s"/>
 <meta name="naver-site-verification" content="81cf6b9cc57541427b735097f0758e94c486e38e"/>
 <meta name="keywords" content="free online utilities, text converter, QR code generator, password generator, JSON formatter, Base64 encoder, color converter, unit converter, BMI calculator, loan calculator, discount calculator, developer tools, web tools, word counter, hash generator, 무료 유틸리티, 온라인 도구"/>
@@ -622,14 +627,20 @@ function applyLang(l) {
   var el;
   el = document.getElementById('langBtnText'); if (el) el.textContent = l === 'ko' ? 'English' : '한국어';
   el = document.getElementById('page-title'); if (el) el.textContent = l === 'ko'
-    ? '무료 온라인 유틸리티 모음 | 개발자와 직장인을 위한 필수 도구'
-    : 'Free Online Utilities | Essential Tools for Developers';
+    ? 'Free Utilities - 무료 온라인 유틸리티 도구 100선'
+    : 'Free Utilities - 100 Free Online Utility Tools';
+  el = document.querySelector('meta[property="og:title"]'); if (el) el.content = l === 'ko'
+    ? 'Free Utilities - 무료 온라인 유틸리티 도구 100선'
+    : 'Free Utilities - 100 Free Online Utility Tools';
   el = document.getElementById('searchInput'); if (el) el.placeholder = l === 'ko'
     ? '필요한 도구를 검색하세요 (예: 글자 수 세기, JSON)'
     : 'Search tools (e.g., word counter, JSON)';
   el = document.getElementById('metaDesc'); if (el) el.content = l === 'ko'
-    ? '무료 온라인 유틸리티 도구 모음 - 텍스트 변환, QR 코드 생성, 비밀번호 생성, JSON 정렬, Base64 인코더, 색상 변환, 단위 변환, BMI 계산기, 대출 계산기 등 개발자와 직장인을 위한 필수 도구입니다. 모든 도구 무료 사용, 설치 필요 없음.'
-    : 'Free online utility tools - text converter, QR code generator, password generator, JSON formatter, Base64 encoder, color converter, unit converter, BMI calculator, loan calculator, and more. All free, no installation required.';
+    ? '100가지 무료 온라인 유틸리티 도구. 텍스트 변환, QR 코드, JSON, 암호 생성, 단위 변환 등 개발자와 직장인을 위한 필수 도구를 설치 없이 사용하세요.'
+    : '100 free online utility tools: text converter, QR code, JSON, password generator, unit converter. Essential tools for developers and office workers. No install required.';
+  el = document.querySelector('meta[property="og:description"]'); if (el) el.content = l === 'ko'
+    ? '100가지 무료 온라인 유틸리티 도구. 개발자와 직장인을 위한 필수 도구를 설치 없이 사용하세요.'
+    : '100 free online utility tools for developers and office workers. No install required.';
 }
 
 applyLang(lang);
