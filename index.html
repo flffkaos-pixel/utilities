@@ -10,6 +10,10 @@
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://freeutilities.pages.dev/"/>
 <meta property="og:image" content="https://freeutilities.pages.dev/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Free Utilities - 100 Free Online Utility Tools"/>
+<meta name="twitter:description" content="100 free online utility tools: text converter, QR code, JSON, password generator, unit converter. Essential tools for developers and office workers."/>
+<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png"/>
 <meta name="google-site-verification" content="90ObN9YY1jH6ZHRfL3tGx5HvKoHC8boT6jdFhbSe80s"/>
 <meta name="naver-site-verification" content="81cf6b9cc57541427b735097f0758e94c486e38e"/>
 <meta name="keywords" content="free online utilities, text converter, QR code generator, password generator, JSON formatter, Base64 encoder, color converter, unit converter, BMI calculator, loan calculator, discount calculator, developer tools, web tools, word counter, hash generator, 무료 유틸리티, 온라인 도구"/>
@@ -22,21 +26,117 @@
 <script type="application/ld+json" id="schemaJson">
 {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Free Online Utilities",
-    "alternateName": "무료 유틸리티 모음",
-    "url": "https://freeutilities.pages.dev/",
-    "description": "Free online utility tools for developers and professionals",
-    "author": {
-        "@type": "Organization",
-        "name": "Free Utilities"
-    },
-    "inLanguage": ["ko", "en"],
-    "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://freeutilities.pages.dev/?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-    }
+    "@graph": [
+        {
+            "@type": "WebSite",
+            "@id": "https://freeutilities.pages.dev/#website",
+            "name": "Free Online Utilities",
+            "alternateName": "무료 유틸리티 모음",
+            "url": "https://freeutilities.pages.dev/",
+            "description": "100 free online utility tools for developers and professionals",
+            "author": {"@id": "https://freeutilities.pages.dev/#organization"},
+            "inLanguage": ["ko", "en"],
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://freeutilities.pages.dev/?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
+        },
+        {
+            "@type": "Organization",
+            "@id": "https://freeutilities.pages.dev/#organization",
+            "name": "Free Utilities",
+            "url": "https://freeutilities.pages.dev/",
+            "description": "Provider of 100% free online utility tools",
+            "inLanguage": ["ko", "en"]
+        },
+        {
+            "@type": "WebPage",
+            "@id": "https://freeutilities.pages.dev/#webpage",
+            "url": "https://freeutilities.pages.dev/",
+            "name": "Free Utilities - 무료 온라인 유틸리티 도구 100선",
+            "description": "100가지 무료 온라인 유틸리티 도구. 텍스트 변환, QR 코드, JSON, 암호 생성, 단위 변환 등 개발자와 직장인을 위한 필수 도구를 설치 없이 사용하세요.",
+            "inLanguage": ["ko", "en"],
+            "isPartOf": {"@id": "https://freeutilities.pages.dev/#website"},
+            "about": {"@id": "https://freeutilities.pages.dev/#organization"}
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://freeutilities.pages.dev/#breadcrumb",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://freeutilities.pages.dev/"}
+            ]
+        },
+        {
+            "@type": "FAQPage",
+            "@id": "https://freeutilities.pages.dev/#faq",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "What is Free Utilities?",
+                    "inLanguage": "en",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Free Utilities is a collection of 100+ free online utility tools for developers and office workers. Tools include text converters, QR code generators, password generators, JSON formatters, unit converters, calculators, and more. All tools run in your browser with no installation required."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "무료 유틸리티는 무엇인가요?",
+                    "inLanguage": "ko",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Free Utilities는 개발자와 직장인을 위한 100개 이상의 무료 온라인 유틸리티 도구 모음입니다. 텍스트 변환, QR 코드 생성, 비밀번호 생성, JSON 포맷터, 단위 변환, 계산기 등 다양한 도구를 설치 없이 브라우저에서 바로 사용할 수 있습니다."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Are the tools really free?",
+                    "inLanguage": "en",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes, all tools on Free Utilities are 100% free to use. There are no hidden fees, no registration required, and no usage limits."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Is my data safe?",
+                    "inLanguage": "en",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. All data processing happens locally in your browser. No data is ever sent to or stored on our servers. Your privacy is our top priority."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "데이터는 안전한가요?",
+                    "inLanguage": "ko",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "네, 모든 데이터 처리는 사용자의 브라우저 내에서만 이루어집니다. 어떤 데이터도 서버에 전송되거나 저장되지 않으므로 안전하게 사용할 수 있습니다."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Do I need to install anything?",
+                    "inLanguage": "en",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "No installation is required. All tools work directly in your web browser on any device - desktop, tablet, or mobile."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "설치가 필요한가요?",
+                    "inLanguage": "ko",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "설치가 필요 없습니다. 모든 도구는 웹 브라우저에서 직접 작동하며, 데스크톱, 태블릿, 모바일 등 모든 기기에서 사용할 수 있습니다."
+                    }
+                }
+            ]
+        }
+    ]
 }
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1955893232253258" crossorigin="anonymous"></script>
@@ -333,7 +433,7 @@ document.body.classList.toggle('en', lang === 'en');
 <div class="flex justify-between items-center h-[64px] px-gutter max-w-container-max mx-auto">
 <div class="flex items-center gap-stack-sm cursor-pointer active:opacity-70">
 <span class="material-symbols-outlined text-primary" data-icon="grid_view">grid_view</span>
-<h1 class="font-h2 text-h2 font-bold tracking-tight text-primary">Free Utilities</h1>
+<span class="font-h2 text-h2 font-bold tracking-tight text-primary">Free Utilities</span>
 </div>
 <div class="flex items-center gap-stack-md">
 <nav class="hidden md:flex gap-stack-md">
@@ -349,12 +449,10 @@ document.body.classList.toggle('en', lang === 'en');
 <main class="pt-[64px]">
 <!-- Hero Section -->
 <section class="py-section-padding-y px-gutter max-w-container-max mx-auto text-center">
-<h1 class="font-h1 text-h1 text-on-background mb-stack-md max-w-3xl mx-auto lang-ko">
-                모든 유틸리티를 한 곳에서
-            </h1>
-<h1 class="font-h1 text-h1 text-on-background mb-stack-md max-w-3xl mx-auto lang-en">
-                All Utilities in One Place
-            </h1>
+<h1 class="font-h1 text-h1 text-on-background mb-stack-md max-w-3xl mx-auto">
+<span class="lang-ko">모든 유틸리티를 한 곳에서</span>
+<span class="lang-en">All Utilities in One Place</span>
+</h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-stack-lg lang-ko">
                 개발자와 직장인을 위한 100% 무료 온라인 도구 모음입니다. 설치 없이 브라우저에서 바로 사용 가능하며, 어떠한 데이터도 서버에 저장되지 않습니다.
             </p>
@@ -564,6 +662,53 @@ document.body.classList.toggle('en', lang === 'en');
 <span class="font-body-md lang-en">No registration required.</span>
 </li>
 </ul>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-section-padding-y px-gutter max-w-container-max mx-auto" id="faq">
+<h2 class="font-h2 text-h2 text-on-surface text-center mb-stack-lg lang-ko">자주 묻는 질문</h2>
+<h2 class="font-h2 text-h2 text-on-surface text-center mb-stack-lg lang-en">Frequently Asked Questions</h2>
+<div class="max-w-3xl mx-auto space-y-stack-md" itemscope="" itemtype="https://schema.org/FAQPage">
+<div class="faq-item border border-outline-variant/30 rounded-xl p-stack-md bg-surface-container-lowest" itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question">
+<h3 class="font-h3 text-h3 text-on-surface mb-stack-sm lang-ko" itemprop="name">무료 유틸리티는 무엇인가요?</h3>
+<h3 class="font-h3 text-h3 text-on-surface mb-stack-sm lang-en" itemprop="name">What is Free Utilities?</h3>
+<div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+<p class="font-body-md text-body-md text-on-surface-variant lang-ko" itemprop="text">Free Utilities는 개발자와 직장인을 위한 100개 이상의 무료 온라인 유틸리티 도구 모음입니다. 텍스트 변환, QR 코드 생성, 비밀번호 생성, JSON 포맷터, 단위 변환, 계산기 등 다양한 도구를 설치 없이 브라우저에서 바로 사용할 수 있습니다.</p>
+<p class="font-body-md text-body-md text-on-surface-variant lang-en" itemprop="text">Free Utilities is a collection of 100+ free online utility tools for developers and office workers. Tools include text converters, QR code generators, password generators, JSON formatters, unit converters, calculators, and more. All tools run in your browser with no installation required.</p>
+</div>
+</div>
+<div class="faq-item border border-outline-variant/30 rounded-xl p-stack-md bg-surface-container-lowest" itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question">
+<h3 class="font-h3 text-h3 text-on-surface mb-stack-sm lang-ko" itemprop="name">설치가 필요한가요?</h3>
+<h3 class="font-h3 text-h3 text-on-surface mb-stack-sm lang-en" itemprop="name">Do I need to install anything?</h3>
+<div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+<p class="font-body-md text-body-md text-on-surface-variant lang-ko" itemprop="text">설치가 필요 없습니다. 모든 도구는 웹 브라우저에서 직접 작동하며, 데스크톱, 태블릿, 모바일 등 모든 기기에서 사용할 수 있습니다.</p>
+<p class="font-body-md text-body-md text-on-surface-variant lang-en" itemprop="text">No installation required. All tools work directly in your web browser on any device - desktop, tablet, or mobile.</p>
+</div>
+</div>
+<div class="faq-item border border-outline-variant/30 rounded-xl p-stack-md bg-surface-container-lowest" itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question">
+<h3 class="font-h3 text-h3 text-on-surface mb-stack-sm lang-ko" itemprop="name">데이터는 안전한가요?</h3>
+<h3 class="font-h3 text-h3 text-on-surface mb-stack-sm lang-en" itemprop="name">Is my data safe?</h3>
+<div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+<p class="font-body-md text-body-md text-on-surface-variant lang-ko" itemprop="text">네, 모든 데이터 처리는 사용자의 브라우저 내에서만 이루어집니다. 어떤 데이터도 서버에 전송되거나 저장되지 않으므로 안전하게 사용할 수 있습니다.</p>
+<p class="font-body-md text-body-md text-on-surface-variant lang-en" itemprop="text">Yes. All data processing happens locally in your browser. No data is ever sent to or stored on our servers. Your privacy is our top priority.</p>
+</div>
+</div>
+<div class="faq-item border border-outline-variant/30 rounded-xl p-stack-md bg-surface-container-lowest" itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question">
+<h3 class="font-h3 text-h3 text-on-surface mb-stack-sm lang-ko" itemprop="name">회원가입이 필요한가요?</h3>
+<h3 class="font-h3 text-h3 text-on-surface mb-stack-sm lang-en" itemprop="name">Do I need to register?</h3>
+<div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+<p class="font-body-md text-body-md text-on-surface-variant lang-ko" itemprop="text">회원가입이 전혀 필요 없습니다. 모든 도구를 로그인 없이 즉시 무료로 사용할 수 있습니다.</p>
+<p class="font-body-md text-body-md text-on-surface-variant lang-en" itemprop="text">No registration required. All tools are free to use immediately without signing up or logging in.</p>
+</div>
+</div>
+<div class="faq-item border border-outline-variant/30 rounded-xl p-stack-md bg-surface-container-lowest" itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question">
+<h3 class="font-h3 text-h3 text-on-surface mb-stack-sm lang-ko" itemprop="name">어떤 도구들이 있나요?</h3>
+<h3 class="font-h3 text-h3 text-on-surface mb-stack-sm lang-en" itemprop="name">What tools are available?</h3>
+<div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+<p class="font-body-md text-body-md text-on-surface-variant lang-ko" itemprop="text">텍스트 도구(대소문자 변환, 글자 수 세기), 개발자 도구(JSON 포맷터, Base64 인코더, QR 코드 생성), 계산기(BMI, D-Day, 할인율), 단위 변환기, 비밀번호 생성기 등 100개 이상의 다양한 도구를 제공합니다.</p>
+<p class="font-body-md text-body-md text-on-surface-variant lang-en" itemprop="text">We offer 100+ tools including: text tools (case converter, word counter), developer tools (JSON formatter, Base64 encoder, QR code generator), calculators (BMI, D-Day, discount), unit converters, password generator, and many more.</p>
+</div>
 </div>
 </div>
 </section>
