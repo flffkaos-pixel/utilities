@@ -258,7 +258,7 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 <p class="description"><span class="lang-ko">25분 집중, 5분 휴식의 포모도로 기법으로 생산성을 높이세요. 모든 처리는 브라우저에서만 이루어집니다.</span><span class="lang-en">Boost productivity with the Pomodoro technique: 25 minutes of focus, 5 minutes of rest. All processing happens locally in your browser.</span></p>
 <div style="text-align:center; padding:24px 0;">
 <div id="timerDisplay" style="font-size:96px; font-weight:700; color:#004e9f; font-variant-numeric:tabular-nums; line-height:1;">25:00</div>
-<div id="timerPhase" style="font-size:18px; color:#414753; margin-top:8px;">FOCUS</div>
+<div id="timerPhase" style="font-size:18px; color:#414753; margin-top:8px;"><span class="lang-ko">집중</span><span class="lang-en">FOCUS</span></div>
 </div>
 <div class="btn-group" style="justify-content:center;">
 <button class="btn-primary" id="startBtn" onclick="startTimer()"><span class="lang-ko">시작</span><span class="lang-en">Start</span></button>
@@ -272,12 +272,9 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 <div class="tip-box">
 <h3><span class="lang-ko">포모도로 기법이란?</span><span class="lang-en">What is the Pomodoro Technique?</span></h3>
 <ul>
-<li class="lang-ko">25분 동안 한 가지 작업에 집중합니다</li>
-<li class="lang-en">Focus on a single task for 25 minutes</li>
-<li class="lang-ko">5분 짧은 휴식을 취합니다</li>
-<li class="lang-en">Take a 5-minute short break</li>
-<li class="lang-ko">4세트 완료 후 15-30분 긴 휴식을 가집니다</li>
-<li class="lang-en">After 4 sessions, take a 15-30 minute long break</li>
+<li><span class="lang-ko">25분 동안 한 가지 작업에 집중합니다</span><span class="lang-en">Focus on a single task for 25 minutes</span></li>
+<li><span class="lang-ko">5분 짧은 휴식을 취합니다</span><span class="lang-en">Take a 5-minute short break</span></li>
+<li><span class="lang-ko">4세트 완료 후 15-30분 긴 휴식을 가집니다</span><span class="lang-en">After 4 sessions, take a 15-30 minute long break</span></li>
 </ul>
 </div>
 </div>
@@ -296,13 +293,13 @@ function format(s) { var m = Math.floor(s/60), sec = s%60; return (m<10?'0':'')+
 function updateDisplay() {
   document.getElementById('timerDisplay').textContent = format(currentSeconds);
   var ph = document.getElementById('timerPhase');
-  ph.textContent = isFocus ? 'FOCUS' : 'BREAK';
+  ph.innerHTML = isFocus ? '<span class="lang-ko">집중</span><span class="lang-en">FOCUS</span>' : '<span class="lang-ko">휴식</span><span class="lang-en">BREAK</span>';
   ph.style.color = isFocus ? '#004e9f' : '#00875a';
 }
 function startTimer() {
   if (isRunning) return;
   isRunning = true;
-  document.getElementById('startBtn').textContent = 'Running...';
+  document.getElementById('startBtn').innerHTML = '<span class="lang-ko">진행 중...</span><span class="lang-en">Running...</span>';
   timerInterval = setInterval(function() {
     currentSeconds--;
     if (currentSeconds < 0) {

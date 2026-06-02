@@ -257,23 +257,23 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 <h1><span class="material-symbols-outlined" data-icon="code" style="vertical-align:middle">code</span> <span class="lang-ko">메타 태그 생성기</span><span class="lang-en">Meta Tag Generator</span></h1>
 <p class="description"><span class="lang-ko">SEO와 소셜 공유에 필요한 메타 태그를 자동으로 생성합니다. Open Graph, Twitter Card 모두 지원합니다.</span><span class="lang-en">Generate all the meta tags you need for SEO and social sharing. Open Graph and Twitter Card supported.</span></p>
 <div style="display:grid; gap:12px;">
-<label><b>Page Title</b><input type="text" id="title" class="tool-input" placeholder="My Awesome Page" value="My Awesome Page"/></label>
-<label><b>Description</b><textarea id="desc" class="tool-input" rows="3" placeholder="A short description of your page">A short description of your page that appears in search results.</textarea></label>
-<label><b>URL</b><input type="url" id="url" class="tool-input" placeholder="https://example.com" value="https://example.com"/></label>
-<label><b>Image URL (OG Image)</b><input type="url" id="image" class="tool-input" placeholder="https://example.com/og.png" value="https://example.com/og.png"/></label>
-<label><b>Site Name</b><input type="text" id="siteName" class="tool-input" placeholder="My Site" value="My Site"/></label>
-<label><b>Twitter Handle (optional)</b><input type="text" id="twitter" class="tool-input" placeholder="@myhandle" value=""/></label>
-<label><b>Locale</b>
+<label><b><span class="lang-ko">페이지 제목</span><span class="lang-en">Page Title</span></b><input type="text" id="title" class="tool-input" placeholder="My Awesome Page" value="My Awesome Page"/></label>
+<label><b><span class="lang-ko">설명</span><span class="lang-en">Description</span></b><textarea id="desc" class="tool-input" rows="3">A short description of your page that appears in search results.</textarea></label>
+<label><b><span class="lang-ko">URL</span><span class="lang-en">URL</span></b><input type="url" id="url" class="tool-input" placeholder="https://example.com" value="https://example.com"/></label>
+<label><b><span class="lang-ko">이미지 URL (OG)</span><span class="lang-en">Image URL (OG)</span></b><input type="url" id="image" class="tool-input" placeholder="https://example.com/og.png" value="https://example.com/og.png"/></label>
+<label><b><span class="lang-ko">사이트 이름</span><span class="lang-en">Site Name</span></b><input type="text" id="siteName" class="tool-input" placeholder="My Site" value="My Site"/></label>
+<label><b><span class="lang-ko">Twitter 핸들 (선택)</span><span class="lang-en">Twitter Handle (optional)</span></b><input type="text" id="twitter" class="tool-input" placeholder="@myhandle" value=""/></label>
+<label><b><span class="lang-ko">언어</span><span class="lang-en">Locale</span></b>
 <select id="locale" class="tool-input">
-<option value="ko_KR">ko_KR (Korean)</option>
-<option value="en_US" selected>en_US (English)</option>
-<option value="ja_JP">ja_JP (Japanese)</option>
-<option value="zh_CN">zh_CN (Chinese)</option>
+<option value="ko_KR"><span class="lang-ko">한국어 (ko_KR)</span><span class="lang-en">Korean (ko_KR)</span></option>
+<option value="en_US" selected><span class="lang-ko">영어 (en_US)</span><span class="lang-en">English (en_US)</span></option>
+<option value="ja_JP"><span class="lang-ko">일본어 (ja_JP)</span><span class="lang-en">Japanese (ja_JP)</span></option>
+<option value="zh_CN"><span class="lang-ko">중국어 (zh_CN)</span><span class="lang-en">Chinese (zh_CN)</span></option>
 </select>
 </label>
 </div>
 <div style="margin-top:16px;">
-<label style="font-weight:600; display:block; margin-bottom:8px;">Generated Meta Tags:</label>
+<label style="font-weight:600; display:block; margin-bottom:8px;"><span class="lang-ko">생성된 메타 태그</span><span class="lang-en">Generated Meta Tags</span>:</label>
 <textarea id="output" class="tool-output" rows="14" style="font-family:monospace; font-size:12px; width:100%; box-sizing:border-box;"></textarea>
 <button class="btn-primary" onclick="copyCode()"><span class="lang-ko">클립보드에 복사</span><span class="lang-en">Copy to Clipboard</span></button>
 </div>

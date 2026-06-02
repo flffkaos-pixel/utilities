@@ -258,13 +258,13 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 <p class="description"><span class="lang-ko">텍스트나 이모지로 파비콘을 즉시 생성하세요. PNG로 다운로드하여 사용할 수 있습니다.</span><span class="lang-en">Generate a favicon from text or emoji in seconds. Download as PNG and use anywhere.</span></p>
 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom:16px;">
 <div>
-<label style="font-weight:600; display:block; margin-bottom:8px;">Text or Emoji</label>
+<label style="font-weight:600; display:block; margin-bottom:8px;"><span class="lang-ko">텍스트 또는 이모지</span><span class="lang-en">Text or Emoji</span></label>
 <input type="text" id="favText" class="tool-input" value="F" maxlength="3"/>
-<label style="font-weight:600; display:block; margin:8px 0;">Background</label>
+<label style="font-weight:600; display:block; margin:8px 0;"><span class="lang-ko">배경색</span><span class="lang-en">Background</span></label>
 <input type="color" id="favBg" value="#0066cc" style="width:100%; height:50px; border:none; border-radius:0.5rem; cursor:pointer;"/>
-<label style="font-weight:600; display:block; margin:8px 0;">Text Color</label>
+<label style="font-weight:600; display:block; margin:8px 0;"><span class="lang-ko">글자색</span><span class="lang-en">Text Color</span></label>
 <input type="color" id="favColor" value="#ffffff" style="width:100%; height:50px; border:none; border-radius:0.5rem; cursor:pointer;"/>
-<label style="font-weight:600; display:block; margin:8px 0;">Size</label>
+<label style="font-weight:600; display:block; margin:8px 0;"><span class="lang-ko">크기</span><span class="lang-en">Size</span></label>
 <select id="favSize" class="tool-input">
 <option value="32">32x32</option>
 <option value="64" selected>64x64</option>
@@ -273,9 +273,9 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </select>
 </div>
 <div style="text-align:center;">
-<label style="font-weight:600; display:block; margin-bottom:8px;">Preview</label>
+<label style="font-weight:600; display:block; margin-bottom:8px;"><span class="lang-ko">미리보기</span><span class="lang-en">Preview</span></label>
 <canvas id="favCanvas" width="64" height="64" style="border:1px solid #c1c6d5; border-radius:0.5rem; image-rendering:pixelated; width:200px; height:200px;"></canvas>
-<div style="margin-top:8px; font-size:13px; color:#414753;">HTML usage:</div>
+<div style="margin-top:8px; font-size:13px; color:#414753;"><span class="lang-ko">HTML 사용법</span><span class="lang-en">HTML usage</span>:</div>
 <div id="htmlCode" class="tool-output" style="font-family:monospace; font-size:11px; margin-top:8px; text-align:left;"></div>
 </div>
 </div>

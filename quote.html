@@ -255,9 +255,9 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </div>
 <div class="tool-card">
 <h1><span class="material-symbols-outlined" data-icon="format_quote" style="vertical-align:middle">format_quote</span> <span class="lang-ko">오늘의 명언</span><span class="lang-en">Daily Quote</span></h1>
-<p class="description"><span class="lang-ko">매일 새로운 명언으로 동기부여를 받으세요. 한/영 명언을 랜덤으로 보여줍니다.</span><span class="lang-en">Get inspired with a new quote every day. Random Korean and English quotes.</span></p>
+<p class="description"><span class="lang-ko">한글과 영문 명언을 랜덤으로 만나보세요. 매일 새로운 동기부여 메시지로 시작하세요.</span><span class="lang-en">Get inspired with random Korean and English quotes. Start your day with motivational wisdom.</span></p>
 <div id="quoteBox" class="result" style="text-align:center; padding:48px 24px; min-height:200px; display:flex; flex-direction:column; justify-content:center;">
-<div id="quoteText" style="font-size:24px; font-weight:600; line-height:1.5; color:#191c22; margin-bottom:16px;">명언을 불러오는 중...</div>
+<div id="quoteText" style="font-size:24px; font-weight:600; line-height:1.5; color:#191c22; margin-bottom:16px;"><span class="lang-ko">명언을 불러오는 중...</span><span class="lang-en">Loading quote...</span></div>
 <div id="quoteAuthor" style="font-size:16px; color:#414753;">— </div>
 </div>
 <div class="btn-group" style="justify-content:center; margin-top:16px;">
@@ -276,8 +276,6 @@ var quotes = [
   { ko: "천 리 길도 한 걸음부터.", en: "A journey of a thousand miles begins with a single step.", author: "Lao Tzu" },
   { ko: "노력은 배신하지 않는다.", en: "Effort never betrays you.", author: "Korean Proverb" },
   { ko: "할 수 있다고 믿으면, 이미 반은 이룬 것이다.", en: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
-  { ko: "행복은 습관이다. 그것을 몸에 익혀라.", en: "Happiness is a habit. Cultivate it.", author: "Elbert Hubbard" },
-  { ko: "가장 큰 영광은 한 번도 실패하지 않는 것이 아니라, 실패할 때마다 다시 일어서는 것이다.", en: "The greatest glory in living lies not in never falling, but in rising every time we fall.", author: "Confucius" },
   { ko: "인내는 쓰지만 그 열매는 달다.", en: "Patience is bitter, but its fruit is sweet.", author: "Jean-Jacques Rousseau" },
   { ko: "도전은 인생을 흥미롭게 만든다.", en: "Challenges are what make life interesting.", author: "Joshua J. Marine" }
 ];
@@ -285,7 +283,7 @@ var current = 0;
 function showQuote(i) {
   var q = quotes[i];
   var isEn = document.body.classList.contains('en');
-  document.getElementById('quoteText').textContent = isEn ? q.en : q.ko;
+  document.getElementById('quoteText').innerHTML = isEn ? q.en : q.ko;
   document.getElementById('quoteAuthor').textContent = '— ' + q.author;
 }
 function newQuote() { current = Math.floor(Math.random() * quotes.length); showQuote(current); }

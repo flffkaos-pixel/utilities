@@ -257,24 +257,24 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 <h1><span class="material-symbols-outlined" data-icon="savings" style="vertical-align:middle">savings</span> <span class="lang-ko">복리 계산기</span><span class="lang-en">Compound Interest Calculator</span></h1>
 <p class="description"><span class="lang-ko">초기 투자금, 월 적립금, 연 이자율, 기간을 입력하여 복리 수익을 계산하세요.</span><span class="lang-en">Calculate compound interest with initial investment, monthly contribution, annual rate, and years.</span></p>
 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
-<label><b>Initial Investment</b><input type="number" id="initial" class="tool-input" value="10000"/></label>
-<label><b>Monthly Contribution</b><input type="number" id="monthly" class="tool-input" value="100000"/></label>
-<label><b>Annual Interest Rate (%)</b><input type="number" id="rate" class="tool-input" value="5" step="0.1"/></label>
-<label><b>Years</b><input type="number" id="years" class="tool-input" value="10"/></label>
-<label><b>Compounding Frequency</b>
+<label><b><span class="lang-ko">초기 투자금</span><span class="lang-en">Initial Investment</span></b><input type="number" id="initial" class="tool-input" value="10000"/></label>
+<label><b><span class="lang-ko">월 적립금</span><span class="lang-en">Monthly Contribution</span></b><input type="number" id="monthly" class="tool-input" value="100000"/></label>
+<label><b><span class="lang-ko">연 이자율 (%)</span><span class="lang-en">Annual Interest Rate (%)</span></b><input type="number" id="rate" class="tool-input" value="5" step="0.1"/></label>
+<label><b><span class="lang-ko">기간 (년)</span><span class="lang-en">Years</span></b><input type="number" id="years" class="tool-input" value="10"/></label>
+<label style="grid-column: 1 / -1;"><b><span class="lang-ko">복리 주기</span><span class="lang-en">Compounding Frequency</span></b>
 <select id="freq" class="tool-input">
-<option value="12" selected>Monthly</option>
-<option value="4">Quarterly</option>
-<option value="1">Annually</option>
-<option value="365">Daily</option>
+<option value="12" selected><span class="lang-ko">월별</span><span class="lang-en">Monthly</span></option>
+<option value="4"><span class="lang-ko">분기별</span><span class="lang-en">Quarterly</span></option>
+<option value="1"><span class="lang-ko">연별</span><span class="lang-en">Annually</span></option>
+<option value="365"><span class="lang-ko">일별</span><span class="lang-en">Daily</span></option>
 </select>
 </label>
 </div>
 <button class="btn-primary" onclick="calculate()" style="margin-top:8px;"><span class="lang-ko">계산</span><span class="lang-en">Calculate</span></button>
 <div class="stats-grid" style="margin-top:16px;">
-<div class="stat-box"><div class="stat-num" id="totalContrib">$0</div><div class="stat-label"><span class="lang-ko">총 납입금</span><span class="lang-en">Total Contributed</span></div></div>
-<div class="stat-box"><div class="stat-num" id="interestEarned">$0</div><div class="stat-label"><span class="lang-ko">이자 수익</span><span class="lang-en">Interest Earned</span></div></div>
-<div class="stat-box"><div class="stat-num" id="finalValue">$0</div><div class="stat-label"><span class="lang-ko">최종 금액</span><span class="lang-en">Final Value</span></div></div>
+<div class="stat-box"><div class="stat-num" id="totalContrib" style="font-size:24px;">₩0</div><div class="stat-label"><span class="lang-ko">총 납입금</span><span class="lang-en">Total Contributed</span></div></div>
+<div class="stat-box"><div class="stat-num" id="interestEarned" style="font-size:24px;">₩0</div><div class="stat-label"><span class="lang-ko">이자 수익</span><span class="lang-en">Interest Earned</span></div></div>
+<div class="stat-box"><div class="stat-num" id="finalValue" style="font-size:24px;">₩0</div><div class="stat-label"><span class="lang-ko">최종 금액</span><span class="lang-en">Final Value</span></div></div>
 </div>
 </div>
 <script>

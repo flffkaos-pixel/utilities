@@ -256,29 +256,24 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 <div class="tool-card">
 <h1><span class="material-symbols-outlined" data-icon="encrypted" style="vertical-align:middle">encrypted</span> <span class="lang-ko">ROT13 인코더/디코더</span><span class="lang-en">ROT13 Encoder/Decoder</span></h1>
 <p class="description"><span class="lang-ko">ROT13으로 텍스트를 인코딩하거나 디코딩하세요. 알파벳을 13자리 회전하는 단순 치환 암호입니다.</span><span class="lang-en">Encode or decode text with ROT13. A simple substitution cipher that rotates the alphabet by 13 positions.</span></p>
-<label style="font-weight:600; display:block; margin-bottom:8px;">Input</label>
-<textarea id="input" class="tool-input" rows="5" placeholder="Enter text to encode or decode...">Hello, World!</textarea>
+<label style="font-weight:600; display:block; margin-bottom:8px;"><span class="lang-ko">입력</span><span class="lang-en">Input</span></label>
+<textarea id="input" class="tool-input" rows="5">Hello, World!</textarea>
 <div class="btn-group" style="margin-top:8px;">
-<button class="btn-primary" onclick="rot13('encode')">ROT13 Encode</button>
-<button class="btn-secondary" onclick="rot13('decode')">Decode</button>
+<button class="btn-primary" onclick="rot13()"><span class="lang-ko">ROT13 인코딩</span><span class="lang-en">ROT13 Encode</span></button>
 <button class="btn-secondary" onclick="copyOutput()"><span class="lang-ko">복사</span><span class="lang-en">Copy</span></button>
 </div>
-<label style="font-weight:600; display:block; margin:16px 0 8px;">Output</label>
+<label style="font-weight:600; display:block; margin:16px 0 8px;"><span class="lang-ko">출력</span><span class="lang-en">Output</span></label>
 <div id="output" class="tool-output" style="min-height:80px;">Uryyb, Jbeyq!</div>
 <div class="tip-box">
 <h3><span class="lang-ko">ROT13이란?</span><span class="lang-en">What is ROT13?</span></h3>
 <ul>
-<li class="lang-ko">ROT13은 알파벳을 13자리 회전하는 가장 단순한 치환 암호입니다</li>
-<li class="lang-en">ROT13 is a simple substitution cipher that rotates letters by 13</li>
-<li class="lang-ko">A↔N, B↔O, ..., Z↔M 형태로 치환됩니다</li>
-<li class="lang-en">A maps to N, B maps to O, and so on</li>
-<li class="lang-ko">인코딩과 디코딩이 동일한 연산입니다 (13을 두 번 적용하면 원문)</li>
-<li class="lang-en">Encoding and decoding use the same operation</li>
+<li><span class="lang-ko">ROT13은 알파벳을 13자리 회전하는 가장 단순한 치환 암호입니다</span><span class="lang-en">ROT13 is a simple substitution cipher that rotates letters by 13</span></li>
+<li><span class="lang-ko">인코딩과 디코딩이 동일한 연산입니다 (13을 두 번 적용하면 원문)</span><span class="lang-en">Encoding and decoding use the same operation</span></li>
 </ul>
 </div>
 </div>
 <script>
-function rot13(op) {
+function rot13() {
   var input = document.getElementById('input').value;
   var result = input.replace(/[a-zA-Z]/g, function(c) {
     var base = c <= 'Z' ? 65 : 97;
