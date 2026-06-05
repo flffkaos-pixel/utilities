@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>이미지 포맷 변환 - Free Utilities</title>
+<meta name="description" content="이미지를 JPG, PNG, WebP 등 다양한 포맷으로 변환하세요.">
+<meta name="keywords" content="이미지 포맷 변환, Image Format Converter, free utility, 무료 도구">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="Free Utilities">
+<link rel="canonical" href="https://freeutilities.pages.dev/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="이미지 포맷 변환 - Free Utilities">
+<meta property="og:description" content="이미지를 JPG, PNG, WebP 등 다양한 포맷으로 변환하세요.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:url" content="https://freeutilities.pages.dev/">
+<meta property="og:site_name" content="Free Utilities">
+<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="이미지 포맷 변환 - Free Utilities">
+<meta name="twitter:description" content="이미지를 JPG, PNG, WebP 등 다양한 포맷으로 변환하세요.">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/">
+<link rel="alternate" hreflang="x-default" href="https://freeutilities.pages.dev/">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Image Format Converter",
+  "description":"이미지를 JPG, PNG, WebP 등 다양한 포맷으로 변환하세요.",
+  "applicationCategory":"MultimediaApplication",
+  "operatingSystem":"Any",
+  "browserRequirements":"Requires modern browser with HTML5 Canvas support",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "inLanguage":["ko","en"]
+}
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{'primary':'#2563eb','background':'#f9fafb','surface':'#ffffff','border':'#e5e7eb'},darkMode:'class'}}}
+</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
+.dark body{background:#0f172a}
+.stat-box{background:#f3f4f6;border-radius:.75rem;padding:1rem;text-align:center}
+.dark .stat-box{background:#1e293b}
+.btn-primary{background:#2563eb;color:#fff;padding:.5rem 1.25rem;border-radius:.5rem;font-weight:600}
+.btn-primary:hover{background:#1d4ed8}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+.dark .stat-num{color:#fff}
+</style>
+</head>
+<body class="bg-background min-h-screen">
+<header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
+<div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<a href="index.html" class="flex items-center gap-2 text-primary font-bold text-lg"><span aria-hidden="true">←</span><span class="lang-ko">Free Utilities</span><span class="lang-en">Free Utilities</span></a>
+<div class="flex items-center gap-2">
+<button id="darkToggle" aria-label="Toggle dark mode" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">🌙</button>
+<button id="langToggle" aria-label="Toggle language" class="px-3 py-1.5 rounded-lg border border-border text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700">English</button>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 py-8">
+<section class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8">
+<h1 class="text-3xl sm:text-4xl font-bold mb-2">
+<span class="lang-ko">이미지 포맷 변환</span>
+<span class="lang-en">Image Format Converter</span>
+</h1>
+<p class="text-slate-600 dark:text-slate-300 mb-6">
+<span class="lang-ko">이미지를 JPG, PNG, WebP 등 다양한 포맷으로 변환하세요. 한 번에 여러 이미지를 처리할 수 있습니다.</span>
+<span class="lang-en">Convert images to JPG, PNG, WebP and more. Process multiple images at once.</span>
+</p>
+<div class="mb-6">
+<label class="block mb-2 font-medium">
+<span class="lang-ko">변환할 포맷</span>
+<span class="lang-en">Target format</span>
+</label>
+<select id="format" class="w-full px-4 py-2 border border-border rounded-lg bg-white dark:bg-slate-700 dark:border-slate-600">
+<option value="image/jpeg">JPG (사진에 적합 / best for photos)</option>
+<option value="image/png">PNG (투명 배경 / transparency)</option>
+<option value="image/webp">WebP (최신 압축 / modern compression)</option>
+<option value="image/bmp">BMP (무손실 / lossless)</option>
+</select>
+</div>
+<div id="qualityBox" class="mb-6">
+<label class="block mb-2 font-medium">
+<span class="lang-ko">품질 (JPG/WebP)</span>
+<span class="lang-en">Quality (JPG/WebP)</span>
+</label>
+<div class="flex items-center gap-4">
+<input type="range" id="quality" min="10" max="100" value="90" class="flex-1">
+<span id="qVal" class="font-mono font-bold w-12 text-right">90%</span>
+</div>
+</div>
+<div class="mb-6">
+<label for="fileInput" class="block w-full border-2 border-dashed border-border rounded-xl p-8 text-center cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700 transition">
+<div class="text-4xl mb-2">🔄</div>
+<div class="font-medium mb-1">
+<span class="lang-ko">이미지를 선택하세요</span>
+<span class="lang-en">Choose images</span>
+</div>
+<input type="file" id="fileInput" accept="image/*" multiple class="hidden">
+</label>
+</div>
+<div id="results" class="space-y-3"></div>
+</section>
+<script>
+const fmt=document.getElementById('format'),q=document.getElementById('quality'),qV=document.getElementById('qVal'),fi=document.getElementById('fileInput');
+q.addEventListener('input',()=>qV.textContent=q.value+'%');
+fi.addEventListener('change',e=>{for(const f of e.target.files)convert(f)});
+async function convert(file){
+  const img=new Image();
+  const u=URL.createObjectURL(file);
+  await new Promise((r,j)=>{img.onload=r;img.onerror=j;img.src=u});
+  const c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;
+  const ctx=c.getContext('2d');
+  if(fmt.value==='image/jpeg'){ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height)}
+  ctx.drawImage(img,0,0);
+  const blob=await new Promise(r=>c.toBlob(r,fmt.value,parseInt(q.value)/100));
+  const ext={jpeg:'jpg','image/jpeg':'jpg','image/png':'png','image/webp':'webp','image/bmp':'bmp'}[fmt.value]||'img';
+  const row=document.createElement('div');
+  row.className='flex flex-col sm:flex-row items-stretch sm:items-center gap-3 p-3 border border-border rounded-lg';
+  row.innerHTML=`
+    <img src="${URL.createObjectURL(blob)}" class="w-20 h-20 object-cover rounded">
+    <div class="flex-1 min-w-0">
+      <div class="font-medium truncate">${file.name}</div>
+      <div class="text-sm text-slate-500">${(file.size/1024).toFixed(1)} KB → ${(blob.size/1024).toFixed(1)} KB</div>
+    </div>
+    <a href="${URL.createObjectURL(blob)}" download="${file.name.replace(/\.[^.]+$/,'')}.${ext}" class="btn-primary text-center whitespace-nowrap">다운로드</a>`;
+  document.getElementById('results').prepend(row);
+}
+</script>
+</main>
+<footer class="bg-white dark:bg-slate-800 border-t border-border mt-12">
+<div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-3 text-sm">
+<span class="font-bold">Free Utilities</span>
+<nav class="flex gap-4">
+<a href="privacy.html" class="hover:text-primary"><span class="lang-ko">개인정보처리방침</span><span class="lang-en">Privacy Policy</span></a>
+<a href="terms.html" class="hover:text-primary"><span class="lang-ko">이용약관</span><span class="lang-en">Terms</span></a>
+<a href="contact.html" class="hover:text-primary"><span class="lang-ko">문의</span><span class="lang-en">Contact</span></a>
+</nav>
+<p class="text-slate-500 w-full">© 2026 Free Utilities. All rights reserved.</p>
+</div>
+</footer>
+<script>
+(function(){{
+  const dark=localStorage.getItem('darkMode')==='true';
+  if(dark) document.documentElement.classList.add('dark');
+  const lang=localStorage.getItem('site-lang')||'ko';
+  if(lang==='en') document.body.classList.add('en');
+  const dt=document.getElementById('darkToggle');
+  dt.textContent=dark?'☀️':'🌙';
+  dt.addEventListener('click',()=>{{
+    const d=document.documentElement.classList.toggle('dark');
+    localStorage.setItem('darkMode',d);
+    dt.textContent=d?'☀️':'🌙';
+  }});
+  const lt=document.getElementById('langToggle');
+  lt.textContent=lang==='en'?'한국어':'English';
+  lt.addEventListener('click',()=>{{
+    const e=document.body.classList.toggle('en');
+    localStorage.setItem('site-lang',e?'en':'ko');
+    lt.textContent=e?'한국어':'English';
+  }});
+}})();
+</script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>색상 팔레트 추출기 - Free Utilities</title>
+<meta name="description" content="이미지에서 주요 색상을 추출하여 HEX, RGB 값으로 제공합니다.">
+<meta name="keywords" content="색상 팔레트 추출기, Color Palette Extractor, free utility, 무료 도구">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="Free Utilities">
+<link rel="canonical" href="https://freeutilities.pages.dev/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="색상 팔레트 추출기 - Free Utilities">
+<meta property="og:description" content="이미지에서 주요 색상을 추출하여 HEX, RGB 값으로 제공합니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:url" content="https://freeutilities.pages.dev/">
+<meta property="og:site_name" content="Free Utilities">
+<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="색상 팔레트 추출기 - Free Utilities">
+<meta name="twitter:description" content="이미지에서 주요 색상을 추출하여 HEX, RGB 값으로 제공합니다.">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/">
+<link rel="alternate" hreflang="x-default" href="https://freeutilities.pages.dev/">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Color Palette Extractor",
+  "description":"이미지에서 주요 색상을 추출하여 HEX, RGB 값으로 제공합니다.",
+  "applicationCategory":"MultimediaApplication",
+  "operatingSystem":"Any",
+  "browserRequirements":"Requires modern browser with HTML5 Canvas support",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "inLanguage":["ko","en"]
+}
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{'primary':'#2563eb','background':'#f9fafb','surface':'#ffffff','border':'#e5e7eb'},darkMode:'class'}}}
+</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
+.dark body{background:#0f172a}
+.stat-box{background:#f3f4f6;border-radius:.75rem;padding:1rem;text-align:center}
+.dark .stat-box{background:#1e293b}
+.btn-primary{background:#2563eb;color:#fff;padding:.5rem 1.25rem;border-radius:.5rem;font-weight:600}
+.btn-primary:hover{background:#1d4ed8}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+.dark .stat-num{color:#fff}
+</style>
+</head>
+<body class="bg-background min-h-screen">
+<header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
+<div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<a href="index.html" class="flex items-center gap-2 text-primary font-bold text-lg"><span aria-hidden="true">←</span><span class="lang-ko">Free Utilities</span><span class="lang-en">Free Utilities</span></a>
+<div class="flex items-center gap-2">
+<button id="darkToggle" aria-label="Toggle dark mode" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">🌙</button>
+<button id="langToggle" aria-label="Toggle language" class="px-3 py-1.5 rounded-lg border border-border text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700">English</button>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 py-8">
+<section class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8">
+<h1 class="text-3xl sm:text-4xl font-bold mb-2">
+<span class="lang-ko">색상 팔레트 추출기</span>
+<span class="lang-en">Color Palette Extractor</span>
+</h1>
+<p class="text-slate-600 dark:text-slate-300 mb-6">
+<span class="lang-ko">이미지에서 주요 색상을 추출하여 HEX, RGB 값으로 제공합니다. 디자인 영감을 얻거나 브랜드 색상을 추출할 때 유용합니다.</span>
+<span class="lang-en">Extract dominant colors from images as HEX and RGB. Great for design inspiration or brand color extraction.</span>
+</p>
+<div class="mb-6">
+<label for="fileInput" class="block w-full border-2 border-dashed border-border rounded-xl p-8 text-center cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700 transition">
+<div class="text-4xl mb-2">🎨</div>
+<div class="font-medium mb-1">
+<span class="lang-ko">이미지를 선택하세요</span>
+<span class="lang-en">Choose an image</span>
+</div>
+<div class="text-sm text-slate-500">
+<span class="lang-ko">JPG, PNG, WebP 지원</span>
+<span class="lang-en">Supports JPG, PNG, WebP</span>
+</div>
+<input type="file" id="fileInput" accept="image/*" class="hidden">
+</label>
+</div>
+<div id="preview" class="hidden mb-6">
+<img id="previewImg" class="max-w-full max-h-64 mx-auto rounded-lg">
+</div>
+<div id="palette" class="hidden">
+<div class="flex items-center justify-between mb-3">
+<h2 class="text-lg font-bold">
+<span class="lang-ko">추출된 색상</span>
+<span class="lang-en">Extracted Colors</span>
+</h2>
+<button id="copyAll" class="text-sm text-primary hover:underline">
+<span class="lang-ko">모두 복사</span>
+<span class="lang-en">Copy all</span>
+</button>
+</div>
+<div id="swatches" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3"></div>
+</div>
+</section>
+<script>
+const fi=document.getElementById('fileInput'),prev=document.getElementById('previewImg'),pal=document.getElementById('palette'),sw=document.getElementById('swatches');
+fi.addEventListener('change',e=>{
+  const f=e.target.files[0];if(!f)return;
+  const url=URL.createObjectURL(f);
+  prev.src=url;prev.classList.remove('hidden');
+  prev.onload=()=>{
+    const c=document.createElement('canvas');
+    const W=c.width=Math.min(200,prev.naturalWidth);
+    const H=c.height=Math.min(200,prev.naturalHeight*(W/prev.naturalWidth));
+    const ctx=c.getContext('2d');ctx.drawImage(prev,0,0,W,H);
+    const data=ctx.getImageData(0,0,W,H).data;
+    const buckets={};
+    for(let i=0;i<data.length;i+=4){
+      const r=Math.round(data[i]/32)*32,g=Math.round(data[i+1]/32)*32,b=Math.round(data[i+2]/32)*32;
+      const k=r+','+g+','+b;
+      buckets[k]=(buckets[k]||0)+1;
+    }
+    const sorted=Object.entries(buckets).sort((a,b)=>b[1]-a[1]).slice(0,10);
+    sw.innerHTML='';
+    sorted.forEach(([rgb,count])=>{
+      const[r,g,b]=rgb.split(',').map(Number);
+      const hex='#'+[r,g,b].map(v=>v.toString(16).padStart(2,'0')).join('').toUpperCase();
+      const card=document.createElement('div');
+      card.className='border border-border rounded-lg overflow-hidden cursor-pointer hover:shadow-md transition';
+      card.innerHTML=`<div class="h-20" style="background:${hex}"></div><div class="p-2 text-xs font-mono"><div class="font-bold">${hex}</div><div class="text-slate-500">rgb(${r},${g},${b})</div></div>`;
+      card.onclick=()=>{navigator.clipboard.writeText(hex);card.querySelector('div:last-child').classList.add('bg-green-100');setTimeout(()=>card.querySelector('div:last-child').classList.remove('bg-green-100'),600)};
+      sw.appendChild(card);
+    });
+    pal.classList.remove('hidden');
+  };
+});
+document.getElementById('copyAll').onclick=()=>{
+  const hexes=Array.from(sw.querySelectorAll('.font-bold')).map(e=>e.textContent).join(' ');
+  navigator.clipboard.writeText(hexes);
+};
+</script>
+</main>
+<footer class="bg-white dark:bg-slate-800 border-t border-border mt-12">
+<div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-3 text-sm">
+<span class="font-bold">Free Utilities</span>
+<nav class="flex gap-4">
+<a href="privacy.html" class="hover:text-primary"><span class="lang-ko">개인정보처리방침</span><span class="lang-en">Privacy Policy</span></a>
+<a href="terms.html" class="hover:text-primary"><span class="lang-ko">이용약관</span><span class="lang-en">Terms</span></a>
+<a href="contact.html" class="hover:text-primary"><span class="lang-ko">문의</span><span class="lang-en">Contact</span></a>
+</nav>
+<p class="text-slate-500 w-full">© 2026 Free Utilities. All rights reserved.</p>
+</div>
+</footer>
+<script>
+(function(){{
+  const dark=localStorage.getItem('darkMode')==='true';
+  if(dark) document.documentElement.classList.add('dark');
+  const lang=localStorage.getItem('site-lang')||'ko';
+  if(lang==='en') document.body.classList.add('en');
+  const dt=document.getElementById('darkToggle');
+  dt.textContent=dark?'☀️':'🌙';
+  dt.addEventListener('click',()=>{{
+    const d=document.documentElement.classList.toggle('dark');
+    localStorage.setItem('darkMode',d);
+    dt.textContent=d?'☀️':'🌙';
+  }});
+  const lt=document.getElementById('langToggle');
+  lt.textContent=lang==='en'?'한국어':'English';
+  lt.addEventListener('click',()=>{{
+    const e=document.body.classList.toggle('en');
+    localStorage.setItem('site-lang',e?'en':'ko');
+    lt.textContent=e?'한국어':'English';
+  }});
+}})();
+</script>
+</body>
+</html>
