@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>이미지 리사이즈 - Free Utilities</title>
+<meta name="description" content="이미지 크기를 픽셀 단위로 조절합니다.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freeutilities.pages.dev/image-resize.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="이미지 리사이즈 - Free Utilities">
+<meta property="og:description" content="이미지 크기를 픽셀 단위로 조절합니다.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="이미지 리사이즈 - Free Utilities">
+<meta name="twitter:description" content="Resize images to custom dimensions.">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/image-resize.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/image-resize.html">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={{theme:{{extend:{{colors:{{"primary":"#2563eb","background":"#f9fafb","surface":"#ffffff","border":"#e5e7eb"}},darkMode:"class"}}}}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
+.dark body{background:#0f172a}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+</style>
+</head>
+<body class="bg-background min-h-screen">
+<header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
+<div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<a href="index.html" class="flex items-center gap-2 text-primary font-bold text-lg"><span aria-hidden="true">←</span> Free Utilities</a>
+<div class="flex items-center gap-2">
+<button id="darkToggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">🌙</button>
+<button id="langToggle" class="px-3 py-1.5 rounded-lg border border-border text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700">English</button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 py-8">
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mb-8">
+<h1 class="text-3xl font-bold mb-2"><span class="lang-ko">이미지 리사이즈</span><span class="lang-en">Image Resize</span></h1>
+<p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">이미지 크기를 픽셀 단위로 조절합니다.</span><span class="lang-en">Resize images to custom dimensions.</span></p>
+<p class="text-center py-8 text-slate-400"><span class="lang-ko">이미지를 선택하고 원하는 크기를 입력하세요.</span><span class="lang-en">Select an image and enter desired dimensions.</span></p><div class="flex gap-4 mb-4"><div><label class="block text-sm font-medium mb-1">Width</label><input id="irw" type="number" value="800" class="w-24 px-3 py-2 border border-border rounded-lg bg-white dark:bg-slate-700"></div><div><label class="block text-sm font-medium mb-1">Height</label><input id="irh" type="number" value="600" class="w-24 px-3 py-2 border border-border rounded-lg bg-white dark:bg-slate-700"></div></div><input type="file" id="iri" accept="image/*" class="mb-4" onchange="resizeImg()"><canvas id="irc" class="hidden"></canvas><div id="irr" class="text-center text-sm text-slate-500"><span class="lang-ko">이미지를 선택하면 결과가 표시됩니다.</span><span class="lang-en">Result will appear after selecting an image.</span></div>
+</div>
+
+<script>
+function resizeImg(){var f=document.getElementById("iri").files[0];if(!f)return;var img=new Image();img.onload=function(){var c=document.getElementById("irc");c.width=parseInt(document.getElementById("irw").value)||800;c.height=parseInt(document.getElementById("irh").value)||600;var ctx=c.getContext("2d");ctx.drawImage(img,0,0,c.width,c.height);var u=c.toDataURL("image/png");document.getElementById("irr").innerHTML="<img src='"+u+"' class='max-w-full max-h-64 mx-auto rounded-lg'><br><a href='"+u+"' download='resized.png' class='text-primary underline'>Download</a>";};img.src=URL.createObjectURL(f);}
+</script>
+</main>
+<footer class="bg-white dark:bg-slate-800 border-t border-border mt-12">
+<div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-3 text-sm">
+<span class="font-bold">Free Utilities</span>
+<nav class="flex gap-4">
+<a href="guide-productivity.html" class="hover:text-primary"><span class="lang-ko">가이드</span><span class="lang-en">Guides</span></a>
+<a href="privacy.html" class="hover:text-primary"><span class="lang-ko">개인정보처리방침</span><span class="lang-en">Privacy</span></a>
+<a href="contact.html" class="hover:text-primary"><span class="lang-ko">문의</span><span class="lang-en">Contact</span></a>
+</nav>
+<p class="text-slate-500 w-full">© 2026 Free Utilities</p>
+</div>
+</footer>
+<script>
+(function(){
+var d=localStorage.getItem("darkMode")==="true";
+if(d)document.documentElement.classList.add("dark");
+var l=localStorage.getItem("site-lang")||"ko";
+if(l==="en")document.body.classList.add("en");
+var dt=document.getElementById("darkToggle");
+dt.textContent=d?"☀️":"🌙";
+dt.onclick=function(){var x=document.documentElement.classList.toggle("dark");localStorage.setItem("darkMode",x);dt.textContent=x?"☀️":"🌙";};
+var lt=document.getElementById("langToggle");
+lt.textContent=l==="en"?"한국어":"English";
+lt.onclick=function(){var e=document.body.classList.toggle("en");localStorage.setItem("site-lang",e?"en":"ko");lt.textContent=e?"한국어":"English";};
+})();
+</script>
+</body>
+</html>

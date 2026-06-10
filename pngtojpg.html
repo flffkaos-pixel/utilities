@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>PNG→JPG 변환 - Free Utilities</title>
+<meta name="description" content="PNG 이미지를 JPG 포맷으로 변환합니다.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freeutilities.pages.dev/pngtojpg.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PNG→JPG 변환 - Free Utilities">
+<meta property="og:description" content="PNG 이미지를 JPG 포맷으로 변환합니다.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PNG→JPG 변환 - Free Utilities">
+<meta name="twitter:description" content="Convert PNG images to JPG format.">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/pngtojpg.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/pngtojpg.html">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={{theme:{{extend:{{colors:{{"primary":"#2563eb","background":"#f9fafb","surface":"#ffffff","border":"#e5e7eb"}},darkMode:"class"}}}}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
+.dark body{background:#0f172a}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+</style>
+</head>
+<body class="bg-background min-h-screen">
+<header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
+<div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<a href="index.html" class="flex items-center gap-2 text-primary font-bold text-lg"><span aria-hidden="true">←</span> Free Utilities</a>
+<div class="flex items-center gap-2">
+<button id="darkToggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">🌙</button>
+<button id="langToggle" class="px-3 py-1.5 rounded-lg border border-border text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700">English</button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 py-8">
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mb-8">
+<h1 class="text-3xl font-bold mb-2"><span class="lang-ko">PNG→JPG 변환</span><span class="lang-en">PNG to JPG</span></h1>
+<p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">PNG 이미지를 JPG 포맷으로 변환합니다.</span><span class="lang-en">Convert PNG images to JPG format.</span></p>
+<input type="file" id="pji" accept="image/png" class="mb-4" onchange="p2j()"><div id="pjout" class="text-center text-sm text-slate-500"><span class="lang-ko">PNG 이미지를 선택하면 JPG로 변환됩니다.</span><span class="lang-en">Select a PNG image to convert to JPG.</span></div>
+</div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mt-6">
+<h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
+<div class="border-b border-border py-3"><div class="font-semibold cursor-pointer" onclick="this.nextElementSibling.classList.toggle('hidden')"><span class="lang-ko">PNG와 JPG의 차이는?</span><span class="lang-en">Difference between PNG and JPG?</span></div><div class="text-slate-600 dark:text-slate-400 hidden mt-1"><span class="lang-ko">PNG는 무손실 압축으로 투명을 지원하지만 파일 크기가 큽니다. JPG는 손실 압축으로 파일 크기가 작지만 투명이 없습니다.</span><span class="lang-en">PNG is lossless with transparency but larger files. JPG is lossy with smaller files but no transparency.</span></div></div>
+</div>
+
+<script>
+function p2j(){var f=document.getElementById("pji").files[0];if(!f)return;var img=new Image();img.onload=function(){var c=document.createElement("canvas");c.width=img.naturalWidth;c.height=img.naturalHeight;var ctx=c.getContext("2d");ctx.fillStyle="#fff";ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(img,0,0);var u=c.toDataURL("image/jpeg",0.9);document.getElementById("pjout").innerHTML="<img src='"+u+"' class='max-w-full max-h-48 mx-auto rounded-lg'><br><a href='"+u+"' download='converted.jpg' class='text-primary underline'>Download JPG</a>";};img.src=URL.createObjectURL(f);}
+</script>
+</main>
+<footer class="bg-white dark:bg-slate-800 border-t border-border mt-12">
+<div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-3 text-sm">
+<span class="font-bold">Free Utilities</span>
+<nav class="flex gap-4">
+<a href="guide-productivity.html" class="hover:text-primary"><span class="lang-ko">가이드</span><span class="lang-en">Guides</span></a>
+<a href="privacy.html" class="hover:text-primary"><span class="lang-ko">개인정보처리방침</span><span class="lang-en">Privacy</span></a>
+<a href="contact.html" class="hover:text-primary"><span class="lang-ko">문의</span><span class="lang-en">Contact</span></a>
+</nav>
+<p class="text-slate-500 w-full">© 2026 Free Utilities</p>
+</div>
+</footer>
+<script>
+(function(){
+var d=localStorage.getItem("darkMode")==="true";
+if(d)document.documentElement.classList.add("dark");
+var l=localStorage.getItem("site-lang")||"ko";
+if(l==="en")document.body.classList.add("en");
+var dt=document.getElementById("darkToggle");
+dt.textContent=d?"☀️":"🌙";
+dt.onclick=function(){var x=document.documentElement.classList.toggle("dark");localStorage.setItem("darkMode",x);dt.textContent=x?"☀️":"🌙";};
+var lt=document.getElementById("langToggle");
+lt.textContent=l==="en"?"한국어":"English";
+lt.onclick=function(){var e=document.body.classList.toggle("en");localStorage.setItem("site-lang",e?"en":"ko");lt.textContent=e?"한국어":"English";};
+})();
+</script>
+</body>
+</html>

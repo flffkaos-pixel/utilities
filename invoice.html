@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>인보이스 계산 - Free Utilities</title>
+<meta name="description" content="공금활 단가와 부가가격에서 공금세, 부가세를 계산합니다.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freeutilities.pages.dev/invoice.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="인보이스 계산 - Free Utilities">
+<meta property="og:description" content="공금활 단가와 부가가격에서 공금세, 부가세를 계산합니다.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="인보이스 계산 - Free Utilities">
+<meta name="twitter:description" content="Calculate tax amounts from supply price.">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/invoice.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/invoice.html">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={{theme:{{extend:{{colors:{{"primary":"#2563eb","background":"#f9fafb","surface":"#ffffff","border":"#e5e7eb"}},darkMode:"class"}}}}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
+.dark body{background:#0f172a}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+</style>
+</head>
+<body class="bg-background min-h-screen">
+<header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
+<div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<a href="index.html" class="flex items-center gap-2 text-primary font-bold text-lg"><span aria-hidden="true">←</span> Free Utilities</a>
+<div class="flex items-center gap-2">
+<button id="darkToggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">🌙</button>
+<button id="langToggle" class="px-3 py-1.5 rounded-lg border border-border text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700">English</button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 py-8">
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mb-8">
+<h1 class="text-3xl font-bold mb-2"><span class="lang-ko">인보이스 계산</span><span class="lang-en">Invoice Calculator</span></h1>
+<p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">공금활 단가와 부가가격에서 공금세, 부가세를 계산합니다.</span><span class="lang-en">Calculate tax amounts from supply price.</span></p>
+<div class="mb-4"><label class="block mb-2 font-medium"><span class="lang-ko">공금활 (Supply Price)</span><span class="lang-en">Supply Price</span></label><input id="sp" type="number" value="1000000" class="w-full px-4 py-2 border border-border rounded-lg bg-white dark:bg-slate-700" oninput="calcinv()"></div><div class="grid grid-cols-3 gap-4 text-center"><div class="p-3 bg-slate-100 dark:bg-slate-700 rounded-xl"><div class="text-sm text-slate-500"><span class="lang-ko">공금활</span><span class="lang-en">Supply</span></div><div id="invsp" class="text-lg font-bold">1,000,000</div></div><div class="p-3 bg-slate-100 dark:bg-slate-700 rounded-xl"><div class="text-sm text-slate-500"><span class="lang-ko">부가세</span><span class="lang-en">VAT</span></div><div id="invvat" class="text-lg font-bold">100,000</div></div><div class="p-3 bg-slate-100 dark:bg-slate-700 rounded-xl"><div class="text-sm text-slate-500"><span class="lang-ko">계</span><span class="lang-en">Total</span></div><div id="invtotal" class="text-lg font-bold text-primary">1,100,000</div></div></div>
+</div>
+
+<script>
+function calcinv(){var s=parseFloat(document.getElementById("sp").value)||0;var v=s*0.1;document.getElementById("invsp").textContent=Math.round(s).toLocaleString();document.getElementById("invvat").textContent=Math.round(v).toLocaleString();document.getElementById("invtotal").textContent=Math.round(s+v).toLocaleString();}
+</script>
+</main>
+<footer class="bg-white dark:bg-slate-800 border-t border-border mt-12">
+<div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-3 text-sm">
+<span class="font-bold">Free Utilities</span>
+<nav class="flex gap-4">
+<a href="guide-productivity.html" class="hover:text-primary"><span class="lang-ko">가이드</span><span class="lang-en">Guides</span></a>
+<a href="privacy.html" class="hover:text-primary"><span class="lang-ko">개인정보처리방침</span><span class="lang-en">Privacy</span></a>
+<a href="contact.html" class="hover:text-primary"><span class="lang-ko">문의</span><span class="lang-en">Contact</span></a>
+</nav>
+<p class="text-slate-500 w-full">© 2026 Free Utilities</p>
+</div>
+</footer>
+<script>
+(function(){
+var d=localStorage.getItem("darkMode")==="true";
+if(d)document.documentElement.classList.add("dark");
+var l=localStorage.getItem("site-lang")||"ko";
+if(l==="en")document.body.classList.add("en");
+var dt=document.getElementById("darkToggle");
+dt.textContent=d?"☀️":"🌙";
+dt.onclick=function(){var x=document.documentElement.classList.toggle("dark");localStorage.setItem("darkMode",x);dt.textContent=x?"☀️":"🌙";};
+var lt=document.getElementById("langToggle");
+lt.textContent=l==="en"?"한국어":"English";
+lt.onclick=function(){var e=document.body.classList.toggle("en");localStorage.setItem("site-lang",e?"en":"ko");lt.textContent=e?"한국어":"English";};
+})();
+</script>
+</body>
+</html>

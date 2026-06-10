@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>내 IP 확인 - Free Utilities</title>
+<meta name="description" content="현재 사용 중인 IP 주소를 확인합니다.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freeutilities.pages.dev/ip-lookup.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="내 IP 확인 - Free Utilities">
+<meta property="og:description" content="현재 사용 중인 IP 주소를 확인합니다.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="내 IP 확인 - Free Utilities">
+<meta name="twitter:description" content="Check your current IP address.">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/ip-lookup.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/ip-lookup.html">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={{theme:{{extend:{{colors:{{"primary":"#2563eb","background":"#f9fafb","surface":"#ffffff","border":"#e5e7eb"}},darkMode:"class"}}}}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
+.dark body{background:#0f172a}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+</style>
+</head>
+<body class="bg-background min-h-screen">
+<header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
+<div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<a href="index.html" class="flex items-center gap-2 text-primary font-bold text-lg"><span aria-hidden="true">←</span> Free Utilities</a>
+<div class="flex items-center gap-2">
+<button id="darkToggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">🌙</button>
+<button id="langToggle" class="px-3 py-1.5 rounded-lg border border-border text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700">English</button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 py-8">
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mb-8">
+<h1 class="text-3xl font-bold mb-2"><span class="lang-ko">내 IP 확인</span><span class="lang-en">My IP</span></h1>
+<p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">현재 사용 중인 IP 주소를 확인합니다.</span><span class="lang-en">Check your current IP address.</span></p>
+<div class="text-center py-8" id="ipr"><div class="text-sm text-slate-500 mb-4"><span class="lang-ko">내 IP 주소를 확인하려면 아래 버튼을 클릭하세요.</span><span class="lang-en">Click the button below to check your IP.</span></div><button onclick="checkIP()" class="px-6 py-3 bg-primary text-white rounded-xl font-bold text-lg"><span class="lang-ko">IP 확인</span><span class="lang-en">Check IP</span></button><div id="ipaddr" class="text-3xl font-bold text-primary mt-6 hidden"></div></div>
+</div>
+
+<script>
+function checkIP(){var x=new XMLHttpRequest();x.open("GET","https://api.ipify.org?format=json");x.onload=function(){var d=JSON.parse(x.responseText);document.getElementById("ipaddr").textContent=d.ip;document.getElementById("ipaddr").classList.remove("hidden");};x.send();}
+</script>
+</main>
+<footer class="bg-white dark:bg-slate-800 border-t border-border mt-12">
+<div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-3 text-sm">
+<span class="font-bold">Free Utilities</span>
+<nav class="flex gap-4">
+<a href="guide-productivity.html" class="hover:text-primary"><span class="lang-ko">가이드</span><span class="lang-en">Guides</span></a>
+<a href="privacy.html" class="hover:text-primary"><span class="lang-ko">개인정보처리방침</span><span class="lang-en">Privacy</span></a>
+<a href="contact.html" class="hover:text-primary"><span class="lang-ko">문의</span><span class="lang-en">Contact</span></a>
+</nav>
+<p class="text-slate-500 w-full">© 2026 Free Utilities</p>
+</div>
+</footer>
+<script>
+(function(){
+var d=localStorage.getItem("darkMode")==="true";
+if(d)document.documentElement.classList.add("dark");
+var l=localStorage.getItem("site-lang")||"ko";
+if(l==="en")document.body.classList.add("en");
+var dt=document.getElementById("darkToggle");
+dt.textContent=d?"☀️":"🌙";
+dt.onclick=function(){var x=document.documentElement.classList.toggle("dark");localStorage.setItem("darkMode",x);dt.textContent=x?"☀️":"🌙";};
+var lt=document.getElementById("langToggle");
+lt.textContent=l==="en"?"한국어":"English";
+lt.onclick=function(){var e=document.body.classList.toggle("en");localStorage.setItem("site-lang",e?"en":"ko");lt.textContent=e?"한국어":"English";};
+})();
+</script>
+</body>
+</html>
