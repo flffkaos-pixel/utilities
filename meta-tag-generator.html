@@ -15,14 +15,14 @@
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="Free Utilities"/>
 <meta property="og:title" content="메타 태그 생성기 - Meta Tag Generator"/>
-<meta property="og:description" content="SEO와 소셜 공유를 위한 메타 태그를 자동으로 생성합니다. Open Graph, Twitter Card, 표준 메타 태그 모두 지원."/>
+<meta property="og:description" content="메타 태그 생성기 - SEO와 SNS 공유를 위한 Open Graph, Twitter Card 메타 태그를 쉽게 생성하세요."/>
 <meta property="og:url" content="https://freeutilities.pages.dev/meta-tag-generator.html"/>
 <meta property="og:image" content="https://freeutilities.pages.dev/og-image.png"/>
 <meta property="og:locale" content="ko_KR"/>
 <meta property="og:locale:alternate" content="en_US"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="메타 태그 생성기 - Meta Tag Generator"/>
-<meta name="twitter:description" content="SEO와 소셜 공유를 위한 메타 태그를 자동으로 생성합니다. Open Graph, Twitter Card, 표준 메타 태그 모두 지원."/>
+<meta name="twitter:description" content="Meta Tag Generator - Easily create Open Graph and Twitter Card meta tags for SEO and social media sharing."/>
 <meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png"/>
 <link rel="canonical" href="https://freeutilities.pages.dev/meta-tag-generator.html"/>
 <link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/meta-tag-generator.html"/>
@@ -251,7 +251,7 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 <main class="pt-[80px] pb-[80px] px-gutter max-w-container-max mx-auto">
 <div itemscope itemtype="https://schema.org/WebApplication" style="display:none">
 <meta itemprop="name" content="메타 태그 생성기"/>
-<meta itemprop="description" content="SEO와 소셜 공유를 위한 메타 태그를 자동으로 생성합니다. Open Graph, Twitter Card, 표준 메타 태그 모두 지원."/>
+<meta itemprop="description" content="메타 태그 생성기 - SEO와 SNS 공유를 위한 Open Graph, Twitter Card 메타 태그를 쉽게 생성하세요."/>
 </div>
 <div class="tool-card">
 <h1><span class="material-symbols-outlined" data-icon="code" style="vertical-align:middle">code</span> <span class="lang-ko">메타 태그 생성기</span><span class="lang-en">Meta Tag Generator</span></h1>
@@ -291,7 +291,7 @@ function gen() {
   out += '<!-- Open Graph (Facebook, LinkedIn, KakaoTalk) -->\n';
   out += '<meta property="og:type" content="website">\n';
   out += '<meta property="og:title" content="' + esc(t) + '">\n';
-  out += '<meta property="og:description" content="' + esc(d) + '">\n';
+  out += '<meta property="og:description" content="메타 태그 생성기 - SEO와 SNS 공유를 위한 Open Graph, Twitter Card 메타 태그를 쉽게 생성하세요.">\n';
   out += '<meta property="og:url" content="' + esc(u) + '">\n';
   out += '<meta property="og:image" content="' + esc(img) + '">\n';
   out += '<meta property="og:site_name" content="' + esc(sn) + '">\n';
@@ -299,7 +299,7 @@ function gen() {
   out += '<!-- Twitter Card -->\n';
   out += '<meta name="twitter:card" content="summary_large_image">\n';
   out += '<meta name="twitter:title" content="' + esc(t) + '">\n';
-  out += '<meta name="twitter:description" content="' + esc(d) + '">\n';
+  out += '<meta name="twitter:description" content="Meta Tag Generator - Easily create Open Graph and Twitter Card meta tags for SEO and social media sharing.">\n';
   out += '<meta name="twitter:image" content="' + esc(img) + '">\n';
   if (tw) out += '<meta name="twitter:site" content="' + esc(tw) + '">\n';
   document.getElementById('output').value = out;
