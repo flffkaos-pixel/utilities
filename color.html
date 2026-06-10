@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>색상 변환기 - Free Utilities</title>
+<meta name="description" content="HEX, RGB, HSL, CMYK 색상 코드를 상호 변환하는 무료 온라인 도구입니다. 웹 디자인과 그래픽 작업에 유용합니다.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freeutilities.pages.dev/color.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="색상 변환기 - Free Utilities">
+<meta property="og:description" content="HEX, RGB, HSL, CMYK 색상 코드를 상호 변환하는 무료 온라인 도구입니다. 웹 디자인과 그래픽 작업에 유용합니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="색상 변환기 - Free Utilities">
+<meta name="twitter:description" content="Convert between HEX, RGB, HSL, and CMYK color codes. Essential for web design and graphic work.">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/color.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/color.html">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{'primary':'#2563eb','background':'#f9fafb','surface':'#ffffff','border':'#e5e7eb'},darkMode:'class'}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
+.dark body{background:#0f172a}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+.faq-q{font-weight:600;cursor:pointer;padding:0.75rem 0}
+.faq-q:hover{color:#2563eb}
+.faq-a{padding-bottom:1rem;color:#64748b;display:none}
+.dark .faq-a{color:#94a3b8}
+.faq-a.open{display:block}
+</style>
+</head>
+<body class="bg-background min-h-screen">
+<header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
+<div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<a href="index.html" class="flex items-center gap-2 text-primary font-bold text-lg"><span aria-hidden="true">←</span> Free Utilities</a>
+<div class="flex items-center gap-2">
+<button id="darkToggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">🌙</button>
+<button id="langToggle" class="px-3 py-1.5 rounded-lg border border-border text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700">English</button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 py-8">
+
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mb-8">
+<h1 class="text-3xl font-bold mb-2"><span class="lang-ko">색상 변환기</span><span class="lang-en">Color Converter</span></h1>
+<p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">HEX, RGB, HSL 색상 코드를 상호 변환합니다.</span><span class="lang-en">Convert between HEX, RGB, and HSL color codes.</span></p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block mb-2 font-medium">HEX → RGB</label>
+<div class="flex gap-2 mb-2"><input id="hexInput" class="flex-1 px-3 py-2 border border-border rounded-lg bg-white dark:bg-slate-700 font-mono" value="#3498db" oninput="hexToRgb()"><div id="colorPreview" class="w-10 h-10 rounded" style="background:#3498db"></div></div>
+<input id="rgbOutput" class="w-full px-3 py-2 border border-border rounded-lg bg-gray-50 dark:bg-slate-700 font-mono" readonly>
+</div>
+<div>
+<label class="block mb-2 font-medium">RGB → HEX</label>
+<div class="flex gap-2 mb-2"><input id="rgbInput" class="flex-1 px-3 py-2 border border-border rounded-lg bg-white dark:bg-slate-700 font-mono" value="rgb(52,152,219)" oninput="rgbToHex()"><div id="colorPreview2" class="w-10 h-10 rounded" style="background:#3498db"></div></div>
+<input id="hexOutput" class="w-full px-3 py-2 border border-border rounded-lg bg-gray-50 dark:bg-slate-700 font-mono" readonly>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mt-6"><h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
+<div class="border-b border-border"><div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')"><span class="lang-ko">HEX와 RGB의 차이는 무엇인가요?</span><span class="lang-en">What is the difference between HEX and RGB?</span></div><div class="faq-a"><span class="lang-ko">HEX는 16진수(#FF0000)로 표시하고 RGB는 10진수(255,0,0)로 표시합니다. 같은 색을 다른 방식으로 표현한 것일 뿐입니다.</span><span class="lang-en">HEX uses hexadecimal (#FF0000) while RGB uses decimal (255,0,0). They represent the same colors in different formats.</span></div></div>
+</div><script>
+function hexToRgb(){
+  var h=document.getElementById('hexInput').value.replace('#','');
+  if(h.length!==6)return;
+  var r=parseInt(h.substr(0,2),16),g=parseInt(h.substr(2,2),16),b=parseInt(h.substr(4,2),16);
+  document.getElementById('rgbOutput').value='rgb('+r+','+g+','+b+')';
+  document.getElementById('colorPreview').style.background='#'+h;
+}
+function rgbToHex(){
+  var v=document.getElementById('rgbInput').value.match(/\d+/g);
+  if(!v||v.length<3)return;
+  var h='#'+[+v[0],+v[1],+v[2]].map(function(x){return x.toString(16).padStart(2,'0');}).join('');
+  document.getElementById('hexOutput').value=h;
+  document.getElementById('colorPreview2').style.background=h;
+}
+</script>
+</main>
+<footer class="bg-white dark:bg-slate-800 border-t border-border mt-12">
+<div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-3 text-sm">
+<span class="font-bold">Free Utilities</span>
+<nav class="flex gap-4">
+<a href="guide-productivity.html" class="hover:text-primary"><span class="lang-ko">가이드</span><span class="lang-en">Guides</span></a>
+<a href="privacy.html" class="hover:text-primary"><span class="lang-ko">개인정보처리방침</span><span class="lang-en">Privacy</span></a>
+<a href="contact.html" class="hover:text-primary"><span class="lang-ko">문의</span><span class="lang-en">Contact</span></a>
+</nav>
+<p class="text-slate-500 w-full">© 2026 Free Utilities</p>
+</div>
+</footer>
+<script>
+(function(){
+  var d=localStorage.getItem("darkMode")==="true";
+  if(d) document.documentElement.classList.add("dark");
+  var l=localStorage.getItem("site-lang")||"ko";
+  if(l==="en") document.body.classList.add("en");
+  var dt=document.getElementById("darkToggle");
+  dt.textContent=d?"☀️":"🌙";
+  dt.onclick=function(){var x=document.documentElement.classList.toggle("dark");localStorage.setItem("darkMode",x);dt.textContent=x?"☀️":"🌙";};
+  var lt=document.getElementById("langToggle");
+  lt.textContent=l==="en"?"한국어":"English";
+  lt.onclick=function(){var e=document.body.classList.toggle("en");localStorage.setItem("site-lang",e?"en":"ko");lt.textContent=e?"한국어":"English";};
+})();
+</script>
+</body>
+</html>

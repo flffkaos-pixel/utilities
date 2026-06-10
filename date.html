@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>D-Day 계산기 - Free Utilities</title>
+<meta name="description" content="두 날짜 사이의 일수를 계산하거나, 특정 날짜로부터 며칠 전/후인지 계산하는 무료 온라인 도구입니다.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freeutilities.pages.dev/date.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="D-Day 계산기 - Free Utilities">
+<meta property="og:description" content="두 날짜 사이의 일수를 계산하거나, 특정 날짜로부터 며칠 전/후인지 계산하는 무료 온라인 도구입니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="D-Day 계산기 - Free Utilities">
+<meta name="twitter:description" content="Calculate the number of days between two dates, or days before/after a specific date.">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/date.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/date.html">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{'primary':'#2563eb','background':'#f9fafb','surface':'#ffffff','border':'#e5e7eb'},darkMode:'class'}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
+.dark body{background:#0f172a}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+.faq-q{font-weight:600;cursor:pointer;padding:0.75rem 0}
+.faq-q:hover{color:#2563eb}
+.faq-a{padding-bottom:1rem;color:#64748b;display:none}
+.dark .faq-a{color:#94a3b8}
+.faq-a.open{display:block}
+</style>
+</head>
+<body class="bg-background min-h-screen">
+<header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
+<div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<a href="index.html" class="flex items-center gap-2 text-primary font-bold text-lg"><span aria-hidden="true">←</span> Free Utilities</a>
+<div class="flex items-center gap-2">
+<button id="darkToggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">🌙</button>
+<button id="langToggle" class="px-3 py-1.5 rounded-lg border border-border text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700">English</button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 py-8">
+
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mb-8">
+<h1 class="text-3xl font-bold mb-2"><span class="lang-ko">D-Day 계산기</span><span class="lang-en">Date Calculator</span></h1>
+<p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">두 날짜 사이의 차이를 일, 시간, 분 단위로 계산합니다.</span><span class="lang-en">Calculate the difference between two dates in days, hours, and minutes.</span></p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+<div><label class="block mb-2 font-medium"><span class="lang-ko">시작일</span><span class="lang-en">Start Date</span></label><input id="date1" type="date" class="w-full px-4 py-2 border border-border rounded-lg bg-white dark:bg-slate-700"></div>
+<div><label class="block mb-2 font-medium"><span class="lang-ko">종료일</span><span class="lang-en">End Date</span></label><input id="date2" type="date" class="w-full px-4 py-2 border border-border rounded-lg bg-white dark:bg-slate-700"></div>
+</div>
+<div class="grid grid-cols-3 gap-4 text-center">
+<div class="p-4 bg-slate-100 dark:bg-slate-700 rounded-xl"><div class="text-3xl font-bold text-primary" id="daysDiff">0</div><div class="text-sm text-slate-500"><span class="lang-ko">일</span><span class="lang-en">Days</span></div></div>
+<div class="p-4 bg-slate-100 dark:bg-slate-700 rounded-xl"><div class="text-3xl font-bold text-primary" id="hoursDiff">0</div><div class="text-sm text-slate-500"><span class="lang-ko">시간</span><span class="lang-en">Hours</span></div></div>
+<div class="p-4 bg-slate-100 dark:bg-slate-700 rounded-xl"><div class="text-3xl font-bold text-primary" id="minsDiff">0</div><div class="text-sm text-slate-500"><span class="lang-ko">분</span><span class="lang-en">Minutes</span></div></div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mt-6"><h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
+<div class="border-b border-border"><div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')"><span class="lang-ko">D-Day 계산기는 언제 사용하나요?</span><span class="lang-en">When is a date calculator useful?</span></div><div class="faq-a"><span class="lang-ko">시험/자격증 D-Day, 생일까지 남은 기간, 연애 기념일 계산, 프로젝트 마감일까지 남은 시간 등을 확인할 때 유용합니다.</span><span class="lang-en">Useful for tracking days until exams, birthdays, anniversaries, project deadlines, or any important event.</span></div></div>
+</div><script>
+function calc(){
+  var d1=new Date(document.getElementById('date1').value);
+  var d2=new Date(document.getElementById('date2').value);
+  if(isNaN(d1.getTime())||isNaN(d2.getTime()))return;
+  var diff=Math.abs(d2-d1);
+  var days=Math.floor(diff/86400000);
+  var hours=Math.floor((diff%86400000)/3600000);
+  var mins=Math.floor((diff%3600000)/60000);
+  document.getElementById('daysDiff').textContent=days.toLocaleString();
+  document.getElementById('hoursDiff').textContent=hours;
+  document.getElementById('minsDiff').textContent=mins;
+}
+document.querySelectorAll('input[type=date]').forEach(function(el){el.addEventListener('change',calc);});
+</script>
+</main>
+<footer class="bg-white dark:bg-slate-800 border-t border-border mt-12">
+<div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-3 text-sm">
+<span class="font-bold">Free Utilities</span>
+<nav class="flex gap-4">
+<a href="guide-productivity.html" class="hover:text-primary"><span class="lang-ko">가이드</span><span class="lang-en">Guides</span></a>
+<a href="privacy.html" class="hover:text-primary"><span class="lang-ko">개인정보처리방침</span><span class="lang-en">Privacy</span></a>
+<a href="contact.html" class="hover:text-primary"><span class="lang-ko">문의</span><span class="lang-en">Contact</span></a>
+</nav>
+<p class="text-slate-500 w-full">© 2026 Free Utilities</p>
+</div>
+</footer>
+<script>
+(function(){
+  var d=localStorage.getItem("darkMode")==="true";
+  if(d) document.documentElement.classList.add("dark");
+  var l=localStorage.getItem("site-lang")||"ko";
+  if(l==="en") document.body.classList.add("en");
+  var dt=document.getElementById("darkToggle");
+  dt.textContent=d?"☀️":"🌙";
+  dt.onclick=function(){var x=document.documentElement.classList.toggle("dark");localStorage.setItem("darkMode",x);dt.textContent=x?"☀️":"🌙";};
+  var lt=document.getElementById("langToggle");
+  lt.textContent=l==="en"?"한국어":"English";
+  lt.onclick=function(){var e=document.body.classList.toggle("en");localStorage.setItem("site-lang",e?"en":"ko");lt.textContent=e?"한국어":"English";};
+})();
+</script>
+</body>
+</html>

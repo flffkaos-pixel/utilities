@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>글자 수 세기 - Free Utilities</title>
+<meta name="description" content="텍스트의 글자 수, 단어 수, 문장 수, 문단 수를 실시간으로 세어주는 무료 온라인 도구입니다. 블로그, 에세이, SNS 글쓰기에 최적화되어 있습니다.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freeutilities.pages.dev/counter.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="글자 수 세기 - Free Utilities">
+<meta property="og:description" content="텍스트의 글자 수, 단어 수, 문장 수, 문단 수를 실시간으로 세어주는 무료 온라인 도구입니다. 블로그, 에세이, SNS 글쓰기에 최적화되어 있습니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="글자 수 세기 - Free Utilities">
+<meta name="twitter:description" content="Count characters, words, sentences, and paragraphs in real-time. Perfect for blog posts, essays, and social media writing.">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/counter.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/counter.html">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{'primary':'#2563eb','background':'#f9fafb','surface':'#ffffff','border':'#e5e7eb'},darkMode:'class'}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
+.dark body{background:#0f172a}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+.faq-q{font-weight:600;cursor:pointer;padding:0.75rem 0}
+.faq-q:hover{color:#2563eb}
+.faq-a{padding-bottom:1rem;color:#64748b;display:none}
+.dark .faq-a{color:#94a3b8}
+.faq-a.open{display:block}
+</style>
+</head>
+<body class="bg-background min-h-screen">
+<header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
+<div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<a href="index.html" class="flex items-center gap-2 text-primary font-bold text-lg"><span aria-hidden="true">←</span> Free Utilities</a>
+<div class="flex items-center gap-2">
+<button id="darkToggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">🌙</button>
+<button id="langToggle" class="px-3 py-1.5 rounded-lg border border-border text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700">English</button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 py-8">
+
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mb-8">
+<h1 class="text-3xl font-bold mb-2"><span class="lang-ko">글자 수 세기</span><span class="lang-en">Word Counter</span></h1>
+<p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">텍스트를 입력하면 실시간으로 글자 수, 단어 수, 문장 수를 계산합니다.</span><span class="lang-en">Type or paste text to count characters, words, sentences in real-time.</span></p>
+<textarea id="inputText" class="w-full h-48 px-4 py-3 border border-border rounded-lg bg-white dark:bg-slate-700 dark:border-slate-600" placeholder="<span class="lang-ko">텍스트를 입력하세요...</span><span class="lang-en">Type or paste your text here...</span>"></textarea>
+<div class="grid grid-cols-2 sm:grid-cols-5 gap-4 mt-6">
+<div class="stat-box p-4 rounded-xl bg-slate-100 dark:bg-slate-700 text-center"><div class="text-2xl font-bold text-primary" id="chars">0</div><div class="text-sm text-slate-500"><span class="lang-ko">글자</span><span class="lang-en">Chars</span></div></div>
+<div class="stat-box p-4 rounded-xl bg-slate-100 dark:bg-slate-700 text-center"><div class="text-2xl font-bold text-primary" id="words">0</div><div class="text-sm text-slate-500"><span class="lang-ko">단어</span><span class="lang-en">Words</span></div></div>
+<div class="stat-box p-4 rounded-xl bg-slate-100 dark:bg-slate-700 text-center"><div class="text-2xl font-bold text-primary" id="sentences">0</div><div class="text-sm text-slate-500"><span class="lang-ko">문장</span><span class="lang-en">Sentences</span></div></div>
+<div class="stat-box p-4 rounded-xl bg-slate-100 dark:bg-slate-700 text-center"><div class="text-2xl font-bold text-primary" id="lines">0</div><div class="text-sm text-slate-500"><span class="lang-ko">줄</span><span class="lang-en">Lines</span></div></div>
+<div class="stat-box p-4 rounded-xl bg-slate-100 dark:bg-slate-700 text-center"><div class="text-2xl font-bold text-primary" id="paragraphs">0</div><div class="text-sm text-slate-500"><span class="lang-ko">문단</span><span class="lang-en">Paragraphs</span></div></div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mt-6"><h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
+<div class="border-b border-border"><div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')"><span class="lang-ko">블로그 글자 수는 보통 얼마인가요?</span><span class="lang-en">What is a good blog post length?</span></div><div class="faq-a"><span class="lang-ko">SEO 최적화 블로그 글은 보통 1,500~2,500자가 적당합니다. 네이버 블로그는 1,000자 이상, 티스토리는 2,000자 이상이 검색 노출에 유리합니다.</span><span class="lang-en">SEO-optimized blog posts typically range from 1,500 to 2,500 characters. Longer content tends to rank better in search results.</span></div></div>
+<div class="border-b border-border"><div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')"><span class="lang-ko">SNS 글자 수 제한은 각각 얼마인가요?</span><span class="lang-en">What are character limits for social media?</span></div><div class="faq-a"><span class="lang-ko">트위터 280자, 인스타그램 2,200자, 페이스북 63,206자, 카카오톡 10,000자입니다. 각 플랫폼에 맞게 글자 수를 조절하세요.</span><span class="lang-en">Twitter: 280, Instagram: 2,200, Facebook: 63,206, KakaoTalk: 10,000 characters. Adjust your content accordingly.</span></div></div>
+</div><script>
+var ta=document.getElementById('inputText');
+function count(){
+  var t=ta.value;
+  document.getElementById('chars').textContent=t.length;
+  document.getElementById('words').textContent=t.trim()?t.trim().split(/\s+/).length:0;
+  document.getElementById('sentences').textContent=(t.match(/[.!?]+/g)||[]).length;
+  document.getElementById('lines').textContent=t?t.split('\n').length:0;
+  document.getElementById('paragraphs').textContent=t?t.split('\n\n').filter(Boolean).length:0;
+}
+ta.addEventListener('input',count);
+</script>
+</main>
+<footer class="bg-white dark:bg-slate-800 border-t border-border mt-12">
+<div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-3 text-sm">
+<span class="font-bold">Free Utilities</span>
+<nav class="flex gap-4">
+<a href="guide-productivity.html" class="hover:text-primary"><span class="lang-ko">가이드</span><span class="lang-en">Guides</span></a>
+<a href="privacy.html" class="hover:text-primary"><span class="lang-ko">개인정보처리방침</span><span class="lang-en">Privacy</span></a>
+<a href="contact.html" class="hover:text-primary"><span class="lang-ko">문의</span><span class="lang-en">Contact</span></a>
+</nav>
+<p class="text-slate-500 w-full">© 2026 Free Utilities</p>
+</div>
+</footer>
+<script>
+(function(){
+  var d=localStorage.getItem("darkMode")==="true";
+  if(d) document.documentElement.classList.add("dark");
+  var l=localStorage.getItem("site-lang")||"ko";
+  if(l==="en") document.body.classList.add("en");
+  var dt=document.getElementById("darkToggle");
+  dt.textContent=d?"☀️":"🌙";
+  dt.onclick=function(){var x=document.documentElement.classList.toggle("dark");localStorage.setItem("darkMode",x);dt.textContent=x?"☀️":"🌙";};
+  var lt=document.getElementById("langToggle");
+  lt.textContent=l==="en"?"한국어":"English";
+  lt.onclick=function(){var e=document.body.classList.toggle("en");localStorage.setItem("site-lang",e?"en":"ko");lt.textContent=e?"한국어":"English";};
+})();
+</script>
+</body>
+</html>

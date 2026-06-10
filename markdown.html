@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>마크다운 변환기 - Free Utilities</title>
+<meta name="description" content="마크다운 텍스트를 HTML로 실시간 변환하는 무료 온라인 도구입니다. README 작성, 블로그 포스팅, 문서 작업에 유용합니다.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freeutilities.pages.dev/markdown.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="마크다운 변환기 - Free Utilities">
+<meta property="og:description" content="마크다운 텍스트를 HTML로 실시간 변환하는 무료 온라인 도구입니다. README 작성, 블로그 포스팅, 문서 작업에 유용합니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="마크다운 변환기 - Free Utilities">
+<meta name="twitter:description" content="Convert Markdown to HTML in real-time. Useful for writing README files, blog posts, and documentation.">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/markdown.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/markdown.html">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{'primary':'#2563eb','background':'#f9fafb','surface':'#ffffff','border':'#e5e7eb'},darkMode:'class'}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
+.dark body{background:#0f172a}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+.faq-q{font-weight:600;cursor:pointer;padding:0.75rem 0}
+.faq-q:hover{color:#2563eb}
+.faq-a{padding-bottom:1rem;color:#64748b;display:none}
+.dark .faq-a{color:#94a3b8}
+.faq-a.open{display:block}
+</style>
+</head>
+<body class="bg-background min-h-screen">
+<header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
+<div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<a href="index.html" class="flex items-center gap-2 text-primary font-bold text-lg"><span aria-hidden="true">←</span> Free Utilities</a>
+<div class="flex items-center gap-2">
+<button id="darkToggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">🌙</button>
+<button id="langToggle" class="px-3 py-1.5 rounded-lg border border-border text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700">English</button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 py-8">
+
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mb-8">
+<h1 class="text-3xl font-bold mb-2"><span class="lang-ko">마크다운 변환기</span><span class="lang-en">Markdown Converter</span></h1>
+<p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">마크다운을 HTML로 실시간 변환합니다.</span><span class="lang-en">Convert Markdown to HTML in real-time.</span></p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<textarea id="mdInput" class="w-full h-64 px-4 py-3 border border-border rounded-lg bg-white dark:bg-slate-700 dark:border-slate-600 font-mono text-sm" placeholder="<span class="lang-ko"># 제목\n**굵게** *기울임*\n- 목록 항목</span><span class="lang-en"># Heading\n**Bold** *Italic*\n- List item</span>"># Hello</textarea>
+<div><div id="htmlOutput" class="w-full h-64 px-4 py-3 border border-border rounded-lg bg-white dark:bg-slate-700 overflow-auto"></div></div>
+</div>
+<details class="mt-4"><summary class="cursor-pointer font-medium text-sm text-slate-500"><span class="lang-ko">HTML 소스 보기</span><span class="lang-en">View HTML source</span></summary><pre id="rawOutput" class="mt-2 p-3 bg-slate-100 dark:bg-slate-700 rounded-lg text-xs overflow-auto"></pre></details>
+</div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mt-6"><h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
+<div class="border-b border-border"><div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')"><span class="lang-ko">마크다운은 무엇인가요?</span><span class="lang-en">What is Markdown?</span></div><div class="faq-a"><span class="lang-ko">마크다운은 읽기 쉽고 쓰기 쉬운 텍스트 기반 마크업 언어입니다. GitHub README, 노션, 티스토리 등에서 널리 사용됩니다.</span><span class="lang-en">Markdown is a lightweight markup language that is easy to read and write. Used widely in GitHub README, Notion, and blogging platforms.</span></div></div>
+</div><script>
+function render(){
+  var md=document.getElementById('mdInput').value;
+  var html=md
+    .replace(/### (.+)/g,'<h3>$1</h3>')
+    .replace(/## (.+)/g,'<h2>$1</h2>')
+    .replace(/# (.+)/g,'<h1>$1</h1>')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,'<em>$1</em>')
+    .replace(/`(.+?)`/g,'<code>$1</code>')
+    .replace(/^- (.+)/gm,'<li>$1</li>')
+    .replace(/(<li>.*<\/li>\n?)+/g,'<ul>$&</ul>')
+    .replace(/\n\n/g,'</p><p>').replace(/^(.+)$/m,'<p>$1</p>');
+  document.getElementById('htmlOutput').innerHTML='<div class="prose">'+html+'</div>';
+  document.getElementById('rawOutput').textContent='<div class=\"prose\">'+html.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</div>';
+}
+document.getElementById('mdInput').addEventListener('input',render);
+</script>
+</main>
+<footer class="bg-white dark:bg-slate-800 border-t border-border mt-12">
+<div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-3 text-sm">
+<span class="font-bold">Free Utilities</span>
+<nav class="flex gap-4">
+<a href="guide-productivity.html" class="hover:text-primary"><span class="lang-ko">가이드</span><span class="lang-en">Guides</span></a>
+<a href="privacy.html" class="hover:text-primary"><span class="lang-ko">개인정보처리방침</span><span class="lang-en">Privacy</span></a>
+<a href="contact.html" class="hover:text-primary"><span class="lang-ko">문의</span><span class="lang-en">Contact</span></a>
+</nav>
+<p class="text-slate-500 w-full">© 2026 Free Utilities</p>
+</div>
+</footer>
+<script>
+(function(){
+  var d=localStorage.getItem("darkMode")==="true";
+  if(d) document.documentElement.classList.add("dark");
+  var l=localStorage.getItem("site-lang")||"ko";
+  if(l==="en") document.body.classList.add("en");
+  var dt=document.getElementById("darkToggle");
+  dt.textContent=d?"☀️":"🌙";
+  dt.onclick=function(){var x=document.documentElement.classList.toggle("dark");localStorage.setItem("darkMode",x);dt.textContent=x?"☀️":"🌙";};
+  var lt=document.getElementById("langToggle");
+  lt.textContent=l==="en"?"한국어":"English";
+  lt.onclick=function(){var e=document.body.classList.toggle("en");localStorage.setItem("site-lang",e?"en":"ko");lt.textContent=e?"한국어":"English";};
+})();
+</script>
+</body>
+</html>

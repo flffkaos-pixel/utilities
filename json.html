@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>JSON 포맷터 - Free Utilities</title>
+<meta name="description" content="JSON 데이터를 읽기 쉽게 포맷팅하거나 압축하는 무료 온라인 도구입니다. API 응답 디버깅, 설정 파일 편집에 유용합니다.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freeutilities.pages.dev/json.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JSON 포맷터 - Free Utilities">
+<meta property="og:description" content="JSON 데이터를 읽기 쉽게 포맷팅하거나 압축하는 무료 온라인 도구입니다. API 응답 디버깅, 설정 파일 편집에 유용합니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="JSON 포맷터 - Free Utilities">
+<meta name="twitter:description" content="Format or minify JSON data for better readability. Essential for API debugging and config file editing.">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/json.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/json.html">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{'primary':'#2563eb','background':'#f9fafb','surface':'#ffffff','border':'#e5e7eb'},darkMode:'class'}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
+.dark body{background:#0f172a}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+.faq-q{font-weight:600;cursor:pointer;padding:0.75rem 0}
+.faq-q:hover{color:#2563eb}
+.faq-a{padding-bottom:1rem;color:#64748b;display:none}
+.dark .faq-a{color:#94a3b8}
+.faq-a.open{display:block}
+</style>
+</head>
+<body class="bg-background min-h-screen">
+<header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
+<div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<a href="index.html" class="flex items-center gap-2 text-primary font-bold text-lg"><span aria-hidden="true">←</span> Free Utilities</a>
+<div class="flex items-center gap-2">
+<button id="darkToggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">🌙</button>
+<button id="langToggle" class="px-3 py-1.5 rounded-lg border border-border text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700">English</button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 py-8">
+
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mb-8">
+<h1 class="text-3xl font-bold mb-2"><span class="lang-ko">JSON 포맷터</span><span class="lang-en">JSON Formatter</span></h1>
+<p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">JSON 데이터를 포맷팅하거나 압축합니다.</span><span class="lang-en">Format or minify JSON data.</span></p>
+<textarea id="inputText" class="w-full h-32 px-4 py-3 border border-border rounded-lg bg-white dark:bg-slate-700 dark:border-slate-600 font-mono text-sm mb-4" placeholder='{"key":"value"}'></textarea>
+<div class="flex gap-3 mb-4">
+<button onclick="fmt()" class="px-4 py-2 bg-primary text-white rounded-lg font-medium"><span class="lang-ko">포맷</span><span class="lang-en">Format</span></button>
+<button onclick="min()" class="px-4 py-2 border border-border rounded-lg font-medium hover:bg-slate-100 dark:hover:bg-slate-700"><span class="lang-ko">압축</span><span class="lang-en">Minify</span></button>
+<button onclick="navigator.clipboard.writeText(out.value)" class="px-4 py-2 border border-border rounded-lg font-medium hover:bg-slate-100 dark:hover:bg-slate-700"><span class="lang-ko">복사</span><span class="lang-en">Copy</span></button>
+</div>
+<textarea id="outputText" class="w-full h-32 px-4 py-3 border border-border rounded-lg bg-gray-50 dark:bg-slate-700 dark:border-slate-600 font-mono text-sm" readonly></textarea>
+</div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mt-6"><h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
+<div class="border-b border-border"><div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')"><span class="lang-ko">JSON 포맷터는 어떤 경우에 필요한가요?</span><span class="lang-en">When do I need a JSON formatter?</span></div><div class="faq-a"><span class="lang-ko">API 응답 데이터 확인, 설정 파일(config.json) 편집, 다른 개발자와 데이터 구조 공유 시 유용합니다. 압축된 JSON을 읽기 쉽게 만들어줍니다.</span><span class="lang-en">Useful when inspecting API responses, editing config files, or sharing data structures. Makes minified JSON human-readable.</span></div></div>
+</div><script>
+var inp=document.getElementById('inputText'),out=document.getElementById('outputText');
+function fmt(){try{var j=JSON.parse(inp.value);out.value=JSON.stringify(j,null,2);}catch(e){out.value='Error: '+e.message;}}
+function min(){try{var j=JSON.parse(inp.value);out.value=JSON.stringify(j);}catch(e){out.value='Error: '+e.message;}}
+</script>
+</main>
+<footer class="bg-white dark:bg-slate-800 border-t border-border mt-12">
+<div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-3 text-sm">
+<span class="font-bold">Free Utilities</span>
+<nav class="flex gap-4">
+<a href="guide-productivity.html" class="hover:text-primary"><span class="lang-ko">가이드</span><span class="lang-en">Guides</span></a>
+<a href="privacy.html" class="hover:text-primary"><span class="lang-ko">개인정보처리방침</span><span class="lang-en">Privacy</span></a>
+<a href="contact.html" class="hover:text-primary"><span class="lang-ko">문의</span><span class="lang-en">Contact</span></a>
+</nav>
+<p class="text-slate-500 w-full">© 2026 Free Utilities</p>
+</div>
+</footer>
+<script>
+(function(){
+  var d=localStorage.getItem("darkMode")==="true";
+  if(d) document.documentElement.classList.add("dark");
+  var l=localStorage.getItem("site-lang")||"ko";
+  if(l==="en") document.body.classList.add("en");
+  var dt=document.getElementById("darkToggle");
+  dt.textContent=d?"☀️":"🌙";
+  dt.onclick=function(){var x=document.documentElement.classList.toggle("dark");localStorage.setItem("darkMode",x);dt.textContent=x?"☀️":"🌙";};
+  var lt=document.getElementById("langToggle");
+  lt.textContent=l==="en"?"한국어":"English";
+  lt.onclick=function(){var e=document.body.classList.toggle("en");localStorage.setItem("site-lang",e?"en":"ko");lt.textContent=e?"한국어":"English";};
+})();
+</script>
+</body>
+</html>

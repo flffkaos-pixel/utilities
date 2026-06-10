@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BMI 계산기 - Free Utilities</title>
+<meta name="description" content="신장과 체중으로 체질량지수(BMI)를 계산하는 무료 온라인 도구입니다. 비만도 판정과 건강한 체중 범위를 확인하세요.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freeutilities.pages.dev/bmi.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BMI 계산기 - Free Utilities">
+<meta property="og:description" content="신장과 체중으로 체질량지수(BMI)를 계산하는 무료 온라인 도구입니다. 비만도 판정과 건강한 체중 범위를 확인하세요.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BMI 계산기 - Free Utilities">
+<meta name="twitter:description" content="Calculate your Body Mass Index (BMI) from height and weight. Check obesity classification and healthy weight range.">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/bmi.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/bmi.html">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{'primary':'#2563eb','background':'#f9fafb','surface':'#ffffff','border':'#e5e7eb'},darkMode:'class'}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
+.dark body{background:#0f172a}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+.faq-q{font-weight:600;cursor:pointer;padding:0.75rem 0}
+.faq-q:hover{color:#2563eb}
+.faq-a{padding-bottom:1rem;color:#64748b;display:none}
+.dark .faq-a{color:#94a3b8}
+.faq-a.open{display:block}
+</style>
+</head>
+<body class="bg-background min-h-screen">
+<header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
+<div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<a href="index.html" class="flex items-center gap-2 text-primary font-bold text-lg"><span aria-hidden="true">←</span> Free Utilities</a>
+<div class="flex items-center gap-2">
+<button id="darkToggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">🌙</button>
+<button id="langToggle" class="px-3 py-1.5 rounded-lg border border-border text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700">English</button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 py-8">
+
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mb-8">
+<h1 class="text-3xl font-bold mb-2"><span class="lang-ko">BMI 계산기</span><span class="lang-en">BMI Calculator</span></h1>
+<p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">신장과 체중으로 체질량지수를 계산하고 비만도를 판정합니다.</span><span class="lang-en">Calculate your BMI and check obesity classification.</span></p>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div><label class="block mb-2 font-medium"><span class="lang-ko">신장 (cm)</span><span class="lang-en">Height (cm)</span></label><input id="height" type="number" value="170" class="w-full px-4 py-2 border border-border rounded-lg bg-white dark:bg-slate-700"></div>
+<div><label class="block mb-2 font-medium"><span class="lang-ko">체중 (kg)</span><span class="lang-en">Weight (kg)</span></label><input id="weight" type="number" value="65" class="w-full px-4 py-2 border border-border rounded-lg bg-white dark:bg-slate-700"></div>
+</div>
+<div class="text-center p-6 bg-slate-100 dark:bg-slate-700 rounded-xl">
+<div class="text-sm text-slate-500 mb-2"><span class="lang-ko">당신의 BMI</span><span class="lang-en">Your BMI</span></div>
+<div class="text-5xl font-bold text-primary" id="bmiVal">22.5</div>
+<div id="bmiCat" class="text-lg font-semibold mt-2" style="color:#10b981">정상</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mt-6"><h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
+<div class="border-b border-border"><div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')"><span class="lang-ko">BMI 기준은 어떻게 되나요?</span><span class="lang-en">What are the BMI categories?</span></div><div class="faq-a"><span class="lang-ko">대한비만학회 기준: 18.5 미만 저체중, 18.5~22.9 정상, 23~24.9 과체중, 25~29.9 비만 1단계, 30~34.9 비만 2단계, 35 이상 비만 3단계입니다.</span><span class="lang-en">Korean Obesity Society: <18.5 underweight, 18.5-22.9 normal, 23-24.9 overweight, 25-29.9 obese I, 30-34.9 obese II, 35+ obese III.</span></div></div>
+</div><script>
+function calc(){
+  var h=parseFloat(document.getElementById('height').value)/100;
+  var w=parseFloat(document.getElementById('weight').value);
+  if(!h||!w) return;
+  var bmi=w/(h*h);
+  document.getElementById('bmiVal').textContent=bmi.toFixed(1);
+  var cat,color;
+  if(bmi<18.5){cat='저체중';color='#f59e0b';}
+  else if(bmi<23){cat='정상';color='#10b981';}
+  else if(bmi<25){cat='과체중';color='#f59e0b';}
+  else if(bmi<30){cat='비만 1단계';color='#ef4444';}
+  else if(bmi<35){cat='비만 2단계';color='#ef4444';}
+  else{cat='비만 3단계';color='#dc2626';}
+  document.getElementById('bmiCat').textContent=cat;
+  document.getElementById('bmiCat').style.color=color;
+}
+document.querySelectorAll('input').forEach(function(el){el.addEventListener('input',calc);});
+</script>
+</main>
+<footer class="bg-white dark:bg-slate-800 border-t border-border mt-12">
+<div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-3 text-sm">
+<span class="font-bold">Free Utilities</span>
+<nav class="flex gap-4">
+<a href="guide-productivity.html" class="hover:text-primary"><span class="lang-ko">가이드</span><span class="lang-en">Guides</span></a>
+<a href="privacy.html" class="hover:text-primary"><span class="lang-ko">개인정보처리방침</span><span class="lang-en">Privacy</span></a>
+<a href="contact.html" class="hover:text-primary"><span class="lang-ko">문의</span><span class="lang-en">Contact</span></a>
+</nav>
+<p class="text-slate-500 w-full">© 2026 Free Utilities</p>
+</div>
+</footer>
+<script>
+(function(){
+  var d=localStorage.getItem("darkMode")==="true";
+  if(d) document.documentElement.classList.add("dark");
+  var l=localStorage.getItem("site-lang")||"ko";
+  if(l==="en") document.body.classList.add("en");
+  var dt=document.getElementById("darkToggle");
+  dt.textContent=d?"☀️":"🌙";
+  dt.onclick=function(){var x=document.documentElement.classList.toggle("dark");localStorage.setItem("darkMode",x);dt.textContent=x?"☀️":"🌙";};
+  var lt=document.getElementById("langToggle");
+  lt.textContent=l==="en"?"한국어":"English";
+  lt.onclick=function(){var e=document.body.classList.toggle("en");localStorage.setItem("site-lang",e?"en":"ko");lt.textContent=e?"한국어":"English";};
+})();
+</script>
+</body>
+</html>

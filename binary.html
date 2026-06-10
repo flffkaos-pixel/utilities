@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>이진수 변환기 - Free Utilities</title>
+<meta name="description" content="10진수를 2진수, 8진수, 16진수로 변환하거나 역변환하는 무료 온라인 도구입니다.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freeutilities.pages.dev/binary.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="이진수 변환기 - Free Utilities">
+<meta property="og:description" content="10진수를 2진수, 8진수, 16진수로 변환하거나 역변환하는 무료 온라인 도구입니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="이진수 변환기 - Free Utilities">
+<meta name="twitter:description" content="Convert between decimal, binary, octal, and hexadecimal number systems.">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/binary.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/binary.html">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{'primary':'#2563eb','background':'#f9fafb','surface':'#ffffff','border':'#e5e7eb'},darkMode:'class'}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
+.dark body{background:#0f172a}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+.faq-q{font-weight:600;cursor:pointer;padding:0.75rem 0}
+.faq-q:hover{color:#2563eb}
+.faq-a{padding-bottom:1rem;color:#64748b;display:none}
+.dark .faq-a{color:#94a3b8}
+.faq-a.open{display:block}
+</style>
+</head>
+<body class="bg-background min-h-screen">
+<header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
+<div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<a href="index.html" class="flex items-center gap-2 text-primary font-bold text-lg"><span aria-hidden="true">←</span> Free Utilities</a>
+<div class="flex items-center gap-2">
+<button id="darkToggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">🌙</button>
+<button id="langToggle" class="px-3 py-1.5 rounded-lg border border-border text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700">English</button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 py-8">
+
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mb-8">
+<h1 class="text-3xl font-bold mb-2"><span class="lang-ko">이진수 변환기</span><span class="lang-en">Binary Converter</span></h1>
+<p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">10진수를 2진수, 8진수, 16진수로 변환하거나 역변환하는 무료 온라인 도구입니다.</span><span class="lang-en">Convert between decimal, binary, octal, and hexadecimal number systems.</span></p>
+<p class="text-center py-8 text-slate-400"><span class="lang-ko">도구를 사용하려면 JavaScript를 활성화하세요.</span><span class="lang-en">Enable JavaScript to use this tool.</span></p>
+</div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mt-6"><h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
+<div class="border-b border-border"><div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')"><span class="lang-ko">이 도구는 어떻게 사용하나요?</span><span class="lang-en">How to use this tool?</span></div><div class="faq-a"><span class="lang-ko">텍스트를 입력하고 원하는 기능 버튼을 클릭하면 즉시 결과가 표시됩니다. 모든 처리는 브라우저에서 이루어집니다.</span><span class="lang-en">Enter your text and click the desired function button. Results appear instantly. All processing happens in your browser.</span></div></div>
+</div><script>function toBin(){var v=parseInt(document.getElementById("decIn").value);if(isNaN(v))return;document.getElementById("binOut").value=v.toString(2);document.getElementById("octOut").value=v.toString(8);document.getElementById("hexOut").value=v.toString(16).toUpperCase();}</script>
+</main>
+<footer class="bg-white dark:bg-slate-800 border-t border-border mt-12">
+<div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-3 text-sm">
+<span class="font-bold">Free Utilities</span>
+<nav class="flex gap-4">
+<a href="guide-productivity.html" class="hover:text-primary"><span class="lang-ko">가이드</span><span class="lang-en">Guides</span></a>
+<a href="privacy.html" class="hover:text-primary"><span class="lang-ko">개인정보처리방침</span><span class="lang-en">Privacy</span></a>
+<a href="contact.html" class="hover:text-primary"><span class="lang-ko">문의</span><span class="lang-en">Contact</span></a>
+</nav>
+<p class="text-slate-500 w-full">© 2026 Free Utilities</p>
+</div>
+</footer>
+<script>
+(function(){
+  var d=localStorage.getItem("darkMode")==="true";
+  if(d) document.documentElement.classList.add("dark");
+  var l=localStorage.getItem("site-lang")||"ko";
+  if(l==="en") document.body.classList.add("en");
+  var dt=document.getElementById("darkToggle");
+  dt.textContent=d?"☀️":"🌙";
+  dt.onclick=function(){var x=document.documentElement.classList.toggle("dark");localStorage.setItem("darkMode",x);dt.textContent=x?"☀️":"🌙";};
+  var lt=document.getElementById("langToggle");
+  lt.textContent=l==="en"?"한국어":"English";
+  lt.onclick=function(){var e=document.body.classList.toggle("en");localStorage.setItem("site-lang",e?"en":"ko");lt.textContent=e?"한국어":"English";};
+})();
+</script>
+</body>
+</html>

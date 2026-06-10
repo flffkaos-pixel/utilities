@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>중복 제거 - Free Utilities</title>
+<meta name="description" content="텍스트 줄에서 중복된 항목을 제거하고 고유한 값만 남기는 무료 온라인 도구입니다. 키워드 리스트, 이메일 주소 정리에 유용합니다.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freeutilities.pages.dev/unique.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="중복 제거 - Free Utilities">
+<meta property="og:description" content="텍스트 줄에서 중복된 항목을 제거하고 고유한 값만 남기는 무료 온라인 도구입니다. 키워드 리스트, 이메일 주소 정리에 유용합니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="중복 제거 - Free Utilities">
+<meta name="twitter:description" content="Remove duplicate lines from your text and keep only unique values. Useful for cleaning keyword lists and email addresses.">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/unique.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/unique.html">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{'primary':'#2563eb','background':'#f9fafb','surface':'#ffffff','border':'#e5e7eb'},darkMode:'class'}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
+.dark body{background:#0f172a}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+.faq-q{font-weight:600;cursor:pointer;padding:0.75rem 0}
+.faq-q:hover{color:#2563eb}
+.faq-a{padding-bottom:1rem;color:#64748b;display:none}
+.dark .faq-a{color:#94a3b8}
+.faq-a.open{display:block}
+</style>
+</head>
+<body class="bg-background min-h-screen">
+<header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
+<div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<a href="index.html" class="flex items-center gap-2 text-primary font-bold text-lg"><span aria-hidden="true">←</span> Free Utilities</a>
+<div class="flex items-center gap-2">
+<button id="darkToggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">🌙</button>
+<button id="langToggle" class="px-3 py-1.5 rounded-lg border border-border text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700">English</button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 py-8">
+
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mb-8">
+<h1 class="text-3xl font-bold mb-2"><span class="lang-ko">중복 제거</span><span class="lang-en">Duplicate Remover</span></h1>
+<p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">중복된 텍스트 줄을 제거하고 고유한 값만 남깁니다.</span><span class="lang-en">Remove duplicate lines and keep only unique values.</span></p>
+<textarea id="inputText" class="w-full h-32 px-4 py-3 border border-border rounded-lg bg-white dark:bg-slate-700 dark:border-slate-600 mb-4" placeholder="<span class="lang-ko">중복이 있는 텍스트를 붙여넣으세요...</span><span class="lang-en">Paste text with duplicates...</span>"></textarea>
+<div class="flex items-center gap-4 mb-2 text-sm text-slate-500">
+<span><span class="lang-ko">입력:</span><span class="lang-en">Input:</span> <span id="inCount">0</span> <span class="lang-ko">줄</span><span class="lang-en">lines</span></span>
+<span><span class="lang-ko">출력:</span><span class="lang-en">Output:</span> <span id="outCount">0</span> <span class="lang-ko">줄</span><span class="lang-en">lines</span></span>
+</div>
+<textarea id="outputText" class="w-full h-32 px-4 py-3 border border-border rounded-lg bg-gray-50 dark:bg-slate-700 dark:border-slate-600" readonly></textarea>
+</div>
+<script>
+var inp2=document.getElementById('inputText'),out2=document.getElementById('outputText');
+function dedup2(){
+  var lines=inp2.value.split('\n');
+  var uniq=[];var seen={};
+  lines.forEach(function(l){
+    var k=l.trim().toLowerCase();
+    if(k&&!seen[k]){seen[k]=true;uniq.push(l.trim());}
+  });
+  out2.value=uniq.join('\n');
+  document.getElementById('inCount').textContent=lines.filter(Boolean).length;
+  document.getElementById('outCount').textContent=uniq.length;
+}
+inp2.addEventListener('input',dedup2);
+</script>
+</div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mt-6"><h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
+<div class="border-b border-border"><div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')"><span class="lang-ko">중복 제거는 언제 사용하나요?</span><span class="lang-en">When should I use duplicate remover?</span></div><div class="faq-a"><span class="lang-ko">이메일 주소 목록 정리, 키워드 중복 제거, 설문조사 중복 응답 필터링, 데이터 크롤링 결과 정제 등에 사용합니다.</span><span class="lang-en">Useful for cleaning email lists, removing duplicate keywords, filtering survey responses, and processing scraped data.</span></div></div>
+</div><script>
+var inp=document.getElementById('inputText'),out=document.getElementById('outputText');
+function dedup(){
+  var lines=inp.value.split('\n');
+  var unique=[];
+  var seen={};
+  lines.forEach(function(l){
+    var key=l.trim().toLowerCase();
+    if(key&&!seen[key]){seen[key]=true;unique.push(l.trim());}
+  });
+  out.value=unique.join('\n');
+}
+inp.addEventListener('input',dedup);
+</script>
+</main>
+<footer class="bg-white dark:bg-slate-800 border-t border-border mt-12">
+<div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-3 text-sm">
+<span class="font-bold">Free Utilities</span>
+<nav class="flex gap-4">
+<a href="guide-productivity.html" class="hover:text-primary"><span class="lang-ko">가이드</span><span class="lang-en">Guides</span></a>
+<a href="privacy.html" class="hover:text-primary"><span class="lang-ko">개인정보처리방침</span><span class="lang-en">Privacy</span></a>
+<a href="contact.html" class="hover:text-primary"><span class="lang-ko">문의</span><span class="lang-en">Contact</span></a>
+</nav>
+<p class="text-slate-500 w-full">© 2026 Free Utilities</p>
+</div>
+</footer>
+<script>
+(function(){
+  var d=localStorage.getItem("darkMode")==="true";
+  if(d) document.documentElement.classList.add("dark");
+  var l=localStorage.getItem("site-lang")||"ko";
+  if(l==="en") document.body.classList.add("en");
+  var dt=document.getElementById("darkToggle");
+  dt.textContent=d?"☀️":"🌙";
+  dt.onclick=function(){var x=document.documentElement.classList.toggle("dark");localStorage.setItem("darkMode",x);dt.textContent=x?"☀️":"🌙";};
+  var lt=document.getElementById("langToggle");
+  lt.textContent=l==="en"?"한국어":"English";
+  lt.onclick=function(){var e=document.body.classList.toggle("en");localStorage.setItem("site-lang",e?"en":"ko");lt.textContent=e?"한국어":"English";};
+})();
+</script>
+</body>
+</html>

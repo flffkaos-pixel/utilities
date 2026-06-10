@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Base64 인코더/디코더 - Free Utilities</title>
+<meta name="description" content="텍스트를 Base64로 인코딩하거나 디코딩하는 무료 온라인 도구입니다. 바이너리 데이터를 텍스트로 변환할 때 유용합니다.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://freeutilities.pages.dev/base64.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Base64 인코더/디코더 - Free Utilities">
+<meta property="og:description" content="텍스트를 Base64로 인코딩하거나 디코딩하는 무료 온라인 도구입니다. 바이너리 데이터를 텍스트로 변환할 때 유용합니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Base64 인코더/디코더 - Free Utilities">
+<meta name="twitter:description" content="Encode or decode text to/from Base64 format. Useful for converting binary data to text.">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/base64.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/base64.html">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{'primary':'#2563eb','background':'#f9fafb','surface':'#ffffff','border':'#e5e7eb'},darkMode:'class'}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
+.dark body{background:#0f172a}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+.faq-q{font-weight:600;cursor:pointer;padding:0.75rem 0}
+.faq-q:hover{color:#2563eb}
+.faq-a{padding-bottom:1rem;color:#64748b;display:none}
+.dark .faq-a{color:#94a3b8}
+.faq-a.open{display:block}
+</style>
+</head>
+<body class="bg-background min-h-screen">
+<header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
+<div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<a href="index.html" class="flex items-center gap-2 text-primary font-bold text-lg"><span aria-hidden="true">←</span> Free Utilities</a>
+<div class="flex items-center gap-2">
+<button id="darkToggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">🌙</button>
+<button id="langToggle" class="px-3 py-1.5 rounded-lg border border-border text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700">English</button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 py-8">
+
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mb-8">
+<h1 class="text-3xl font-bold mb-2"><span class="lang-ko">Base64 인코더/디코더</span><span class="lang-en">Base64 Encoder/Decoder</span></h1>
+<p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">텍스트를 Base64로 인코딩하거나 디코딩합니다.</span><span class="lang-en">Encode or decode text to/from Base64 format.</span></p>
+<textarea id="inputText" class="w-full h-32 px-4 py-3 border border-border rounded-lg bg-white dark:bg-slate-700 dark:border-slate-600 mb-4" placeholder="<span class="lang-ko">텍스트를 입력하세요...</span><span class="lang-en">Enter text...</span>"></textarea>
+<div class="flex gap-3 mb-4">
+<button onclick="encode()" class="px-4 py-2 bg-primary text-white rounded-lg font-medium"><span class="lang-ko">인코딩</span><span class="lang-en">Encode</span></button>
+<button onclick="decode()" class="px-4 py-2 border border-border rounded-lg font-medium hover:bg-slate-100 dark:hover:bg-slate-700"><span class="lang-ko">디코딩</span><span class="lang-en">Decode</span></button>
+</div>
+<textarea id="outputText" class="w-full h-32 px-4 py-3 border border-border rounded-lg bg-gray-50 dark:bg-slate-700 dark:border-slate-600" readonly></textarea>
+</div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mt-6"><h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
+<div class="border-b border-border"><div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')"><span class="lang-ko">Base64는 언제 사용하나요?</span><span class="lang-en">When is Base64 used?</span></div><div class="faq-a"><span class="lang-ko">이메일 첨부파일(MIME), HTML/CSS에 이미지 데이터 포함, JWT 토큰, API 인증 등에 사용됩니다.</span><span class="lang-en">Base64 is used in email attachments (MIME), embedding images in HTML/CSS, JWT tokens, and API authentication.</span></div></div>
+<div class="border-b border-border"><div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')"><span class="lang-ko">Base64는 암호화인가요?</span><span class="lang-en">Is Base64 encryption?</span></div><div class="faq-a"><span class="lang-ko">아니요, Base64는 인코딩 방식이지 암호화가 아닙니다. 누구나 쉽게 디코딩할 수 있으므로 보안이 필요한 데이터에는 사용하지 마세요.</span><span class="lang-en">No, Base64 is encoding, not encryption. Anyone can decode it easily, so never use it for sensitive data.</span></div></div>
+</div><script>
+var inp=document.getElementById('inputText'),out=document.getElementById('outputText');
+function encode(){
+  try{out.value=btoa(unescape(encodeURIComponent(inp.value)));}
+  catch(e){out.value='Error: '+e.message;}
+}
+function decode(){
+  try{out.value=decodeURIComponent(escape(atob(inp.value)));}
+  catch(e){out.value='Error: '+e.message;}
+}
+</script>
+</main>
+<footer class="bg-white dark:bg-slate-800 border-t border-border mt-12">
+<div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-3 text-sm">
+<span class="font-bold">Free Utilities</span>
+<nav class="flex gap-4">
+<a href="guide-productivity.html" class="hover:text-primary"><span class="lang-ko">가이드</span><span class="lang-en">Guides</span></a>
+<a href="privacy.html" class="hover:text-primary"><span class="lang-ko">개인정보처리방침</span><span class="lang-en">Privacy</span></a>
+<a href="contact.html" class="hover:text-primary"><span class="lang-ko">문의</span><span class="lang-en">Contact</span></a>
+</nav>
+<p class="text-slate-500 w-full">© 2026 Free Utilities</p>
+</div>
+</footer>
+<script>
+(function(){
+  var d=localStorage.getItem("darkMode")==="true";
+  if(d) document.documentElement.classList.add("dark");
+  var l=localStorage.getItem("site-lang")||"ko";
+  if(l==="en") document.body.classList.add("en");
+  var dt=document.getElementById("darkToggle");
+  dt.textContent=d?"☀️":"🌙";
+  dt.onclick=function(){var x=document.documentElement.classList.toggle("dark");localStorage.setItem("darkMode",x);dt.textContent=x?"☀️":"🌙";};
+  var lt=document.getElementById("langToggle");
+  lt.textContent=l==="en"?"한국어":"English";
+  lt.onclick=function(){var e=document.body.classList.toggle("en");localStorage.setItem("site-lang",e?"en":"ko");lt.textContent=e?"한국어":"English";};
+})();
+</script>
+</body>
+</html>
