@@ -497,8 +497,6 @@ document.body.classList.toggle('en', lang === 'en');
 <nav class="hidden md:flex gap-stack-md">
 <a class="font-label-sm text-label-sm text-primary border-b-2 border-primary transition-colors duration-200" href="index.html"><span class="lang-ko">도구</span><span class="lang-en">Tools</span></a>
 <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors duration-200" href="guide-productivity.html"><span class="lang-ko">가이드</span><span class="lang-en">Guides</span></a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors duration-200" href="#"><span class="lang-ko">즐겨찾기</span><span class="lang-en">Favorites</span></a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors duration-200" href="#"><span class="lang-ko">최근</span><span class="lang-en">Recents</span></a>
 </nav>
 <button id="darkToggle" class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/5 p-2 rounded-full transition-all" onclick="toggleDark()">dark_mode</button>
 <button id="langToggle" onclick="toggleLang()" class="font-button text-button px-4 py-2 text-primary border border-primary/20 rounded-full hover:bg-primary/5 active:opacity-70 transition-all"><span id="langBtnText">English</span></button>
@@ -811,11 +809,6 @@ document.body.classList.toggle('en', lang === 'en');
 <span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
 <span class="font-label-sm text-label-sm lang-ko">가이드</span>
 <span class="font-label-sm text-label-sm lang-en">Guides</span>
-</div>
-<div class="flex flex-col items-center justify-center text-secondary cursor-pointer active:scale-95 duration-150">
-<span class="material-symbols-outlined" data-icon="history">history</span>
-<span class="font-label-sm text-label-sm lang-ko">최근</span>
-<span class="font-label-sm text-label-sm lang-en">Recents</span>
 </div>
 <div class="flex flex-col items-center justify-center text-secondary cursor-pointer active:scale-95 duration-150" onclick="location.href='index.html'">
 <span class="material-symbols-outlined" data-icon="settings">settings</span>
