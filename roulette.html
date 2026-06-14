@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>룰렛 - Free Utilities</title>
+<meta name="description" content="항목을 입력하고 룰렛을 돌려 무작위 결과를 선택합니다.">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"룰렛","description":"항목을 입력하고 룰렛을 돌려 무작위 결과를 선택합니다.","url":"https://freeutilities.pages.dev/roulette.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
+</script>
+</head>
+<body><div class="max-w-md mx-auto space-y-4"><div><label>Items (one per line)</label><textarea id="rouletteItems" rows="5" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700">Option A
+Option B
+Option C
+Option D
+Option E</textarea></div><button onclick="spinRoulette()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium">Spin!</button><canvas id="rouletteCanvas" width="400" height="400" class="w-full max-w-sm mx-auto"></canvas><div id="rouletteResult" class="text-center text-2xl font-bold"></div></div><script>var rouletteSpinning=false;function spinRoulette(){if(rouletteSpinning)return;var items=document.getElementById("rouletteItems").value.split("\n").filter(Boolean);if(items.length<2){alert("Enter at least 2 items");return}rouletteSpinning=true;var canvas=document.getElementById("rouletteCanvas");var ctx=canvas.getContext("2d");var cx=200,cy=200,rad=180;var n=items.length;var colors=["#ef4444","#3b82f6","#22c55e","#f59e0b","#8b5cf6","#ec4899","#14b8a6","#f97316","#6366f1","#e11d48"];var spinAngle=Math.random()*360+720;var duration=3000;var start=Date.now();function animate(){var elapsed=Date.now()-start;var progress=Math.min(elapsed/duration,1);var ease=1-Math.pow(1-progress,3);var angle=spinAngle*ease;ctx.clearRect(0,0,400,400);var seg=2*Math.PI/n;for(var i=0;i<n;i++){var startAngle=angle*Math.PI/180+i*seg;var endAngle=startAngle+seg;ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,rad,startAngle,endAngle);ctx.closePath();ctx.fillStyle=colors[i%colors.length];ctx.fill();ctx.stroke();ctx.fillStyle="#fff";ctx.font="bold 12px sans-serif";ctx.textAlign="center";ctx.save();ctx.translate(cx+Math.cos(startAngle+seg/2)*rad*0.6,cy+Math.sin(startAngle+seg/2)*rad*0.6);ctx.rotate(startAngle+seg/2);ctx.fillText(items[i],0,0);ctx.restore()}ctx.beginPath();ctx.arc(cx,cy,10,0,2*Math.PI);ctx.fillStyle="#fff";ctx.fill();ctx.stroke();if(progress<1){requestAnimationFrame(animate)}else{rouletteSpinning=false;var winIdx=Math.floor(((360-angle%360)/360*n)%n);document.getElementById("rouletteResult").textContent="Result: "+items[winIdx]}}animate()}</script></body>
+</html>

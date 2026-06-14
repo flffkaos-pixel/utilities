@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>하루 물 섭취량 계산기 - Free Utilities</title>
+<meta name="description" content="체중과 활동량에 따라 하루 권장 물 섭취량을 계산합니다.">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"하루 물 섭취량 계산기","description":"체중과 활동량에 따라 하루 권장 물 섭취량을 계산합니다.","url":"https://freeutilities.pages.dev/daily-water-calc.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
+</script>
+</head>
+<body><div class="max-w-md mx-auto space-y-4"><div><label>Weight (kg)</label><input id="dwWeight" type="number" value="70" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><div><label>Activity Level</label><select id="dwActivity" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"><option value="1">Sedentary</option><option value="1.2">Lightly Active</option><option value="1.5" selected>Moderately Active</option><option value="1.8">Very Active</option><option value="2">Extremely Active</option></select></div><button onclick="calcWater()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium">Calculate</button><div id="dwResult" class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 grid grid-cols-2 gap-2 text-sm"></div></div><script>function calcWater(){var w=parseFloat(document.getElementById("dwWeight").value)||0;var act=parseFloat(document.getElementById("dwActivity").value);var base=w*35;var ml=base*act;document.getElementById("dwResult").innerHTML="<div>ml: <b>"+Math.round(ml)+"</b></div><div>Cups: <b>"+(ml/240).toFixed(1)+"</b></div><div>Glasses: <b>"+(ml/200).toFixed(1)+"</b></div><div>Bottles: <b>"+(ml/500).toFixed(1)+"</b></div>"}</script></body>
+</html>

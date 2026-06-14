@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="시각적 인터페이스로 robots.txt 파일을 쉽게 생성하세요. User-agent, Allow, Disallow, Sitemap 설정. Easily generate robots.txt files with a visual interface. Set User-agent, Allow, Disallow, Sitemap.">
+<meta name="robots" content="index,follow">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#2563eb',background:'#f9fafb',surface:'#ffffff',surface2:'#f1f5f9',outline:'#cbd5e1','outline-variant':'#94a3b8','on-background':'#0f172a','on-surface':'#1e293b','on-surface-variant':'#475569'}}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif;color:#0f172a}
+.dark body{background:#0f172a;color:#e2e8f0}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+
+.rt-input{border:1px solid #cbd5e1;border-radius:.5rem;padding:.5rem .75rem;font-size:.875rem;width:100%;background:#fff;color:#0f172a}
+.dark .rt-input{background:#1e293b;color:#e2e8f0;border-color:#475569}
+.rt-textarea{width:100%;padding:.75rem;border:1px solid #cbd5e1;border-radius:.75rem;font-family:ui-monospace,monospace;font-size:.75rem;resize:vertical;background:#fff;color:#0f172a;min-height:150px}
+.dark .rt-textarea{background:#1e293b;color:#e2e8f0;border-color:#475569}
+
+</style>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"robots.txt 생성기 - 검색엔진 크롤러 제어 파일 만들기","description":"시각적 인터페이스로 robots.txt 파일을 쉽게 생성하세요. User-agent, Allow, Disallow, Sitemap 설정. Easily generate robots.txt files with a visual interface. Set User-agent, Allow, Disallow, Sitemap.","url":"https://freeutilities.pages.dev/robots-txt-generator.html","applicationCategory":"Utility","operatingSystem":"All"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free Utilities","item":"https://freeutilities.pages.dev/"},{"@type":"ListItem","position":2,"name":"robots.txt 생성기 - 검색엔진 크롤러 제어 파일 만들기","item":"https://freeutilities.pages.dev/robots-txt-generator.html"}]}]</script>
+<meta property="og:type" content="website">
+<meta property="og:title" content="robots.txt 생성기 - 검색엔진 크롤러 제어 파일 만들기 / robots.txt Generator - Control Search Engine Crawlers">
+<meta property="og:description" content="시각적 인터페이스로 robots.txt 파일을 쉽게 생성하세요. User-agent, Allow, Disallow, Sitemap 설정. Easily generate robots.txt files with a visual interface. Set User-agent, Allow, Disallow, Sitemap.">
+<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="robots.txt 생성기 - 검색엔진 크롤러 제어 파일 만들기 / robots.txt Generator - Control Search Engine Crawlers">
+<meta name="twitter:description" content="시각적 인터페이스로 robots.txt 파일을 쉽게 생성하세요. User-agent, Allow, Disallow, Sitemap 설정. Easily generate robots.txt files with a visual interface. Set User-agent, Allow, Disallow, Sitemap.">
+<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png">
+<link rel="canonical" href="https://freeutilities.pages.dev/robots-txt-generator.html">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/robots-txt-generator.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/robots-txt-generator.html">
+<link rel="alternate" hreflang="x-default" href="https://freeutilities.pages.dev/robots-txt-generator.html">
+<title>robots.txt 생성기 - 검색엔진 크롤러 제어 파일 만들기 / robots.txt Generator - Control Search Engine Crawlers</title>
+</head>
+<body><header class="bg-white dark:bg-slate-800 border-b border-outline/20 sticky top-0 z-10">
+<div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+<a href="../index.html" class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition text-sm font-medium">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+<span class="lang-ko">Free Utilities</span><span class="lang-en">Free Utilities</span>
+</a>
+<div class="flex items-center gap-2">
+<button id="langToggle" class="text-xs px-2 py-1 rounded border border-outline/40 hover:bg-surface2 transition" aria-label="Toggle language">EN / KO</button>
+<button id="darkToggle" class="text-xs px-2 py-1 rounded border border-outline/40 hover:bg-surface2 transition" aria-label="Toggle dark mode">🌙</button>
+</div>
+</div>
+</header><main class="max-w-5xl mx-auto px-4 py-6">
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8">
+<h1 class="text-2xl font-bold mb-6 text-on-surface"><span class="lang-ko">robots.txt 생성기 - 검색엔진 크롤러 제어 파일 만들기</span><span class="lang-en">robots.txt Generator - Control Search Engine Crawlers</span></h1>
+
+<div class="space-y-4">
+<div id="agentsSection"><div class="flex items-center justify-between mb-2"><span class="text-sm font-medium text-on-surface-variant"><span class="lang-ko">User-agent 블록</span><span class="lang-en">User-agent blocks</span></span>
+<button id="addAgent" class="text-xs border border-primary text-primary px-2 py-1 rounded hover:bg-primary hover:text-white transition">+ Add</button></div></div>
+<div class="border-t border-outline/20 pt-3">
+<label class="text-sm text-on-surface-variant block mb-1"><span class="lang-ko">Sitemap URL</span><span class="lang-en">Sitemap URL</span>
+<input id="sitemapInput" class="rt-input mt-1" type="url" placeholder="https://example.com/sitemap.xml"></label></div>
+<button id="rtGenerate" class="bg-primary text-white px-5 py-2 rounded-lg text-sm hover:bg-blue-700 transition"><span class="lang-ko">생성</span><span class="lang-en">Generate</span></button>
+<div class="relative"><textarea id="rtOutput" class="rt-textarea" rows="10" readonly></textarea>
+<button id="rtCopy" class="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-1 rounded hover:bg-blue-700 transition"><span class="lang-ko">복사</span><span class="lang-en">Copy</span></button></div></div>
+<script>
+var agents=[];var agentsDiv=document.getElementById('agentsSection');
+function addAgent(ua,allows,disallows){ua=ua||'*';allows=allows||[];disallows=disallows||[];var idx=agents.length;agents.push({ua:ua,allows:allows,disallows:disallows});
+var div=document.createElement('div');div.className='agent-block border border-outline/20 rounded-xl p-3 mb-3';div.dataset.idx=idx;
+div.innerHTML='<div class="flex items-center justify-between mb-2"><label class="text-sm font-medium"><span class="lang-ko">User-agent</span><span class="lang-en">User-agent</span> <input class="rt-input ua-input inline-block w-48" type="text" value="'+ua+'" style="width:auto"></label><button class="remove-agent text-red-500 text-xs hover:text-red-700"><span class="lang-ko">삭제</span><span class="lang-en">Remove</span></button></div><div class="flex gap-2 flex-wrap mb-2"><span class="text-xs text-on-surface-variant"><span class="lang-ko">Allow</span><span class="lang-en">Allow</span></span><div class="allow-list flex flex-wrap gap-1"></div><button class="add-allow text-xs text-primary hover:underline">+</button></div><div class="flex gap-2 flex-wrap"><span class="text-xs text-on-surface-variant"><span class="lang-ko">Disallow</span><span class="lang-en">Disallow</span></span><div class="disallow-list flex flex-wrap gap-1"></div><button class="add-disallow text-xs text-primary hover:underline">+</button></div>';
+var al=div.querySelector('.allow-list');var dl=div.querySelector('.disallow-list');
+allows.forEach(function(a){addPath(al,'allow',a)});disallows.forEach(function(d){addPath(dl,'disallow',d)});
+div.querySelector('.add-allow').addEventListener('click',function(){addPath(al,'allow','')});
+div.querySelector('.add-disallow').addEventListener('click',function(){addPath(dl,'disallow','')});
+div.querySelector('.remove-agent').addEventListener('click',function(){div.remove();agents.splice(idx,1)});
+div.querySelector('.ua-input').addEventListener('input',function(){agents[idx].ua=this.value});
+agentsDiv.appendChild(div);}
+function addPath(list,type,val){var span=document.createElement('span');span.className='flex items-center gap-1 bg-surface2 rounded px-2 py-0.5 text-xs';var inp=document.createElement('input');inp.className='rt-input inline-block w-32 text-xs';inp.type='text';inp.value=val;var rm=document.createElement('button');rm.innerHTML='&times;';rm.className='text-red-500 hover:text-red-700';rm.addEventListener('click',function(){span.remove()});span.appendChild(inp);span.appendChild(rm);list.appendChild(span);}
+addAgent('*',[],[]);
+document.getElementById('addAgent').addEventListener('click',function(){addAgent('*',[],[])});
+document.getElementById('rtGenerate').addEventListener('click',function(){
+var lines=[];var s=document.getElementById('sitemapInput').value.trim();
+var blocks=document.querySelectorAll('.agent-block');blocks.forEach(function(b){var idx=parseInt(b.dataset.idx);var ua=agents[idx].ua;lines.push('User-agent: '+ua);b.querySelectorAll('.allow-list .flex').forEach(function(f){var v=f.querySelector('input').value.trim();if(v)lines.push('Allow: '+v)});b.querySelectorAll('.disallow-list .flex').forEach(function(f){var v=f.querySelector('input').value.trim();if(v)lines.push('Disallow: '+v)});lines.push('')});
+if(s)lines.push('Sitemap: '+s);document.getElementById('rtOutput').value=lines.join('\n')});
+document.getElementById('rtCopy').addEventListener('click',function(){var o=document.getElementById('rtOutput');o.select();navigator.clipboard.writeText(o.value)});
+</script>
+</div>
+</div>
+</main>
+<footer class="max-w-5xl mx-auto px-4 py-8 text-center text-sm text-on-surface-variant">
+<div class="flex justify-center gap-4 mb-2">
+<a href="../privacy.html" class="lang-ko hover:text-primary transition">개인정보처리방침</a><a href="../privacy.html" class="lang-en hover:text-primary transition">Privacy Policy</a>
+<a href="../terms.html" class="lang-ko hover:text-primary transition">이용약관</a><a href="../terms.html" class="lang-en hover:text-primary transition">Terms of Service</a>
+<a href="../contact.html" class="lang-ko hover:text-primary transition">문의하기</a><a href="../contact.html" class="lang-en hover:text-primary transition">Contact</a>
+</div>
+<p>&copy; 2024 Free Utilities. <span class="lang-ko">모든 권리 보유.</span><span class="lang-en">All rights reserved.</span></p>
+</footer>
+
+<script>
+(function(){var d=document;var ls=localStorage;if(ls.getItem('darkMode')==='true'||(!ls.getItem('darkMode')&&window.matchMedia('(prefers-color-scheme:dark)').matches)){d.documentElement.classList.add('dark')}else{d.documentElement.classList.remove('dark')}d.getElementById('darkToggle').addEventListener('click',function(){var e=d.documentElement;e.classList.toggle('dark');ls.setItem('darkMode',e.classList.contains('dark'))})})();
+(function(){var d=document;var ls=localStorage;var lang=ls.getItem('site-lang');if(lang==='en'){d.body.classList.add('en')}d.getElementById('langToggle').addEventListener('click',function(){d.body.classList.toggle('en');ls.setItem('site-lang',d.body.classList.contains('en')?'en':'ko')})})();
+</script>
+</body>
+</html>

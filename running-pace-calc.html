@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>달리기 페이스 계산기 - Free Utilities</title>
+<meta name="description" content="거리와 시간으로 페이스와 속도를 계산하고 주요 거리별 예상 기록을 보여줍니다.">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"달리기 페이스 계산기","description":"거리와 시간으로 페이스와 속도를 계산하고 주요 거리별 예상 기록을 보여줍니다.","url":"https://freeutilities.pages.dev/running-pace-calc.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
+</script>
+</head>
+<body><div class="max-w-md mx-auto space-y-4"><div><label>Distance (km)</label><input id="rpDist" type="number" value="10" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><div><label>Time (minutes)</label><input id="rpTime" type="number" value="50" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><button onclick="calcPace()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium">Calculate</button><div id="rpResult" class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 space-y-1 text-sm"></div></div><script>function calcPace(){var d=parseFloat(document.getElementById("rpDist").value)||0;var t=parseFloat(document.getElementById("rpTime").value)||0;var paceMin=t/d;var speed=d/(t/60);var html="Pace: "+Math.floor(paceMin)+":"+Math.round((paceMin%1)*60).toString().padStart(2,"0")+" min/km<br>";html+="Speed: "+speed.toFixed(2)+" km/h<br><br>";var distances=[5,10,21.0975,42.195];var labels=["5k","10k","Half","Full"];for(var i=0;i<distances.length;i++){var et=paceMin*distances[i];html+=labels[i]+": "+Math.floor(et)+":"+Math.round((et%1)*60).toString().padStart(2,"0")+"<br>"}document.getElementById("rpResult").innerHTML=html}</script></body>
+</html>

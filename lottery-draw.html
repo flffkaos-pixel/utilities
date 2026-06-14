@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>추첨기 - Free Utilities</title>
+<meta name="description" content="참가자 목록에서 무작위로 당첨자를 추첨합니다. 애니메이션 효과를 지원합니다.">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"추첨기","description":"참가자 목록에서 무작위로 당첨자를 추첨합니다. 애니메이션 효과를 지원합니다.","url":"https://freeutilities.pages.dev/lottery-draw.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
+</script>
+</head>
+<body><div class="max-w-md mx-auto space-y-4"><div><label>Participants (one per line)</label><textarea id="lotParticipants" rows="6" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700">Alice
+Bob
+Charlie
+David
+Eve
+Frank
+Grace
+Henry
+Ivy
+Jack</textarea></div><div><label>Number of Winners</label><input id="lotWinners" type="number" value="2" min="1" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><button onclick="lotteryDraw()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium">Draw!</button><div id="lotResult" class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 min-h-20 text-center"></div></div><script>function lotteryDraw(){var participants=document.getElementById("lotParticipants").value.split("\n").filter(Boolean);var n=parseInt(document.getElementById("lotWinners").value)||1;if(participants.length<n){alert("Not enough participants");return}var el=document.getElementById("lotResult");var shuffle=setInterval(function(){var idx=Math.floor(Math.random()*participants.length);el.innerHTML="<div class=text-2xl>"+participants[idx]+"</div><div class=text-sm>Drawing...</div>"},100);setTimeout(function(){clearInterval(shuffle);var shuffled=participants.slice();for(var i=shuffled.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=shuffled[i];shuffled[i]=shuffled[j];shuffled[j]=t}var winners=shuffled.slice(0,n);var html="<div class=text-lg font-bold>Winners:</div>";winners.forEach(function(w,i){html+='<div class="text-xl font-bold text-green-600">'+(i+1)+". "+w+"</div>"});el.innerHTML=html},2000)}</script></body>
+</html>

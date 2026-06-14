@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>팀 생성기 - Free Utilities</title>
+<meta name="description" content="이름 목록을 입력하고 원하는 팀 수로 무작위 분배합니다.">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"팀 생성기","description":"이름 목록을 입력하고 원하는 팀 수로 무작위 분배합니다.","url":"https://freeutilities.pages.dev/team-generator.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
+</script>
+</head>
+<body><div class="max-w-md mx-auto space-y-4"><div><label>Names (one per line)</label><textarea id="teamNames" rows="5" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700">Alice
+Bob
+Charlie
+David
+Eve
+Frank
+Grace
+Henry</textarea></div><div><label>Number of Teams</label><input id="teamCount" type="number" value="2" min="2" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><button onclick="generateTeams()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium">Generate</button><div id="teamResult" class="space-y-3"></div></div><script>function generateTeams(){var names=document.getElementById("teamNames").value.split("\n").filter(Boolean);var n=parseInt(document.getElementById("teamCount").value)||2;for(var i=names.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=names[i];names[i]=names[j];names[j]=t}var teams=[];for(var i=0;i<n;i++)teams.push([]);for(var i=0;i<names.length;i++)teams[i%n].push(names[i]);var html="";var colors=["#3b82f6","#ef4444","#22c55e","#f59e0b","#8b5cf6","#ec4899","#14b8a6","#f97316"];for(var i=0;i<n;i++){html+='<div class="bg-slate-50 dark:bg-slate-700 rounded-xl p-3"><div class="font-bold mb-1" style="color:'+colors[i%colors.length]+'">Team '+(i+1)+" ("+teams[i].length+")</div><div class="text-sm">"+teams[i].join(", ")+"</div></div>"}document.getElementById("teamResult").innerHTML=html}</script></body>
+</html>

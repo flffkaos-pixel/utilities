@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="세 변의 길이 또는 두 변과 각도로 삼각형의 모든 값을 계산합니다. sin, cos, tan 법칙. Calculate all triangle values from three sides or two sides and an angle. Uses law of sines/cosines.">
+<meta name="robots" content="index,follow">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#2563eb',background:'#f9fafb',surface:'#ffffff',surface2:'#f1f5f9',outline:'#cbd5e1','outline-variant':'#94a3b8','on-background':'#0f172a','on-surface':'#1e293b','on-surface-variant':'#475569'}}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif;color:#0f172a}
+.dark body{background:#0f172a;color:#e2e8f0}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+
+.tc-input{border:1px solid #cbd5e1;border-radius:.5rem;padding:.5rem .75rem;font-size:.875rem;width:100%;background:#fff;color:#0f172a}
+.dark .tc-input{background:#1e293b;color:#e2e8f0;border-color:#475569}
+.tc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:.5rem}
+
+</style>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"삼각형 계산기 - 각도와 변 길이 계산","description":"세 변의 길이 또는 두 변과 각도로 삼각형의 모든 값을 계산합니다. sin, cos, tan 법칙. Calculate all triangle values from three sides or two sides and an angle. Uses law of sines/cosines.","url":"https://freeutilities.pages.dev/triangle-calc.html","applicationCategory":"Utility","operatingSystem":"All"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free Utilities","item":"https://freeutilities.pages.dev/"},{"@type":"ListItem","position":2,"name":"삼각형 계산기 - 각도와 변 길이 계산","item":"https://freeutilities.pages.dev/triangle-calc.html"}]}]</script>
+<meta property="og:type" content="website">
+<meta property="og:title" content="삼각형 계산기 - 각도와 변 길이 계산 / Triangle Calculator - Calculate Angles and Side Lengths">
+<meta property="og:description" content="세 변의 길이 또는 두 변과 각도로 삼각형의 모든 값을 계산합니다. sin, cos, tan 법칙. Calculate all triangle values from three sides or two sides and an angle. Uses law of sines/cosines.">
+<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="삼각형 계산기 - 각도와 변 길이 계산 / Triangle Calculator - Calculate Angles and Side Lengths">
+<meta name="twitter:description" content="세 변의 길이 또는 두 변과 각도로 삼각형의 모든 값을 계산합니다. sin, cos, tan 법칙. Calculate all triangle values from three sides or two sides and an angle. Uses law of sines/cosines.">
+<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png">
+<link rel="canonical" href="https://freeutilities.pages.dev/triangle-calc.html">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/triangle-calc.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/triangle-calc.html">
+<link rel="alternate" hreflang="x-default" href="https://freeutilities.pages.dev/triangle-calc.html">
+<title>삼각형 계산기 - 각도와 변 길이 계산 / Triangle Calculator - Calculate Angles and Side Lengths</title>
+</head>
+<body><header class="bg-white dark:bg-slate-800 border-b border-outline/20 sticky top-0 z-10">
+<div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+<a href="../index.html" class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition text-sm font-medium">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+<span class="lang-ko">Free Utilities</span><span class="lang-en">Free Utilities</span>
+</a>
+<div class="flex items-center gap-2">
+<button id="langToggle" class="text-xs px-2 py-1 rounded border border-outline/40 hover:bg-surface2 transition" aria-label="Toggle language">EN / KO</button>
+<button id="darkToggle" class="text-xs px-2 py-1 rounded border border-outline/40 hover:bg-surface2 transition" aria-label="Toggle dark mode">🌙</button>
+</div>
+</div>
+</header><main class="max-w-5xl mx-auto px-4 py-6">
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8">
+<h1 class="text-2xl font-bold mb-6 text-on-surface"><span class="lang-ko">삼각형 계산기 - 각도와 변 길이 계산</span><span class="lang-en">Triangle Calculator - Calculate Angles and Side Lengths</span></h1>
+
+<div class="space-y-4">
+<div class="flex gap-3">
+<button id="modeSSS" class="bg-primary text-white px-4 py-2 rounded-lg text-sm">SSS</button>
+<button id="modeSAS" class="border border-primary text-primary px-4 py-2 rounded-lg text-sm">SAS</button>
+</div>
+<div class="tc-grid" id="inputGrid">
+<div><label class="text-sm text-on-surface-variant block">a <span class="lang-ko">(변)</span><span class="lang-en">(side)</span><input id="ta" class="tc-input mt-1" type="number" step="any"></label></div>
+<div><label class="text-sm text-on-surface-variant block">b <span class="lang-ko">(변)</span><span class="lang-en">(side)</span><input id="tb" class="tc-input mt-1" type="number" step="any"></label></div>
+<div><label class="text-sm text-on-surface-variant block">c <span class="lang-ko">(변)</span><span class="lang-en">(side)</span><input id="tc" class="tc-input mt-1" type="number" step="any"></label></div>
+<div><label class="text-sm text-on-surface-variant block">A <span class="lang-ko">(각도 &deg;)</span><span class="lang-en">(angle &deg;)</span><input id="tA" class="tc-input mt-1" type="number" step="any"></label></div>
+<div><label class="text-sm text-on-surface-variant block">B <span class="lang-ko">(각도 &deg;)</span><span class="lang-en">(angle &deg;)</span><input id="tB" class="tc-input mt-1" type="number" step="any"></label></div>
+<div><label class="text-sm text-on-surface-variant block">C <span class="lang-ko">(각도 &deg;)</span><span class="lang-en">(angle &deg;)</span><input id="tC" class="tc-input mt-1" type="number" step="any"></label></div></div>
+<button id="tcCalc" class="bg-primary text-white px-5 py-2 rounded-lg text-sm hover:bg-blue-700 transition"><span class="lang-ko">계산</span><span class="lang-en">Calculate</span></button>
+<div id="tcResult" class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm"></div>
+<svg id="tcSvg" viewBox="0 0 300 200" class="w-full max-w-sm mx-auto" style="height:200px"></svg></div>
+<script>
+var mode='sss';
+document.getElementById('modeSSS').addEventListener('click',function(){mode='sss';document.getElementById('modeSAS').className='border border-primary text-primary px-4 py-2 rounded-lg text-sm';this.className='bg-primary text-white px-4 py-2 rounded-lg text-sm'});
+document.getElementById('modeSAS').addEventListener('click',function(){mode='sas';document.getElementById('modeSSS').className='border border-primary text-primary px-4 py-2 rounded-lg text-sm';this.className='bg-primary text-white px-4 py-2 rounded-lg text-sm'});
+document.getElementById('tcCalc').addEventListener('click',function(){
+var g=function(id){return parseFloat(document.getElementById(id).value)};
+var a=g('ta'),b=g('tb'),c=g('tc'),A=g('tA'),B=g('tB'),C=g('tC');
+var deg=Math.PI/180;var rad=180/Math.PI;
+if(mode==='sss'&&a>0&&b>0&&c>0){
+if(a+b<=c||a+c<=b||b+c<=a){document.getElementById('tcResult').innerHTML='<div class="col-span-4 text-red-500"><span class="lang-ko">유효하지 않은 삼각형입니다.</span><span class="lang-en">Invalid triangle.</span></div>';return}
+A=Math.acos((b*b+c*c-a*a)/(2*b*c))*rad;B=Math.acos((a*a+c*c-b*b)/(2*a*c))*rad;C=180-A-B;
+document.getElementById('tA').value=A.toFixed(2);document.getElementById('tB').value=B.toFixed(2);document.getElementById('tC').value=C.toFixed(2)}
+else if(mode==='sas'&&a>0&&b>0&&C>0){
+c=Math.sqrt(a*a+b*b-2*a*b*Math.cos(C*deg));document.getElementById('tc').value=c.toFixed(2);
+A=Math.asin(a*Math.sin(C*deg)/c)*rad;B=180-A-C;
+document.getElementById('tA').value=A.toFixed(2);document.getElementById('tB').value=B.toFixed(2)}
+else{document.getElementById('tcResult').innerHTML='<div class="col-span-4 text-red-500"><span class="lang-ko">값을 입력하세요.</span><span class="lang-en">Enter values.</span></div>';return}
+var perim=a+b+c;var s=perim/2;var area=Math.sqrt(s*(s-a)*(s-b)*(s-c));var type='';
+if(Math.abs(a-b)<0.001&&Math.abs(b-c)<0.001)type='<span class="lang-ko">정삼각형</span><span class="lang-en">Equilateral</span>';
+else if(Math.abs(a-b)<0.001||Math.abs(b-c)<0.001||Math.abs(a-c)<0.001)type='<span class="lang-ko">이등변삼각형</span><span class="lang-en">Isosceles</span>';
+else type='<span class="lang-ko">부등변삼각형</span><span class="lang-en">Scalene</span>';
+if(Math.abs(A-90)<0.5||Math.abs(B-90)<0.5||Math.abs(C-90)<0.5)type+=' <span class="lang-ko">/ 직각삼각형</span><span class="lang-en">/ Right</span>';
+document.getElementById('tcResult').innerHTML='<div><strong><span class="lang-ko">유형</span><span class="lang-en">Type</span></strong><br>'+type+'</div><div><strong><span class="lang-ko">둘레</span><span class="lang-en">Perimeter</span></strong><br>'+perim.toFixed(2)+'</div><div><strong><span class="lang-ko">넓이</span><span class="lang-en">Area</span></strong><br>'+area.toFixed(2)+'</div><div><strong>A</strong><br>'+A.toFixed(2)+'&deg;</div><div><strong>B</strong><br>'+B.toFixed(2)+'&deg;</div><div><strong>C</strong><br>'+C.toFixed(2)+'&deg;</div>';
+var svg=document.getElementById('tcSvg');var mx=Math.max(a,b,c);var sc=Math.min(260/mx,180/mx);var x1=10,y1=180,x2=10+a*sc,y2=180,x3=x1+(a*a+b*b-c*c)/(2*a)*sc,y3=y1-Math.sqrt(b*b-((a*a+b*b-c*c)/(2*a))**2)*sc;
+svg.innerHTML='<polygon points="'+x1+','+y1+' '+x2+','+y2+' '+x3+','+y3+'" fill="rgba(37,99,235,0.2)" stroke="#2563eb" stroke-width="2"/>'+
+'<text x="'+(x1-10)+'" y="'+(y1+15)+'" font-size="14" fill="currentColor">a</text>'+
+'<text x="'+(x2+5)+'" y="'+(y2+15)+'" font-size="14" fill="currentColor">b</text>'+
+'<text x="'+(x3-15)+'" y="'+(y3-10)+'" font-size="14" fill="currentColor">c</text>'+
+'<text x="'+(x1-12)+'" y="'+(y1-5)+'" font-size="12" fill="#dc2626">'+A.toFixed(1)+'&deg;</text>'+
+'<text x="'+(x2+5)+'" y="'+(y2-5)+'" font-size="12" fill="#dc2626">'+B.toFixed(1)+'&deg;</text>'+
+'<text x="'+(x3-5)+'" y="'+(y3+15)+'" font-size="12" fill="#dc2626">'+C.toFixed(1)+'&deg;</text>'
+});
+</script>
+</div>
+</div>
+</main>
+<footer class="max-w-5xl mx-auto px-4 py-8 text-center text-sm text-on-surface-variant">
+<div class="flex justify-center gap-4 mb-2">
+<a href="../privacy.html" class="lang-ko hover:text-primary transition">개인정보처리방침</a><a href="../privacy.html" class="lang-en hover:text-primary transition">Privacy Policy</a>
+<a href="../terms.html" class="lang-ko hover:text-primary transition">이용약관</a><a href="../terms.html" class="lang-en hover:text-primary transition">Terms of Service</a>
+<a href="../contact.html" class="lang-ko hover:text-primary transition">문의하기</a><a href="../contact.html" class="lang-en hover:text-primary transition">Contact</a>
+</div>
+<p>&copy; 2024 Free Utilities. <span class="lang-ko">모든 권리 보유.</span><span class="lang-en">All rights reserved.</span></p>
+</footer>
+
+<script>
+(function(){var d=document;var ls=localStorage;if(ls.getItem('darkMode')==='true'||(!ls.getItem('darkMode')&&window.matchMedia('(prefers-color-scheme:dark)').matches)){d.documentElement.classList.add('dark')}else{d.documentElement.classList.remove('dark')}d.getElementById('darkToggle').addEventListener('click',function(){var e=d.documentElement;e.classList.toggle('dark');ls.setItem('darkMode',e.classList.contains('dark'))})})();
+(function(){var d=document;var ls=localStorage;var lang=ls.getItem('site-lang');if(lang==='en'){d.body.classList.add('en')}d.getElementById('langToggle').addEventListener('click',function(){d.body.classList.toggle('en');ls.setItem('site-lang',d.body.classList.contains('en')?'en':'ko')})})();
+</script>
+</body>
+</html>

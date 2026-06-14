@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>평균/중앙값/최빈값 계산기 - Free Utilities</title>
+<meta name="description" content="숫자 목록의 평균, 중앙값, 최빈값, 범위를 계산하고 정렬된 리스트를 보여줍니다.">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"평균/중앙값/최빈값 계산기","description":"숫자 목록의 평균, 중앙값, 최빈값, 범위를 계산하고 정렬된 리스트를 보여줍니다.","url":"https://freeutilities.pages.dev/mean-median-mode.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
+</script>
+</head>
+<body><div class="max-w-md mx-auto space-y-4"><div><label class="block text-sm font-medium mb-1">Enter numbers (comma/space separated)</label><textarea id="mmmInput" rows="3" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700">3, 7, 5, 13, 20, 23, 39, 23, 40, 23, 14, 12, 56, 23, 29</textarea></div><button onclick="calcMmm()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium">Calculate</button><div id="mmmResult" class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 space-y-1 text-sm"></div></div><script>function calcMmm(){var raw=document.getElementById("mmmInput").value;var nums=raw.split(/[,\s]+/).map(parseFloat).filter(function(v){return!isNaN(v)});if(nums.length<1)return;var sorted=nums.slice().sort(function(a,b){return a-b});var n=nums.length;var mean=nums.reduce(function(a,b){return a+b},0)/n;var median;if(n%2==0)median=(sorted[n/2-1]+sorted[n/2])/2;else median=sorted[Math.floor(n/2)];var freq={};nums.forEach(function(v){freq[v]=(freq[v]||0)+1});var maxFreq=0,modes=[];for(var k in freq){if(freq[k]>maxFreq){maxFreq=freq[k];modes=[k]}else if(freq[k]==maxFreq)modes.push(k)}document.getElementById("mmmResult").innerHTML="<div>Count: "+n+"</div><div>Mean: "+mean.toFixed(4)+"</div><div>Median: "+median.toFixed(4)+"</div><div>Mode: "+modes.join(", ")+"</div><div>Range: "+(sorted[n-1]-sorted[0])+"</div><div class=pt-2>Sorted: "+sorted.join(", ")+"</div>"}</script></body>
+</html>

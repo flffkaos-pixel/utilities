@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>체감 온도 계산기 - Free Utilities</title>
+<meta name="description" content="온도와 습도로 열지수(Heat Index)를, 온도와 풍속으로 체감온도(Wind Chill)를 계산합니다.">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"체감 온도 계산기","description":"온도와 습도로 열지수(Heat Index)를, 온도와 풍속으로 체감온도(Wind Chill)를 계산합니다.","url":"https://freeutilities.pages.dev/heat-index-calc.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
+</script>
+</head>
+<body><div class="max-w-md mx-auto space-y-4"><div><label>Mode</label><select id="hiMode" onchange="toggleHiMode()" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"><option value="heat">Heat Index</option><option value="wind">Wind Chill</option></select></div><div><label>Temperature (&deg;C)</label><input id="hiTemp" type="number" value="30" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><div id="hiHumidityDiv"><label>Humidity (%)</label><input id="hiHumidity" type="number" value="70" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><div id="hiWindDiv" class="hidden"><label>Wind Speed (km/h)</label><input id="hiWind" type="number" value="20" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><button onclick="calcHi()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium">Calculate</button><div id="hiResult" class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 text-center text-2xl font-bold"></div></div><script>function toggleHiMode(){var m=document.getElementById("hiMode").value;document.getElementById("hiHumidityDiv").classList.toggle("hidden",m!="heat");document.getElementById("hiWindDiv").classList.toggle("hidden",m!="wind")}function calcHi(){var mode=document.getElementById("hiMode").value;var t=parseFloat(document.getElementById("hiTemp").value)||0;if(mode=="heat"){var h=parseFloat(document.getElementById("hiHumidity").value)||0;var hi=-8.784694+1.611394*t+2.338549*h-0.146116*t*h-0.012308*t*t-0.016425*h*h+0.002211*t*t*h+0.000725*t*h*h-0.000003*t*t*h*h;document.getElementById("hiResult").innerHTML=hi.toFixed(1)+"&deg;C feels like<br><span class=text-sm>"+(hi>=40?"Extreme Danger":hi>=32?"Danger":hi>=26?"Caution":"Safe")+"</span>"}else{var w=parseFloat(document.getElementById("hiWind").value)||0;var wc=13.12+0.6215*t-11.37*Math.pow(w,0.16)+0.3965*t*Math.pow(w,0.16);document.getElementById("hiResult").innerHTML=wc.toFixed(1)+"&deg;C feels like"}}</script></body>
+</html>

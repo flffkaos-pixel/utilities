@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>강아지 나이 계산기 - Free Utilities</title>
+<meta name="description" content="강아지의 나이를 사람 나이로 변환합니다. 크기별로 다른 공식을 적용합니다.">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"강아지 나이 계산기","description":"강아지의 나이를 사람 나이로 변환합니다. 크기별로 다른 공식을 적용합니다.","url":"https://freeutilities.pages.dev/dog-age-calc.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
+</script>
+</head>
+<body><div class="max-w-md mx-auto space-y-4"><div><label>Dog Years</label><input id="dogAge" type="number" value="5" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><div><label>Size</label><select id="dogSize" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"><option value="small">Small (&lt;10kg)</option><option value="medium" selected>Medium (10-25kg)</option><option value="large">Large (&gt;25kg)</option></select></div><button onclick="calcDogAge()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium">Calculate</button><div id="dogResult" class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 text-center"></div></div><script>function calcDogAge(){var d=parseFloat(document.getElementById("dogAge").value)||0;var size=document.getElementById("dogSize").value;var h;if(size=="small")h=16*Math.log(d)+31;else if(size=="medium")h=16*Math.log(d)+29;else h=16*Math.log(d)+26;if(d==0)h=0;document.getElementById("dogResult").innerHTML="<div class=text-2xl font-bold>"+h.toFixed(1)+" human years</div><div class=text-sm>"+(d<2?"Puppy":d<7?"Adult":"Senior")+" stage</div>"}</script></body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>사다리타기 - Free Utilities</title>
+<meta name="description" content="이름과 결과를 입력하여 사다리타기 게임을 실행합니다.">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"사다리타기","description":"이름과 결과를 입력하여 사다리타기 게임을 실행합니다.","url":"https://freeutilities.pages.dev/ladder-game.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
+</script>
+</head>
+<body><div class="max-w-lg mx-auto space-y-4"><div class="grid grid-cols-2 gap-4"><div><label>Names (one per line)</label><textarea id="ladNames" rows="4" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700">Alice
+Bob
+Charlie
+David</textarea></div><div><label>Results (one per line)</label><textarea id="ladResults" rows="4" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700">Prize 1
+Prize 2
+Prize 3
+Prize 4</textarea></div></div><button onclick="runLadder()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium">Run Ladder</button><canvas id="ladCanvas" class="w-full border border-outline rounded-xl" height="400"></canvas><div id="ladResult" class="text-center text-lg font-bold"></div></div><script>function runLadder(){var names=document.getElementById("ladNames").value.split("\n").filter(Boolean);var results=document.getElementById("ladResults").value.split("\n").filter(Boolean);if(names.length!=results.length){alert("Names and results count must match");return}var n=names.length;var canvas=document.getElementById("ladCanvas");canvas.width=canvas.offsetWidth;var w=canvas.width,h=canvas.height;var ctx=canvas.getContext("2d");ctx.clearRect(0,0,w,h);var stepX=w/(n+1);var rungs=Math.floor(h/40)-1;ctx.strokeStyle="#2563eb";ctx.lineWidth=3;for(var i=0;i<n;i++){ctx.beginPath();ctx.moveTo((i+1)*stepX,30);ctx.lineTo((i+1)*stepX,h-30);ctx.stroke();ctx.fillStyle="#0f172a";ctx.textAlign="center";ctx.fillText(names[i],(i+1)*stepX,20)}for(var r=0;r<rungs;r++){var from=Math.floor(Math.random()*(n-1));var y=40+r*40;ctx.strokeStyle="#94a3b8";ctx.lineWidth=2;ctx.beginPath();ctx.moveTo((from+1)*stepX,y);ctx.lineTo((from+2)*stepX,y);ctx.stroke()}var mapping=[];for(var i=0;i<n;i++){var col=i;for(var r=0;r<rungs;r++){var rFrom=Math.floor(r%(n-1));if(col==rFrom)col++;else if(col==rFrom+1)col--}mapping[i]=col}var html="";for(var i=0;i<n;i++){ctx.fillStyle="#22c55e";ctx.textAlign="center";ctx.font="bold 14px sans-serif";ctx.fillText(results[mapping[i]],(i+1)*stepX,h-10);html+=names[i]+" -> "+results[mapping[i]]+"<br>"}document.getElementById("ladResult").innerHTML=html}</script></body>
+</html>

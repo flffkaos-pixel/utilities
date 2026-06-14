@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="제목이나 문장을 URL 친화적인 슬러그로 변환합니다. 소문자, 하이픈, 특수문자 제거. Convert titles and sentences into URL-friendly slugs. Lowercase, hyphenated, special chars removed.">
+<meta name="robots" content="index,follow">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#2563eb',background:'#f9fafb',surface:'#ffffff',surface2:'#f1f5f9',outline:'#cbd5e1','outline-variant':'#94a3b8','on-background':'#0f172a','on-surface':'#1e293b','on-surface-variant':'#475569'}}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif;color:#0f172a}
+.dark body{background:#0f172a;color:#e2e8f0}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+
+.slug-input{width:100%;padding:.75rem;border:1px solid #cbd5e1;border-radius:.75rem;font-size:1rem;background:#fff;color:#0f172a}
+.dark .slug-input{background:#1e293b;color:#e2e8f0;border-color:#475569}
+.slug-output{font-family:ui-monospace,monospace;font-size:1.125rem;padding:.75rem;border-radius:.75rem;background:#f1f5f9;color:#0f172a;word-break:break-all}
+.dark .slug-output{background:#1e293b;color:#e2e8f0}
+
+</style>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"Slugify - URL 슬러그 생성기","description":"제목이나 문장을 URL 친화적인 슬러그로 변환합니다. 소문자, 하이픈, 특수문자 제거. Convert titles and sentences into URL-friendly slugs. Lowercase, hyphenated, special chars removed.","url":"https://freeutilities.pages.dev/slugify.html","applicationCategory":"Utility","operatingSystem":"All"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free Utilities","item":"https://freeutilities.pages.dev/"},{"@type":"ListItem","position":2,"name":"Slugify - URL 슬러그 생성기","item":"https://freeutilities.pages.dev/slugify.html"}]}]</script>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Slugify - URL 슬러그 생성기 / Slugify - URL Slug Generator">
+<meta property="og:description" content="제목이나 문장을 URL 친화적인 슬러그로 변환합니다. 소문자, 하이픈, 특수문자 제거. Convert titles and sentences into URL-friendly slugs. Lowercase, hyphenated, special chars removed.">
+<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Slugify - URL 슬러그 생성기 / Slugify - URL Slug Generator">
+<meta name="twitter:description" content="제목이나 문장을 URL 친화적인 슬러그로 변환합니다. 소문자, 하이픈, 특수문자 제거. Convert titles and sentences into URL-friendly slugs. Lowercase, hyphenated, special chars removed.">
+<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png">
+<link rel="canonical" href="https://freeutilities.pages.dev/slugify.html">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/slugify.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/slugify.html">
+<link rel="alternate" hreflang="x-default" href="https://freeutilities.pages.dev/slugify.html">
+<title>Slugify - URL 슬러그 생성기 / Slugify - URL Slug Generator</title>
+</head>
+<body><header class="bg-white dark:bg-slate-800 border-b border-outline/20 sticky top-0 z-10">
+<div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+<a href="../index.html" class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition text-sm font-medium">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+<span class="lang-ko">Free Utilities</span><span class="lang-en">Free Utilities</span>
+</a>
+<div class="flex items-center gap-2">
+<button id="langToggle" class="text-xs px-2 py-1 rounded border border-outline/40 hover:bg-surface2 transition" aria-label="Toggle language">EN / KO</button>
+<button id="darkToggle" class="text-xs px-2 py-1 rounded border border-outline/40 hover:bg-surface2 transition" aria-label="Toggle dark mode">🌙</button>
+</div>
+</div>
+</header><main class="max-w-5xl mx-auto px-4 py-6">
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8">
+<h1 class="text-2xl font-bold mb-6 text-on-surface"><span class="lang-ko">Slugify - URL 슬러그 생성기</span><span class="lang-en">Slugify - URL Slug Generator</span></h1>
+
+<div class="space-y-4">
+<div><span class="lang-ko text-sm text-on-surface-variant mb-1 block">제목 또는 문장 입력</span><span class="lang-en text-sm text-on-surface-variant mb-1 block">Enter title or sentence</span>
+<input id="slugInput" class="slug-input" type="text" placeholder='e.g. "Hello World! This is Great!"' autofocus></div>
+<div><span class="lang-ko text-sm text-on-surface-variant mb-1 block">슬러그 결과</span><span class="lang-en text-sm text-on-surface-variant mb-1 block">Slug result</span>
+<div class="relative"><div id="slugOutput" class="slug-output">hello-world-this-is-great</div>
+<button id="slugCopy" class="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-1 rounded hover:bg-blue-700 transition"><span class="lang-ko">복사</span><span class="lang-en">Copy</span></button></div></div>
+<div class="flex flex-wrap gap-4">
+<div><label class="text-sm text-on-surface-variant block"><span class="lang-ko">구분자</span><span class="lang-en">Separator</span>
+<select id="sepSelect" class="ml-2 border border-outline/40 rounded px-2 py-1 text-sm"><option value="-">- (hyphen)</option><option value="_">_ (underscore)</option></select></label></div>
+<div><label class="text-sm text-on-surface-variant block"><input type="checkbox" id="lowerToggle" checked>
+<span class="lang-ko ml-1">소문자</span><span class="lang-en ml-1">Lowercase</span></label></div>
+<div><label class="text-sm text-on-surface-variant block"><span class="lang-ko">최대 길이</span><span class="lang-en">Max length</span>
+<input type="range" id="maxLen" min="10" max="200" value="100" class="ml-2 align-middle">
+<span id="maxLenVal" class="ml-1 text-sm">100</span></label></div></div></div>
+<script>
+var inp=document.getElementById('slugInput');var out=document.getElementById('slugOutput');
+var sep=document.getElementById('sepSelect');var low=document.getElementById('lowerToggle');
+var mx=document.getElementById('maxLen');var mxv=document.getElementById('maxLenVal');
+function update(){var t=inp.value||'';var s=sep.value;var l=t.replace(/[^\w\s-]/g,'').trim();l=l.replace(/[\s_]+/g,s).replace(/-+/g,s);if(low.checked)l=l.toLowerCase();var ml=parseInt(mx.value);if(l.length>ml)l=l.substring(0,ml).replace(new RegExp(s+'+$'),'');out.textContent=l||'-';mxv.textContent=mx.value;}
+inp.addEventListener('input',update);sep.addEventListener('change',update);low.addEventListener('change',update);mx.addEventListener('input',update);update();
+document.getElementById('slugCopy').addEventListener('click',function(){navigator.clipboard.writeText(out.textContent);});
+</script>
+</div>
+</div>
+</main>
+<footer class="max-w-5xl mx-auto px-4 py-8 text-center text-sm text-on-surface-variant">
+<div class="flex justify-center gap-4 mb-2">
+<a href="../privacy.html" class="lang-ko hover:text-primary transition">개인정보처리방침</a><a href="../privacy.html" class="lang-en hover:text-primary transition">Privacy Policy</a>
+<a href="../terms.html" class="lang-ko hover:text-primary transition">이용약관</a><a href="../terms.html" class="lang-en hover:text-primary transition">Terms of Service</a>
+<a href="../contact.html" class="lang-ko hover:text-primary transition">문의하기</a><a href="../contact.html" class="lang-en hover:text-primary transition">Contact</a>
+</div>
+<p>&copy; 2024 Free Utilities. <span class="lang-ko">모든 권리 보유.</span><span class="lang-en">All rights reserved.</span></p>
+</footer>
+
+<script>
+(function(){var d=document;var ls=localStorage;if(ls.getItem('darkMode')==='true'||(!ls.getItem('darkMode')&&window.matchMedia('(prefers-color-scheme:dark)').matches)){d.documentElement.classList.add('dark')}else{d.documentElement.classList.remove('dark')}d.getElementById('darkToggle').addEventListener('click',function(){var e=d.documentElement;e.classList.toggle('dark');ls.setItem('darkMode',e.classList.contains('dark'))})})();
+(function(){var d=document;var ls=localStorage;var lang=ls.getItem('site-lang');if(lang==='en'){d.body.classList.add('en')}d.getElementById('langToggle').addEventListener('click',function(){d.body.classList.toggle('en');ls.setItem('site-lang',d.body.classList.contains('en')?'en':'ko')})})();
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>과학적 표기법 변환기 - Free Utilities</title>
+<meta name="description" content="일반 숫자와 과학적 표기법 간 양방향 변환을 지원합니다.">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"과학적 표기법 변환기","description":"일반 숫자와 과학적 표기법 간 양방향 변환을 지원합니다.","url":"https://freeutilities.pages.dev/scientific-notation.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
+</script>
+</head>
+<body><div class="max-w-md mx-auto space-y-6"><div class="space-y-3"><h3 class="font-semibold">Decimal &rarr; Scientific</h3><input id="sciDec" type="number" value="1234500" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"><button onclick="toScientific()" class="w-full p-2 rounded-xl bg-primary text-white hover:bg-blue-700">Convert</button><div id="sciResult1" class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 text-center text-lg font-mono">1.2345e+6</div></div><div class="space-y-3"><h3 class="font-semibold">Scientific &rarr; Decimal</h3><input id="sciSci" value="1.2345e+6" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"><button onclick="toDecimal()" class="w-full p-2 rounded-xl bg-primary text-white hover:bg-blue-700">Convert</button><div id="sciResult2" class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 text-center text-lg font-mono">1234500</div></div></div><script>function toScientific(){var n=parseFloat(document.getElementById("sciDec").value);if(isNaN(n)){document.getElementById("sciResult1").textContent="Invalid input";return}document.getElementById("sciResult1").textContent=n.toExponential()+" = "+n.toExponential(6)}function toDecimal(){var s=document.getElementById("sciSci").value;var n=Number(s);if(isNaN(n)){document.getElementById("sciResult2").textContent="Invalid input";return}document.getElementById("sciResult2").textContent=n.toString()+" = "+n.toLocaleString("fullwide",{useGrouping:false})}</script></body>
+</html>

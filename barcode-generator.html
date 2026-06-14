@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="다양한 포맷의 바코드를 생성하세요. Code 128, EAN-13, UPC-A, Code 39 등을 지원. Generate barcodes in multiple formats: Code 128, EAN-13, UPC-A, Code 39 and more.">
+<meta name="robots" content="index,follow">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#2563eb',background:'#f9fafb',surface:'#ffffff',surface2:'#f1f5f9',outline:'#cbd5e1','outline-variant':'#94a3b8','on-background':'#0f172a','on-surface':'#1e293b','on-surface-variant':'#475569'}}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif;color:#0f172a}
+.dark body{background:#0f172a;color:#e2e8f0}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+
+.bg-input{border:1px solid #cbd5e1;border-radius:.5rem;padding:.5rem .75rem;font-size:.875rem;background:#fff;color:#0f172a}
+.dark .bg-input{background:#1e293b;color:#e2e8f0;border-color:#475569}
+
+</style>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"바코드 생성기 - Code 128, EAN-13, UPC-A","description":"다양한 포맷의 바코드를 생성하세요. Code 128, EAN-13, UPC-A, Code 39 등을 지원. Generate barcodes in multiple formats: Code 128, EAN-13, UPC-A, Code 39 and more.","url":"https://freeutilities.pages.dev/barcode-generator.html","applicationCategory":"Utility","operatingSystem":"All"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free Utilities","item":"https://freeutilities.pages.dev/"},{"@type":"ListItem","position":2,"name":"바코드 생성기 - Code 128, EAN-13, UPC-A","item":"https://freeutilities.pages.dev/barcode-generator.html"}]}]</script>
+<meta property="og:type" content="website">
+<meta property="og:title" content="바코드 생성기 - Code 128, EAN-13, UPC-A / Barcode Generator - Code 128, EAN-13, UPC-A">
+<meta property="og:description" content="다양한 포맷의 바코드를 생성하세요. Code 128, EAN-13, UPC-A, Code 39 등을 지원. Generate barcodes in multiple formats: Code 128, EAN-13, UPC-A, Code 39 and more.">
+<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="바코드 생성기 - Code 128, EAN-13, UPC-A / Barcode Generator - Code 128, EAN-13, UPC-A">
+<meta name="twitter:description" content="다양한 포맷의 바코드를 생성하세요. Code 128, EAN-13, UPC-A, Code 39 등을 지원. Generate barcodes in multiple formats: Code 128, EAN-13, UPC-A, Code 39 and more.">
+<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png">
+<link rel="canonical" href="https://freeutilities.pages.dev/barcode-generator.html">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/barcode-generator.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/barcode-generator.html">
+<link rel="alternate" hreflang="x-default" href="https://freeutilities.pages.dev/barcode-generator.html">
+<title>바코드 생성기 - Code 128, EAN-13, UPC-A / Barcode Generator - Code 128, EAN-13, UPC-A</title>
+</head>
+<body><header class="bg-white dark:bg-slate-800 border-b border-outline/20 sticky top-0 z-10">
+<div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+<a href="../index.html" class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition text-sm font-medium">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+<span class="lang-ko">Free Utilities</span><span class="lang-en">Free Utilities</span>
+</a>
+<div class="flex items-center gap-2">
+<button id="langToggle" class="text-xs px-2 py-1 rounded border border-outline/40 hover:bg-surface2 transition" aria-label="Toggle language">EN / KO</button>
+<button id="darkToggle" class="text-xs px-2 py-1 rounded border border-outline/40 hover:bg-surface2 transition" aria-label="Toggle dark mode">🌙</button>
+</div>
+</div>
+</header><main class="max-w-5xl mx-auto px-4 py-6">
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8">
+<h1 class="text-2xl font-bold mb-6 text-on-surface"><span class="lang-ko">바코드 생성기 - Code 128, EAN-13, UPC-A</span><span class="lang-en">Barcode Generator - Code 128, EAN-13, UPC-A</span></h1>
+
+<div class="space-y-4">
+<div class="flex flex-wrap gap-4">
+<div><span class="lang-ko text-sm text-on-surface-variant block mb-1">데이터</span><span class="lang-en text-sm text-on-surface-variant block mb-1">Data</span>
+<input id="bcData" class="bg-input" type="text" value="Hello123" placeholder="Enter barcode data"></div>
+<div><span class="lang-ko text-sm text-on-surface-variant block mb-1">포맷</span><span class="lang-en text-sm text-on-surface-variant block mb-1">Format</span>
+<select id="bcFormat" class="bg-input">
+<option value="CODE128">Code 128</option>
+<option value="EAN13">EAN-13</option>
+<option value="UPCA">UPC-A</option>
+<option value="CODE39">Code 39</option>
+<option value="CODABAR">Codabar</option>
+</select></div>
+<div><span class="lang-ko text-sm text-on-surface-variant block mb-1">너비</span><span class="lang-en text-sm text-on-surface-variant block mb-1">Width</span>
+<input id="bcWidth" class="bg-input" type="number" value="300" style="width:80px"></div>
+<div><span class="lang-ko text-sm text-on-surface-variant block mb-1">높이</span><span class="lang-en text-sm text-on-surface-variant block mb-1">Height</span>
+<input id="bcHeight" class="bg-input" type="number" value="80" style="width:80px"></div>
+<div class="flex items-end pb-1"><label class="text-sm text-on-surface-variant"><input type="checkbox" id="bcText" checked> <span class="lang-ko">텍스트 표시</span><span class="lang-en">Show text</span></label></div></div>
+<button id="bcGenerate" class="bg-primary text-white px-5 py-2 rounded-lg text-sm hover:bg-blue-700 transition"><span class="lang-ko">생성</span><span class="lang-en">Generate</span></button>
+<div id="bcResult" class="flex justify-center p-4 bg-surface2 rounded-xl min-h-[120px] items-center"></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.6/JsBarcode.all.min.js"></script>
+<script>
+document.getElementById('bcGenerate').addEventListener('click',function(){
+var data=document.getElementById('bcData').value||' ';var fmt=document.getElementById('bcFormat').value;
+var w=parseInt(document.getElementById('bcWidth').value)||300;var h=parseInt(document.getElementById('bcHeight').value)||80;
+var showText=document.getElementById('bcText').checked;
+var svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.id='barcode-svg';
+document.getElementById('bcResult').innerHTML='';document.getElementById('bcResult').appendChild(svg);
+try{JsBarcode('#barcode-svg',data,{format:fmt,width:w/300*2,height:h,displayValue:showText,fontSize:16,margin:5})}catch(e){document.getElementById('bcResult').innerHTML='<span class="text-red-500 text-sm">Error: '+e.message+'</span>'}
+});
+</script>
+</div>
+</div>
+</main>
+<footer class="max-w-5xl mx-auto px-4 py-8 text-center text-sm text-on-surface-variant">
+<div class="flex justify-center gap-4 mb-2">
+<a href="../privacy.html" class="lang-ko hover:text-primary transition">개인정보처리방침</a><a href="../privacy.html" class="lang-en hover:text-primary transition">Privacy Policy</a>
+<a href="../terms.html" class="lang-ko hover:text-primary transition">이용약관</a><a href="../terms.html" class="lang-en hover:text-primary transition">Terms of Service</a>
+<a href="../contact.html" class="lang-ko hover:text-primary transition">문의하기</a><a href="../contact.html" class="lang-en hover:text-primary transition">Contact</a>
+</div>
+<p>&copy; 2024 Free Utilities. <span class="lang-ko">모든 권리 보유.</span><span class="lang-en">All rights reserved.</span></p>
+</footer>
+
+<script>
+(function(){var d=document;var ls=localStorage;if(ls.getItem('darkMode')==='true'||(!ls.getItem('darkMode')&&window.matchMedia('(prefers-color-scheme:dark)').matches)){d.documentElement.classList.add('dark')}else{d.documentElement.classList.remove('dark')}d.getElementById('darkToggle').addEventListener('click',function(){var e=d.documentElement;e.classList.toggle('dark');ls.setItem('darkMode',e.classList.contains('dark'))})})();
+(function(){var d=document;var ls=localStorage;var lang=ls.getItem('site-lang');if(lang==='en'){d.body.classList.add('en')}d.getElementById('langToggle').addEventListener('click',function(){d.body.classList.toggle('en');ls.setItem('site-lang',d.body.classList.contains('en')?'en':'ko')})})();
+</script>
+</body>
+</html>

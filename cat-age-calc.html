@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>고양이 나이 계산기 - Free Utilities</title>
+<meta name="description" content="고양이의 나이를 사람 나이로 변환합니다. 실내/실외 옵션을 지원합니다.">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"고양이 나이 계산기","description":"고양이의 나이를 사람 나이로 변환합니다. 실내/실외 옵션을 지원합니다.","url":"https://freeutilities.pages.dev/cat-age-calc.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
+</script>
+</head>
+<body><div class="max-w-md mx-auto space-y-4"><div><label>Cat Years</label><input id="catAge" type="number" value="5" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><div><label>Type</label><select id="catType" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"><option value="indoor">Indoor</option><option value="outdoor">Outdoor</option></select></div><button onclick="calcCatAge()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium">Calculate</button><div id="catResult" class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 text-center text-2xl font-bold"></div></div><script>function calcCatAge(){var c=parseFloat(document.getElementById("catAge").value)||0;if(c<=1)h=15;else if(c<=2)h=24;else h=24+(c-2)*4;document.getElementById("catResult").innerHTML=h+" human years"}</script></body>
+</html>

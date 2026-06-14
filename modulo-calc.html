@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>모듈로 계산기 - Free Utilities</title>
+<meta name="description" content="a mod b 계산과 모듈로 지수승 a^b mod m을 계산합니다.">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"모듈로 계산기","description":"a mod b 계산과 모듈로 지수승 a^b mod m을 계산합니다.","url":"https://freeutilities.pages.dev/modulo-calc.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
+</script>
+</head>
+<body><div class="max-w-md mx-auto space-y-6"><div class="space-y-3"><h3 class="font-semibold">Simple Modulo: a mod b</h3><div class="flex gap-3 items-center"><input id="modA" type="number" value="17" class="flex-1 p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"><span class="text-lg">mod</span><input id="modB" type="number" value="5" class="flex-1 p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><button onclick="calcMod()" class="w-full p-2 rounded-xl bg-primary text-white hover:bg-blue-700">Calculate</button><div id="modResult" class="text-center text-2xl font-bold">2</div></div><hr><div class="space-y-3"><h3 class="font-semibold">Modular Exponentiation: a^b mod m</h3><div class="flex gap-2"><input id="modExpA" type="number" value="5" class="flex-1 p-3 rounded-xl border border-outline bg-white dark:bg-slate-700" placeholder="a"><input id="modExpB" type="number" value="3" class="flex-1 p-3 rounded-xl border border-outline bg-white dark:bg-slate-700" placeholder="b"><input id="modExpM" type="number" value="13" class="flex-1 p-3 rounded-xl border border-outline bg-white dark:bg-slate-700" placeholder="m"></div><button onclick="calcModExp()" class="w-full p-2 rounded-xl bg-primary text-white hover:bg-blue-700">Calculate</button><div id="modExpResult" class="text-center text-2xl font-bold">8</div></div></div><script>function calcMod(){var a=parseInt(document.getElementById("modA").value)||0;var b=parseInt(document.getElementById("modB").value)||1;document.getElementById("modResult").textContent=a+" mod "+b+" = "+(a%b)}function calcModExp(){var a=parseInt(document.getElementById("modExpA").value)||0;var b=parseInt(document.getElementById("modExpB").value)||0;var m=parseInt(document.getElementById("modExpM").value)||1;var r=1;for(var i=0;i<b;i++){r=(r*a)%m}document.getElementById("modExpResult").textContent=a+"^"+b+" mod "+m+" = "+r}</script></body>
+</html>

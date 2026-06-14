@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CSV 파일을 불러와 테이블로 표시하고 정렬, 필터링, 검색합니다. Load CSV files, display as table with sort, filter, and search functionality.">
+<meta name="robots" content="index,follow">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#2563eb',background:'#f9fafb',surface:'#ffffff',surface2:'#f1f5f9',outline:'#cbd5e1','outline-variant':'#94a3b8','on-background':'#0f172a','on-surface':'#1e293b','on-surface-variant':'#475569'}}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif;color:#0f172a}
+.dark body{background:#0f172a;color:#e2e8f0}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+
+.cv-textarea{width:100%;padding:.75rem;border:1px solid #cbd5e1;border-radius:.75rem;font-family:ui-monospace,monospace;font-size:.75rem;resize:vertical;background:#fff;color:#0f172a;min-height:100px}
+.dark .cv-textarea{background:#1e293b;color:#e2e8f0;border-color:#475569}
+table{width:100%;border-collapse:collapse;font-size:.875rem}
+th,td{padding:.5rem .75rem;text-align:left;border:1px solid #cbd5e1;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dark th,.dark td{border-color:#475569}
+th{background:#f1f5f9;cursor:pointer;user-select:none}
+.dark th{background:#1e293b}
+th:hover{background:#e2e8f0}
+.dark th:hover{background:#334155}
+
+</style>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"CSV 뷰어 - CSV 파일 탐색 및 정렬","description":"CSV 파일을 불러와 테이블로 표시하고 정렬, 필터링, 검색합니다. Load CSV files, display as table with sort, filter, and search functionality.","url":"https://freeutilities.pages.dev/csv-viewer.html","applicationCategory":"Utility","operatingSystem":"All"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free Utilities","item":"https://freeutilities.pages.dev/"},{"@type":"ListItem","position":2,"name":"CSV 뷰어 - CSV 파일 탐색 및 정렬","item":"https://freeutilities.pages.dev/csv-viewer.html"}]}]</script>
+<meta property="og:type" content="website">
+<meta property="og:title" content="CSV 뷰어 - CSV 파일 탐색 및 정렬 / CSV Viewer - Browse, Sort and Filter CSV Files">
+<meta property="og:description" content="CSV 파일을 불러와 테이블로 표시하고 정렬, 필터링, 검색합니다. Load CSV files, display as table with sort, filter, and search functionality.">
+<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CSV 뷰어 - CSV 파일 탐색 및 정렬 / CSV Viewer - Browse, Sort and Filter CSV Files">
+<meta name="twitter:description" content="CSV 파일을 불러와 테이블로 표시하고 정렬, 필터링, 검색합니다. Load CSV files, display as table with sort, filter, and search functionality.">
+<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png">
+<link rel="canonical" href="https://freeutilities.pages.dev/csv-viewer.html">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/csv-viewer.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/csv-viewer.html">
+<link rel="alternate" hreflang="x-default" href="https://freeutilities.pages.dev/csv-viewer.html">
+<title>CSV 뷰어 - CSV 파일 탐색 및 정렬 / CSV Viewer - Browse, Sort and Filter CSV Files</title>
+</head>
+<body><header class="bg-white dark:bg-slate-800 border-b border-outline/20 sticky top-0 z-10">
+<div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+<a href="../index.html" class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition text-sm font-medium">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+<span class="lang-ko">Free Utilities</span><span class="lang-en">Free Utilities</span>
+</a>
+<div class="flex items-center gap-2">
+<button id="langToggle" class="text-xs px-2 py-1 rounded border border-outline/40 hover:bg-surface2 transition" aria-label="Toggle language">EN / KO</button>
+<button id="darkToggle" class="text-xs px-2 py-1 rounded border border-outline/40 hover:bg-surface2 transition" aria-label="Toggle dark mode">🌙</button>
+</div>
+</div>
+</header><main class="max-w-5xl mx-auto px-4 py-6">
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8">
+<h1 class="text-2xl font-bold mb-6 text-on-surface"><span class="lang-ko">CSV 뷰어 - CSV 파일 탐색 및 정렬</span><span class="lang-en">CSV Viewer - Browse, Sort and Filter CSV Files</span></h1>
+
+<div class="space-y-4">
+<div class="flex flex-wrap gap-3 items-center">
+<label class="text-sm text-on-surface-variant"><span class="lang-ko">CSV 파일 불러오기</span><span class="lang-en">Load CSV file</span>
+<input id="cvFile" type="file" accept=".csv,.tsv,.txt" class="mt-1 block text-sm"></label>
+<span class="text-xs text-on-surface-variant"><span class="lang-ko">또는</span><span class="lang-en">or</span></span>
+</div>
+<div><span class="lang-ko text-sm text-on-surface-variant mb-1 block">CSV 데이터 직접 입력</span><span class="lang-en text-sm text-on-surface-variant mb-1 block">Paste CSV data</span>
+<textarea id="cvPaste" class="cv-textarea" rows="4" placeholder='name,age,city&#10;Alice,30,Seoul&#10;Bob,25,Busan'></textarea></div>
+<div class="flex gap-3 items-center">
+<button id="cvLoad" class="bg-primary text-white px-5 py-2 rounded-lg text-sm hover:bg-blue-700 transition"><span class="lang-ko">불러오기</span><span class="lang-en">Load</span></button>
+<input id="cvSearch" class="border border-outline/40 rounded px-3 py-1.5 text-sm flex-1 min-w-[120px] bg-white dark:bg-slate-700 dark:text-white" type="text" placeholder='🔍 <span class="lang-ko">검색</span><span class="lang-en">Search</span>'>
+<span id="cvRowCount" class="text-xs text-on-surface-variant"></span>
+<button id="cvExport" class="border border-primary text-primary px-3 py-1.5 rounded-lg text-xs hover:bg-primary hover:text-white transition"><span class="lang-ko">필터된 CSV 내보내기</span><span class="lang-en">Export filtered CSV</span></button>
+</div>
+<div id="cvTableWrap" class="overflow-x-auto"></div></div>
+<script>
+var csvData=[];var csvHeaders=[];
+function parseCSV(text){var delim=',';if(text.indexOf(';')>-1)delim=';';else if(text.indexOf('\t')>-1)delim='\t';var lines=text.split('\n').map(function(l){return l.trim()}).filter(function(l){return l});if(!lines.length)return[];var result=[];var headers=parseLine(lines[0],delim);for(var i=1;i<lines.length;i++){var vals=parseLine(lines[i],delim);if(vals.length){var row={};for(var j=0;j<headers.length;j++){row[headers[j]]=vals[j]||''}result.push(row)}}return{headers:headers,rows:result}}
+function parseLine(line,delim){var result=[];var cur='';var inQ=false;for(var i=0;i<line.length;i++){var ch=line[i];if(inQ){if(ch=='"'&&i+1<line.length&&line[i+1]=='"'){cur+='"';i++}else if(ch=='"'){inQ=false}else{cur+=ch}}else{if(ch=='"'){inQ=true}else if(ch===delim){result.push(cur);cur=''}else{cur+=ch}}}result.push(cur);return result}
+var sortCol=null;var sortDir='asc';
+function renderTable(headers,rows){var html='<table><thead><tr>';headers.forEach(function(h){html+='<th data-col="'+h+'">'+h+' <span class="text-xs opacity-50">'+(sortCol===h?(sortDir==='asc'?'▲':'▼'):'')+'</span></th>'});html+='</tr></thead><tbody>';
+rows.forEach(function(r){html+='<tr>';headers.forEach(function(h){html+='<td>'+(r[h]||'')+'</td>'});html+='</tr>'});html+='</tbody></table>';document.getElementById('cvTableWrap').innerHTML=html;
+document.querySelectorAll('th').forEach(function(th){th.addEventListener('click',function(){var col=this.dataset.col;if(sortCol===col){sortDir=sortDir==='asc'?'desc':'asc'}else{sortCol=col;sortDir='asc'}rows.sort(function(a,b){var va=(a[col]||'').toLowerCase(),vb=(b[col]||'').toLowerCase();if(va<vb)return sortDir==='asc'?-1:1;if(va>vb)return sortDir==='asc'?1:-1;return 0});renderTable(headers,rows);applySearch()})});}
+function applySearch(){var q=document.getElementById('cvSearch').value.toLowerCase();var table=document.querySelector('#cvTableWrap table');if(!table)return;var rows=table.querySelectorAll('tbody tr');var count=0;rows.forEach(function(r){var match=q===''||Array.from(r.querySelectorAll('td')).some(function(td){return td.textContent.toLowerCase().includes(q)});r.style.display=match?'':'none';if(match)count++});document.getElementById('cvRowCount').textContent='<span class="lang-ko">표시: '+count+'/'+rows.length+'행</span><span class="lang-en">Showing: '+count+'/'+rows.length+' rows</span>'}
+document.getElementById('cvLoad').addEventListener('click',function(){
+var paste=document.getElementById('cvPaste').value.trim();if(paste){var res=parseCSV(paste);csvHeaders=res.headers;csvData=res.rows;renderTable(csvHeaders,csvData);applySearch();return}
+var file=document.getElementById('cvFile').files[0];if(!file)return;var reader=new FileReader();reader.onload=function(e){var res=parseCSV(e.target.result);csvHeaders=res.headers;csvData=res.rows;renderTable(csvHeaders,csvData);applySearch()};reader.readAsText(file)});
+document.getElementById('cvSearch').addEventListener('input',applySearch);
+document.getElementById('cvExport').addEventListener('click',function(){
+var q=document.getElementById('cvSearch').value.toLowerCase();var filtered=csvData.filter(function(r){return q===''||csvHeaders.some(function(h){return(r[h]||'').toLowerCase().includes(q)})});var lines=[csvHeaders.join(',')];filtered.forEach(function(r){lines.push(csvHeaders.map(function(h){var v=(r[h]||'').toString();return v.includes(',')||v.includes('"')?'"'+v.replace(/"/g,'""')+'"':v}).join(','))});var blob=new Blob([lines.join('\n')],{type:'text/csv'});var url=URL.createObjectURL(blob);var a=document.createElement('a');a.href=url;a.download='filtered.csv';a.click();URL.revokeObjectURL(url)});
+</script>
+</div>
+</div>
+</main>
+<footer class="max-w-5xl mx-auto px-4 py-8 text-center text-sm text-on-surface-variant">
+<div class="flex justify-center gap-4 mb-2">
+<a href="../privacy.html" class="lang-ko hover:text-primary transition">개인정보처리방침</a><a href="../privacy.html" class="lang-en hover:text-primary transition">Privacy Policy</a>
+<a href="../terms.html" class="lang-ko hover:text-primary transition">이용약관</a><a href="../terms.html" class="lang-en hover:text-primary transition">Terms of Service</a>
+<a href="../contact.html" class="lang-ko hover:text-primary transition">문의하기</a><a href="../contact.html" class="lang-en hover:text-primary transition">Contact</a>
+</div>
+<p>&copy; 2024 Free Utilities. <span class="lang-ko">모든 권리 보유.</span><span class="lang-en">All rights reserved.</span></p>
+</footer>
+
+<script>
+(function(){var d=document;var ls=localStorage;if(ls.getItem('darkMode')==='true'||(!ls.getItem('darkMode')&&window.matchMedia('(prefers-color-scheme:dark)').matches)){d.documentElement.classList.add('dark')}else{d.documentElement.classList.remove('dark')}d.getElementById('darkToggle').addEventListener('click',function(){var e=d.documentElement;e.classList.toggle('dark');ls.setItem('darkMode',e.classList.contains('dark'))})})();
+(function(){var d=document;var ls=localStorage;var lang=ls.getItem('site-lang');if(lang==='en'){d.body.classList.add('en')}d.getElementById('langToggle').addEventListener('click',function(){d.body.classList.toggle('en');ls.setItem('site-lang',d.body.classList.contains('en')?'en':'ko')})})();
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>이상 체중 계산기 - Free Utilities</title>
+<meta name="description" content="성별, 키, 체중을 입력하여 Devine, Robinson, Miller, Hamwi 공식으로 이상 체중을 계산합니다.">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"이상 체중 계산기","description":"성별, 키, 체중을 입력하여 Devine, Robinson, Miller, Hamwi 공식으로 이상 체중을 계산합니다.","url":"https://freeutilities.pages.dev/ideal-weight-calc.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
+</script>
+</head>
+<body><div class="max-w-md mx-auto space-y-4"><div><label>Gender</label><select id="iwGender" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"><option value="male">Male</option><option value="female">Female</option></select></div><div><label>Height (cm)</label><input id="iwHeight" type="number" value="175" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><button onclick="calcIdealWeight()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium">Calculate</button><div id="iwResult" class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 space-y-1 text-sm"></div></div><script>function calcIdealWeight(){var gender=document.getElementById("iwGender").value;var h=parseFloat(document.getElementById("iwHeight").value)||0;var hIn=h/2.54;var base=gender=="male"?52:49;var factor=gender=="male"?1.9:1.7;var devine=base+factor*(hIn-60);var robinson=gender=="male"?52+1.9*(hIn-60):49+1.7*(hIn-60);var miller=gender=="male"?56.2+1.41*(hIn-60):53.1+1.36*(hIn-60);var hamwi=gender=="male"?48+2.7*((h-152.4)/2.54):45.5+2.2*((h-152.4)/2.54);document.getElementById("iwResult").innerHTML="<div>Devine: "+devine.toFixed(1)+" kg</div><div>Robinson: "+robinson.toFixed(1)+" kg</div><div>Miller: "+miller.toFixed(1)+" kg</div><div>Hamwi: "+hamwi.toFixed(1)+" kg</div>"}</script></body>
+</html>

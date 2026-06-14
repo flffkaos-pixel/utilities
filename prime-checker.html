@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>소수 판별기 - Free Utilities</title>
+<meta name="description" content="숫자가 소수인지 판별하고, 소인수분해와 모든 약수를 보여줍니다.">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"소수 판별기","description":"숫자가 소수인지 판별하고, 소인수분해와 모든 약수를 보여줍니다.","url":"https://freeutilities.pages.dev/prime-checker.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
+</script>
+</head>
+<body><div class="max-w-md mx-auto space-y-4"><div><label class="block text-sm font-medium mb-1"><span class="lang-ko">숫자</span><span class="lang-en">Number</span></label><input id="primeNum" type="number" value="97" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><button onclick="checkPrime()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium"><span class="lang-ko">확인</span><span class="lang-en">Check</span></button><div class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 space-y-2"><div id="primeAnswer" class="text-xl font-bold text-green-600">97 <span class="lang-ko">소수입니다</span><span class="lang-en">is prime</span></div><div id="primeFactors" class="text-sm"></div><div id="primeDivisors" class="text-sm"></div><div id="primeNeighbors" class="text-sm text-slate-500"></div></div></div><script>function isPrime(n){if(n<2)return false;if(n%2==0)return n==2;for(var i=3;i*i<=n;i+=2){if(n%i==0)return false}return true}function checkPrime(){var n=parseInt(document.getElementById("primeNum").value)||0;var prime=isPrime(n);var el=document.getElementById("primeAnswer");el.textContent=n+" ";el.className="text-xl font-bold "+(prime?"text-green-600":"text-red-600");el.innerHTML+=prime?" is Prime":" is NOT Prime";var t=n;var factors={};var d=2;while(d*d<=t){while(t%d==0){factors[d]=(factors[d]||0)+1;t/=d}d++}if(t>1)factors[t]=(factors[t]||0)+1;var fparts=[];for(var p in factors)fparts.push(p+(factors[p]>1?"^"+factors[p]:""));document.getElementById("primeFactors").textContent=fparts.join(" * ");var divs=[];for(var i=1;i<=Math.sqrt(n);i++){if(n%i==0){divs.push(i);if(i!=n/i)divs.push(n/i)}}divs.sort(function(a,b){return a-b});document.getElementById("primeDivisors").innerHTML="Divisors: "+divs.join(", ");var prev=n-1;while(prev>1&&!isPrime(prev))prev--;var next=n+1;while(!isPrime(next))next++;document.getElementById("primeNeighbors").innerHTML="Prev: "+prev+", Next: "+next}</script></body>
+</html>

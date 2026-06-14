@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>로그 계산기 - Free Utilities</title>
+<meta name="description" content="자연로그, 상용로그, 밑 변환 로그를 계산합니다. 결과와 함께 계산 과정을 보여줍니다.">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"로그 계산기","description":"자연로그, 상용로그, 밑 변환 로그를 계산합니다. 결과와 함께 계산 과정을 보여줍니다.","url":"https://freeutilities.pages.dev/log-calc.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
+</script>
+</head>
+<body><div class="max-w-md mx-auto space-y-4"><div><label class="block text-sm font-medium mb-1"><span class="lang-ko">모드</span><span class="lang-en">Mode</span></label><select id="logMode" onchange="updateLogMode()" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"><option value="ln">ln</option><option value="log10">log₁₀</option><option value="logab">logₐ(b)</option></select></div><div id="logInputA" class="hidden"><label class="block text-sm font-medium mb-1"><span class="lang-ko">밑 (a)</span><span class="lang-en">Base (a)</span></label><input id="logA" type="number" value="2" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><div><label class="block text-sm font-medium mb-1"><span class="lang-ko">값 (x)</span><span class="lang-en">Value (x)</span></label><input id="logX" type="number" value="8" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><button onclick="calcLog()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium"><span class="lang-ko">계산</span><span class="lang-en">Calculate</span></button><div class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 text-center"><div id="logStep" class="text-sm text-slate-500 dark:text-slate-300">ln(8) = ?</div><div id="logAnswer" class="text-2xl font-bold mt-1">2.07944</div></div></div><script>function updateLogMode(){var m=document.getElementById("logMode").value;document.getElementById("logInputA").classList.toggle("hidden",m!="logab")}function calcLog(){var mode=document.getElementById("logMode").value;var x=parseFloat(document.getElementById("logX").value)||0;var a=parseFloat(document.getElementById("logA").value)||2;var r,step;if(mode=="ln"){r=Math.log(x);step="ln("+x+") ="}else if(mode=="log10"){r=Math.log10(x);step="log("+x+") ="}else{r=Math.log(x)/Math.log(a);step="log<sub>"+a+"</sub>("+x+") = log("+x+") / log("+a+") ="}document.getElementById("logStep").innerHTML=step;document.getElementById("logAnswer").textContent=r.toFixed(6)}</script></body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="JSON 데이터가 JSON Schema에 맞는지 검증합니다. 실시간 유효성 검사와 상세 오류 메시지. Validate JSON data against a JSON Schema. Real-time validation with detailed error messages.">
+<meta name="robots" content="index,follow">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#2563eb',background:'#f9fafb',surface:'#ffffff',surface2:'#f1f5f9',outline:'#cbd5e1','outline-variant':'#94a3b8','on-background':'#0f172a','on-surface':'#1e293b','on-surface-variant':'#475569'}}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif;color:#0f172a}
+.dark body{background:#0f172a;color:#e2e8f0}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+
+.js-textarea{width:100%;padding:.75rem;border:1px solid #cbd5e1;border-radius:.75rem;font-family:ui-monospace,monospace;font-size:.75rem;resize:vertical;background:#fff;color:#0f172a;min-height:200px}
+.dark .js-textarea{background:#1e293b;color:#e2e8f0;border-color:#475569}
+.pass{color:#16a34a;font-weight:600}
+.fail{color:#dc2626;font-weight:600}
+
+</style>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"JSON Schema 검증기 - 데이터 구조 유효성 검사","description":"JSON 데이터가 JSON Schema에 맞는지 검증합니다. 실시간 유효성 검사와 상세 오류 메시지. Validate JSON data against a JSON Schema. Real-time validation with detailed error messages.","url":"https://freeutilities.pages.dev/json-schema-validator.html","applicationCategory":"Utility","operatingSystem":"All"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free Utilities","item":"https://freeutilities.pages.dev/"},{"@type":"ListItem","position":2,"name":"JSON Schema 검증기 - 데이터 구조 유효성 검사","item":"https://freeutilities.pages.dev/json-schema-validator.html"}]}]</script>
+<meta property="og:type" content="website">
+<meta property="og:title" content="JSON Schema 검증기 - 데이터 구조 유효성 검사 / JSON Schema Validator - Validate Data Structure">
+<meta property="og:description" content="JSON 데이터가 JSON Schema에 맞는지 검증합니다. 실시간 유효성 검사와 상세 오류 메시지. Validate JSON data against a JSON Schema. Real-time validation with detailed error messages.">
+<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="JSON Schema 검증기 - 데이터 구조 유효성 검사 / JSON Schema Validator - Validate Data Structure">
+<meta name="twitter:description" content="JSON 데이터가 JSON Schema에 맞는지 검증합니다. 실시간 유효성 검사와 상세 오류 메시지. Validate JSON data against a JSON Schema. Real-time validation with detailed error messages.">
+<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png">
+<link rel="canonical" href="https://freeutilities.pages.dev/json-schema-validator.html">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/json-schema-validator.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/json-schema-validator.html">
+<link rel="alternate" hreflang="x-default" href="https://freeutilities.pages.dev/json-schema-validator.html">
+<title>JSON Schema 검증기 - 데이터 구조 유효성 검사 / JSON Schema Validator - Validate Data Structure</title>
+</head>
+<body><header class="bg-white dark:bg-slate-800 border-b border-outline/20 sticky top-0 z-10">
+<div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+<a href="../index.html" class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition text-sm font-medium">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+<span class="lang-ko">Free Utilities</span><span class="lang-en">Free Utilities</span>
+</a>
+<div class="flex items-center gap-2">
+<button id="langToggle" class="text-xs px-2 py-1 rounded border border-outline/40 hover:bg-surface2 transition" aria-label="Toggle language">EN / KO</button>
+<button id="darkToggle" class="text-xs px-2 py-1 rounded border border-outline/40 hover:bg-surface2 transition" aria-label="Toggle dark mode">🌙</button>
+</div>
+</div>
+</header><main class="max-w-5xl mx-auto px-4 py-6">
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8">
+<h1 class="text-2xl font-bold mb-6 text-on-surface"><span class="lang-ko">JSON Schema 검증기 - 데이터 구조 유효성 검사</span><span class="lang-en">JSON Schema Validator - Validate Data Structure</span></h1>
+
+<div class="space-y-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div><span class="lang-ko text-sm text-on-surface-variant mb-1 block">JSON Schema</span><span class="lang-en text-sm text-on-surface-variant mb-1 block">JSON Schema</span>
+<textarea id="schemaInput" class="js-textarea" rows="10" placeholder='{"type":"object","properties":{"name":{"type":"string"}},"required":["name"]}'></textarea></div>
+<div><span class="lang-ko text-sm text-on-surface-variant mb-1 block">JSON 데이터</span><span class="lang-en text-sm text-on-surface-variant mb-1 block">JSON Data</span>
+<textarea id="dataInput" class="js-textarea" rows="10" placeholder='{"name":"John"}'></textarea></div></div>
+<button id="validateBtn" class="bg-primary text-white px-5 py-2 rounded-lg text-sm hover:bg-blue-700 transition"><span class="lang-ko">검증</span><span class="lang-en">Validate</span></button>
+<div id="resultDisplay" class="text-sm"></div></div>
+<script>
+document.getElementById('validateBtn').addEventListener('click',function(){
+var s=d=null;var rd=document.getElementById('resultDisplay');
+try{s=JSON.parse(document.getElementById('schemaInput').value)}catch(e){rd.innerHTML='<span class="fail">Schema parse error: '+e.message+'</span>';return}
+try{d=JSON.parse(document.getElementById('dataInput').value)}catch(e){rd.innerHTML='<span class="fail">Data parse error: '+e.message+'</span>';return}
+var errs=validateSchema(s,d);
+if(errs.length===0){rd.innerHTML='<span class="pass">'+'<span class="lang-ko">✓ 유효함</span><span class="lang-en">✓ Valid</span></span>'}else{rd.innerHTML='<span class="fail">'+'<span class="lang-ko">✗ 유효하지 않음</span><span class="lang-en">✗ Invalid</span></span><ul class="mt-2 list-disc pl-5 text-xs text-red-600 dark:text-red-400">'+errs.map(function(e){return '<li>'+e+'</li>'}).join('')+'</ul>'}
+});
+function validateSchema(schema,data,path){var errs=[];path=path||'$';if(!schema||typeof schema!=='object')return errs;var type=schema.type;if(type){if(!checkType(data,type)){errs.push(path+': expected type '+type+', got '+typeof data);return errs}}if(schema.enum!==undefined&&!schema.enum.includes(data)){errs.push(path+': value must be one of ['+schema.enum.join(',')+']');return errs}if(schema.type==='object'||schema.properties){var props=schema.properties||{};var req=schema.required||[];if(typeof data!=='object'||data===null){if(schema.type==='object')errs.push(path+': expected object');return errs}for(var i=0;i<req.length;i++){if(!(req[i]in data))errs.push(path+'.'+req[i]+': missing required property')}for(var k in props){if(k in data){errs=errs.concat(validateSchema(props[k],data[k],path+'.'+k))}}if(schema.additionalProperties===false){for(var k2 in data){if(!(k2 in props))errs.push(path+'.'+k2+': unexpected property')}}}if(schema.type==='array'&&schema.items){if(!Array.isArray(data)){errs.push(path+': expected array');return errs}for(var j=0;j<data.length;j++){errs=errs.concat(validateSchema(schema.items,data[j],path+'['+j+']'))}}if(schema.minimum!==undefined&&typeof data==='number'&&data<schema.minimum)errs.push(path+': must be >= '+schema.minimum);if(schema.maximum!==undefined&&typeof data==='number'&&data>schema.maximum)errs.push(path+': must be <= '+schema.maximum);if(schema.minLength!==undefined&&typeof data==='string'&&data.length<schema.minLength)errs.push(path+': length must be >= '+schema.minLength);if(schema.maxLength!==undefined&&typeof data==='string'&&data.length>schema.maxLength)errs.push(path+': length must be <= '+schema.maxLength);if(schema.pattern!==undefined&&typeof data==='string'&&!new RegExp(schema.pattern).test(data))errs.push(path+': must match pattern '+schema.pattern);return errs}
+function checkType(val,t){if(t==='string')return typeof val==='string';if(t==='number')return typeof val==='number';if(t==='integer')return typeof val==='number'&&val%1===0;if(t==='boolean')return typeof val==='boolean';if(t==='array')return Array.isArray(val);if(t==='object')return typeof val==='object'&&val!==null&&!Array.isArray(val);if(t==='null')return val===null;return true}
+</script>
+</div>
+</div>
+</main>
+<footer class="max-w-5xl mx-auto px-4 py-8 text-center text-sm text-on-surface-variant">
+<div class="flex justify-center gap-4 mb-2">
+<a href="../privacy.html" class="lang-ko hover:text-primary transition">개인정보처리방침</a><a href="../privacy.html" class="lang-en hover:text-primary transition">Privacy Policy</a>
+<a href="../terms.html" class="lang-ko hover:text-primary transition">이용약관</a><a href="../terms.html" class="lang-en hover:text-primary transition">Terms of Service</a>
+<a href="../contact.html" class="lang-ko hover:text-primary transition">문의하기</a><a href="../contact.html" class="lang-en hover:text-primary transition">Contact</a>
+</div>
+<p>&copy; 2024 Free Utilities. <span class="lang-ko">모든 권리 보유.</span><span class="lang-en">All rights reserved.</span></p>
+</footer>
+
+<script>
+(function(){var d=document;var ls=localStorage;if(ls.getItem('darkMode')==='true'||(!ls.getItem('darkMode')&&window.matchMedia('(prefers-color-scheme:dark)').matches)){d.documentElement.classList.add('dark')}else{d.documentElement.classList.remove('dark')}d.getElementById('darkToggle').addEventListener('click',function(){var e=d.documentElement;e.classList.toggle('dark');ls.setItem('darkMode',e.classList.contains('dark'))})})();
+(function(){var d=document;var ls=localStorage;var lang=ls.getItem('site-lang');if(lang==='en'){d.body.classList.add('en')}d.getElementById('langToggle').addEventListener('click',function(){d.body.classList.toggle('en');ls.setItem('site-lang',d.body.classList.contains('en')?'en':'ko')})})();
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>표준편차 계산기 - Free Utilities</title>
+<meta name="description" content="숫자 목록의 표준편차, 분산, 평균 등을 계산합니다. 모집단/표본을 선택할 수 있습니다.">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"표준편차 계산기","description":"숫자 목록의 표준편차, 분산, 평균 등을 계산합니다. 모집단/표본을 선택할 수 있습니다.","url":"https://freeutilities.pages.dev/std-dev-calc.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
+</script>
+</head>
+<body><div class="max-w-md mx-auto space-y-4"><div><label class="block text-sm font-medium mb-1"><span class="lang-ko">숫자 입력 (쉼표/공백 구분)</span><span class="lang-en">Enter numbers (comma/space separated)</span></label><textarea id="stdInput" rows="3" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700">12, 15, 17, 20, 22, 25, 27, 30</textarea></div><div class="flex gap-4"><label class="flex items-center gap-1"><input type="radio" name="stdMode" value="population" checked> Population</label><label class="flex items-center gap-1"><input type="radio" name="stdMode" value="sample"> Sample</label></div><button onclick="calcStd()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium">Calculate</button><div id="stdResult" class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 grid grid-cols-2 gap-2 text-sm"></div></div><script>function calcStd(){var raw=document.getElementById("stdInput").value;var nums=raw.split(/[,\s]+/).map(parseFloat).filter(function(v){return!isNaN(v)});if(nums.length<2)return;var isSample=document.querySelector("input[name=stdMode]:checked").value=="sample";var n=nums.length;var mean=nums.reduce(function(a,b){return a+b},0)/n;var sqDiffs=nums.map(function(v){return Math.pow(v-mean,2)});var variance=sqDiffs.reduce(function(a,b){return a+b},0)/(isSample?n-1:n);var std=Math.sqrt(variance);var sorted=nums.slice().sort(function(a,b){return a-b});var min=sorted[0];var max=sorted[n-1];document.getElementById("stdResult").innerHTML="<div>n: <b>"+n+"</b></div><div>Mean: <b>"+mean.toFixed(4)+"</b></div><div>Sum: <b>"+nums.reduce(function(a,b){return a+b},0).toFixed(4)+"</b></div><div>Variance: <b>"+variance.toFixed(4)+"</b></div><div>Std Dev: <b>"+std.toFixed(4)+"</b></div><div>Min: <b>"+min+"</b></div><div>Max: <b>"+max+"</b></div><div>Range: <b>"+(max-min)+"</b></div>"}</script></body>
+</html>

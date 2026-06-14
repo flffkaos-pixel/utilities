@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>세계 시계 - Free Utilities</title>
+<meta name="description" content="여러 도시의 현재 시간을 한 번에 확인합니다. 자동 새로고침 기능을 지원합니다.">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"세계 시계","description":"여러 도시의 현재 시간을 한 번에 확인합니다. 자동 새로고침 기능을 지원합니다.","url":"https://freeutilities.pages.dev/world-clock.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
+</script>
+</head>
+<body><div class="max-w-lg mx-auto"><div class="grid grid-cols-2 sm:grid-cols-3 gap-3" id="wcGrid"></div><div class="mt-4 flex gap-2"><input id="wcCustom" placeholder="Add custom city (e.g. Berlin)" class="flex-1 p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"><button onclick="addCity()" class="px-4 py-3 rounded-xl bg-primary text-white">Add</button></div></div><script>var cities=[{name:"Seoul",tz:"Asia/Seoul"},{name:"Tokyo",tz:"Asia/Tokyo"},{name:"New York",tz:"America/New_York"},{name:"London",tz:"Europe/London"},{name:"Paris",tz:"Europe/Paris"},{name:"Sydney",tz:"Australia/Sydney"},{name:"Dubai",tz:"Asia/Dubai"},{name:"Singapore",tz:"Asia/Singapore"}];function renderClocks(){var html="";var now=new Date();cities.forEach(function(c){var t=new Date(now.toLocaleString("en-US",{timeZone:c.tz}));var h=t.getHours().toString().padStart(2,"0");var m=t.getMinutes().toString().padStart(2,"0");var s=t.getSeconds().toString().padStart(2,"0");html+='<div class="bg-slate-50 dark:bg-slate-700 rounded-xl p-3 text-center"><div class="font-bold text-lg">'+c.name+'</div><div class="text-2xl font-mono">'+h+":"+m+":"+s+'</div><div class="text-xs text-slate-500">'+c.tz.replace("_"," ").split("/").pop()+'</div></div>'});document.getElementById("wcGrid").innerHTML=html}function addCity(){var n=document.getElementById("wcCustom").value.trim();if(!n)return;try{new Date().toLocaleString("en-US",{timeZone:n})}catch(e){alert("Invalid timezone");return}cities.push({name:n.split("/").pop().replace(/_/g," "),tz:n});document.getElementById("wcCustom").value="";renderClocks()}renderClocks();setInterval(renderClocks,1000)</script></body>
+</html>

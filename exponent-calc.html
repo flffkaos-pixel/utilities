@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>지수 계산기 - Free Utilities</title>
+<meta name="description" content="밑과 지수를 입력하여 거듭제곱 결과를 계산합니다. 계산 과정을 단계별로 보여줍니다.">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"지수 계산기","description":"밑과 지수를 입력하여 거듭제곱 결과를 계산합니다. 계산 과정을 단계별로 보여줍니다.","url":"https://freeutilities.pages.dev/exponent-calc.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
+</script>
+</head>
+<body><div class="max-w-md mx-auto space-y-4"><div><label class="block text-sm font-medium mb-1"><span class="lang-ko">밑 (Base)</span><span class="lang-en">Base</span></label><input id="expBase" type="number" value="2" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><div><label class="block text-sm font-medium mb-1"><span class="lang-ko">지수 (Exponent)</span><span class="lang-en">Exponent</span></label><input id="expExp" type="number" value="10" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><button onclick="calcExp()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium"><span class="lang-ko">계산</span><span class="lang-en">Calculate</span></button><div class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 text-center"><div id="expStep" class="text-sm text-slate-500 dark:text-slate-300">2 ^ 10 = ?</div><div id="expAnswer" class="text-2xl font-bold mt-1">1024</div></div></div><script>function calcExp(){var b=parseFloat(document.getElementById("expBase").value)||0;var e=parseFloat(document.getElementById("expExp").value)||0;var r=Math.pow(b,e);document.getElementById("expStep").textContent=b+" ^ "+e+" =";document.getElementById("expAnswer").textContent=Number.isFinite(r)?r:"Infinity"}</script></body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>걸음 칼로리 계산기 - Free Utilities</title>
+<meta name="description" content="걸음 수와 체중을 기반으로 소모 칼로리와 이동 거리를 계산합니다.">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"걸음 칼로리 계산기","description":"걸음 수와 체중을 기반으로 소모 칼로리와 이동 거리를 계산합니다.","url":"https://freeutilities.pages.dev/steps-calc.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
+</script>
+</head>
+<body><div class="max-w-md mx-auto space-y-4"><div><label>Steps</label><input id="stSteps" type="number" value="10000" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><div><label>Weight (kg)</label><input id="stWeight" type="number" value="70" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><div class="flex gap-4"><label><input type="radio" name="stUnit" value="km" checked> km</label><label><input type="radio" name="stUnit" value="mi"> mi</label></div><button onclick="calcSteps()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium">Calculate</button><div id="stResult" class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 space-y-1 text-sm"></div></div><script>function calcSteps(){var s=parseFloat(document.getElementById("stSteps").value)||0;var w=parseFloat(document.getElementById("stWeight").value)||0;var isKm=document.querySelector("input[name=stUnit]:checked").value=="km";var stride=isKm?0.762:2.5;var dist=s*stride;var cal=s*0.04*w/70;var hrs=s/4000;document.getElementById("stResult").innerHTML="<div>Calories: <b>"+Math.round(cal)+"</b></div><div>Distance: <b>"+(isKm?(dist/1000).toFixed(2)+" km":(dist/5280).toFixed(2)+" mi")+"</b></div><div>Time (approx): <b>"+hrs.toFixed(1)+" hours</b></div>"}</script></body>
+</html>

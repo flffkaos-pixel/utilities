@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>순열/조합 계산기 - Free Utilities</title>
+<meta name="description" content="nPr (순열)과 nCr (조합)을 계산합니다. 중복 허용 옵션을 지원합니다.">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"순열/조합 계산기","description":"nPr (순열)과 nCr (조합)을 계산합니다. 중복 허용 옵션을 지원합니다.","url":"https://freeutilities.pages.dev/perm-comb-calc.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
+</script>
+</head>
+<body><div class="max-w-md mx-auto space-y-4"><div class="flex gap-4"><div class="flex-1"><label>n</label><input id="permN" type="number" value="10" min="0" max="1000" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><div class="flex-1"><label>r</label><input id="permR" type="number" value="3" min="0" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div></div><label><input id="permRepeat" type="checkbox"> Allow repetition</label><button onclick="calcPermComb()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium mt-2">Calculate</button><div id="permResult" class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 space-y-1 text-sm"></div></div><script>function fact(n){if(n<0)return NaN;var r=1;for(var i=2;i<=n;i++)r*=i;return r}function calcPermComb(){var n=parseInt(document.getElementById("permN").value)||0;var r=parseInt(document.getElementById("permR").value)||0;var rep=document.getElementById("permRepeat").checked;var nPr=n>=r?fact(n)/fact(n-r):0;var nCr=n>=r?fact(n)/(fact(r)*fact(n-r)):0;var html="nPr = "+n+"P"+r+" = "+(nPr>1e15?nPr.toExponential(4):nPr.toFixed(0))+"<br>";html+="nCr = "+n+"C"+r+" = "+(nCr>1e15?nCr.toExponential(4):nCr.toFixed(0))+"<br>";if(rep){html+="nPr (rep) = "+Math.pow(n,r).toFixed(0)+"<br>";html+="nCr (rep) = "+(fact(n+r-1)/(fact(r)*fact(n-1))).toFixed(0)}document.getElementById("permResult").innerHTML=html}</script></body>
+</html>

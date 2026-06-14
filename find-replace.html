@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="텍스트에서 특정 단어나 패턴을 찾아 바꿉니다. 정규식, 대소문자 구분, 전치환 지원. Find and replace text with regex support, case-sensitive toggle, and replace all functionality.">
+<meta name="robots" content="index,follow">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#2563eb',background:'#f9fafb',surface:'#ffffff',surface2:'#f1f5f9',outline:'#cbd5e1','outline-variant':'#94a3b8','on-background':'#0f172a','on-surface':'#1e293b','on-surface-variant':'#475569'}}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif;color:#0f172a}
+.dark body{background:#0f172a;color:#e2e8f0}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+
+.fr-textarea{width:100%;padding:.75rem;border:1px solid #cbd5e1;border-radius:.75rem;font-family:ui-monospace,monospace;font-size:.875rem;resize:vertical;background:#fff;color:#0f172a}
+.dark .fr-textarea{background:#1e293b;color:#e2e8f0;border-color:#475569}
+.fr-input{flex:1;padding:.5rem .75rem;border:1px solid #cbd5e1;border-radius:.5rem;font-size:.875rem;min-width:0;background:#fff;color:#0f172a}
+.dark .fr-input{background:#1e293b;color:#e2e8f0;border-color:#475569}
+
+</style>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"찾기/바꾸기 - 텍스트 검색 및 치환","description":"텍스트에서 특정 단어나 패턴을 찾아 바꿉니다. 정규식, 대소문자 구분, 전치환 지원. Find and replace text with regex support, case-sensitive toggle, and replace all functionality.","url":"https://freeutilities.pages.dev/find-replace.html","applicationCategory":"Utility","operatingSystem":"All"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free Utilities","item":"https://freeutilities.pages.dev/"},{"@type":"ListItem","position":2,"name":"찾기/바꾸기 - 텍스트 검색 및 치환","item":"https://freeutilities.pages.dev/find-replace.html"}]}]</script>
+<meta property="og:type" content="website">
+<meta property="og:title" content="찾기/바꾸기 - 텍스트 검색 및 치환 / Find & Replace - Text Search and Replace">
+<meta property="og:description" content="텍스트에서 특정 단어나 패턴을 찾아 바꿉니다. 정규식, 대소문자 구분, 전치환 지원. Find and replace text with regex support, case-sensitive toggle, and replace all functionality.">
+<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="찾기/바꾸기 - 텍스트 검색 및 치환 / Find & Replace - Text Search and Replace">
+<meta name="twitter:description" content="텍스트에서 특정 단어나 패턴을 찾아 바꿉니다. 정규식, 대소문자 구분, 전치환 지원. Find and replace text with regex support, case-sensitive toggle, and replace all functionality.">
+<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png">
+<link rel="canonical" href="https://freeutilities.pages.dev/find-replace.html">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/find-replace.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/find-replace.html">
+<link rel="alternate" hreflang="x-default" href="https://freeutilities.pages.dev/find-replace.html">
+<title>찾기/바꾸기 - 텍스트 검색 및 치환 / Find & Replace - Text Search and Replace</title>
+</head>
+<body><header class="bg-white dark:bg-slate-800 border-b border-outline/20 sticky top-0 z-10">
+<div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+<a href="../index.html" class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition text-sm font-medium">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+<span class="lang-ko">Free Utilities</span><span class="lang-en">Free Utilities</span>
+</a>
+<div class="flex items-center gap-2">
+<button id="langToggle" class="text-xs px-2 py-1 rounded border border-outline/40 hover:bg-surface2 transition" aria-label="Toggle language">EN / KO</button>
+<button id="darkToggle" class="text-xs px-2 py-1 rounded border border-outline/40 hover:bg-surface2 transition" aria-label="Toggle dark mode">🌙</button>
+</div>
+</div>
+</header><main class="max-w-5xl mx-auto px-4 py-6">
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8">
+<h1 class="text-2xl font-bold mb-6 text-on-surface"><span class="lang-ko">찾기/바꾸기 - 텍스트 검색 및 치환</span><span class="lang-en">Find & Replace - Text Search and Replace</span></h1>
+
+<div class="space-y-4">
+<div><span class="lang-ko text-sm text-on-surface-variant mb-1 block">텍스트 입력</span><span class="lang-en text-sm text-on-surface-variant mb-1 block">Input text</span>
+<textarea id="frInput" class="fr-textarea" rows="6" placeholder='Paste text here...'></textarea></div>
+<div class="flex flex-wrap gap-3 items-start">
+<div class="flex-1 min-w-[160px]"><span class="lang-ko text-sm text-on-surface-variant mb-1 block">찾기</span><span class="lang-en text-sm text-on-surface-variant mb-1 block">Find</span>
+<input id="frFind" class="fr-input" type="text" placeholder='search term or regex'></div>
+<div class="flex-1 min-w-[160px]"><span class="lang-ko text-sm text-on-surface-variant mb-1 block">바꾸기</span><span class="lang-en text-sm text-on-surface-variant mb-1 block">Replace with</span>
+<input id="frReplace" class="fr-input" type="text" placeholder='replacement'></div></div>
+<div class="flex flex-wrap gap-3 items-center text-sm">
+<label><input type="checkbox" id="frCase"> <span class="lang-ko">대소문자 구분</span><span class="lang-en">Case sensitive</span></label>
+<label><input type="checkbox" id="frRegex"> <span class="lang-ko">정규식</span><span class="lang-en">Regex</span></label>
+<button id="frReplaceBtn" class="bg-primary text-white px-4 py-1.5 rounded-lg text-sm hover:bg-blue-700 transition"><span class="lang-ko">바꾸기</span><span class="lang-en">Replace</span></button>
+<button id="frReplaceAllBtn" class="border border-primary text-primary px-4 py-1.5 rounded-lg text-sm hover:bg-primary hover:text-white transition"><span class="lang-ko">모두 바꾸기</span><span class="lang-en">Replace All</span></button>
+<button id="frCountBtn" class="border border-outline/40 px-3 py-1.5 rounded-lg text-sm hover:bg-surface2 transition"><span class="lang-ko">개수 세기</span><span class="lang-en">Count</span></button></div>
+<div id="frCount" class="text-sm text-on-surface-variant"></div>
+<div><span class="lang-ko text-sm text-on-surface-variant mb-1 block">결과 (<span id="frMatchCount">0</span>개 일치)</span><span class="lang-en text-sm text-on-surface-variant mb-1 block">Result (<span id="frMatchCountEn">0</span> matches)</span>
+<div class="relative"><textarea id="frOutput" class="fr-textarea" rows="6" readonly></textarea>
+<button id="frCopy" class="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-1 rounded hover:bg-blue-700 transition"><span class="lang-ko">복사</span><span class="lang-en">Copy</span></button></div></div></div>
+<script>
+var inp=document.getElementById('frInput'),fnd=document.getElementById('frFind'),rpl=document.getElementById('frReplace');
+var cas=document.getElementById('frCase'),rgx=document.getElementById('frRegex');
+var out=document.getElementById('frOutput'),cnt=document.getElementById('frCount'),mc=document.getElementById('frMatchCount'),mce=document.getElementById('frMatchCountEn');
+function doReplace(all){var t=inp.value;var s=fnd.value;if(!s){out.value=t;return}var flags='g'+(cas.checked?'':'i');var re;try{re=rgx.checked?new RegExp(s,flags):new RegExp(s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),flags)}catch(e){out.value='Invalid regex';return}var matches=t.match(re);if(matches){mc.textContent=matches.length;mce.textContent=matches.length}else{mc.textContent='0';mce.textContent='0'}out.value=all?t.replace(re,rpl.value):t.replace(re,rpl.value)}
+function countMatches(){var t=inp.value;var s=fnd.value;if(!s){mc.textContent='0';mce.textContent='0';return}var flags='g'+(cas.checked?'':'i');var re;try{re=rgx.checked?new RegExp(s,flags):new RegExp(s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),flags)}catch(e){return}var m=t.match(re);mc.textContent=m?m.length:'0';mce.textContent=m?m.length:'0'}
+document.getElementById('frReplaceBtn').addEventListener('click',function(){doReplace(false)});
+document.getElementById('frReplaceAllBtn').addEventListener('click',function(){doReplace(true)});
+document.getElementById('frCountBtn').addEventListener('click',countMatches);
+document.getElementById('frCopy').addEventListener('click',function(){out.select();navigator.clipboard.writeText(out.value)});
+</script>
+</div>
+</div>
+</main>
+<footer class="max-w-5xl mx-auto px-4 py-8 text-center text-sm text-on-surface-variant">
+<div class="flex justify-center gap-4 mb-2">
+<a href="../privacy.html" class="lang-ko hover:text-primary transition">개인정보처리방침</a><a href="../privacy.html" class="lang-en hover:text-primary transition">Privacy Policy</a>
+<a href="../terms.html" class="lang-ko hover:text-primary transition">이용약관</a><a href="../terms.html" class="lang-en hover:text-primary transition">Terms of Service</a>
+<a href="../contact.html" class="lang-ko hover:text-primary transition">문의하기</a><a href="../contact.html" class="lang-en hover:text-primary transition">Contact</a>
+</div>
+<p>&copy; 2024 Free Utilities. <span class="lang-ko">모든 권리 보유.</span><span class="lang-en">All rights reserved.</span></p>
+</footer>
+
+<script>
+(function(){var d=document;var ls=localStorage;if(ls.getItem('darkMode')==='true'||(!ls.getItem('darkMode')&&window.matchMedia('(prefers-color-scheme:dark)').matches)){d.documentElement.classList.add('dark')}else{d.documentElement.classList.remove('dark')}d.getElementById('darkToggle').addEventListener('click',function(){var e=d.documentElement;e.classList.toggle('dark');ls.setItem('darkMode',e.classList.contains('dark'))})})();
+(function(){var d=document;var ls=localStorage;var lang=ls.getItem('site-lang');if(lang==='en'){d.body.classList.add('en')}d.getElementById('langToggle').addEventListener('click',function(){d.body.classList.toggle('en');ls.setItem('site-lang',d.body.classList.contains('en')?'en':'ko')})})();
+</script>
+</body>
+</html>
