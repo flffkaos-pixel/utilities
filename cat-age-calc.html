@@ -1,14 +1,95 @@
 <!DOCTYPE html>
-<html class="light" lang="ko">
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>고양이 나이 계산기 - Free Utilities</title>
+<title>고양이 나이 계산기 / Cat Age Calculator - Free Utilities</title>
 <meta name="description" content="고양이의 나이를 사람 나이로 변환합니다. 실내/실외 옵션을 지원합니다.">
 <meta name="robots" content="index,follow">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"고양이 나이 계산기","description":"고양이의 나이를 사람 나이로 변환합니다. 실내/실외 옵션을 지원합니다.","url":"https://freeutilities.pages.dev/cat-age-calc.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
 </script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeutilities.pages.dev/"},{"@type":"ListItem","position":2,"name":"고양이 나이 계산기","item":"https://freeutilities.pages.dev/cat-age-calc.html"}]}
+</script>
+<link rel="canonical" href="https://freeutilities.pages.dev/cat-age-calc.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="고양이 나이 계산기 / Cat Age Calculator - Free Utilities">
+<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png"/>
+<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png"/>
+<meta property="og:description" content="고양이의 나이를 사람 나이로 변환합니다. 실내/실외 옵션을 지원합니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="고양이 나이 계산기 / Cat Age Calculator - Free Utilities">
+<meta name="twitter:description" content="고양이의 나이를 사람 나이로 변환합니다. 실내/실외 옵션을 지원합니다.">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/cat-age-calc.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/cat-age-calc.html">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#2563eb',background:'#f9fafb',surface:'#ffffff',outline:'#cbd5e1',border:'#e5e7eb'}}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
+.dark body{background:#0f172a}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+.faq-q{font-weight:600;cursor:pointer;padding:0.75rem 0}
+.faq-q:hover{color:#2563eb}
+.faq-a{padding-bottom:1rem;color:#64748b;display:none}
+.dark .faq-a{color:#94a3b8}
+.faq-a.open{display:block}
+</style>
 </head>
-<body><div class="max-w-md mx-auto space-y-4"><div><label>Cat Years</label><input id="catAge" type="number" value="5" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><div><label>Type</label><select id="catType" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"><option value="indoor">Indoor</option><option value="outdoor">Outdoor</option></select></div><button onclick="calcCatAge()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium">Calculate</button><div id="catResult" class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 text-center text-2xl font-bold"></div></div><script>function calcCatAge(){var c=parseFloat(document.getElementById("catAge").value)||0;if(c<=1)h=15;else if(c<=2)h=24;else h=24+(c-2)*4;document.getElementById("catResult").innerHTML=h+" human years"}</script></body>
+<body class="bg-background min-h-screen">
+<header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
+<div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<a href="index.html" class="flex items-center gap-2 text-primary font-bold text-lg"><span aria-hidden="true">←</span> Free Utilities</a>
+<div class="flex items-center gap-2">
+<button id="darkToggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">🌙</button>
+<button id="langToggle" class="px-3 py-1.5 rounded-lg border border-border text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700">English</button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 py-8">
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mb-8">
+<h1 class="text-3xl font-bold mb-2"><span class="lang-ko">고양이 나이 계산기</span><span class="lang-en">Cat Age Calculator</span></h1>
+<p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">고양이의 나이를 사람 나이로 변환합니다. 실내/실외 옵션을 지원합니다.</span><span class="lang-en">고양이의 나이를 사람 나이로 변환합니다. 실내/실외 옵션을 지원합니다.</span></p>
+<div class="max-w-md mx-auto space-y-4"><div><label>Cat Years</label><input id="catAge" type="number" value="5" class="w-full p-3 rounded-xl border border-border bg-white dark:bg-slate-700"></div><div><label>Type</label><select id="catType" class="w-full p-3 rounded-xl border border-border bg-white dark:bg-slate-700"><option value="indoor">Indoor</option><option value="outdoor">Outdoor</option></select></div><button onclick="calcCatAge()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium">Calculate</button><div id="catResult" class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 text-center text-2xl font-bold"></div></div><script>function calcCatAge(){var c=parseFloat(document.getElementById("catAge").value)||0;if(c<=1)h=15;else if(c<=2)h=24;else h=24+(c-2)*4;document.getElementById("catResult").innerHTML=h+" human years"}</script></div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8">
+<h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
+<div class="faq-q" onclick="toggleFaq(this)"><span class="lang-ko">Q: 이 도구는 어떻게 사용하나요?</span><span class="lang-en">Q: How do I use this tool?</span></div>
+<div class="faq-a"><span class="lang-ko">도구에 값을 입력하고 버튼을 클릭하면 결과가 즉시 표시됩니다. 모든 데이터는 브라우저에서만 처리되며 서버로 전송되지 않습니다.</span><span class="lang-en">Enter your values and click the button. Results appear instantly. All data is processed locally in your browser and never sent to any server.</span></div>
+<div class="faq-q" onclick="toggleFaq(this)"><span class="lang-ko">Q: 이 도구는 무료인가요?</span><span class="lang-en">Q: Is this tool free?</span></div>
+<div class="faq-a"><span class="lang-ko">네, 모든 Free Utilities 도구는 완전 무료입니다. 설치나 회원가입이 필요하지 않습니다.</span><span class="lang-en">Yes, all Free Utilities tools are completely free. No installation or registration required.</span></div>
+<div class="faq-q" onclick="toggleFaq(this)"><span class="lang-ko">Q: 데이터가 서버로 전송되나요?</span><span class="lang-en">Q: Is my data sent to a server?</span></div>
+<div class="faq-a"><span class="lang-ko">아니요. 모든 작업은 브라우저 내에서 로컬로 처리됩니다. 입력한 데이터가 외부로 전송되거나 저장되지 않습니다.</span><span class="lang-en">No. All processing happens locally in your browser. Your data is never transmitted or stored externally.</span></div>
+</div>
+<footer class="bg-white dark:bg-slate-800 border-t border-border mt-12">
+<div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-3 text-sm">
+<span class="font-bold">Free Utilities</span>
+<nav class="flex gap-4">
+<a href="guide-productivity.html" class="hover:text-primary"><span class="lang-ko">가이드</span><span class="lang-en">Guides</span></a>
+<a href="privacy.html" class="hover:text-primary"><span class="lang-ko">개인정보처리방침</span><span class="lang-en">Privacy</span></a>
+<a href="contact.html" class="hover:text-primary"><span class="lang-ko">문의</span><span class="lang-en">Contact</span></a>
+</nav>
+<p class="text-slate-500 w-full">&copy; 2026 Free Utilities</p>
+</div>
+</footer>
+<script>
+(function(){
+  var d=localStorage.getItem("darkMode")==="true";
+  if(d) document.documentElement.classList.add("dark");
+  var l=localStorage.getItem("site-lang")||"ko";
+  if(l==="en") document.body.classList.add("en");
+  var dt=document.getElementById("darkToggle");
+  dt.textContent=d?"☀️":"🌙";
+  dt.onclick=function(){var x=document.documentElement.classList.toggle("dark");localStorage.setItem("darkMode",x);dt.textContent=x?"☀️":"🌙";};
+  var lt=document.getElementById("langToggle");
+  lt.textContent=l==="en"?"한국어":"English";
+  lt.onclick=function(){var e=document.body.classList.toggle("en");localStorage.setItem("site-lang",e?"en":"ko");lt.textContent=e?"한국어":"English";};
+})();
+function toggleFaq(el){var a=el.nextElementSibling;if(a)a.classList.toggle("open");}
+</script>
+</body>
 </html>

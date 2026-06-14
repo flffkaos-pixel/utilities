@@ -1,14 +1,95 @@
 <!DOCTYPE html>
-<html class="light" lang="ko">
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>비율 계산기 - Free Utilities</title>
+<title>비율 계산기 / Ratio Calculator - Free Utilities</title>
 <meta name="description" content="비율을 간단히 하거나 비례식에서 미지값을 찾습니다.">
 <meta name="robots" content="index,follow">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"비율 계산기","description":"비율을 간단히 하거나 비례식에서 미지값을 찾습니다.","url":"https://freeutilities.pages.dev/ratio-calc.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Organization","name":"Free Utilities","url":"https://freeutilities.pages.dev/"}}
 </script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://freeutilities.pages.dev/"},{"@type":"ListItem","position":2,"name":"비율 계산기","item":"https://freeutilities.pages.dev/ratio-calc.html"}]}
+</script>
+<link rel="canonical" href="https://freeutilities.pages.dev/ratio-calc.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="비율 계산기 / Ratio Calculator - Free Utilities">
+<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png"/>
+<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png"/>
+<meta property="og:description" content="비율을 간단히 하거나 비례식에서 미지값을 찾습니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="비율 계산기 / Ratio Calculator - Free Utilities">
+<meta name="twitter:description" content="비율을 간단히 하거나 비례식에서 미지값을 찾습니다.">
+<link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/ratio-calc.html">
+<link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/ratio-calc.html">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#2563eb',background:'#f9fafb',surface:'#ffffff',outline:'#cbd5e1',border:'#e5e7eb'}}}}</script>
+<style>
+body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
+.dark body{background:#0f172a}
+.lang-ko{display:inline}
+.lang-en{display:none}
+body.en .lang-ko{display:none}
+body.en .lang-en{display:inline}
+.faq-q{font-weight:600;cursor:pointer;padding:0.75rem 0}
+.faq-q:hover{color:#2563eb}
+.faq-a{padding-bottom:1rem;color:#64748b;display:none}
+.dark .faq-a{color:#94a3b8}
+.faq-a.open{display:block}
+</style>
 </head>
-<body><div class="max-w-md mx-auto space-y-4"><div><label class="block text-sm font-medium mb-1"><span class="lang-ko">모드</span><span class="lang-en">Mode</span></label><select id="ratioMode" onchange="updateRatioMode()" class="w-full p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"><option value="simplify"><span class="lang-ko">비율 간단히 하기</span><span class="lang-en">Simplify Ratio</span></option><option value="find"><span class="lang-ko">미지값 찾기 (a:b = c:d)</span><span class="lang-en">Find Missing (a:b = c:d)</span></option></select></div><div id="ratioSimplify"><div class="flex gap-3 items-center"><input id="ratA" type="number" value="12" class="flex-1 p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"><span class="text-xl font-bold">:</span><input id="ratB" type="number" value="18" class="flex-1 p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div></div><div id="ratioFind" class="hidden"><div class="flex gap-3 items-center"><input id="ratC" type="number" value="2" class="flex-1 p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"><span class="text-xl font-bold">:</span><input id="ratD" type="number" value="3" class="flex-1 p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><div class="text-center text-lg font-bold my-2">=</div><div class="flex gap-3 items-center"><input id="ratE" type="number" value="" placeholder="?" class="flex-1 p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"><span class="text-xl font-bold">:</span><input id="ratF" type="number" value="9" class="flex-1 p-3 rounded-xl border border-outline bg-white dark:bg-slate-700"></div><p class="text-xs text-slate-500 mt-1"><span class="lang-ko">빈 칸에 ?를 찾을 값을 입력하세요</span><span class="lang-en">Leave blank the value to find</span></p></div><button onclick="calcRatio()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium mt-2"><span class="lang-ko">계산</span><span class="lang-en">Calculate</span></button><div id="ratioResult" class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 text-center text-lg font-bold"></div></div><script>function updateRatioMode(){var m=document.getElementById("ratioMode").value;document.getElementById("ratioSimplify").classList.toggle("hidden",m!="simplify");document.getElementById("ratioFind").classList.toggle("hidden",m!="find")}function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){var t=b;b=a%b;a=t}return a}function calcRatio(){var mode=document.getElementById("ratioMode").value;var el=document.getElementById("ratioResult");if(mode=="simplify"){var a=parseInt(document.getElementById("ratA").value)||0;var b=parseInt(document.getElementById("ratB").value)||0;var g=gcd(a,b);el.innerHTML=(a/g)+" : "+(b/g)}else{var c=parseFloat(document.getElementById("ratC").value);var d=parseFloat(document.getElementById("ratD").value);var e=parseFloat(document.getElementById("ratE").value);var f=parseFloat(document.getElementById("ratF").value);if(isNaN(c)&&!isNaN(d)&&!isNaN(e)&&!isNaN(f)){el.innerHTML="a = "+(d*e/f)}else if(isNaN(d)&&!isNaN(c)&&!isNaN(e)&&!isNaN(f)){el.innerHTML="b = "+(c*f/e)}else if(isNaN(e)&&!isNaN(c)&&!isNaN(d)&&!isNaN(f)){el.innerHTML="c = "+(c*f/d)}else if(isNaN(f)&&!isNaN(c)&&!isNaN(d)&&!isNaN(e)){el.innerHTML="d = "+(d*e/c)}else el.innerHTML="<span class=\"text-red-500\">"+("Leave exactly one field empty"||"Leave exactly one field empty")+"</span>"}}</script></body>
+<body class="bg-background min-h-screen">
+<header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
+<div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<a href="index.html" class="flex items-center gap-2 text-primary font-bold text-lg"><span aria-hidden="true">←</span> Free Utilities</a>
+<div class="flex items-center gap-2">
+<button id="darkToggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">🌙</button>
+<button id="langToggle" class="px-3 py-1.5 rounded-lg border border-border text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700">English</button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 py-8">
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mb-8">
+<h1 class="text-3xl font-bold mb-2"><span class="lang-ko">비율 계산기</span><span class="lang-en">Ratio Calculator</span></h1>
+<p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">비율을 간단히 하거나 비례식에서 미지값을 찾습니다.</span><span class="lang-en">비율을 간단히 하거나 비례식에서 미지값을 찾습니다.</span></p>
+<div class="max-w-md mx-auto space-y-4"><div><label class="block text-sm font-medium mb-1"><span class="lang-ko">모드</span><span class="lang-en">Mode</span></label><select id="ratioMode" onchange="updateRatioMode()" class="w-full p-3 rounded-xl border border-border bg-white dark:bg-slate-700"><option value="simplify"><span class="lang-ko">비율 간단히 하기</span><span class="lang-en">Simplify Ratio</span></option><option value="find"><span class="lang-ko">미지값 찾기 (a:b = c:d)</span><span class="lang-en">Find Missing (a:b = c:d)</span></option></select></div><div id="ratioSimplify"><div class="flex gap-3 items-center"><input id="ratA" type="number" value="12" class="flex-1 p-3 rounded-xl border border-border bg-white dark:bg-slate-700"><span class="text-xl font-bold">:</span><input id="ratB" type="number" value="18" class="flex-1 p-3 rounded-xl border border-border bg-white dark:bg-slate-700"></div></div><div id="ratioFind" class="hidden"><div class="flex gap-3 items-center"><input id="ratC" type="number" value="2" class="flex-1 p-3 rounded-xl border border-border bg-white dark:bg-slate-700"><span class="text-xl font-bold">:</span><input id="ratD" type="number" value="3" class="flex-1 p-3 rounded-xl border border-border bg-white dark:bg-slate-700"></div><div class="text-center text-lg font-bold my-2">=</div><div class="flex gap-3 items-center"><input id="ratE" type="number" value="" placeholder="?" class="flex-1 p-3 rounded-xl border border-border bg-white dark:bg-slate-700"><span class="text-xl font-bold">:</span><input id="ratF" type="number" value="9" class="flex-1 p-3 rounded-xl border border-border bg-white dark:bg-slate-700"></div><p class="text-xs text-slate-500 mt-1"><span class="lang-ko">빈 칸에 ?를 찾을 값을 입력하세요</span><span class="lang-en">Leave blank the value to find</span></p></div><button onclick="calcRatio()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium mt-2"><span class="lang-ko">계산</span><span class="lang-en">Calculate</span></button><div id="ratioResult" class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 text-center text-lg font-bold"></div></div><script>function updateRatioMode(){var m=document.getElementById("ratioMode").value;document.getElementById("ratioSimplify").classList.toggle("hidden",m!="simplify");document.getElementById("ratioFind").classList.toggle("hidden",m!="find")}function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){var t=b;b=a%b;a=t}return a}function calcRatio(){var mode=document.getElementById("ratioMode").value;var el=document.getElementById("ratioResult");if(mode=="simplify"){var a=parseInt(document.getElementById("ratA").value)||0;var b=parseInt(document.getElementById("ratB").value)||0;var g=gcd(a,b);el.innerHTML=(a/g)+" : "+(b/g)}else{var c=parseFloat(document.getElementById("ratC").value);var d=parseFloat(document.getElementById("ratD").value);var e=parseFloat(document.getElementById("ratE").value);var f=parseFloat(document.getElementById("ratF").value);if(isNaN(c)&&!isNaN(d)&&!isNaN(e)&&!isNaN(f)){el.innerHTML="a = "+(d*e/f)}else if(isNaN(d)&&!isNaN(c)&&!isNaN(e)&&!isNaN(f)){el.innerHTML="b = "+(c*f/e)}else if(isNaN(e)&&!isNaN(c)&&!isNaN(d)&&!isNaN(f)){el.innerHTML="c = "+(c*f/d)}else if(isNaN(f)&&!isNaN(c)&&!isNaN(d)&&!isNaN(e)){el.innerHTML="d = "+(d*e/c)}else el.innerHTML="<span class=\"text-red-500\">"+("Leave exactly one field empty"||"Leave exactly one field empty")+"</span>"}}</script></div>
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8">
+<h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
+<div class="faq-q" onclick="toggleFaq(this)"><span class="lang-ko">Q: 이 도구는 어떻게 사용하나요?</span><span class="lang-en">Q: How do I use this tool?</span></div>
+<div class="faq-a"><span class="lang-ko">도구에 값을 입력하고 버튼을 클릭하면 결과가 즉시 표시됩니다. 모든 데이터는 브라우저에서만 처리되며 서버로 전송되지 않습니다.</span><span class="lang-en">Enter your values and click the button. Results appear instantly. All data is processed locally in your browser and never sent to any server.</span></div>
+<div class="faq-q" onclick="toggleFaq(this)"><span class="lang-ko">Q: 이 도구는 무료인가요?</span><span class="lang-en">Q: Is this tool free?</span></div>
+<div class="faq-a"><span class="lang-ko">네, 모든 Free Utilities 도구는 완전 무료입니다. 설치나 회원가입이 필요하지 않습니다.</span><span class="lang-en">Yes, all Free Utilities tools are completely free. No installation or registration required.</span></div>
+<div class="faq-q" onclick="toggleFaq(this)"><span class="lang-ko">Q: 데이터가 서버로 전송되나요?</span><span class="lang-en">Q: Is my data sent to a server?</span></div>
+<div class="faq-a"><span class="lang-ko">아니요. 모든 작업은 브라우저 내에서 로컬로 처리됩니다. 입력한 데이터가 외부로 전송되거나 저장되지 않습니다.</span><span class="lang-en">No. All processing happens locally in your browser. Your data is never transmitted or stored externally.</span></div>
+</div>
+<footer class="bg-white dark:bg-slate-800 border-t border-border mt-12">
+<div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-3 text-sm">
+<span class="font-bold">Free Utilities</span>
+<nav class="flex gap-4">
+<a href="guide-productivity.html" class="hover:text-primary"><span class="lang-ko">가이드</span><span class="lang-en">Guides</span></a>
+<a href="privacy.html" class="hover:text-primary"><span class="lang-ko">개인정보처리방침</span><span class="lang-en">Privacy</span></a>
+<a href="contact.html" class="hover:text-primary"><span class="lang-ko">문의</span><span class="lang-en">Contact</span></a>
+</nav>
+<p class="text-slate-500 w-full">&copy; 2026 Free Utilities</p>
+</div>
+</footer>
+<script>
+(function(){
+  var d=localStorage.getItem("darkMode")==="true";
+  if(d) document.documentElement.classList.add("dark");
+  var l=localStorage.getItem("site-lang")||"ko";
+  if(l==="en") document.body.classList.add("en");
+  var dt=document.getElementById("darkToggle");
+  dt.textContent=d?"☀️":"🌙";
+  dt.onclick=function(){var x=document.documentElement.classList.toggle("dark");localStorage.setItem("darkMode",x);dt.textContent=x?"☀️":"🌙";};
+  var lt=document.getElementById("langToggle");
+  lt.textContent=l==="en"?"한국어":"English";
+  lt.onclick=function(){var e=document.body.classList.toggle("en");localStorage.setItem("site-lang",e?"en":"ko");lt.textContent=e?"한국어":"English";};
+})();
+function toggleFaq(el){var a=el.nextElementSibling;if(a)a.classList.toggle("open");}
+</script>
+</body>
 </html>
