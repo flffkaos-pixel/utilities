@@ -30,15 +30,6 @@
   }
   </script>
 <link rel="canonical" href="https://freeutilities.pages.dev/hourly.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="시급 계산기 - Free Utilities">
-<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png"/>
-<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png"/>
-
-<meta property="og:description" content="연봉으로 시급을 계산하거나 시급으로 연봉을 계산합니다.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="시급 계산기 - Free Utilities">
-<meta name="twitter:description" content="Convert between annual salary and hourly wage.">
 <link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/hourly.html">
 <link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/hourly.html">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -51,6 +42,18 @@ body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
 body.en .lang-ko{display:none}
 body.en .lang-en{display:inline}
 </style>
+<link rel="canonical" href="https://freeutilities.pages.dev/hourly.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="시급 계산기 - Free Utilities">
+<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png"/>
+<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png"/>
+<meta property="og:description" content="연봉으로 시급을 계산하거나 시급으로 연봉을 계산합니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="시급 계산기 - Free Utilities">
+<meta name="twitter:description" content="연봉으로 시급을 계산하거나 시급으로 연봉을 계산합니다.">
+<meta property="og:url" content="https://freeutilities.pages.dev/hourly.html">
 </head>
 <body class="bg-background min-h-screen">
 <header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
@@ -68,11 +71,9 @@ body.en .lang-en{display:inline}
 <p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">연봉으로 시급을 계산하거나 시급으로 연봉을 계산합니다.</span><span class="lang-en">Convert between annual salary and hourly wage.</span></p>
 <div class="mb-4"><label class="block mb-2 font-medium"><span class="lang-ko">연봉 (Annual Salary)</span><span class="lang-en">Annual Salary</span></label><input id="hwai" type="number" value="50000000" class="w-full px-4 py-2 border border-border rounded-lg bg-white dark:bg-slate-700" oninput="calchw()"></div><div class="p-4 bg-slate-100 dark:bg-slate-700 rounded-xl text-center"><div class="text-sm text-slate-500"><span class="lang-ko">시급</span><span class="lang-en">Hourly Wage</span></div><div id="hwr" class="text-3xl font-bold text-primary">24,038</div><div class="text-xs text-slate-400"><span class="lang-ko">주 40시간 기준</span><span class="lang-en">Based on 40 hours/week</span></div></div>
 </div>
-
 <script>
 function calchw(){var s=parseFloat(document.getElementById("hwai").value)||0;var h=s/(52*40);document.getElementById("hwr").textContent=Math.round(h).toLocaleString();}
 </script>
-
 <div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8">
 <h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
 <div class="border-b border-border"><div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')"><span class="lang-ko">Q: 이 도구는 어떻게 사용하나요?</span><span class="lang-en">Q: How do I use this tool?</span></div><div class="faq-a"><span class="lang-ko">텍스트를 입력하거나 값을 설정하고 버튼을 클릭하면 결과가 즉시 표시됩니다. 모든 데이터는 브라우저에서만 처리되며 서버로 전송되지 않습니다.</span><span class="lang-en">Enter text or set values and click the button. Results appear instantly. All data is processed locally in your browser and never sent to any server.</span></div></div>

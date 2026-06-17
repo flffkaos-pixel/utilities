@@ -30,15 +30,6 @@
   }
   </script>
 <link rel="canonical" href="https://freeutilities.pages.dev/percentage.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="퍼센트 계산기 - Free Utilities">
-<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png"/>
-<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png"/>
-
-<meta property="og:description" content="퍼센트를 빠르고 정확하게 계산합니다.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="퍼센트 계산기 - Free Utilities">
-<meta name="twitter:description" content="Calculate percentages quickly and accurately.">
 <link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/percentage.html">
 <link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/percentage.html">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -51,6 +42,18 @@ body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
 body.en .lang-ko{display:none}
 body.en .lang-en{display:inline}
 </style>
+<link rel="canonical" href="https://freeutilities.pages.dev/percentage.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="퍼센트 계산기 - Free Utilities">
+<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png"/>
+<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png"/>
+<meta property="og:description" content="퍼센트를 빠르고 정확하게 계산합니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="퍼센트 계산기 - Free Utilities">
+<meta name="twitter:description" content="퍼센트를 빠르고 정확하게 계산합니다.">
+<meta property="og:url" content="https://freeutilities.pages.dev/percentage.html">
 </head>
 <body class="bg-background min-h-screen">
 <header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
@@ -68,12 +71,10 @@ body.en .lang-en{display:inline}
 <p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">퍼센트를 빠르고 정확하게 계산합니다.</span><span class="lang-en">Calculate percentages quickly and accurately.</span></p>
 <div class="space-y-4"><div class="flex items-center gap-2 flex-wrap"><input id="p1" type="number" value="20" class="w-20 px-3 py-2 border border-border rounded-lg bg-white dark:bg-slate-700 text-center" oninput="cp()"><span>% of</span><input id="p2" type="number" value="50000" class="w-28 px-3 py-2 border border-border rounded-lg bg-white dark:bg-slate-700 text-center" oninput="cp()"><span>=</span><span id="pr1" class="text-xl font-bold text-primary">10,000</span></div><div class="flex items-center gap-2 flex-wrap"><input id="p3" type="number" value="10000" class="w-28 px-3 py-2 border border-border rounded-lg bg-white dark:bg-slate-700 text-center" oninput="cp2()"><span>is what % of</span><input id="p4" type="number" value="50000" class="w-28 px-3 py-2 border border-border rounded-lg bg-white dark:bg-slate-700 text-center" oninput="cp2()"><span>=</span><span id="pr2" class="text-xl font-bold text-primary">20%</span></div></div>
 </div>
-
 <script>
 function cp(){var a=parseFloat(document.getElementById("p1").value)||0;var b=parseFloat(document.getElementById("p2").value)||0;document.getElementById("pr1").textContent=Math.round(a*b/100).toLocaleString();}
 function cp2(){var a=parseFloat(document.getElementById("p3").value)||0;var b=parseFloat(document.getElementById("p4").value)||0;document.getElementById("pr2").textContent=(a/b*100).toFixed(1)+"%";}
 </script>
-
 <div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8">
 <h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
 <div class="border-b border-border"><div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')"><span class="lang-ko">Q: 이 도구는 어떻게 사용하나요?</span><span class="lang-en">Q: How do I use this tool?</span></div><div class="faq-a"><span class="lang-ko">텍스트를 입력하거나 값을 설정하고 버튼을 클릭하면 결과가 즉시 표시됩니다. 모든 데이터는 브라우저에서만 처리되며 서버로 전송되지 않습니다.</span><span class="lang-en">Enter text or set values and click the button. Results appear instantly. All data is processed locally in your browser and never sent to any server.</span></div></div>

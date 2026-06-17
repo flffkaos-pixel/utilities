@@ -30,15 +30,6 @@
   }
   </script>
 <link rel="canonical" href="https://freeutilities.pages.dev/http-status.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="HTTP 상태 검사 - Free Utilities">
-<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png"/>
-<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png"/>
-
-<meta property="og:description" content="HTTP 상태 코드의 의미를 확인합니다.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="HTTP 상태 검사 - Free Utilities">
-<meta name="twitter:description" content="Look up HTTP status code meanings.">
 <link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/http-status.html">
 <link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/http-status.html">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -51,6 +42,18 @@ body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
 body.en .lang-ko{display:none}
 body.en .lang-en{display:inline}
 </style>
+<link rel="canonical" href="https://freeutilities.pages.dev/http-status.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HTTP 상태 검사 - Free Utilities">
+<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png"/>
+<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png"/>
+<meta property="og:description" content="HTTP 상태 코드의 의미를 확인합니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HTTP 상태 검사 - Free Utilities">
+<meta name="twitter:description" content="HTTP 상태 코드의 의미를 확인합니다.">
+<meta property="og:url" content="https://freeutilities.pages.dev/http-status.html">
 </head>
 <body class="bg-background min-h-screen">
 <header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
@@ -68,11 +71,9 @@ body.en .lang-en{display:inline}
 <p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">HTTP 상태 코드의 의미를 확인합니다.</span><span class="lang-en">Look up HTTP status code meanings.</span></p>
 <div class="flex gap-2 mb-4"><input id="hsi" type="number" value="404" class="w-24 px-4 py-2 border border-border rounded-lg bg-white dark:bg-slate-700 font-mono text-center" oninput="httpLookup()"></div><div id="hsr" class="p-4 bg-slate-100 dark:bg-slate-700 rounded-lg text-center"><div id="hscode" class="text-4xl font-bold text-red-500">404</div><div id="hsname" class="text-xl font-semibold mt-2">Not Found</div><div id="hsdesc" class="text-sm text-slate-500 mt-2">The server cannot find the requested resource.</div></div>
 </div>
-
 <script>
 var httpCodes={"100":"Continue","200":"OK","201":"Created","204":"No Content","301":"Moved Permanently","302":"Found","304":"Not Modified","400":"Bad Request","401":"Unauthorized","403":"Forbidden","404":"Not Found","405":"Method Not Allowed","408":"Request Timeout","429":"Too Many Requests","500":"Internal Server Error","502":"Bad Gateway","503":"Service Unavailable","504":"Gateway Timeout"};var httpDesc={"100":"The server has received the request headers.","200":"The request succeeded.","201":"A new resource was created.","204":"No content to send.","301":"The URL has been permanently moved.","302":"The URL has been temporarily moved.","400":"The server cannot process the request due to client error.","401":"Authentication is required.","403":"The client does not have access rights.","404":"The server cannot find the requested resource.","500":"The server encountered an unexpected condition.","503":"The server is temporarily unable to handle the request."};function httpLookup(){var c=document.getElementById("hsi").value;document.getElementById("hscode").textContent=c||"-";document.getElementById("hsname").textContent=httpCodes[c]||"Unknown";document.getElementById("hsdesc").textContent=httpDesc[c]||"";document.getElementById("hscode").style.color=c>=400?"#ef4444":c>=300?"#f59e0b":"#10b981";}httpLookup();
 </script>
-
 <div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8">
 <h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
 <div class="border-b border-border"><div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')"><span class="lang-ko">Q: 이 도구는 어떻게 사용하나요?</span><span class="lang-en">Q: How do I use this tool?</span></div><div class="faq-a"><span class="lang-ko">텍스트를 입력하거나 값을 설정하고 버튼을 클릭하면 결과가 즉시 표시됩니다. 모든 데이터는 브라우저에서만 처리되며 서버로 전송되지 않습니다.</span><span class="lang-en">Enter text or set values and click the button. Results appear instantly. All data is processed locally in your browser and never sent to any server.</span></div></div>

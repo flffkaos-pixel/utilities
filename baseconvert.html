@@ -30,15 +30,6 @@
   }
   </script>
 <link rel="canonical" href="https://freeutilities.pages.dev/baseconvert.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="진법 변환 - Free Utilities">
-<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png"/>
-<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png"/>
-
-<meta property="og:description" content="2진수, 8진수, 10진수, 16진수 간 변환을 지원합니다.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="진법 변환 - Free Utilities">
-<meta name="twitter:description" content="Convert between binary, octal, decimal, hexadecimal.">
 <link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/baseconvert.html">
 <link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/baseconvert.html">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -51,6 +42,18 @@ body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
 body.en .lang-ko{display:none}
 body.en .lang-en{display:inline}
 </style>
+<link rel="canonical" href="https://freeutilities.pages.dev/baseconvert.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="진법 변환 - Free Utilities">
+<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png"/>
+<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png"/>
+<meta property="og:description" content="2진수, 8진수, 10진수, 16진수 간 변환을 지원합니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="진법 변환 - Free Utilities">
+<meta name="twitter:description" content="2진수, 8진수, 10진수, 16진수 간 변환을 지원합니다.">
+<meta property="og:url" content="https://freeutilities.pages.dev/baseconvert.html">
 </head>
 <body class="bg-background min-h-screen">
 <header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
@@ -68,11 +71,9 @@ body.en .lang-en{display:inline}
 <p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">2진수, 8진수, 10진수, 16진수 간 변환을 지원합니다.</span><span class="lang-en">Convert between binary, octal, decimal, hexadecimal.</span></p>
 <div class="flex gap-2 mb-4"><input id="bcv" class="flex-1 px-4 py-2 border border-border rounded-lg bg-white dark:bg-slate-700 font-mono" value="255" oninput="convb()"><select id="bcf" class="px-3 py-2 border border-border rounded-lg bg-white dark:bg-slate-700" onchange="convb()"><option value="2">Bin</option><option value="8">Oct</option><option value="10" selected>Dec</option><option value="16">Hex</option></select></div><div class="grid grid-cols-2 gap-3"><div class="p-3 bg-slate-100 dark:bg-slate-700 rounded-lg"><div class="text-xs text-slate-500">Bin</div><div id="bc2" class="font-mono font-bold text-lg">11111111</div></div><div class="p-3 bg-slate-100 dark:bg-slate-700 rounded-lg"><div class="text-xs text-slate-500">Oct</div><div id="bc8" class="font-mono font-bold text-lg">377</div></div><div class="p-3 bg-slate-100 dark:bg-slate-700 rounded-lg"><div class="text-xs text-slate-500">Dec</div><div id="bc10" class="font-mono font-bold text-lg">255</div></div><div class="p-3 bg-slate-100 dark:bg-slate-700 rounded-lg"><div class="text-xs text-slate-500">Hex</div><div id="bc16" class="font-mono font-bold text-lg">FF</div></div></div>
 </div>
-
 <script>
 function convb(){var v=parseInt(document.getElementById("bcv").value,document.getElementById("bcf").value);if(isNaN(v))return;document.getElementById("bc2").textContent=v.toString(2);document.getElementById("bc8").textContent=v.toString(8);document.getElementById("bc10").textContent=v.toString(10);document.getElementById("bc16").textContent=v.toString(16).toUpperCase();}
 </script>
-
 <div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8">
 <h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
 <div class="border-b border-border"><div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')"><span class="lang-ko">Q: 이 도구는 어떻게 사용하나요?</span><span class="lang-en">Q: How do I use this tool?</span></div><div class="faq-a"><span class="lang-ko">텍스트를 입력하거나 값을 설정하고 버튼을 클릭하면 결과가 즉시 표시됩니다. 모든 데이터는 브라우저에서만 처리되며 서버로 전송되지 않습니다.</span><span class="lang-en">Enter text or set values and click the button. Results appear instantly. All data is processed locally in your browser and never sent to any server.</span></div></div>

@@ -30,15 +30,6 @@
   }
   </script>
 <link rel="canonical" href="https://freeutilities.pages.dev/gpa.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="GPA 계산기 - Free Utilities">
-<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png"/>
-<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png"/>
-
-<meta property="og:description" content="학점 GPA를 계산하는 무료 온라인 도구입니다.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="GPA 계산기 - Free Utilities">
-<meta name="twitter:description" content="Calculate your GPA from grades and credits.">
 <link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/gpa.html">
 <link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/gpa.html">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -51,6 +42,18 @@ body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
 body.en .lang-ko{display:none}
 body.en .lang-en{display:inline}
 </style>
+<link rel="canonical" href="https://freeutilities.pages.dev/gpa.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GPA 계산기 - Free Utilities">
+<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png"/>
+<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png"/>
+<meta property="og:description" content="학점 GPA를 계산하는 무료 온라인 도구입니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GPA 계산기 - Free Utilities">
+<meta name="twitter:description" content="학점 GPA를 계산하는 무료 온라인 도구입니다.">
+<meta property="og:url" content="https://freeutilities.pages.dev/gpa.html">
 </head>
 <body class="bg-background min-h-screen">
 <header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
@@ -68,11 +71,9 @@ body.en .lang-en{display:inline}
 <p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">학점 GPA를 계산하는 무료 온라인 도구입니다.</span><span class="lang-en">Calculate your GPA from grades and credits.</span></p>
 <p class="mb-4"><span class="lang-ko">과목별 학점과 학점을 입력하면 GPA가 계산됩니다.</span><span class="lang-en">Enter course grades and credits to calculate your GPA.</span></p><div id="grows" class="space-y-2 mb-4"><div class="flex gap-2"><input class="flex-1 px-3 py-2 border border-border rounded-lg bg-white dark:bg-slate-700 text-sm" placeholder="Course"><select class="w-24 px-2 py-2 border border-border rounded-lg bg-white dark:bg-slate-700"><option value="4.0">A+</option><option value="3.7">A0</option><option value="3.3">B+</option><option value="3.0">B0</option><option value="2.7">C+</option><option value="2.0">C0</option><option value="1.0">D</option><option value="0">F</option></select><input type="number" value="3" class="w-16 px-2 py-2 border border-border rounded-lg bg-white dark:bg-slate-700 text-center" placeholder="Cr"></div></div><button onclick="addRow()" class="px-3 py-1.5 border border-border rounded-lg text-sm hover:bg-slate-100 dark:hover:bg-slate-700 mb-4">+ <span class="lang-ko">과목 추가</span><span class="lang-en">Add Course</span></button><div class="p-4 bg-slate-100 dark:bg-slate-700 rounded-xl text-center"><div class="text-sm text-slate-500">GPA</div><div id="gpares" class="text-3xl font-bold text-primary">0.00</div></div></div><script>function addRow(){var d=document.getElementById("grows");var r=d.children[0].cloneNode(true);r.querySelectorAll("input").forEach(function(e){e.value="";});d.appendChild(r);calcGPA();}document.getElementById("grows").addEventListener("input",calcGPA);
 </div>
-
 <script>
 function calcGPA(){var rows=document.getElementById("grows").children;var total=0,credits=0;Array.from(rows).forEach(function(r){var grade=parseFloat(r.querySelector("select").value)||0;var cr=parseFloat(r.querySelectorAll("input")[1].value)||0;total+=grade*cr;credits+=cr;});document.getElementById("gpares").textContent=credits?(total/credits).toFixed(2):"0.00";}calcGPA();
 </script>
-
 <div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8">
 <h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
 <div class="border-b border-border"><div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')"><span class="lang-ko">Q: 이 도구는 어떻게 사용하나요?</span><span class="lang-en">Q: How do I use this tool?</span></div><div class="faq-a"><span class="lang-ko">텍스트를 입력하거나 값을 설정하고 버튼을 클릭하면 결과가 즉시 표시됩니다. 모든 데이터는 브라우저에서만 처리되며 서버로 전송되지 않습니다.</span><span class="lang-en">Enter text or set values and click the button. Results appear instantly. All data is processed locally in your browser and never sent to any server.</span></div></div>

@@ -30,15 +30,6 @@
   }
   </script>
 <link rel="canonical" href="https://freeutilities.pages.dev/typingtest.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="타이핑 테스트 - Free Utilities">
-<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png"/>
-<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png"/>
-
-<meta property="og:description" content="타이핑 속도를 측정하는 무료 온라인 도구입니다.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="타이핑 테스트 - Free Utilities">
-<meta name="twitter:description" content="Test your typing speed online.">
 <link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/typingtest.html">
 <link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/typingtest.html">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -51,6 +42,18 @@ body{background:#f9fafb;font-family:system-ui,-apple-system,sans-serif}
 body.en .lang-ko{display:none}
 body.en .lang-en{display:inline}
 </style>
+<link rel="canonical" href="https://freeutilities.pages.dev/typingtest.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="타이핑 테스트 - Free Utilities">
+<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png"/>
+<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png"/>
+<meta property="og:description" content="타이핑 속도를 측정하는 무료 온라인 도구입니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="타이핑 테스트 - Free Utilities">
+<meta name="twitter:description" content="타이핑 속도를 측정하는 무료 온라인 도구입니다.">
+<meta property="og:url" content="https://freeutilities.pages.dev/typingtest.html">
 </head>
 <body class="bg-background min-h-screen">
 <header class="bg-white dark:bg-slate-800 border-b border-border sticky top-0 z-10">
@@ -68,11 +71,9 @@ body.en .lang-en{display:inline}
 <p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">타이핑 속도를 측정하는 무료 온라인 도구입니다.</span><span class="lang-en">Test your typing speed online.</span></p>
 <p class="mb-4 text-lg" id="tttext">The quick brown fox jumps over the lazy dog.</p><textarea id="ttinput" class="w-full h-20 px-4 py-3 border border-border rounded-lg bg-white dark:bg-slate-700 dark:border-slate-600 font-mono mb-4" placeholder="<span class="lang-ko">위 문장을 그대로 타이핑하세요</span><span class="lang-en">Type the text above</span>" oninput="checkTyping()"></textarea><div class="grid grid-cols-3 gap-4 text-center"><div class="p-3 bg-slate-100 dark:bg-slate-700 rounded-xl"><div class="text-sm text-slate-500">WPM</div><div id="ttwpm" class="text-2xl font-bold text-primary">0</div></div><div class="p-3 bg-slate-100 dark:bg-slate-700 rounded-xl"><div class="text-sm text-slate-500"><span class="lang-ko">정확도</span><span class="lang-en">Accuracy</span></div><div id="ttacc" class="text-2xl font-bold text-green-600">0%</div></div><div class="p-3 bg-slate-100 dark:bg-slate-700 rounded-xl"><div class="text-sm text-slate-500"><span class="lang-ko">시간</span><span class="lang-en">Time</span></div><div id="tttime" class="text-2xl font-bold">0s</div></div></div>
 </div>
-
 <script>
 var ttStart=0,ttTimer=null;function checkTyping(){var t=document.getElementById("ttinput").value;var ref=document.getElementById("tttext").textContent;if(!ttStart&&t.length>0){ttStart=Date.now();ttTimer=setInterval(updTime,100);}var correct=0;for(var i=0;i<t.length;i++){if(i<ref.length&&t[i]===ref[i])correct++;}document.getElementById("ttacc").textContent=Math.round(correct/t.length*100)+"%";var wpm=0;if(ttStart){var sec=(Date.now()-ttStart)/1000;var words=t.split(/\s+/).filter(Boolean).length;wpm=Math.round(words/(sec/60));document.getElementById("ttwpm").textContent=wpm;}if(t===ref&&ttTimer){clearInterval(ttTimer);ttTimer=null;}}function updTime(){if(ttStart)document.getElementById("tttime").textContent=Math.floor((Date.now()-ttStart)/1000)+"s";}
 </script>
-
 <div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8">
 <h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
 <div class="border-b border-border"><div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')"><span class="lang-ko">Q: 이 도구는 어떻게 사용하나요?</span><span class="lang-en">Q: How do I use this tool?</span></div><div class="faq-a"><span class="lang-ko">텍스트를 입력하거나 값을 설정하고 버튼을 클릭하면 결과가 즉시 표시됩니다. 모든 데이터는 브라우저에서만 처리되며 서버로 전송되지 않습니다.</span><span class="lang-en">Enter text or set values and click the button. Results appear instantly. All data is processed locally in your browser and never sent to any server.</span></div></div>

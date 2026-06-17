@@ -117,14 +117,9 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .stat { background: #f2f3fc; border-radius: 0.75rem; padding: 16px; text-align: center; }
 #json-result { background: #f2f3fc; border-radius: 0.75rem; padding: 20px; min-height: 60px; font-size: 16px; word-break: break-all; margin-bottom: 16px; color: #191c22; }
-
-
-
     .lang-en { display: none; }
     body.en .lang-ko { display: none; }
     body.en .lang-en { display: inline; }
-
-
     /* Dark mode overrides */
     html.dark body,
     html.dark .bg-background { background-color: #121218 !important; color: #e8e8f0 !important; }
@@ -203,11 +198,7 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
     html.dark nav .text-\[\#5f5e60\] { color: #b0b0c8 !important; }
     html.dark .related-tool { background: #1c1c2e !important; border-color: #3a3a52 !important; }
     html.dark .faq-item { border-color: #3a3a52 !important; }
-
 </style>
-
-<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png"/>
-<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png"/>
 <link rel="canonical" href="https://freeutilities.pages.dev/text.html"/>
   <script type="application/ld+json">
   {
@@ -216,133 +207,77 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
     "mainEntity": [
       {"@type": "Question", "name": "사용 방법
             How to Use
-            
                 위 텍스트 영역에 변환하고 싶은 텍스트를 입력하거나 붙여넣기 합니다.
                 원하는 변환 버튼을 클릭합니다 (대문자, 소문자, 첫 글자 대문자, 공백 제거 등).
                 변환된 결과가 아래 결과 영역에 표시됩니다.
                 복사 버튼을 클릭하여 결과를 클립보드에 복사할 수 있습니다.
                 새로운 변환을 위해 텍스트 영역을 클릭하고 기존 텍스트를 삭제한 후 새로 입력하세요.
-            
-            
                 Enter or paste the text you want to convert in the text area above.
                 Click the desired conversion button (UPPERCASE, lowercase, Capitalize, or Trim).
                 The converted result will be displayed in the result area below.
                 Click the copy button to copy the result to your clipboard.
                 To perform a new conversion, click in the text area and clear existing text before entering new input.
-            
-        
-        
-        
             예시
             Examples
-            
-                
                     대소문자 변환
                     Case Conversion
                     입력: 'hello WORLD' → 대문자: 'HELLO WORLD'
                     Input: 'hello WORLD' → UPPERCASE: 'HELLO WORLD'
-                
-                
                     첫 글자 대문자
                     Capitalize
                     입력: 'hello world' → Capitalize: 'Hello World'
                     Input: 'hello world' → Capitalize: 'Hello World'
-                
-                
                     공백 제거
                     Trim Whitespace
                     입력: '  hello world  ' → Trim: 'hello world'
                     Input: '  hello world  ' → Trim: 'hello world'
-                
-            
-        
-        
-        
-        
-        
             UPPERCASE
             lowercase
             Capitalize
             Trim
             Copy
-        
-        
-        
-        
-        
-        
             상세 사용 가이드
             Detailed Usage Guide
-            
                 텍스트 영역에 변환하려는 텍스트를 입력하거나 붙여넣기 합니다.
                 원하는 변환 버튼을 클릭합니다 (대문자, 소문자, 첫 글자 대문자, 공백 제거 등 선택).
                 변환된 결과가 아래 결과 영역에 표시됩니다.
                 복사 버튼을 클릭하여 결과를 클립보드에 복사할 수 있습니다.
                 새로운 변환을 위해 텍스트 영역을 클릭하고 기존 텍스트를 삭제한 후 새로 입력하세요.
-            
-            
                 Enter or paste the text you want to convert in the text area above.
                 Click the desired conversion button (UPPERCASE, lowercase, Capitalize, or Trim).
                 The converted result will be displayed in the result area below.
                 Click the copy button to copy the result to your clipboard.
                 To perform a new conversion, click in the text area and clear existing text before entering new input.
-            
-        
-        
-        
-        
             다양한 사용 예시
             Various Use Cases
-            
-                
                     문서 작성 시 활용
                     Document Writing
                     보고서나 논문 작성 시 제목은 첫 글자 대문자, 본문은 소문자로 일관성 있게 포맷팅할 때 유용합니다.
                     When writing reports or papers, useful for setting titles in Capitalize case and body text in lowercase for consistent formatting.
-                
-                
                     코딩 및 디버깅
                     Coding & Debugging
                     환경 변수나 함수 이름을 대문자로 변환하거나, 사용자 입력을 소문자로 정규화하여 비교할 때 유용합니다.
                     Useful for converting environment variable or constant names to uppercase, or normalizing user input to lowercase for comparison.
-                
-                
                     데이터 정제
                     Data Cleaning
                     CSV나 TSV 파일 처리 시 불필요한 공백을 제거하여 데이터 품질을 개선할 수 있습니다.
                     When processing CSV or TSV files, useful for trimming whitespace to improve data quality.
-                
-                
                     소셜 미디어 콘텐츠
                     Social Media Content
                     인스타그램 해시태그는 대소문자를 구분하지 않지만, 가독성을 위해 첫 글자 대문자 포맷으로 사용할 수 있습니다.
                     Instagram hashtags are case-insensitive, but you can use Capitalize format for better readability.
-                
-            
-        
-        
-        
-        
             프로 팁
             Pro Tips
-            
                 키보드 단축키 활용: Ctrl+A로 전체 선택, Ctrl+C로 복사, Ctrl+V로 붙여넣기
                 대용량 텍스트 처리 시 성능 최적화를 위해 10,000자 이하로 나누어 처리하는 것이 좋습니다.
                 웹 페이지 소스 코드에서 텍스트 추출 후 정제에 유용합니다.
                 여러 줄 텍스트 처리 시 줄바꿈은 유지되며 변환에 영향을 받지 않습니다.
                 모바일 기기에서도 완벽하게 작동하므로 언제 어디서나 텍스트 정제가 가능합니다.
-            
-            
                 Keyboard shortcuts: Ctrl+A to select all, Ctrl+C to copy, Ctrl+V to paste
                 For processing large texts, it is recommended to split into chunks under 10,000 characters for optimal performance.
                 Useful for cleaning text extracted from web page source code.
                 When processing multi-line text, line breaks are preserved and not affected by the conversion.
                 Works fully on mobile devices, so you can clean text anytime, anywhere.
-            
-        
-        
-        
-        
             자주 묻는 질문
             Frequently Asked Questions", "acceptedAnswer": {"@type": "Answer", "text": "이 도구는 내 데이터를 저장하거나 전송하나요?
                 Does this tool store or transmit my data?
@@ -351,9 +286,20 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
     ]
   }
   </script>
-
 <link rel="alternate" hreflang="ko" href="https://freeutilities.pages.dev/text.html">
 <link rel="alternate" hreflang="en" href="https://freeutilities.pages.dev/text.html">
+<link rel="canonical" href="https://freeutilities.pages.dev/text.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="텍스트 도구 - 대소문자 변환, 공백 제거, 줄바꿈 변환 - Text Tools - Free Utilities">
+<meta property="og:image" content="https://freeutilities.pages.dev/og-image.png"/>
+<meta name="twitter:image" content="https://freeutilities.pages.dev/og-image.png"/>
+<meta property="og:description" content="Free online utility tool.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="텍스트 도구 - 대소문자 변환, 공백 제거, 줄바꿈 변환 - Text Tools - Free Utilities">
+<meta name="twitter:description" content="Free online utility tool.">
+<meta property="og:url" content="https://freeutilities.pages.dev/text.html">
 </head>
 <body class="bg-background">
 <header class="fixed top-0 w-full h-[64px] bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm z-50">
@@ -373,12 +319,10 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
             <span class="lang-ko">텍스트 도구 - 대소문자 변환, 공백 제거, 줄바꿈</span>
             <span class="lang-en">Text Tools - Case conversion, whitespace removal, line break</span>
         </h1>
-        
         <div class="description">
             <span class="lang-ko">텍스트 도구는 문자열을 대문자, 소문자, 첫 글자 대문자로 변환하거나 공백을 제거할 수 있는 도구입니다. 문서 작성, 코딩, 데이터 정리 등에 유용합니다. 이</span>
             <span class="lang-en">Text Tools convert strings to uppercase, lowercase, capitalize first letters, or trim whitespace. Useful for document editing, coding, and data cleaning. This tool provides various</span>
         </div>
-        
         <div class="usage-guide">
             <h3 class="lang-ko">사용 방법</h3>
             <h3 class="lang-en">How to Use</h3>
@@ -397,7 +341,6 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
                 <li>To perform a new conversion, click in the text area and clear existing text before entering new input.</li>
             </ol>
         </div>
-        
         <div class="examples">
             <h3 class="lang-ko">예시</h3>
             <h3 class="lang-en">Examples</h3>
@@ -422,9 +365,7 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
                 </div>
             </div>
         </div>
-        
         <textarea id="input" placeholder="Enter text... / 텍스트를 입력하세요..."></textarea>
-        
         <div class="btn-group">
             <button class="btn" onclick="upperCase()">UPPERCASE</button>
             <button class="btn" onclick="lowerCase()">lowercase</button>
@@ -432,9 +373,7 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
             <button class="btn" onclick="trim()">Trim</button>
             <button class="btn" onclick="copy()">Copy</button>
         </div>
-        
         <div class="result" id="result"></div></div>
-        
         <!-- Usage Guide -->
         <div class="usage-guide">
             <h3 class="lang-ko">상세 사용 가이드</h3>
@@ -454,7 +393,6 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
                 <li>To perform a new conversion, click in the text area and clear existing text before entering new input.</li>
             </ol>
         </div>
-        
         <!-- Examples -->
         <div class="examples">
             <h3 class="lang-ko">다양한 사용 예시</h3>
@@ -486,7 +424,6 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
                 </div>
             </div>
         </div>
-        
         <!-- Tips -->
         <div class="tips">
             <h3 class="lang-ko">프로 팁</h3>
@@ -506,7 +443,6 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
                 <li>Works fully on mobile devices, so you can clean text anytime, anywhere.</li>
             </ul>
         </div>
-        
         <!-- FAQ -->
         <div class="faq">
             <h3 class="lang-ko">자주 묻는 질문</h3>
@@ -536,7 +472,6 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
                 <p class="lang-en">Yes! Once the page is fully loaded, you can use it completely offline without an internet connection, as all processing happens locally.</p>
             </div>
         </div>
-        
         <!-- Related Tools -->
         <div class="related-tools">
             <h3 class="lang-ko">관련 도구 추천</h3>
@@ -590,7 +525,6 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
         </div><div class="text-center py-8">
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1955893232253258" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
 </div>
-
 <div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8">
 <h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
 <div class="border-b border-border"><div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')"><span class="lang-ko">Q: 이 도구는 어떻게 사용하나요?</span><span class="lang-en">Q: How do I use this tool?</span></div><div class="faq-a"><span class="lang-ko">텍스트를 입력하거나 값을 설정하고 버튼을 클릭하면 결과가 즉시 표시됩니다. 모든 데이터는 브라우저에서만 처리되며 서버로 전송되지 않습니다.</span><span class="lang-en">Enter text or set values and click the button. Results appear instantly. All data is processed locally in your browser and never sent to any server.</span></div></div>
@@ -633,7 +567,6 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
 </div>
 </nav>
 <script>
-
         function getVal() { return document.getElementById('input').value; }
         function setResult(text) { document.getElementById('result').textContent = text; }
         function upperCase() { setResult(getVal().toUpperCase()); }
@@ -641,7 +574,6 @@ textarea, input, select { font-family: 'Inter', -apple-system, BlinkMacSystemFon
         function capitalize() { setResult(getVal().replace(/\b\w/g, l => l.toUpperCase())); }
         function trim() { setResult(getVal().trim()); }
         function copy() { navigator.clipboard.writeText(document.getElementById('result').textContent); }
-        
         (adsbygoogle = window.adsbygoogle || []).push({});</script>
 <script>
 var siteLang = localStorage.getItem('site-lang') || 'ko';
@@ -671,7 +603,6 @@ document.addEventListener('keydown', function(e) {
     toggleLang();
   }
 });
-
 </script>
 </body>
 </html>
