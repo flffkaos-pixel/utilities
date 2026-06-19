@@ -1,0 +1,6 @@
+#opencode-crosslinks a:hover { text-decoration: underline !important; color: #1a73e8 !important; }
+#opencode-crosslinks { box-sizing: border-box; }
+@media (max-width: 768px) {
+  #opencode-crosslinks strong { display: block; margin-bottom: 6px; }
+  #opencode-crosslinks a { font-size: 12px; margin: 0 4px; }
+}
