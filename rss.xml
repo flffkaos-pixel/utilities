@@ -1,0 +1,952 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>utilities</title>
+    <link>https://freeutilities.pages.dev</link>
+    <description>utilities updates</description>
+    <language>en</language>
+    <lastBuildDate>Fri, 19 Jun 2026 16:12:22 GMT</lastBuildDate>
+  <item>
+    <title>소개 - 무료 유틸리티 도구 100선 | About - Free Online Utilities</title>
+    <link>https://freeutilities.pages.dev//about.html</link>
+    <description>Free Utilities는 100% 무료 온라인 유틸리티 도구 모음입니다. 텍스트, JSON, QR, 계산기 등 100개 이상의 도구를 설치 없이 사용하세요.</description>
+    <guid>https://freeutilities.pages.dev//about.html</guid>
+  </item>
+  <item>
+    <title>나이 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//age.html</link>
+    <description>생년월일을 입력하면 만 나이, 한국식 나이, 태어난 지 며칠째인지 계산하는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//age.html</guid>
+  </item>
+  <item>
+    <title>웹 분석기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//analyzer.html</link>
+    <description>웹페이지의 기본 정보를 분석하는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//analyzer.html</guid>
+  </item>
+  <item>
+    <title>API 키 생성기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//api-key.html</link>
+    <description>안전한 API 키를 생성하는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//api-key.html</guid>
+  </item>
+  <item>
+    <title>바코드 생성기 - Code 128, EAN-13, UPC-A / Barcode Generator - Code 128, EAN-13, UPC-A</title>
+    <link>https://freeutilities.pages.dev//barcode-generator.html</link>
+    <description>다양한 포맷의 바코드를 생성하세요. Code 128, EAN-13, UPC-A, Code 39 등을 지원. Generate barcodes in multiple formats: Code 128, EAN-13, UPC-A, Code 39 and more.</description>
+    <guid>https://freeutilities.pages.dev//barcode-generator.html</guid>
+  </item>
+  <item>
+    <title>Base64 인코더/디코더 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//base64.html</link>
+    <description>텍스트를 Base64로 인코딩하거나 디코딩하는 무료 온라인 도구입니다. 바이너리 데이터를 텍스트로 변환할 때 유용합니다.</description>
+    <guid>https://freeutilities.pages.dev//base64.html</guid>
+  </item>
+  <item>
+    <title>진법 변환 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//baseconvert.html</link>
+    <description>2진수, 8진수, 10진수, 16진수 간 변환을 지원합니다.</description>
+    <guid>https://freeutilities.pages.dev//baseconvert.html</guid>
+  </item>
+  <item>
+    <title>기본 계산기 / Basic Calculator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//basic-calc.html</link>
+    <description>간단한 사칙연산 계산기입니다. 퍼센트, 제곱근, 부호변환 기능을 지원합니다.</description>
+    <guid>https://freeutilities.pages.dev//basic-calc.html</guid>
+  </item>
+  <item>
+    <title>이진수 변환기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//binary.html</link>
+    <description>10진수를 2진수, 8진수, 16진수로 변환하거나 역변환하는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//binary.html</guid>
+  </item>
+  <item>
+    <title>빙고 게임 / Bingo Game - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//bingo-game.html</link>
+    <description>3x3에서 10x10까지 빙고 게임을 즐깁니다. 클릭하여 마킹하고 빙고를 완성하세요.</description>
+    <guid>https://freeutilities.pages.dev//bingo-game.html</guid>
+  </item>
+  <item>
+    <title>바이오리듬 계산기 / Biorhythm Calculator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//biorhythm-calc.html</link>
+    <description>생년월일을 기준으로 신체(23일), 감성(28일), 지성(33일) 바이오리듬을 계산합니다.</description>
+    <guid>https://freeutilities.pages.dev//biorhythm-calc.html</guid>
+  </item>
+  <item>
+    <title>BMI 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//bmi.html</link>
+    <description>신장과 체중으로 체질량지수(BMI)를 계산하는 무료 온라인 도구입니다. 비만도 판정과 건강한 체중 범위를 확인하세요.</description>
+    <guid>https://freeutilities.pages.dev//bmi.html</guid>
+  </item>
+  <item>
+    <title>체지방률 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//body-fat.html</link>
+    <description>키와 허리 허박이로 체지방률을 계산합니다.</description>
+    <guid>https://freeutilities.pages.dev//body-fat.html</guid>
+  </item>
+  <item>
+    <title>CSS 박스 섀도우 생성기 - CSS Box Shadow Generator</title>
+    <link>https://freeutilities.pages.dev//box-shadow.html</link>
+    <description>CSS box-shadow 속성을 시각적으로 생성합니다. 오프셋, 블러, 스프레드, 색상을 조절하며 미리 보세요.</description>
+    <guid>https://freeutilities.pages.dev//box-shadow.html</guid>
+  </item>
+  <item>
+    <title>시저 암호 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//caesar.html</link>
+    <description>텍스트를 시저 암호로 암호화하거나 복호화합니다.</description>
+    <guid>https://freeutilities.pages.dev//caesar.html</guid>
+  </item>
+  <item>
+    <title>칼로리 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//calorie.html</link>
+    <description>기초 대사량을 계산하는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//calorie.html</guid>
+  </item>
+  <item>
+    <title>케이스 컨버터 - 카멜케이스, 스네이크케이스, 파스칼케이스 변환 / Case Converter - camelCase, snake_case, PascalCase Converter</title>
+    <link>https://freeutilities.pages.dev//case-converter-pro.html</link>
+    <description>텍스트를 다양한 케이스로 변환하세요. 카멜케이스, 스네이크케이스, 케밥케이스, 파스칼케이스 등 8가지 형식 지원. Convert text between multiple cases: camelCase, snake_case, kebab-case, PascalCase, UPPER, lower, Title Case, and more.</description>
+    <guid>https://freeutilities.pages.dev//case-converter-pro.html</guid>
+  </item>
+  <item>
+    <title>대소문자 변환기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//case-converter.html</link>
+    <description>텍스트를 대문자, 소문자, 제목 케이스 등으로 변환하는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//case-converter.html</guid>
+  </item>
+  <item>
+    <title>고양이 나이 계산기 / Cat Age Calculator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//cat-age-calc.html</link>
+    <description>고양이의 나이를 사람 나이로 변환합니다. 실내/실외 옵션을 지원합니다.</description>
+    <guid>https://freeutilities.pages.dev//cat-age-calc.html</guid>
+  </item>
+  <item>
+    <title>category</title>
+    <link>https://freeutilities.pages.dev//category.html</link>
+    <description>개발자와 직장인을 위한 모든 무료 온라인 유틸리티 도구 목록. 텍스트, JSON, QR, 단위 변환, 계산기 등 100개 이상.</description>
+    <guid>https://freeutilities.pages.dev//category.html</guid>
+  </item>
+  <item>
+    <title>원 계산기 / Circle Calculator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//circle-calc.html</link>
+    <description>반지름, 지름, 원주, 넓이 중 하나를 입력하면 나머지 값을 자동 계산합니다.</description>
+    <guid>https://freeutilities.pages.dev//circle-calc.html</guid>
+  </item>
+  <item>
+    <title>색맹 시뮬레이터 - 색상 접근성 테스트 / Color Blindness Simulator - Accessibility Test</title>
+    <link>https://freeutilities.pages.dev//color-blindness.html</link>
+    <description>일반 색상이 다양한 색맹 유형(적색맹, 녹색맹, 청색맹)으로 어떻게 보이는지 시뮬레이션합니다. Simulate how colors appear with different types of color blindness (protanopia, deuteranopia, tritanopia).</description>
+    <guid>https://freeutilities.pages.dev//color-blindness.html</guid>
+  </item>
+  <item>
+    <title>색상 팔레트 추출기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//color-extractor.html</link>
+    <description>이미지 색상 팔레트 추출기 - 이미지에서 주요 색상을 추출하여 HEX, RGB 값으로 확인하세요. 디자인 영감을 얻는 데 유용합니다.</description>
+    <guid>https://freeutilities.pages.dev//color-extractor.html</guid>
+  </item>
+  <item>
+    <title>색상 팔레트 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//color-palette.html</link>
+    <description>화려한 색상 팔레트를 생성하는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//color-palette.html</guid>
+  </item>
+  <item>
+    <title>색상 변환기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//color.html</link>
+    <description>HEX, RGB, HSL, CMYK 색상 코드를 상호 변환하는 무료 온라인 도구입니다. 웹 디자인과 그래픽 작업에 유용합니다.</description>
+    <guid>https://freeutilities.pages.dev//color.html</guid>
+  </item>
+  <item>
+    <title>복리 계산기 - Compound Interest Calculator</title>
+    <link>https://freeutilities.pages.dev//compound-interest.html</link>
+    <description>초기 투자금, 월 적립금, 이자율, 기간을 입력하여 복리 수익을 계산하세요. 적금, 예금, 투자 계획에 활용하세요.</description>
+    <guid>https://freeutilities.pages.dev//compound-interest.html</guid>
+  </item>
+  <item>
+    <title>이미지 압축 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//compress.html</link>
+    <description>이미지를 브라우저에서 직접 압축하세요.</description>
+    <guid>https://freeutilities.pages.dev//compress.html</guid>
+  </item>
+  <item>
+    <title>문의하기 - Free Utilities | Contact Us - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//contact.html</link>
+    <description>Free Utilities에 문의하세요. 기능 요청, 버그 신고, 제휴 문의를 환영합니다.</description>
+    <guid>https://freeutilities.pages.dev//contact.html</guid>
+  </item>
+  <item>
+    <title>색상 대비 검사기 (WCAG) - Color Contrast Checker (WCAG)</title>
+    <link>https://freeutilities.pages.dev//contrast-checker.html</link>
+    <description>WCAG 2.1 접근성 기준에 따라 전경색과 배경색의 대비 비율을 계산합니다. 웹 접근성 검사에 필수 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//contrast-checker.html</guid>
+  </item>
+  <item>
+    <title>Cookie 파서/빌더 - 쿠키 문자열 분석 및 생성 / Cookie Parser &amp; Builder - Analyze and Generate Cookies</title>
+    <link>https://freeutilities.pages.dev//cookie-parser.html</link>
+    <description>쿠키 문자열을 파싱하거나 새로운 쿠키를 생성합니다. Name, Value, Domain, Path, Expires 등 설정. Parse cookie strings or build new cookies. Set name, value, domain, path, expires, secure, httponly.</description>
+    <guid>https://freeutilities.pages.dev//cookie-parser.html</guid>
+  </item>
+  <item>
+    <title>카운트다운 타이머 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//countdown.html</link>
+    <description>원하는 시간을 설정하고 카운트다운하는 무료 온라인 타이머입니다. 알림음으로 종료를 알려줍니다.</description>
+    <guid>https://freeutilities.pages.dev//countdown.html</guid>
+  </item>
+  <item>
+    <title>글자 수 세기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//counter.html</link>
+    <description>텍스트의 글자 수, 단어 수, 문장 수, 문단 수를 실시간으로 세어주는 무료 온라인 도구입니다. 블로그, 에세이, SNS 글쓰기에 최적화되어 있습니다.</description>
+    <guid>https://freeutilities.pages.dev//counter.html</guid>
+  </item>
+  <item>
+    <title>Cron 표현식 생성기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//cron.html</link>
+    <description>크론(cron) 작업 스케줄링 표현식을 생성하는 무료 온라인 도구입니다. 리눅스 서버 작업 예약에 사용됩니다.</description>
+    <guid>https://freeutilities.pages.dev//cron.html</guid>
+  </item>
+  <item>
+    <title>Cron 파서 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//cronparser.html</link>
+    <description>Cron 표현식을 읽기 쉽게 설명합니다.</description>
+    <guid>https://freeutilities.pages.dev//cronparser.html</guid>
+  </item>
+  <item>
+    <title>CSS/JS Minifier - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//css-minifier.html</link>
+    <description>CSS와 JavaScript 코드를 압축합니다.</description>
+    <guid>https://freeutilities.pages.dev//css-minifier.html</guid>
+  </item>
+  <item>
+    <title>CSV 뷰어 - CSV 파일 탐색 및 정렬 / CSV Viewer - Browse, Sort and Filter CSV Files</title>
+    <link>https://freeutilities.pages.dev//csv-viewer.html</link>
+    <description>CSV 파일을 불러와 테이블로 표시하고 정렬, 필터링, 검색합니다. Load CSV files, display as table with sort, filter, and search functionality.</description>
+    <guid>https://freeutilities.pages.dev//csv-viewer.html</guid>
+  </item>
+  <item>
+    <title>통화 변환기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//currency-converter.html</link>
+    <description>간단한 통화 변환을 지원합니다. (고정 환율)</description>
+    <guid>https://freeutilities.pages.dev//currency-converter.html</guid>
+  </item>
+  <item>
+    <title>하루 물 섭취량 계산기 / Daily Water Intake Calculator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//daily-water-calc.html</link>
+    <description>체중과 활동량에 따라 하루 권장 물 섭취량을 계산합니다.</description>
+    <guid>https://freeutilities.pages.dev//daily-water-calc.html</guid>
+  </item>
+  <item>
+    <title>D-Day 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//date.html</link>
+    <description>두 날짜 사이의 일수를 계산하거나, 특정 날짜로부터 며칠 전/후인지 계산하는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//date.html</guid>
+  </item>
+  <item>
+    <title>텍스트 비교 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//diff.html</link>
+    <description>두 텍스트의 차이점을 라인별로 비교합니다.</description>
+    <guid>https://freeutilities.pages.dev//diff.html</guid>
+  </item>
+  <item>
+    <title>할인율 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//discount.html</link>
+    <description>할인율, 할인 가격, 최종 가격을 계산하는 무료 온라인 도구입니다. 세일 기간에 얼마나 절약되는지 확인하세요.</description>
+    <guid>https://freeutilities.pages.dev//discount.html</guid>
+  </item>
+  <item>
+    <title>거리 계산기 / Distance Calculator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//distance-calc.html</link>
+    <description>2D 또는 3D 공간에서 두 점 사이의 거리를 계산합니다.</description>
+    <guid>https://freeutilities.pages.dev//distance-calc.html</guid>
+  </item>
+  <item>
+    <title>DNS 조회 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//dns-lookup.html</link>
+    <description>도메인의 DNS 레코드를 확인합니다.</description>
+    <guid>https://freeutilities.pages.dev//dns-lookup.html</guid>
+  </item>
+  <item>
+    <title>강아지 나이 계산기 / Dog Age Calculator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//dog-age-calc.html</link>
+    <description>강아지의 나이를 사람 나이로 변환합니다. 크기별로 다른 공식을 적용합니다.</description>
+    <guid>https://freeutilities.pages.dev//dog-age-calc.html</guid>
+  </item>
+  <item>
+    <title>이모지 찾기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//emoji.html</link>
+    <description>자주 사용하는 이모지를 클릭하여 복사합니다.</description>
+    <guid>https://freeutilities.pages.dev//emoji.html</guid>
+  </item>
+  <item>
+    <title>파일 암호화/복호화 - AES-GCM 보안 / File Encrypt &amp; Decrypt - AES-GCM Security</title>
+    <link>https://freeutilities.pages.dev//encrypt-file.html</link>
+    <description>파일을 AES-GCM으로 암호화하거나 복호화합니다. 모든 처리는 브라우저에서 로컬로 수행. Encrypt and decrypt files using AES-GCM. All processing happens locally in your browser.</description>
+    <guid>https://freeutilities.pages.dev//encrypt-file.html</guid>
+  </item>
+  <item>
+    <title>이미지 EXIF 제거 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//exif-remover.html</link>
+    <description>이미지 EXIF 메타데이터 제거기 - 사진에서 GPS 위치, 카메라 정보 등 EXIF 데이터를 제거하여 개인정보를 보호하세요.</description>
+    <guid>https://freeutilities.pages.dev//exif-remover.html</guid>
+  </item>
+  <item>
+    <title>지수 계산기 / Exponent Calculator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//exponent-calc.html</link>
+    <description>밑과 지수를 입력하여 거듭제곱 결과를 계산합니다. 계산 과정을 단계별로 보여줍니다.</description>
+    <guid>https://freeutilities.pages.dev//exponent-calc.html</guid>
+  </item>
+  <item>
+    <title>약수 계산기 / 약수 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//factor-calc.html</link>
+    <description>모든 약수, 약수 쌍, 소인수분해를 보여줍니다.</description>
+    <guid>https://freeutilities.pages.dev//factor-calc.html</guid>
+  </item>
+  <item>
+    <title>파비콘 생성기 - Favicon Generator</title>
+    <link>https://freeutilities.pages.dev//favicon-generator.html</link>
+    <description>파비콘 생성기 - 텍스트나 이모지로 웹사이트 파비콘을 즉시 생성합니다. PNG 형식으로 다운로드 가능.</description>
+    <guid>https://freeutilities.pages.dev//favicon-generator.html</guid>
+  </item>
+  <item>
+    <title>찾기/바꾸기 - 텍스트 검색 및 치환 / Find &amp; Replace - Text Search and Replace</title>
+    <link>https://freeutilities.pages.dev//find-replace.html</link>
+    <description>텍스트에서 특정 단어나 패턴을 찾아 바꿉니다. 정규식, 대소문자 구분, 전치환 지원. Find and replace text with regex support, case-sensitive toggle, and replace all functionality.</description>
+    <guid>https://freeutilities.pages.dev//find-replace.html</guid>
+  </item>
+  <item>
+    <title>폰트 변환기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//font-converter.html</link>
+    <description>텍스트를 다양한 폰트 스타일로 변환합니다.</description>
+    <guid>https://freeutilities.pages.dev//font-converter.html</guid>
+  </item>
+  <item>
+    <title>분수 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//fraction-calc.html</link>
+    <description>분수의 덧셈, 뺄셈, 곱셈, 나눗셈을 계산합니다.</description>
+    <guid>https://freeutilities.pages.dev//fraction-calc.html</guid>
+  </item>
+  <item>
+    <title>GPA 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//gpa.html</link>
+    <description>학점 GPA를 계산하는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//gpa.html</guid>
+  </item>
+  <item>
+    <title>CSS 그라데이션 생성기 - CSS Gradient Generator</title>
+    <link>https://freeutilities.pages.dev//gradient-generator.html</link>
+    <description>선형 CSS 그라데이션을 시각적으로 생성합니다. 색상, 각도, 코드를 미리 보면서 디자인하세요.</description>
+    <guid>https://freeutilities.pages.dev//gradient-generator.html</guid>
+  </item>
+  <item>
+    <title>개발자를 위한 필수 온라인 도구 20선 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//guide-developer.html</link>
+    <description>프론트엔드, 백엔드 개발자에게 유용한 온라인 도구를 소개합니다. JSON 포맷터, Base64 인코더, 색상 변환기, 정규식 테스터 등 개발 생산성을 높이는 도구들을 확인하세요.</description>
+    <guid>https://freeutilities.pages.dev//guide-developer.html</guid>
+  </item>
+  <item>
+    <title>무료 이미지 도구 완벽 가이드: 압축부터 포맷 변환까지 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//guide-image.html</link>
+    <description>이미지 압축, 리사이즈, 포맷 변환, EXIF 제거 등 무료 이미지 도구의 모든 것을 알아보세요. 웹 최적화부터 개인정보 보호까지 한 번에 해결합니다.</description>
+    <guid>https://freeutilities.pages.dev//guide-image.html</guid>
+  </item>
+  <item>
+    <title>안전한 비밀번호 만들기: 최신 보안 가이드 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//guide-password.html</link>
+    <description>해킹으로부터 계정을 보호하는 방법을 알아보세요. 강력한 비밀번호 생성, 2단계 인증 설정, 비밀번호 관리자 사용법 등 실전 보안 팁을 제공합니다.</description>
+    <guid>https://freeutilities.pages.dev//guide-password.html</guid>
+  </item>
+  <item>
+    <title>생산성을 높이는 무료 온라인 도구 10선 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//guide-productivity.html</link>
+    <description>설치 없이 브라우저에서 바로 사용할 수 있는 생산성 도구를 소개합니다. 포모도로 타이머, 스톱워치, 할일 관리, 카운트다운 등 업무 효율을 높이는 방법을 알아보세요.</description>
+    <guid>https://freeutilities.pages.dev//guide-productivity.html</guid>
+  </item>
+  <item>
+    <title>SEO와 마케팅을 위한 무료 온라인 도구 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//guide-seo.html</link>
+    <description>검색 엔진 최적화(SEO)와 디지털 마케팅에 유용한 무료 도구들을 소개합니다. 키워드 밀도 분석, 메타 태그 생성, QR 코드 등 마케터를 위한 실전 도구 가이드.</description>
+    <guid>https://freeutilities.pages.dev//guide-seo.html</guid>
+  </item>
+  <item>
+    <title>해시 생성기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//hash.html</link>
+    <description>텍스트의 MD5, SHA-1, SHA-256, SHA-512 해시를 생성하는 무료 온라인 도구입니다. 비밀번호 검증, 파일 무결성 확인에 사용됩니다.</description>
+    <guid>https://freeutilities.pages.dev//hash.html</guid>
+  </item>
+  <item>
+    <title>체감 온도 계산기 / Heat Index Calculator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//heat-index-calc.html</link>
+    <description>온도와 습도로 열지수(Heat Index)를, 온도와 풍속으로 체감온도(Wind Chill)를 계산합니다.</description>
+    <guid>https://freeutilities.pages.dev//heat-index-calc.html</guid>
+  </item>
+  <item>
+    <title>시급 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//hourly.html</link>
+    <description>연봉으로 시급을 계산하거나 시급으로 연봉을 계산합니다.</description>
+    <guid>https://freeutilities.pages.dev//hourly.html</guid>
+  </item>
+  <item>
+    <title>HTML/XML 포맷터 - 코드 정리 및 뷰티파이 / HTML/XML Formatter - Beautify and Clean Code</title>
+    <link>https://freeutilities.pages.dev//html-formatter.html</link>
+    <description>HTML과 XML 코드를 자동으로 들여쓰기하고 정리합니다. 가독성 높은 코드로 변환. Automatically indent and beautify HTML and XML code. Make messy code readable.</description>
+    <guid>https://freeutilities.pages.dev//html-formatter.html</guid>
+  </item>
+  <item>
+    <title>HTML 인코더/디코더 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//html.html</link>
+    <description>HTML 특수 문자를 인코딩하거나 디코딩하는 무료 온라인 도구입니다. 웹 개발 시 HTML 엔티티 처리를 쉽게 해결합니다.</description>
+    <guid>https://freeutilities.pages.dev//html.html</guid>
+  </item>
+  <item>
+    <title>HTTP 헤더 분석기 - 헤더 파싱 및 분석 / HTTP Header Analyzer - Parse and Analyze Headers</title>
+    <link>https://freeutilities.pages.dev//http-headers.html</link>
+    <description>HTTP 요청/응답 헤더를 입력하면 각 헤더의 의미와 값을 분석해줍니다. Parse HTTP request/response headers and get detailed info about each header's meaning.</description>
+    <guid>https://freeutilities.pages.dev//http-headers.html</guid>
+  </item>
+  <item>
+    <title>HTTP 상태 검사 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//http-status.html</link>
+    <description>HTTP 상태 코드의 의미를 확인합니다.</description>
+    <guid>https://freeutilities.pages.dev//http-status.html</guid>
+  </item>
+  <item>
+    <title>이상 체중 계산기 / 이상 체중 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//ideal-weight-calc.html</link>
+    <description>성별, 키, 체중을 입력하여 Devine, Robinson, Miller, Hamwi 공식으로 이상 체중을 계산합니다.</description>
+    <guid>https://freeutilities.pages.dev//ideal-weight-calc.html</guid>
+  </item>
+  <item>
+    <title>이미지 포맷 변환 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//image-converter.html</link>
+    <description>이미지 포맷 변환기 - JPG, PNG, WebP, BMP 간 이미지 포맷을 무료로 변환하세요. 브라우저에서 즉시 처리됩니다.</description>
+    <guid>https://freeutilities.pages.dev//image-converter.html</guid>
+  </item>
+  <item>
+    <title>이미지 리사이즈 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//image-resize.html</link>
+    <description>이미지 크기를 픽셀 단위로 조절합니다.</description>
+    <guid>https://freeutilities.pages.dev//image-resize.html</guid>
+  </item>
+  <item>
+    <title>이미지 to Base64 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//image-to-base64.html</link>
+    <description>이미지를 Base64 문자열로 변환합니다.</description>
+    <guid>https://freeutilities.pages.dev//image-to-base64.html</guid>
+  </item>
+  <item>
+    <title>index</title>
+    <link>https://freeutilities.pages.dev//</link>
+    <description>index</description>
+    <guid>https://freeutilities.pages.dev//</guid>
+  </item>
+  <item>
+    <title>인터벌 타이머 / Interval Timer - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//interval-timer.html</link>
+    <description>운동/휴식 시간을 설정하고 라운드와 세트를 반복하는 인터벌 타이머입니다.</description>
+    <guid>https://freeutilities.pages.dev//interval-timer.html</guid>
+  </item>
+  <item>
+    <title>인보이스 계산 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//invoice.html</link>
+    <description>공금활 단가와 부가가격에서 공금세, 부가세를 계산합니다.</description>
+    <guid>https://freeutilities.pages.dev//invoice.html</guid>
+  </item>
+  <item>
+    <title>내 IP 확인 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//ip-lookup.html</link>
+    <description>현재 사용 중인 IP 주소를 확인합니다.</description>
+    <guid>https://freeutilities.pages.dev//ip-lookup.html</guid>
+  </item>
+  <item>
+    <title>JSON Schema 검증기 - 데이터 구조 유효성 검사 / JSON Schema Validator - Validate Data Structure</title>
+    <link>https://freeutilities.pages.dev//json-schema-validator.html</link>
+    <description>JSON 데이터가 JSON Schema에 맞는지 검증합니다. 실시간 유효성 검사와 상세 오류 메시지. Validate JSON data against a JSON Schema. Real-time validation with detailed error messages.</description>
+    <guid>https://freeutilities.pages.dev//json-schema-validator.html</guid>
+  </item>
+  <item>
+    <title>JSON 포맷터 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//json.html</link>
+    <description>JSON 데이터를 읽기 쉽게 포맷팅하거나 압축하는 무료 온라인 도구입니다. API 응답 디버깅, 설정 파일 편집에 유용합니다.</description>
+    <guid>https://freeutilities.pages.dev//json.html</guid>
+  </item>
+  <item>
+    <title>JSON↔CSV 변환 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//jsoncsv.html</link>
+    <description>JSON과 CSV 형식을 상호 변환합니다.</description>
+    <guid>https://freeutilities.pages.dev//jsoncsv.html</guid>
+  </item>
+  <item>
+    <title>JWT 디버거 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//jwt.html</link>
+    <description>JWT 토큰을 디코딩하여 헤더와 페이로드를 확인합니다.</description>
+    <guid>https://freeutilities.pages.dev//jwt.html</guid>
+  </item>
+  <item>
+    <title>키워드 밀도 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//keyword-density.html</link>
+    <description>텍스트의 키워드 밀도를 분석하여 SEO를 최적화합니다.</description>
+    <guid>https://freeutilities.pages.dev//keyword-density.html</guid>
+  </item>
+  <item>
+    <title>사다리타기 / Ladder Game - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//ladder-game.html</link>
+    <description>이름과 결과를 입력하여 사다리타기 게임을 실행합니다.</description>
+    <guid>https://freeutilities.pages.dev//ladder-game.html</guid>
+  </item>
+  <item>
+    <title>LCM/GCF 계산기 / LCM &amp; GCF Calculator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//lcm-gcf-calc.html</link>
+    <description>여러 숫자의 최소공배수(LCM)와 최대공약수(GCF)를 계산합니다. 소인수분해도 표시합니다.</description>
+    <guid>https://freeutilities.pages.dev//lcm-gcf-calc.html</guid>
+  </item>
+  <item>
+    <title>랜덤 추첨기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//list-randomizer.html</link>
+    <description>무작위로 항목을 선택하는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//list-randomizer.html</guid>
+  </item>
+  <item>
+    <title>대출 이자 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//loan.html</link>
+    <description>대출 금액, 이자율, 상환 기간을 입력하여 월 상환액과 총 이자를 계산하는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//loan.html</guid>
+  </item>
+  <item>
+    <title>로그 계산기 / Logarithm Calculator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//log-calc.html</link>
+    <description>자연로그, 상용로그, 밑 변환 로그를 계산합니다. 결과와 함께 계산 과정을 보여줍니다.</description>
+    <guid>https://freeutilities.pages.dev//log-calc.html</guid>
+  </item>
+  <item>
+    <title>Lorem Ipsum 생성기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//lorem.html</link>
+    <description>디자인 샘플, 웹사이트 목업, 인쇄 레이아웃 테스트용 Lorem Ipsum 더미 텍스트를 생성하는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//lorem.html</guid>
+  </item>
+  <item>
+    <title>추첨기 / 추첨기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//lottery-draw.html</link>
+    <description>참가자 목록에서 무작위로 당첨자를 추첨합니다. 애니메이션 효과를 지원합니다.</description>
+    <guid>https://freeutilities.pages.dev//lottery-draw.html</guid>
+  </item>
+  <item>
+    <title>마크다운 변환기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//markdown.html</link>
+    <description>마크다운 텍스트를 HTML로 실시간 변환하는 무료 온라인 도구입니다. README 작성, 블로그 포스팅, 문서 작업에 유용합니다.</description>
+    <guid>https://freeutilities.pages.dev//markdown.html</guid>
+  </item>
+  <item>
+    <title>평균/중앙값/최빈값 계산기 / Mean Median Mode Calculator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//mean-median-mode.html</link>
+    <description>숫자 목록의 평균, 중앙값, 최빈값, 범위를 계산하고 정렬된 리스트를 보여줍니다.</description>
+    <guid>https://freeutilities.pages.dev//mean-median-mode.html</guid>
+  </item>
+  <item>
+    <title>메타 태그 생성기 - Meta Tag Generator</title>
+    <link>https://freeutilities.pages.dev//meta-tag-generator.html</link>
+    <description>SEO와 소셜 공유를 위한 메타 태그를 자동으로 생성합니다. Open Graph, Twitter Card, 표준 메타 태그 모두 지원.</description>
+    <guid>https://freeutilities.pages.dev//meta-tag-generator.html</guid>
+  </item>
+  <item>
+    <title>모듈로 계산기 / Modulo Calculator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//modulo-calc.html</link>
+    <description>a mod b 계산과 모듈로 지수승 a^b mod m을 계산합니다.</description>
+    <guid>https://freeutilities.pages.dev//modulo-calc.html</guid>
+  </item>
+  <item>
+    <title>모스 부호 변환기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//morse.html</link>
+    <description>텍스트를 모스 부호로 변환하거나 모스 부호를 텍스트로 변환하는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//morse.html</guid>
+  </item>
+  <item>
+    <title>온라인 메모장 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//notepad.html</link>
+    <description>브라우저에서 바로 사용하는 무료 온라인 메모장입니다. 로컬 저장소에 자동 저장되며, 텍스트를 파일로 내보낼 수 있습니다.</description>
+    <guid>https://freeutilities.pages.dev//notepad.html</guid>
+  </item>
+  <item>
+    <title>숫자→문자 변환 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//numbertowords.html</link>
+    <description>숫자를 한글 문자로 변환합니다.</description>
+    <guid>https://freeutilities.pages.dev//numbertowords.html</guid>
+  </item>
+  <item>
+    <title>비밀번호 강도 검사기 - Password Strength Checker</title>
+    <link>https://freeutilities.pages.dev//password-strength.html</link>
+    <description>비밀번호의 강도를 실시간으로 분석합니다. 길이, 문자 종류 다양성, 패턴 등을 종합 평가하여 보안 점수를 제공합니다.</description>
+    <guid>https://freeutilities.pages.dev//password-strength.html</guid>
+  </item>
+  <item>
+    <title>비밀번호 생성기 - Password Generator</title>
+    <link>https://freeutilities.pages.dev//password.html</link>
+    <description>비밀번호 생성기 - 강력하고 안전한 무작위 비밀번호를 생성하세요. 길이, 대문자, 소문자, 숫자, 특수문자 옵션을 지원합니다.</description>
+    <guid>https://freeutilities.pages.dev//password.html</guid>
+  </item>
+  <item>
+    <title>퍼센트 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//percentage.html</link>
+    <description>퍼센트를 빠르고 정확하게 계산합니다.</description>
+    <guid>https://freeutilities.pages.dev//percentage.html</guid>
+  </item>
+  <item>
+    <title>순열/조합 계산기 / Permutation &amp; Combination Calculator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//perm-comb-calc.html</link>
+    <description>nPr (순열)과 nCr (조합)을 계산합니다. 중복 허용 옵션을 지원합니다.</description>
+    <guid>https://freeutilities.pages.dev//perm-comb-calc.html</guid>
+  </item>
+  <item>
+    <title>PNG→JPG 변환 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//pngtojpg.html</link>
+    <description>PNG 이미지를 JPG 포맷으로 변환합니다.</description>
+    <guid>https://freeutilities.pages.dev//pngtojpg.html</guid>
+  </item>
+  <item>
+    <title>포모도로 타이머 - Pomodoro Timer</title>
+    <link>https://freeutilities.pages.dev//pomodoro.html</link>
+    <description>25분 집중 5분 휴식 포모도로 기법으로 생산성을 높이세요. 무료 온라인 타이머로 작업과 휴식을 관리하세요.</description>
+    <guid>https://freeutilities.pages.dev//pomodoro.html</guid>
+  </item>
+  <item>
+    <title>출산 예정일 계산기 / Pregnancy Due Date Calculator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//pregnancy-calc.html</link>
+    <description>마지막 생리일(LMP)을 기준으로 출산 예정일, 현재 주수, 임신 기간을 계산합니다.</description>
+    <guid>https://freeutilities.pages.dev//pregnancy-calc.html</guid>
+  </item>
+  <item>
+    <title>소수 판별기 / Prime Number Checker - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//prime-checker.html</link>
+    <description>숫자가 소수인지 판별하고, 소인수분해와 모든 약수를 보여줍니다.</description>
+    <guid>https://freeutilities.pages.dev//prime-checker.html</guid>
+  </item>
+  <item>
+    <title>개인정보처리방침 - Free Utilities | Privacy Policy - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//privacy.html</link>
+    <description>Free Utilities 개인정보처리방침. 모든 데이터는 사용자의 브라우저에서만 처리되며 서버에 저장되지 않습니다.</description>
+    <guid>https://freeutilities.pages.dev//privacy.html</guid>
+  </item>
+  <item>
+    <title>피타고라스 정리 계산기 / 피타고라스 정리 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//pythagorean-calc.html</link>
+    <description>직각삼각형의 두 변을 입력하면 나머지 한 변을 계산합니다.</description>
+    <guid>https://freeutilities.pages.dev//pythagorean-calc.html</guid>
+  </item>
+  <item>
+    <title>QR 코드 생성기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//qrcode.html</link>
+    <description>URL, 텍스트, 연락처 정보를 QR 코드로 즉시 생성하는 무료 온라인 도구입니다. 다운로드하여 명함, 포스터, 메뉴판에 활용하세요.</description>
+    <guid>https://freeutilities.pages.dev//qrcode.html</guid>
+  </item>
+  <item>
+    <title>오늘의 명언 - Daily Quote</title>
+    <link>https://freeutilities.pages.dev//quote.html</link>
+    <description>오늘의 명언 - 랜덤으로 표시되는 한국어와 영어 명언으로 영감을 얻으세요. 철학자, 작가, 리더들의 명언 모음.</description>
+    <guid>https://freeutilities.pages.dev//quote.html</guid>
+  </item>
+  <item>
+    <title>랜덤 생성기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//random.html</link>
+    <description>랜덤 숫자, 동전 던지기, 주사위 굴리기 등 무작위 결과를 생성하는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//random.html</guid>
+  </item>
+  <item>
+    <title>랜덤 단어 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//randomword.html</link>
+    <description>무작위 영어 단어를 생성하는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//randomword.html</guid>
+  </item>
+  <item>
+    <title>비율 계산기 / Ratio Calculator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//ratio-calc.html</link>
+    <description>비율을 간단히 하거나 비례식에서 미지값을 찾습니다.</description>
+    <guid>https://freeutilities.pages.dev//ratio-calc.html</guid>
+  </item>
+  <item>
+    <title>정규식 테스터 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//regex.html</link>
+    <description>정규식(Regular Expression)을 테스트하고 일치하는 결과를 실시간으로 확인하는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//regex.html</guid>
+  </item>
+  <item>
+    <title>텍스트 뒤집기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//reverse.html</link>
+    <description>입력한 텍스트를 거꾸로 뒤집거나, 단어 순서를 반대로 바꾸는 무료 온라인 도구입니다. 문자열 반전, 거울 읽기 등에 유용합니다.</description>
+    <guid>https://freeutilities.pages.dev//reverse.html</guid>
+  </item>
+  <item>
+    <title>robots.txt 생성기 - 검색엔진 크롤러 제어 파일 만들기 / robots.txt Generator - Control Search Engine Crawlers</title>
+    <link>https://freeutilities.pages.dev//robots-txt-generator.html</link>
+    <description>시각적 인터페이스로 robots.txt 파일을 쉽게 생성하세요. User-agent, Allow, Disallow, Sitemap 설정. Easily generate robots.txt files with a visual interface. Set User-agent, Allow, Disallow, Sitemap.</description>
+    <guid>https://freeutilities.pages.dev//robots-txt-generator.html</guid>
+  </item>
+  <item>
+    <title>n제곱근 계산기 / Root Calculator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//root-calc.html</link>
+    <description>임의의 n에 대한 n제곱근을 계산합니다. 정밀도 조절이 가능합니다.</description>
+    <guid>https://freeutilities.pages.dev//root-calc.html</guid>
+  </item>
+  <item>
+    <title>ROT13 인코더/디코더 - ROT13 Encoder/Decoder</title>
+    <link>https://freeutilities.pages.dev//rot13.html</link>
+    <description>텍스트를 ROT13으로 인코딩하거나 디코딩하세요. 알파벳을 13자리 회전하는 단순 치환 암호입니다.</description>
+    <guid>https://freeutilities.pages.dev//rot13.html</guid>
+  </item>
+  <item>
+    <title>룰렛 / Roulette - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//roulette.html</link>
+    <description>항목을 입력하고 룰렛을 돌려 무작위 결과를 선택합니다.</description>
+    <guid>https://freeutilities.pages.dev//roulette.html</guid>
+  </item>
+  <item>
+    <title>달리기 페이스 계산기 / 달리기 페이스 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//running-pace-calc.html</link>
+    <description>거리와 시간으로 페이스와 속도를 계산하고 주요 거리별 예상 기록을 보여줍니다.</description>
+    <guid>https://freeutilities.pages.dev//running-pace-calc.html</guid>
+  </item>
+  <item>
+    <title>공학용 계산기 / 공학용 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//scientific-calc.html</link>
+    <description>삼각함수, 로그, 제곱근, 팩토리얼 등 고급 수학 기능을 제공하는 공학용 계산기입니다.</description>
+    <guid>https://freeutilities.pages.dev//scientific-calc.html</guid>
+  </item>
+  <item>
+    <title>과학적 표기법 변환기 / Scientific Notation Converter - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//scientific-notation.html</link>
+    <description>일반 숫자와 과학적 표기법 간 양방향 변환을 지원합니다.</description>
+    <guid>https://freeutilities.pages.dev//scientific-notation.html</guid>
+  </item>
+  <item>
+    <title>화면 녹화 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//screen.html</link>
+    <description>브라우저에서 화면을 녹화하는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//screen.html</guid>
+  </item>
+  <item>
+    <title>수면 주기 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//sleep-cycle.html</link>
+    <description>깨는 시간이 또는 자고 싶은 시간을 기준으로 최적의 수면 시간을 계산합니다.</description>
+    <guid>https://freeutilities.pages.dev//sleep-cycle.html</guid>
+  </item>
+  <item>
+    <title>Slugify - URL 슬러그 생성기 / Slugify - URL Slug Generator</title>
+    <link>https://freeutilities.pages.dev//slugify.html</link>
+    <description>제목이나 문장을 URL 친화적인 슬러그로 변환합니다. 소문자, 하이픈, 특수문자 제거. Convert titles and sentences into URL-friendly slugs. Lowercase, hyphenated, special chars removed.</description>
+    <guid>https://freeutilities.pages.dev//slugify.html</guid>
+  </item>
+  <item>
+    <title>텍스트 정렬 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//sort.html</link>
+    <description>텍스트 줄을 알파벳순, 가나다순, 숫자순으로 정렬하거나 역순으로 정렬하는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//sort.html</guid>
+  </item>
+  <item>
+    <title>속도 변환기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//speed-converter.html</link>
+    <description>km/h, mph, m/s, knot 간 속도를 변환합니다.</description>
+    <guid>https://freeutilities.pages.dev//speed-converter.html</guid>
+  </item>
+  <item>
+    <title>SQL 포맷터 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//sql.html</link>
+    <description>SQL 쿼리를 읽기 쉽게 포맷팅합니다.</description>
+    <guid>https://freeutilities.pages.dev//sql.html</guid>
+  </item>
+  <item>
+    <title>SSL 인증서 확인 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//ssl-checker.html</link>
+    <description>도메인의 SSL 인증서 정보를 확인합니다.</description>
+    <guid>https://freeutilities.pages.dev//ssl-checker.html</guid>
+  </item>
+  <item>
+    <title>통계 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//stats-calc.html</link>
+    <description>숫자들의 평균, 중앙값, 최빈값을 계산합니다.</description>
+    <guid>https://freeutilities.pages.dev//stats-calc.html</guid>
+  </item>
+  <item>
+    <title>표준편차 계산기 / Standard Deviation Calculator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//std-dev-calc.html</link>
+    <description>숫자 목록의 표준편차, 분산, 평균 등을 계산합니다. 모집단/표본을 선택할 수 있습니다.</description>
+    <guid>https://freeutilities.pages.dev//std-dev-calc.html</guid>
+  </item>
+  <item>
+    <title>걸음 칼로리 계산기 / Steps Calorie Calculator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//steps-calc.html</link>
+    <description>걸음 수와 체중을 기반으로 소모 칼로리와 이동 거리를 계산합니다.</description>
+    <guid>https://freeutilities.pages.dev//steps-calc.html</guid>
+  </item>
+  <item>
+    <title>스톱워치 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//stopwatch.html</link>
+    <description>정확한 시간 측정이 가능한 무료 온라인 스톱워치입니다. 랩 타임 기능을 지원하며, 운동, 실험, 게임 등에 사용하세요.</description>
+    <guid>https://freeutilities.pages.dev//stopwatch.html</guid>
+  </item>
+  <item>
+    <title>서브넷 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//subnet-calc.html</link>
+    <description>IP 주소와 서브넷 마스크를 계산합니다.</description>
+    <guid>https://freeutilities.pages.dev//subnet-calc.html</guid>
+  </item>
+  <item>
+    <title>SVG to PNG - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//svg-to-png.html</link>
+    <description>SVG 파일을 PNG 이미지로 변환합니다.</description>
+    <guid>https://freeutilities.pages.dev//svg-to-png.html</guid>
+  </item>
+  <item>
+    <title>세금 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//tax.html</link>
+    <description>소득세를 계산하는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//tax.html</guid>
+  </item>
+  <item>
+    <title>팀 생성기 / Team Generator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//team-generator.html</link>
+    <description>이름 목록을 입력하고 원하는 팀 수로 무작위 분배합니다.</description>
+    <guid>https://freeutilities.pages.dev//team-generator.html</guid>
+  </item>
+  <item>
+    <title>온도 변환기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//temperature.html</link>
+    <description>섭씨척과 화씨를 상호 변환합니다.</description>
+    <guid>https://freeutilities.pages.dev//temperature.html</guid>
+  </item>
+  <item>
+    <title>이용약관 - Free Utilities | Terms of Service - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//terms.html</link>
+    <description>Free Utilities 이용약관. 모든 도구는 무료로 제공되며, 입력된 데이터는 서버에 저장되지 않습니다.</description>
+    <guid>https://freeutilities.pages.dev//terms.html</guid>
+  </item>
+  <item>
+    <title>텍스트 도구 - 대소문자 변환, 공백 제거, 줄바꿈 변환 - Text Tools</title>
+    <link>https://freeutilities.pages.dev//text.html</link>
+    <description>무료 온라인 텍스트 변환 도구 - 대소문자 변환, 공백 제거, 첫 글자 대문자, 줄바꿈 변환 등 다양한 텍스트 처리 기능을 제공합니다.</description>
+    <guid>https://freeutilities.pages.dev//text.html</guid>
+  </item>
+  <item>
+    <title>시간 변환 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//time.html</link>
+    <description>시간을 시, 분, 초 단위로 상호 변환합니다.</description>
+    <guid>https://freeutilities.pages.dev//time.html</guid>
+  </item>
+  <item>
+    <title>타임스탬프 변환기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//timestamp.html</link>
+    <description>Unix 타임스탬프와 날짜를 상호 변환하는 무료 온라인 도구입니다. 개발자, 데이터 분석가에게 유용합니다.</description>
+    <guid>https://freeutilities.pages.dev//timestamp.html</guid>
+  </item>
+  <item>
+    <title>시간대 변환 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//timezone.html</link>
+    <description>다양한 시간대의 현재 시간을 한눈에 확인합니다.</description>
+    <guid>https://freeutilities.pages.dev//timezone.html</guid>
+  </item>
+  <item>
+    <title>팁 계산기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//tip-calculator.html</link>
+    <description>요금과 팁 퍼센트를 입력하면 1인당 부담금을 계산합니다.</description>
+    <guid>https://freeutilities.pages.dev//tip-calculator.html</guid>
+  </item>
+  <item>
+    <title>삼각형 계산기 - 각도와 변 길이 계산 / Triangle Calculator - Calculate Angles and Side Lengths</title>
+    <link>https://freeutilities.pages.dev//triangle-calc.html</link>
+    <description>세 변의 길이 또는 두 변과 각도로 삼각형의 모든 값을 계산합니다. sin, cos, tan 법칙. Calculate all triangle values from three sides or two sides and an angle. Uses law of sines/cosines.</description>
+    <guid>https://freeutilities.pages.dev//triangle-calc.html</guid>
+  </item>
+  <item>
+    <title>타이핑 테스트 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//typingtest.html</link>
+    <description>타이핑 속도를 측정하는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//typingtest.html</guid>
+  </item>
+  <item>
+    <title>유니코드 변환 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//unicode.html</link>
+    <description>텍스트를 유니코드 코드 포인트로 변환합니다.</description>
+    <guid>https://freeutilities.pages.dev//unicode.html</guid>
+  </item>
+  <item>
+    <title>중복 제거 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//unique.html</link>
+    <description>텍스트 줄에서 중복된 항목을 제거하고 고유한 값만 남기는 무료 온라인 도구입니다. 키워드 리스트, 이메일 주소 정리에 유용합니다.</description>
+    <guid>https://freeutilities.pages.dev//unique.html</guid>
+  </item>
+  <item>
+    <title>단위 변환기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//unit.html</link>
+    <description>길이, 무게, 온도, 속도 등 다양한 단위를 변환하는 무료 온라인 도구입니다. 센티미터↔인치, 섭씨↔화씨 등 일상적인 변환을 지원합니다.</description>
+    <guid>https://freeutilities.pages.dev//unit.html</guid>
+  </item>
+  <item>
+    <title>URL 단축기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//url-shortener.html</link>
+    <description>긴 URL을 짧고 간결하게 단축합니다. (클라이언트 측에서만 동작)</description>
+    <guid>https://freeutilities.pages.dev//url-shortener.html</guid>
+  </item>
+  <item>
+    <title>URL 인코더/디코더 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//url.html</link>
+    <description>URL을 인코딩하거나 디코딩하는 무료 온라인 도구입니다. 특수 문자가 포함된 URL을 안전하게 처리합니다.</description>
+    <guid>https://freeutilities.pages.dev//url.html</guid>
+  </item>
+  <item>
+    <title>URL 파서 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//urlparser.html</link>
+    <description>URL을 구성 요소별로 분해합니다.</description>
+    <guid>https://freeutilities.pages.dev//urlparser.html</guid>
+  </item>
+  <item>
+    <title>UUID 생성기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//uuid.html</link>
+    <description>범용 고유 식별자(UUID)를 무료로 생성합니다. v4 무작위 UUID를 원하는 개수만큼 생성하고 복사할 수 있습니다.</description>
+    <guid>https://freeutilities.pages.dev//uuid.html</guid>
+  </item>
+  <item>
+    <title>WebP 변환 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//webp-converter.html</link>
+    <description>PNG/JPG 이미지를 WebP 포맷으로 변환합니다.</description>
+    <guid>https://freeutilities.pages.dev//webp-converter.html</guid>
+  </item>
+  <item>
+    <title>백색 소음 플레이어 / White Noise Player - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//white-noise.html</link>
+    <description>백색 소음, 빗소리, 파도 소리 등 다양한 자연 소리를 재생합니다. Web Audio API로 생성합니다.</description>
+    <guid>https://freeutilities.pages.dev//white-noise.html</guid>
+  </item>
+  <item>
+    <title>공백 정리 - 텍스트 공백 제거 및 정리 / Whitespace Cleaner - Remove and Normalize Whitespace</title>
+    <link>https://freeutilities.pages.dev//whitespace-cleaner.html</link>
+    <description>텍스트의 불필요한 공백, 빈 줄, 탭을 정리합니다. 여러 옵션으로 텍스트를 깔끔하게. Clean up unnecessary whitespace, blank lines, and tabs. Multiple options to make text tidy.</description>
+    <guid>https://freeutilities.pages.dev//whitespace-cleaner.html</guid>
+  </item>
+  <item>
+    <title>WHOIS 도메인 조회 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//whois-lookup.html</link>
+    <description>도메인 등록 정보를 확인합니다.</description>
+    <guid>https://freeutilities.pages.dev//whois-lookup.html</guid>
+  </item>
+  <item>
+    <title>워드 클라우드 생성기 / Word Cloud Generator - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//word-cloud.html</link>
+    <description>입력된 텍스트를 분석하여 워드 클라우드를 생성합니다. 단어 빈도 테이블도 함께 표시합니다.</description>
+    <guid>https://freeutilities.pages.dev//word-cloud.html</guid>
+  </item>
+  <item>
+    <title>단어 섞기 - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//wordscramble.html</link>
+    <description>문자열을 무작위로 섞는 무료 온라인 도구입니다.</description>
+    <guid>https://freeutilities.pages.dev//wordscramble.html</guid>
+  </item>
+  <item>
+    <title>세계 시계 / World Clock - Free Utilities</title>
+    <link>https://freeutilities.pages.dev//world-clock.html</link>
+    <description>여러 도시의 현재 시간을 한 번에 확인합니다. 자동 새로고침 기능을 지원합니다.</description>
+    <guid>https://freeutilities.pages.dev//world-clock.html</guid>
+  </item>
+  <item>
+    <title>YAML ↔ JSON 변환기 / YAML ↔ JSON Converter</title>
+    <link>https://freeutilities.pages.dev//yaml-json.html</link>
+    <description>YAML과 JSON 형식을 상호 변환합니다. 직관적인 인터페이스로 데이터 형식을 자유롭게. Convert between YAML and JSON formats. Simple bidirectional converter.</description>
+    <guid>https://freeutilities.pages.dev//yaml-json.html</guid>
+  </item>
+  </channel>
+</rss>
