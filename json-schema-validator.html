@@ -104,7 +104,5 @@ function checkType(val,t){if(t==='string')return typeof val==='string';if(t==='n
 (function(){var d=document;var ls=localStorage;if(ls.getItem('darkMode')==='true'||(!ls.getItem('darkMode')&&window.matchMedia('(prefers-color-scheme:dark)').matches)){d.documentElement.classList.add('dark')}else{d.documentElement.classList.remove('dark')}d.getElementById('darkToggle').addEventListener('click',function(){var e=d.documentElement;e.classList.toggle('dark');ls.setItem('darkMode',e.classList.contains('dark'))})})();
 (function(){var d=document;var ls=localStorage;var lang=ls.getItem('site-lang');if(lang==='en'){d.body.classList.add('en')}d.getElementById('langToggle').addEventListener('click',function(){d.body.classList.toggle('en');ls.setItem('site-lang',d.body.classList.contains('en')?'en':'ko')})})();
 </script>
-<link rel="stylesheet" href="https://freeutilities.pages.dev/crosslinks.css">
-<script src="https://freeutilities.pages.dev/crosslinks.js" defer></script>
 </body>
 </html>
