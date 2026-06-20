@@ -93,5 +93,15 @@
         "name":  "All About Korea",
         "url":  "https://ailaboutkorea.blogspot.com",
         "desc":  "Korean culture \u0026 travel"
+    },
+    {
+        "name":  "Papapapago",
+        "url":  "https://papapapago.blogspot.com",
+        "desc":  "Travel blog"
+    },
+    {
+        "name":  "Istory",
+        "url":  "https://istor-y.tistory.com",
+        "desc":  "Story \u0026 knowledge blog"
     }
 ]
