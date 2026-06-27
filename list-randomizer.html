@@ -100,7 +100,14 @@ var l=localStorage.getItem("site-lang")||"ko";
 if(l==="en")document.body.classList.add("en");
 var dt=document.getElementById("darkToggle");
 dt.textContent=d?"☀️":"🌙";
-dt.onclick=function(){var x=document.documentElement.classList.toggle("dark");localStorage.setItem("darkMode",x);dt.textContent=x?"☀️":"🌙";};
+dt.onclick=function(){
+document.getElementById("actionBtn").onclick=function(){
+var items=(document.getElementById("v1")&&document.getElementById("v1").value||"A,B,C,D,E").split(/[,
+]/).map(function(s){return s.trim();}).filter(function(s){return s;});
+for(var i=items.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=items[i];items[i]=items[j];items[j]=t;}
+document.getElementById("result").innerHTML=items.join("\u2192");
+};
+};
 var lt=document.getElementById("langToggle");
 lt.textContent=l==="en"?"한국어":"English";
 lt.onclick=function(){var e=document.body.classList.toggle("en");localStorage.setItem("site-lang",e?"en":"ko");lt.textContent=e?"한국어":"English";};
