@@ -1333,7 +1333,8 @@ function renderAllTools() {
       html += '<a href="' + t.file + '" class="group bg-surface-container-lowest p-3 rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-outline-variant/10 flex items-center gap-3">';
       html += '<div class="w-9 h-9 rounded-lg bg-primary-container/10 flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0"><span class="material-symbols-outlined text-primary" style="font-size:18px">' + t.icon + '</span></div>';
       html += '<div class="min-w-0"><div class="text-sm font-semibold truncate"><span class="lang-ko">' + t.ko + '</span><span class="lang-en">' + t.en + '</span></div>';
-      html += '<div class="text-xs text-on-surface-variant truncate"><span class="lang-ko">' + t.koDesc + '</span><span class="lang-en">' + t.enDesc + '</span></div></div></a>';
+      html += '<div class="text-xs text-on-surface-variant truncate"><span class="lang-ko">' + t.koDesc + '</span><span class="lang-en">' + t.enDesc + '</span></div>';
+      html += '<div class="text-[10px] mt-0.5 text-primary/70 font-medium"><span class="lang-ko">' + catNames.ko[t.cat] + '</span><span class="lang-en">' + catNames.en[t.cat] + '</span></div></div></a>';
     });
   });
   container.innerHTML = html;
