@@ -396,7 +396,7 @@
     .tool-grid-enter { animation: fadeInUp 0.3s ease forwards; opacity: 0; transform: translateY(10px); }
     @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
     .expandable-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
-    .expandable-content.open { max-height: 6000px; }
+    .expandable-content.open { max-height: none; }
     .rotate-icon { transition: transform 0.3s ease; }
     .rotate-icon.open { transform: rotate(180deg); }
   
@@ -1334,7 +1334,7 @@ function renderAllTools() {
       html += '<div class="w-9 h-9 rounded-lg bg-primary-container/10 flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0"><span class="material-symbols-outlined text-primary" style="font-size:18px">' + t.icon + '</span></div>';
       html += '<div class="min-w-0"><div class="text-sm font-semibold truncate"><span class="lang-ko">' + t.ko + '</span><span class="lang-en">' + t.en + '</span></div>';
       html += '<div class="text-xs text-on-surface-variant truncate"><span class="lang-ko">' + t.koDesc + '</span><span class="lang-en">' + t.enDesc + '</span></div>';
-      html += '<div class="text-[10px] mt-0.5 text-primary/70 font-medium"><span class="lang-ko">' + catNames.ko[t.cat] + '</span><span class="lang-en">' + catNames.en[t.cat] + '</span></div></div></a>';
+      html += '<div class="text-xs mt-1 inline-block px-1.5 py-0.5 rounded bg-primary/10 text-primary font-medium"><span class="lang-ko">' + catNames.ko[t.cat] + '</span><span class="lang-en">' + catNames.en[t.cat] + '</span></div></div></a>';
     });
   });
   container.innerHTML = html;
