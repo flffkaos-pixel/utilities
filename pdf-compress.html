@@ -36,7 +36,9 @@
 
 <div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mt-6"><h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2><div class="border-b border-border"><div class="faq-q" onclick="this.nextElementSibling.classList.toggle('open')"><span class="lang-ko">PDF 압축은 어떻게 동작하나요?</span><span class="lang-en">How does PDF compression work?</span></div><div class="faq-a"><span class="lang-ko">내부 이미지를 JPEG 압축하여 용량을 줄입니다. 텍스트 위주의 PDF는 효과가 적을 수 있습니다.</span><span class="lang-en">Compresses embedded images as JPEG. May not reduce text-heavy PDFs significantly.</span></div></div></div></div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 var fileInput = document.getElementById('fileInput');
 var preview = document.getElementById('preview');
 var downloadBtn = document.getElementById('downloadBtn');
@@ -57,15 +59,25 @@ downloadBtn.onclick = async function() {
   downloadBtn.textContent = 'Compressing...';
   var origSize = file.size;
   var buf = await file.arrayBuffer();
-  // ponytail: re-save PDF with compression
-  var pdf = await PDFLib.PDFDocument.load(buf);
-  var bytes = await pdf.save({ useObjectStreams: true, addDefaultPage: false });
   var q = parseFloat(quality.value);
-  // Re-encode images at lower quality (ponytail: PDF re-save with object streams is basic compression)
-  var compressedPdf = await PDFLib.PDFDocument.load(bytes);
-  var pages = compressedPdf.getPages();
-  // Re-save with compression hint
-  var outBytes = await compressedPdf.save({ useObjectStreams: true });
+  var scale = q > 0.6 ? 0.8 : q > 0.4 ? 0.6 : 0.4;
+  var pdf = await pdfjsLib.getDocument({ data: buf.slice(0) }).promise;
+  var newPdf = await PDFLib.PDFDocument.create();
+  for (var i = 1; i <= pdf.numPages; i++) {
+    var page = await pdf.getPage(i);
+    var viewport = page.getViewport({ scale: scale });
+    var canvas = document.createElement('canvas');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    var ctx = canvas.getContext('2d');
+    await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+    var jpgData = canvas.toDataURL('image/jpeg', q);
+    var jpgBytes = await fetch(jpgData).then(function(r) { return r.arrayBuffer(); });
+    var img = await newPdf.embedJpg(jpgBytes);
+    var pageDims = newPdf.addPage([img.width, img.height]);
+    pageDims.drawImage(img, { x: 0, y: 0, width: img.width, height: img.height });
+  }
+  var outBytes = await newPdf.save();
   var blob = new Blob([outBytes], { type: 'application/pdf' });
   var a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
