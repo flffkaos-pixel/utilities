@@ -88,7 +88,7 @@ html.dark header,html.dark .bg-surface\/80,html.dark .bg-surface\/90{background-
 <div id="buildSection" style="display:none">
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
 <div><label class="text-sm text-on-surface-variant block">Name<input id="bName" class="cp-input mt-1" type="text"></label></div>
-<div><label class="text-sm text-on-surface-variant block">Value<input id="bValue" class="cp-input mt-1" type="text"></label></div>
+<div><label class="text-sm text-on-surface-variant block">Cookie String<input id="bValue" class="cp-input mt-1" type="text"></label></div>
 <div><label class="text-sm text-on-surface-variant block">Domain<input id="bDomain" class="cp-input mt-1" type="text"></label></div>
 <div><label class="text-sm text-on-surface-variant block">Path<input id="bPath" class="cp-input mt-1" type="text" value="/"></label></div>
 <div><label class="text-sm text-on-surface-variant block">Expires<input id="bExpires" class="cp-input mt-1" type="text" placeholder="Wed, 21 Oct 2025 07:28:00 GMT"></label></div>
@@ -100,7 +100,7 @@ html.dark header,html.dark .bg-surface\/80,html.dark .bg-surface\/90{background-
 document.getElementById('modeParse').addEventListener('click',function(){document.getElementById('parseSection').style.display='block';document.getElementById('buildSection').style.display='none'});
 document.getElementById('modeBuild').addEventListener('click',function(){document.getElementById('parseSection').style.display='none';document.getElementById('buildSection').style.display='block'});
 document.getElementById('cpParse').addEventListener('click',function(){
-var raw=document.getElementById('cpInput').value;var parts=raw.split(';').map(function(p){return p.trim()});var rows='<table><thead><tr><th>Property</th><th>Value</th></tr></thead><tbody>';
+var raw=document.getElementById('cpInput').value;var parts=raw.split(';').map(function(p){return p.trim()});var rows='<table><thead><tr><th>Property</th><th>Cookie String</th></tr></thead><tbody>';
 parts.forEach(function(p){var idx=p.indexOf('=');if(idx===-1){rows+='<tr><td>flag</td><td>'+p+'</td></tr>'}else{var k=p.substring(0,idx).trim();var v=p.substring(idx+1).trim();rows+='<tr><td>'+k+'</td><td>'+v+'</td></tr>'}});
 rows+='</tbody></table>';document.getElementById('cpResult').innerHTML=rows});
 document.getElementById('cpBuild').addEventListener('click',function(){

@@ -92,7 +92,7 @@ html.dark header,html.dark .bg-surface\/80,html.dark .bg-surface\/90{background-
 <div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mb-8">
 <h1 class="text-3xl font-bold mb-2"><span class="lang-ko">랜덤 추첨기</span><span class="lang-en">Random Picker</span></h1>
 <p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">무작위로 항목을 선택하는 무료 온라인 도구입니다.</span><span class="lang-en">Randomly pick items from a list.</span></p>
-<textarea id="lri" class="w-full h-32 px-4 py-3 border border-border rounded-lg bg-white dark:bg-slate-700 dark:border-slate-600 mb-4" placeholder="<span class="lang-ko">한 줄에 하나씩 입력</span><span class="lang-en">One item per line</span>"></textarea><button onclick="pickRand()" class="px-4 py-2 bg-primary text-white rounded-lg font-medium mb-4"><span class="lang-ko">선택</span><span class="lang-en">Pick</span></button><div id="lrr" class="p-4 bg-slate-100 dark:bg-slate-700 rounded-lg text-center text-2xl font-bold text-primary"></div>
+<textarea id="lri" class="w-full h-32 px-4 py-3 border border-border rounded-lg bg-white dark:bg-slate-700 dark:border-slate-600 mb-4" placeholder="<span class="lang-ko">한 줄에 하나씩 입력</span><span class="lang-en">One item per line</span>"></textarea><button id="actionBtn" onclick="pickRand()" class="px-4 py-2 bg-primary text-white rounded-lg font-medium mb-4"><span class="lang-ko">선택</span><span class="lang-en">Pick</span></button><div id="lrr" class="p-4 bg-slate-100 dark:bg-slate-700 rounded-lg text-center text-2xl font-bold text-primary"></div>
 </div>
 <script>
 function pickRand(){var items=document.getElementById("lri").value.split("\n").filter(Boolean);if(items.length===0){document.getElementById("lrr").textContent="";return;}document.getElementById("lrr").textContent=items[Math.floor(Math.random()*items.length)];}
@@ -134,8 +134,8 @@ if(l==="en")document.body.classList.add("en");
 var dt=document.getElementById("darkToggle");
 dt.textContent=d?"☀️":"🌙";
 dt.onclick=function(){
-document.getElementById("actionBtn").onclick=function(){
-var items=(document.getElementById("v1")&&document.getElementById("v1").value||"A,B,C,D,E").split(/[,
+document.getElementById("lri").onclick=function(){
+var items=(document.getElementById("lri")&&document.getElementById("lri").value||"A,B,C,D,E").split(/[,
 ]/).map(function(s){return s.trim();}).filter(function(s){return s;});
 for(var i=items.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=items[i];items[i]=items[j];items[j]=t;}
 document.getElementById("result").innerHTML=items.join("\u2192");

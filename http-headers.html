@@ -105,7 +105,7 @@ var hds={
 };
 document.getElementById('htParse').addEventListener('click',function(){
 var raw=document.getElementById('htInput').value;var lines=raw.split('\n').filter(function(l){return l.trim()!==''});
-var html='<table><thead><tr><th>Header</th><th>Value</th><th><span class="lang-ko">설명</span><span class="lang-en">Description</span></th></tr></thead><tbody>';
+var html='<table><thead><tr><th>Header</th><th>Header String</th><th><span class="lang-ko">설명</span><span class="lang-en">Description</span></th></tr></thead><tbody>';
 lines.forEach(function(l){var idx=l.indexOf(':');if(idx===-1){html+='<tr><td colspan="3" class="unknown">Invalid: '+l+'</td></tr>';return}var k=l.substring(0,idx).trim();var v=l.substring(idx+1).trim();var klass=hds[k.toLowerCase()]?'known':'unknown';var desc=hds[k.toLowerCase()]||'<span class="lang-ko">알 수 없는 헤더</span><span class="lang-en">Unknown header</span>';html+='<tr class="'+klass+'"><td>'+k+'</td><td style="word-break:break-all">'+v+'</td><td>'+desc+'</td></tr>'});
 html+='</tbody></table>';document.getElementById('htResult').innerHTML=html});
 </script>
