@@ -132,7 +132,7 @@ function startCD(){
   document.getElementById('cdBtn').textContent='일시정지/Pause';
   cd.interval=setInterval(function(){
     cd.remaining-=100;
-    if(cd.remaining<=0){cd.remaining=0;clearInterval(cd.interval);cd.running=false;document.getElementById('cdBtn').textContent='다시/Again';display();alert('Time is up!');return;}
+    if(cd.remaining<=0){cd.remaining=0;clearInterval(cd.interval);cd.running=false;document.getElementById('cdBtn').textContent='다시/Again';display();document.getElementById('cdDisplay').textContent='*** TIME IS UP! ***';var n=document.createElement('div');n.id='cdNotify';n.className='mt-4 p-4 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-xl text-center font-bold text-lg';n.textContent='[bell] Time is up!';document.getElementById('cdBtn').parentElement.appendChild(n);setTimeout(function(){var e=document.getElementById('cdNotify');if(e)e.remove()},5000);return;}
     display();
   },100);
 }
@@ -141,7 +141,7 @@ function pauseCD(){
   else{cd.running=true;document.getElementById('cdBtn').textContent='일시정지/Pause';
     cd.interval=setInterval(function(){
       cd.remaining-=100;
-      if(cd.remaining<=0){cd.remaining=0;clearInterval(cd.interval);cd.running=false;document.getElementById('cdBtn').textContent='다시/Again';display();alert('Time is up!');return;}
+      if(cd.remaining<=0){cd.remaining=0;clearInterval(cd.interval);cd.running=false;document.getElementById('cdBtn').textContent='다시/Again';display();document.getElementById('cdDisplay').textContent='*** TIME IS UP! ***';var n=document.createElement('div');n.id='cdNotify';n.className='mt-4 p-4 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-xl text-center font-bold text-lg';n.textContent='[bell] Time is up!';document.getElementById('cdBtn').parentElement.appendChild(n);setTimeout(function(){var e=document.getElementById('cdNotify');if(e)e.remove()},5000);return;}
       display();
     },100);}
 }

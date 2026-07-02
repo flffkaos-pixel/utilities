@@ -89,7 +89,7 @@ Frank
 Grace
 Henry
 Ivy
-Jack</textarea></div><div><label>Number of Winners</label><input id="lotWinners" type="number" value="2" min="1" class="w-full p-3 rounded-xl border border-border bg-white dark:bg-slate-700"></div><button onclick="lotteryDraw()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium">Draw!</button><div id="result" class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 min-h-20 text-center"></div></div><script>function lotteryDraw(){var participants=document.getElementById("lotParticipants").value.split("\n").filter(Boolean);var n=parseInt(document.getElementById("lotWinners").value)||1;if(participants.length<n){alert("Not enough participants");return}var el=document.getElementById("lotResult");var shuffle=setInterval(function(){var idx=Math.floor(Math.random()*participants.length);el.innerHTML="<div class=text-2xl>"+participants[idx]+"</div><div class=text-sm>Drawing...</div>"},100);setTimeout(function(){clearInterval(shuffle);var shuffled=participants.slice();for(var i=shuffled.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=shuffled[i];shuffled[i]=shuffled[j];shuffled[j]=t}var winners=shuffled.slice(0,n);var html="<div class=text-lg font-bold>Winners:</div>";winners.forEach(function(w,i){html+='<div class="text-xl font-bold text-green-600">'+(i+1)+". "+w+"</div>"});el.innerHTML=html},2000)}</script></div>
+Jack</textarea></div><div><label>Number of Winners</label><input id="lotWinners" type="number" value="2" min="1" class="w-full p-3 rounded-xl border border-border bg-white dark:bg-slate-700"></div><button onclick="lotteryDraw()" class="w-full p-3 rounded-xl bg-primary text-white hover:bg-blue-700 font-medium">Draw!</button><div id="result" class="bg-slate-50 dark:bg-slate-700 rounded-xl p-4 min-h-20 text-center"></div></div><script>function lotteryDraw(){var participants=document.getElementById("lotParticipants").value.split("\n").filter(Boolean);var n=parseInt(document.getElementById("lotWinners").value)||1;if(participants.length<n){document.getElementById("result").innerHTML='<div class="text-red-500 font-bold">Not enough participants</div>';return}var el=document.getElementById("result");var shuffle=setInterval(function(){var idx=Math.floor(Math.random()*participants.length);el.innerHTML="<div class=text-2xl>"+participants[idx]+"</div><div class=text-sm>Drawing...</div>"},100);setTimeout(function(){clearInterval(shuffle);var shuffled=participants.slice();for(var i=shuffled.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=shuffled[i];shuffled[i]=shuffled[j];shuffled[j]=t}var winners=shuffled.slice(0,n);var html="<div class=text-lg font-bold>Winners:</div>";winners.forEach(function(w,i){html+='<div class="text-xl font-bold text-green-600">'+(i+1)+". "+w+"</div>"});el.innerHTML=html},2000)}</script></div>
 <div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8">
 <h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
 <div class="faq-q" onclick="toggleFaq(this)"><span class="lang-ko">Q: 이 도구는 어떻게 사용하나요?</span><span class="lang-en">Q: How do I use this tool?</span></div>
@@ -128,12 +128,7 @@ Jack</textarea></div><div><label>Number of Winners</label><input id="lotWinners"
   if(l==="en") document.body.classList.add("en");
   var dt=document.getElementById("darkToggle");
   dt.textContent=d?"☀️":"🌙";
-  dt.onclick=function(){
-document.getElementById("actionBtn").onclick=function(){
-var nums=[];while(nums.length<6){var n=Math.floor(Math.random()*45)+1;if(!nums.includes(n))nums.push(n);}nums.sort(function(a,b){return a-b;});
-document.getElementById("result").innerHTML=nums.map(function(n){return'<span class="inline-block w-10 h-10 rounded-full bg-red-500 text-white mx-1 leading-10 text-lg">'+n+'</span>'}).join("")+"<br><span class=\'text-sm\'>+"+Math.floor(Math.random()*45+1)+"</span>";
-};
-};
+  dt.onclick=function(){var x=document.documentElement.classList.toggle("dark");localStorage.setItem("darkMode",x);dt.textContent=x?"light_mode":"dark_mode";};
   var lt=document.getElementById("langToggle");
   lt.textContent=l==="en"?"한국어":"English";
   lt.onclick=function(){var e=document.body.classList.toggle("en");localStorage.setItem("site-lang",e?"en":"ko");lt.textContent=e?"한국어":"English";};
