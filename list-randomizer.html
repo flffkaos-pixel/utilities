@@ -92,10 +92,10 @@ html.dark header,html.dark .bg-surface\/80,html.dark .bg-surface\/90{background-
 <div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8 mb-8">
 <h1 class="text-3xl font-bold mb-2"><span class="lang-ko">랜덤 추첨기</span><span class="lang-en">Random Picker</span></h1>
 <p class="text-slate-600 dark:text-slate-300 mb-6"><span class="lang-ko">무작위로 항목을 선택하는 무료 온라인 도구입니다.</span><span class="lang-en">Randomly pick items from a list.</span></p>
-<textarea id="lri" class="w-full h-32 px-4 py-3 border border-border rounded-lg bg-white dark:bg-slate-700 dark:border-slate-600 mb-4" placeholder="<span class="lang-ko">한 줄에 하나씩 입력</span><span class="lang-en">One item per line</span>"></textarea><button id="actionBtn" onclick="pickRand()" class="px-4 py-2 bg-primary text-white rounded-lg font-medium mb-4"><span class="lang-ko">선택</span><span class="lang-en">Pick</span></button><div id="lrr" class="p-4 bg-slate-100 dark:bg-slate-700 rounded-lg text-center text-2xl font-bold text-primary"></div>
+<textarea id="lri" class="w-full h-32 px-4 py-3 border border-border rounded-lg bg-white dark:bg-slate-700 dark:border-slate-600 mb-4" placeholder="<span class="lang-ko">한 줄에 하나씩 입력</span><span class="lang-en">One item per line</span>"></textarea><button id="actionBtn" onclick="pickRand()" class="px-4 py-2 bg-primary text-white rounded-lg font-medium mb-4"><span class="lang-ko">선택</span><span class="lang-en">Pick</span></button><div id="result" class="p-4 bg-slate-100 dark:bg-slate-700 rounded-lg text-center text-2xl font-bold text-primary"></div>
 </div>
 <script>
-function pickRand(){var items=document.getElementById("lri").value.split("\n").filter(Boolean);if(items.length===0){document.getElementById("lrr").textContent="";return;}document.getElementById("lrr").textContent=items[Math.floor(Math.random()*items.length)];}
+function pickRand(){var items=document.getElementById("lri").value.split("\n").filter(Boolean);if(items.length===0){document.getElementById("result").textContent="";return;}document.getElementById("result").textContent=items[Math.floor(Math.random()*items.length)];}
 </script>
 <div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-6 sm:p-8">
 <h2 class="text-xl font-bold mb-4"><span class="lang-ko">자주 묻는 질문</span><span class="lang-en">Frequently Asked Questions</span></h2>
@@ -150,4 +150,5 @@ lt.onclick=function(){var e=document.body.classList.toggle("en");localStorage.se
 <script>(function(){var lang=localStorage.getItem("site-lang")||"ko";document.body.classList.toggle("en",lang==="en");var d=localStorage.getItem("darkMode")==="true";if(d)document.documentElement.classList.add("dark");var dt=document.getElementById("darkToggle");if(dt){dt.textContent=d?"light_mode":"dark_mode";dt.onclick=function(){var x=document.documentElement.classList.toggle("dark");localStorage.setItem("darkMode",x);dt.textContent=x?"light_mode":"dark_mode";}}var lt=document.getElementById("langToggle");if(lt){var b=document.getElementById("langBtnText");b.textContent=lang==="en"?"한국어":"English";lt.onclick=function(){var e=document.body.classList.toggle("en");var n=e?"한국어":"English";localStorage.setItem("site-lang",e?"ko":"en");var bt=document.getElementById("langBtnText");if(bt)bt.textContent=n;}}})();</script>
 </body>
 </html>
+
 
