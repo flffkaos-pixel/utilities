@@ -1,28 +1,4 @@
-User-agent: Naverbot
+﻿User-agent: *
 Allow: /
-
-User-agent: Yeti
-Allow: /
-
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: GPTBot
-Disallow: /
-
-User-agent: ChatGPT-User
-Disallow: /
-
-User-agent: Claude-Web
-Disallow: /
-
-User-agent: PerplexityBot
-Disallow: /
-
-User-agent: Applebot
-Allow: /
-
+Allow: /research/
 Sitemap: https://freeutilities.pages.dev/sitemap.xml
